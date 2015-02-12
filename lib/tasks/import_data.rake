@@ -1,7 +1,7 @@
 namespace :import do
   desc "Import master data"
   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
-                    :matches, :questions] do
+                    :matches, :questions, :match_questions, :challenges] do
   end
 
   desc 'Import tournament data'
@@ -50,7 +50,22 @@ namespace :import do
 
   desc 'Import players'
   task players: :environment do
-    # TODO
+    begin
+      file = "db/data/players.xls"
+      Spreadsheet.open(file) do |sheet|
+        sheet1 = sheet.worksheet 0
+        sheet1.each 1 do |row|
+          next if row[0].blank?
+          team = Team.by_name(row[0].strip).first
+          next if team.blank?
+          player = team.players.by_first_name(row[1].strip).first_or_initialize
+          player.save
+        end
+      end
+      p "Imported players"
+    rescue Exception => e
+      puts "Error while importing #{e} #{e.backtrace}"
+    end
   end
 
   desc 'Import Matches'
@@ -58,7 +73,7 @@ namespace :import do
     team_uae = Team.by_name('UAE').first
     team_uae.update_attributes(name: 'United Arab Emirates') if team_uae 
     Match.matches.each_with_index do |hash, match_no|
-      match = Match.by_match_no(match_no).first_or_initialize
+      match = Match.by_match_no(match_no + 1).first_or_initialize
       team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
       next if team1.blank?
       team1.update_attributes(short_name: hash['team_one_short'])
@@ -95,5 +110,16 @@ namespace :import do
       question.save
     end
     p "Imported Questions..."
+  end
+
+  desc 'Import match questions'
+  task match_questions: :environment do
+    MatchQuestion.add_match_questions
+    p "Imported Match Questions..."
+  end
+
+  desc 'Import challenges'
+  task challenges: :environment do
+    Challenge.add_challenges
   end
 end

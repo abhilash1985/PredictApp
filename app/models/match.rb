@@ -1,10 +1,22 @@
 class Match < ActiveRecord::Base
+  # Associations
   belongs_to :team1, class_name: 'Team', foreign_key: :team1_id
   belongs_to :team2, class_name: 'Team', foreign_key: :team2_id
   has_many :match_questions
   has_many :questions, through: :match_questions
-  scope :by_name, ->(name) { where(name: name) }
+  # validations
+  validates :match_no, :team1_id, :team2_id, presence: true
+  # Scopes
   scope :by_match_no, ->(match_no) { where(match_no: match_no) }
+  scope :id_in, ->(match_ids) { where(id: match_ids) }
+
+  def team1_short_name
+    team1.try(:short_name)
+  end
+
+  def team2_short_name
+    team2.try(:short_name)
+  end
 
   class << self
     def matches
