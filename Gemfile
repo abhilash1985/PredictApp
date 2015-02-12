@@ -38,6 +38,10 @@ gem 'spreadsheet'
 # Use Unicorn as the app server
 gem 'unicorn'
 
+#for the bootstrap
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'autoprefixer-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
