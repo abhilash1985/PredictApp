@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "challenges", ["end_time"], name: "index_challenges_on_end_time", using: :btree
+  add_index "challenges", ["name"], name: "index_challenges_on_name", using: :btree
+  add_index "challenges", ["start_time"], name: "index_challenges_on_start_time", using: :btree
+  add_index "challenges", ["tournament_id"], name: "index_challenges_on_tournament_id", using: :btree
+
   create_table "match_questions", force: :cascade do |t|
     t.integer  "match_id",    limit: 4
     t.integer  "question_id", limit: 4
@@ -31,6 +36,9 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  add_index "match_questions", ["match_id"], name: "index_match_questions_on_match_id", using: :btree
+  add_index "match_questions", ["question_id"], name: "index_match_questions_on_question_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
     t.integer  "match_no",     limit: 4
@@ -42,6 +50,12 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "matches", ["challenge_id"], name: "index_matches_on_challenge_id", using: :btree
+  add_index "matches", ["match_no"], name: "index_matches_on_match_no", using: :btree
+  add_index "matches", ["stadium_id"], name: "index_matches_on_stadium_id", using: :btree
+  add_index "matches", ["team1_id"], name: "index_matches_on_team1_id", using: :btree
+  add_index "matches", ["team2_id"], name: "index_matches_on_team2_id", using: :btree
+
   create_table "players", force: :cascade do |t|
     t.string   "first_name", limit: 255
     t.string   "last_name",  limit: 255
@@ -50,6 +64,9 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "players", ["first_name"], name: "index_players_on_first_name", using: :btree
+  add_index "players", ["last_name"], name: "index_players_on_last_name", using: :btree
 
   create_table "predictions", force: :cascade do |t|
     t.integer  "user_challenge_id", limit: 4
@@ -66,11 +83,15 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "questions", ["question"], name: "index_questions_on_question", using: :btree
+
   create_table "rounds", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "rounds", ["name"], name: "index_rounds_on_name", using: :btree
 
   create_table "stadia", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -78,12 +99,16 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "stadia", ["name"], name: "index_stadia_on_name", using: :btree
+
   create_table "teams", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "rank",       limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
 
   create_table "tournaments", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -93,6 +118,10 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "tournaments", ["end_date"], name: "index_tournaments_on_end_date", using: :btree
+  add_index "tournaments", ["name"], name: "index_tournaments_on_name", using: :btree
+  add_index "tournaments", ["start_date"], name: "index_tournaments_on_start_date", using: :btree
 
   create_table "user_challenges", force: :cascade do |t|
     t.integer  "user_id",      limit: 4

@@ -1,6 +1,7 @@
 namespace :import do
   desc "Import master data"
-  task master_data: [:tournaments, :stadiums, :teams, :rounds, :players] do
+  task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
+                    :questions] do
   end
 
   desc 'Import tournament data'
@@ -50,5 +51,27 @@ namespace :import do
   desc 'Import players'
   task players: :environment do
     # TODO
+  end
+
+  desc 'Import questions'
+  task questions: :environment do
+    questions = {
+      'Who will win the match' => 3,
+      'Who will win the toss' => 1,
+      'Who will be batting first' => 1,
+      'Runs will be scored by the team batting first' => 2,
+      'Runs will be scored by the team batting second' => 2,
+      'Who will be the man of the match' => 3,
+      'Who will be the top scorer of the match' => 2,
+      'Who will take the most wickets of the match' => 2,
+      'Who will hit the most sixes of the match' => 2,
+      'Who will hit the most boundaries of the match' => 2
+    }
+    questions.each do |question, weightage|
+      question = Question.by_question(question).first_or_initialize
+      question.weightage = weightage
+      question.save
+    end
+    p "Imported Questions..."
   end
 end
