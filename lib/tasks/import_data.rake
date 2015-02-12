@@ -1,7 +1,7 @@
 namespace :import do
   desc "Import master data"
   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
-                    :questions] do
+                    :matches, :questions] do
   end
 
   desc 'Import tournament data'
@@ -30,7 +30,7 @@ namespace :import do
     teams = { 'Afghanistan' => 11, 'Australia' => 1, 'Bangladesh' => 9,
               'England' => 5, 'India' => 2, 'Ireland' => 12, 'New Zealand' => 6,
               'Pakistan' => 7, 'Scotland' => 13, 'South Africa' => 3,
-              'Sri Lanka' => 4, 'UAE' => 14, 'West Indies' => 8, 'Zimbabwe' => 10}
+              'Sri Lanka' => 4, 'United Arab Emirates' => 14, 'West Indies' => 8, 'Zimbabwe' => 10}
     teams.each do |team, rank|
       team = Team.by_name(team).first_or_initialize
       team.rank = rank
@@ -51,6 +51,28 @@ namespace :import do
   desc 'Import players'
   task players: :environment do
     # TODO
+  end
+
+  desc 'Import Matches'
+  task matches: :environment do
+    team_uae = Team.by_name('UAE').first
+    team_uae.update_attributes(name: 'United Arab Emirates') if team_uae 
+    Match.matches.each_with_index do |hash, match_no|
+      match = Match.by_match_no(match_no).first_or_initialize
+      team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
+      next if team1.blank?
+      team1.update_attributes(short_name: hash['team_one_short'])
+      team2 = Team.by_name(hash['team_two_long']).first || Team.by_name(hash['team_two_short']).first
+      next if team2.blank?
+      team2.update_attributes(short_name: hash['team_two_short'])
+      match.team1_id = team1.id
+      match.team2_id = team2.id
+      stadium = Stadium.like_name(hash['city']).first
+      match.stadium_id = stadium.try(:id)
+      match.match_date = hash['match_datetime']
+      match.save
+    end
+    p "Imported Matches..."
   end
 
   desc 'Import questions'
