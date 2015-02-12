@@ -31,6 +31,7 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'rspec-rails'
+gem 'spreadsheet'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,7 @@
+dependencies:
+  bundler:
+    without: [development, osx]
+
+test:
+  pre:
+    - bin/rake db:migrate RAILS_ENV=test
