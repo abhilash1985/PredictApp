@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211181024) do
+ActiveRecord::Schema.define(version: 20150212034251) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -37,7 +37,9 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "match_questions", ["answer"], name: "index_match_questions_on_answer", using: :btree
   add_index "match_questions", ["match_id"], name: "index_match_questions_on_match_id", using: :btree
+  add_index "match_questions", ["points"], name: "index_match_questions_on_points", using: :btree
   add_index "match_questions", ["question_id"], name: "index_match_questions_on_question_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
@@ -77,13 +79,20 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "updated_at",                    null: false
   end
 
+  add_index "predictions", ["match_question_id"], name: "index_predictions_on_match_question_id", using: :btree
+  add_index "predictions", ["points"], name: "index_predictions_on_points", using: :btree
+  add_index "predictions", ["user_answer"], name: "index_predictions_on_user_answer", using: :btree
+  add_index "predictions", ["user_challenge_id"], name: "index_predictions_on_user_challenge_id", using: :btree
+
   create_table "questions", force: :cascade do |t|
     t.string   "question",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "weightage",  limit: 4
   end
 
   add_index "questions", ["question"], name: "index_questions_on_question", using: :btree
+  add_index "questions", ["weightage"], name: "index_questions_on_weightage", using: :btree
 
   create_table "rounds", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -129,6 +138,9 @@ ActiveRecord::Schema.define(version: 20150211181024) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "user_challenges", ["challenge_id"], name: "index_user_challenges_on_challenge_id", using: :btree
+  add_index "user_challenges", ["user_id"], name: "index_user_challenges_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255
