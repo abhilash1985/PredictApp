@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212034251) do
+ActiveRecord::Schema.define(version: 20150212132036) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20150212034251) do
     t.integer  "challenge_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "match_date"
   end
 
   add_index "matches", ["challenge_id"], name: "index_matches_on_challenge_id", using: :btree
+  add_index "matches", ["match_date"], name: "index_matches_on_match_date", using: :btree
   add_index "matches", ["match_no"], name: "index_matches_on_match_no", using: :btree
   add_index "matches", ["stadium_id"], name: "index_matches_on_stadium_id", using: :btree
   add_index "matches", ["team1_id"], name: "index_matches_on_team1_id", using: :btree
@@ -115,9 +117,11 @@ ActiveRecord::Schema.define(version: 20150212034251) do
     t.integer  "rank",       limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "short_name", limit: 255
   end
 
   add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
+  add_index "teams", ["short_name"], name: "index_teams_on_short_name", using: :btree
 
   create_table "tournaments", force: :cascade do |t|
     t.string   "name",       limit: 255
