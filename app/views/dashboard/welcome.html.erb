@@ -1,0 +1,152 @@
+<!-- Button trigger modal -->
+
+<%= image_tag '2015_cricket_world_cup_logo.png', id:'bg_image'%>
+<div class="container fxd_position"> 
+    <br><br>
+    <center>
+    <h3>You need to sign in or register for this service</h3>
+    <em>Donate Dogecoin: DD7StzN1wGQhE4a47uDsBodkS4DE8gxcwh</em>
+    <br>
+  <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">Sign In/Register</button>
+  </center>
+  <br>
+ </div>
+  
+
+<!-- Modal -->
+<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <br>
+        <div class="bs-example bs-example-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+              <li class=""><a href="#why" data-toggle="tab">Why?</a></li>
+            </ul>
+        </div>
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in" id="why">
+        <p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
+        <p></p><br> Please contact <a mailto:href="JoeSixPack@Sixpacksrus.com"></a>JoeSixPack@Sixpacksrus.com</a> for any other inquiries.</p>
+        </div>
+        <div class="tab-pane fade active in" id="signin">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'form-horizontal') do |f| %>
+            <fieldset>
+            <!-- Sign In Form -->
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="userid">Email:</label>
+              <div class="controls">
+               <%= f.email_field :email, autofocus: true, required: true, placeholder:"Email", class:"form-control" %>
+              </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="control-group">
+              <label class="control-label" for="passwordinput">Password:</label>
+              <div class="controls">
+                <%= f.password_field :password, autocomplete: "off", required: true, placeholder:"Password", class:"form-control" %>
+              </div>
+            </div>
+
+            <!-- Multiple Checkboxes (inline) -->
+            <div class="control-group">
+              <div class="controls">
+                <% if devise_mapping.rememberable? -%>
+                  <div class="pull-right">
+                    <%= f.check_box :remember_me %> <%= f.label :remember_me, class:"control-label" %>
+                  </div>
+                <% end -%>
+              </div>
+               <div class = "controls">
+                <div class = "frog-pswd">
+                <%= link_to "Forgot password", new_password_path(resource_name), class:"control-label" %>
+              </div> 
+            </div>
+          </div>
+
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="signin"></label>
+              <div class="controls">
+                <%= f.submit "Sign in", class:"btn btn-success" %>
+              </div>
+            </div>
+            </fieldset>
+            <% end -%>
+        </div>
+        <div class="tab-pane fade" id="signup">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class:'form-horizontal') do |f| %>
+              <%= devise_error_messages! %>
+            <fieldset>
+            <!-- Sign Up Form -->
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="Email">Email:</label>
+              <div class="controls">
+                 <%= f.email_field :email, autofocus: true, placeholder:'Email', class:'form-control' %>
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="userid">First Name:</label>
+              <div class="controls">
+                <%= f.text_field :first_name, required:true, placeholder:'First Name', class:'form-control' %>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label" for="userid">Middle Name:</label>
+              <div class="controls">
+                <%= f.text_field :middle_name, class:'form-control', placeholder:'Middle Name' %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="userid">Last Name:</label>
+              <div class="controls">
+                <%= f.text_field :last_name, required:true, class:'form-control', placeholder:'Last Name' %>
+              </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="control-group">
+              <label class="control-label" for="password">Password:</label>
+              <div class="controls">
+                  <% if @validatable %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "off", class:'form-control', placeholder:'Password' %>
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+              <div class="controls">
+                <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control', placeholder:'Re-Enter Password' %>
+              </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="confirmsignup"></label>
+              <div class="controls">
+               <%= f.submit "Sign Up", class:'btn btn-success' %>
+              </div>
+            </div>
+            </fieldset>
+            <% end -%>
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+      <center>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
