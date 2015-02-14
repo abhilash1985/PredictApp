@@ -5,7 +5,7 @@
 #bg_image {
   position: fixed; 
   top: 0; 
-  left: 0; 
+  left: 0;
 }
 .margin{
 	margin-left: -18%;
@@ -17,10 +17,48 @@
 }
 
 .navbar-brand { 
-  width: 150px;
-  height: 50px;
+  /*width: 150px;*/
+  /*height: 50px;*/
   background-size: 50px;  
 }
+
+.mrgin{
+  margin-top: 12%;
+}
+
+.add_opacity{
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+/*flash*/
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
 
 .nav-tabs {
   display: inline-block;
@@ -56,4 +94,15 @@
   padding: 20px 15px 15px;
   text-align: center;
   width: 100%;
+}
+
+#full-screen-background-image {
+  z-index: -999;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

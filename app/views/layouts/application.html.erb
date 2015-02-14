@@ -9,13 +9,47 @@
 <body>
 <div>
   <% flash.each do |key, value| %>
-    <div class="<%= flash_class(key) %> fade in">
+    <div class="alert alert-<%= key %> fade in">
       <a href="#" data-dismiss="alert" class="close">×</a>
       <%= value %>
     </div>
   <% end %>
 </div>
-<%= yield %>
+<% if user_signed_in?%>
+  <nav class="navbar navbar-default" role="navigation" style = 'margin-bottom: 1px;'>
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Prediction</a>
+        <%= link_to "Home", dashboard_index_path, class:'navbar-brand' %>
+        <a class="navbar-brand" href="#" id="menu-toggle">Menu </a>
+        
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+          <ul class="nav navbar-nav">
+          <li><a href="#"></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email%> <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">My Points</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Change Password</a></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+                </ul>
+              </li>
+          </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+<% end -%>
+<div>
+  <%= yield %>
+</div>
 
 </body>
 </html>
