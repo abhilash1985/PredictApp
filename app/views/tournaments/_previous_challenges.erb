@@ -1,0 +1,28 @@
+<div class="tab-pane" id="tab_default_2">
+  <% @previous_challenges.each_with_index do |challenge, chlng_index| %>
+    <section> <%= link_to challenge.name, points_table_challenge_path(challenge) %></section>
+    <div class="container">
+      <div class="row">    
+        <% challenge.matches.each_with_index do |match, match_index| %>
+          <a href=<%="#new_modal_#{chlng_index}_#{match_index}"%> id =<%="#{chlng_index}_#{match_index}"%>  class = "modal_link" data-toggle="modal">
+            <div class="col-md-3">            
+              <div class="thumbnail">
+                <div class="caption">
+                  <h4><%= match.match_no %></h4>
+                  <p><%= match.team1.name%></p>
+                  <p><%= image_tag('vs.png')%></p>
+                  <p><%= match.team2.name%></p>
+                </div>
+                <%= image_tag("#{load_icon}")%>
+              </div>
+            </div>
+          </a>
+          <div class="modal fade" id=<%="modal_#{chlng_index}_#{match_index}"%> tabindex="-1" role="dialog">
+            <%= render partial:'modal_form', locals:{ match: match } %>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+    <hr>
+  <% end -%>
+</div>

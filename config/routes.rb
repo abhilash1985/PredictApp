@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get 'dashboard/welcome'
   root 'dashboard#index'
   resources :dashboard, only: :index
-  resources :challenges
+  resources :challenges do
+    member do
+      get :points_table
+    end
+  end
   resources :tournaments, only: [:index, :show]
   
   # The priority is based upon order of creation: first created -> highest priority.

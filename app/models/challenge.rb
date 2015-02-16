@@ -6,6 +6,12 @@ class Challenge < ActiveRecord::Base
   has_many :users, through: :user_challenges
   # Scopes
   scope :by_name, ->(name) { where(name: name) }
+  scope :current, -> { where('end_time > ?', DateTime.now) }
+  scope :previous, -> { where('end_time < ?', DateTime.now) }
+
+  def total_points
+    matches.reduce(0) { |a, v| a + v.total_points }
+  end
 
   def time_for(number)
     case number.to_i
