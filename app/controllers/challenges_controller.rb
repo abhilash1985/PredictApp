@@ -6,7 +6,7 @@ class ChallengesController < ApplicationController
 	end
 
 	def show
-		
+		@challenge = Challenge.find(params[:id])
 	end
 
 end

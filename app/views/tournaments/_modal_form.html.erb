@@ -1,0 +1,33 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Question </h4>
+    </div>
+    <div class="modal-body">
+    <%= form_for(:prediction, remote: true, html: {role: :form, 'data-model' => match.id}) do |f| %>
+      <% match.match_questions.each do |match_question|%>
+        <ul>
+          <li><%=match_question.question.question %></li>
+          <% options = match_question.options[:v]%>
+          <% if options.blank?%>
+          <%# option_collection %>
+            <%= select_tag "#{match_question.id}", options_for_select(option_collection(match)) %>
+          <%else%>
+            <% options.each do |opt| %>
+              <label for=""><%=opt%></label>
+              <%= radio_button_tag "#{match_question.id}", "#{opt}", class:'padding-4' %> &nbsp; 
+            <% end -%>
+          <% end -%>
+        </ul>
+      <% end -%>
+    <div class="actions">
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+    <% end -%>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

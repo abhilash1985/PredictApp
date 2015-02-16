@@ -1,5 +1,6 @@
 class MatchQuestion < ActiveRecord::Base
   has_many :predictions
+  belongs_to :question #added by Ashik
 
   scope :by_match, ->(match) { where(match_id: match.id) }
   scope :by_question, ->(question) { where(question_id: question.id) }
