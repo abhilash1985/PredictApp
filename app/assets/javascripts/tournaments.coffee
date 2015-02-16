@@ -2,13 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
-  $('.dropdown').hover (->
-    $('.dropdown-menu', this).stop(true, true).slideDown 'fast'
-    $(this).toggleClass 'open'
+$(document).on 'ready page:load', ->
+  $('[rel=\'tooltip\']').tooltip()
+  $('.thumbnail').hover (->
+    $(this).find('.caption').slideDown 250
+    #.fadeIn(250)
     return
   ), ->
-    $('.dropdown-menu', this).stop(true, true).slideUp 'fast'
-    $(this).toggleClass 'open'
+    $(this).find('.caption').slideUp 250
+    #.fadeOut(205)
     return
+  $('.modal_link').click (e) ->
+    e.preventDefault()
+    $('#modal_' + @id).modal()
+    return  
   return
