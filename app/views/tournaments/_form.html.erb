@@ -1,0 +1,21 @@
+<%= form_for(:prediction, remote: true, html: {role: :form, 'data-model' => 'person'}) do |f| %>
+  <%# Added Bootstrap classes, and help-block container for error messages %>
+  <% match.match_questions.each do |match_question|%>
+    <ul>
+      <li><%=match_question.question.question %></li>
+      <% options = match_question.options[:v]%>
+      <% if options.blank?%>
+        <p> drop donwns</p>
+      <%else%>
+        <% options.each do |opt| %>
+          <ul>
+            <li><%= radio_button_tag "#{opt}", "#{opt}" %></li>
+          </ul>
+        <% end -%>
+      <% end -%>
+    </ul>
+  <% end -%>
+  <div class="actions">
+    <%= f.submit 'Submit', class: 'btn btn-default' %>
+  </div>
+<% end -%>
