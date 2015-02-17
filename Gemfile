@@ -33,6 +33,9 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'rspec-rails'
 gem 'spreadsheet'
+gem 'rails_admin'
+gem 'jquery-final_countdown-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

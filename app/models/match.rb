@@ -1,6 +1,7 @@
 class Match < ActiveRecord::Base
   # Associations
   belongs_to :challenge
+  belongs_to :stadium
   belongs_to :team1, class_name: 'Team', foreign_key: :team1_id
   belongs_to :team2, class_name: 'Team', foreign_key: :team2_id
   has_many :match_questions
@@ -11,6 +12,10 @@ class Match < ActiveRecord::Base
   scope :by_match_no, ->(match_no) { where(match_no: match_no) }
   scope :id_in, ->(match_ids) { where(id: match_ids) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
+
+  def self.by_team(team_id)
+    where('team1_id = :team OR team2_id = :team_id', team: team_id)
+  end
 
   def team1_short_name
     team1.try(:short_name)
