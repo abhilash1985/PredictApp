@@ -1,12 +1,16 @@
 class ChallengesController < ApplicationController
-	before_filter :authenticate_user!
+	before_action :authenticate_user!
+	before_action :challenge_params, only: [:show, :points_table]
 
-	def index
-		
-	end
+  def points_table
+    
+  end
 
-	def show
-		@challenge = Challenge.find(params[:id])
-	end
+  private
 
+  def challenge_params
+    @challenge = Challenge.find(params[:id])
+    @matches = current_user.matches_for_challenge(@challenge)
+    @users = @challenge.users 
+  end
 end

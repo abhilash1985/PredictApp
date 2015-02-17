@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
   # Associations
+  belongs_to :challenge
   belongs_to :team1, class_name: 'Team', foreign_key: :team1_id
   belongs_to :team2, class_name: 'Team', foreign_key: :team2_id
   has_many :match_questions
@@ -9,6 +10,7 @@ class Match < ActiveRecord::Base
   # Scopes
   scope :by_match_no, ->(match_no) { where(match_no: match_no) }
   scope :id_in, ->(match_ids) { where(id: match_ids) }
+  scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
 
   def team1_short_name
     team1.try(:short_name)
@@ -16,6 +18,10 @@ class Match < ActiveRecord::Base
 
   def team2_short_name
     team2.try(:short_name)
+  end
+
+  def total_points
+    match_questions.sum(:points)
   end
 
   class << self

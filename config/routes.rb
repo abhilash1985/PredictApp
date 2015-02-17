@@ -5,14 +5,18 @@ Rails.application.routes.draw do
   devise_for :users do
   
   end
-
   get 'dashboard/welcome'
   root 'dashboard#index'
   resources :dashboard, only: :index
-  resources :challenges
   resources :tournaments, only: [:index, :show] do 
     collection do
       post 'predict_match'
+    end
+  end
+  
+  resources :challenges do
+    member do
+      get :points_table
     end
   end
   
