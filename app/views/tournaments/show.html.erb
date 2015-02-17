@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style = "background:'#333333">
     <div class="row">
     <div class="col-md-12">
       <h3>Choose your Challenge</h3>
@@ -39,7 +39,7 @@
                       </div>
                       </a>
                       <div class="modal fade" id=<%="modal_#{chlng_index}_#{match_index}"%> tabindex="-1" role="dialog">
-                        <%= render partial:'modal_form', locals:{ match: match } %>
+                        <%= render partial:'modal_form', locals:{ match: match, challenge: challenge } %>
                       </div>
                     <% end -%>
                   </div>
@@ -86,8 +86,7 @@
 
 <script type="text/javascript">
 $('.modal_link').click(function (e) {
-    e.preventDefault();
-    console.log(this.id);
-    $('#modal_' + this.id).modal();
+  e.preventDefault();
+  $('#modal_' + this.id).modal();
 });
 </script>

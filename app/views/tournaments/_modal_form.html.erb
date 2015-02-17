@@ -5,24 +5,29 @@
       <h4 class="modal-title">Question </h4>
     </div>
     <div class="modal-body">
-    <%= form_for(:prediction, remote: true, html: {role: :form, 'data-model' => match.id}) do |f| %>
+    <%= form_for :match_question, url:predict_match_tournaments_path, remote:true do |f| %>
+      <%= hidden_field_tag :challenge_id, challenge.id %>
       <% match.match_questions.each do |match_question|%>
-        <ul>
-          <li><%=match_question.question.question %></li>
-          <% options = match_question.options[:v]%>
-          <% if options.blank?%>
-          <%# option_collection %>
-            <%= select_tag "#{match_question.id}", options_for_select(option_collection(match)) %>
-          <%else%>
-            <% options.each do |opt| %>
-              <label for=""><%=opt%></label>
-              <%= radio_button_tag "#{match_question.id}", "#{opt}", class:'padding-4' %> &nbsp; 
+        <div class = 'list-group'>
+          <div class = 'list-group-item'>
+            <h4 class="list-group-item-heading"><%=match_question.question.question %> ?</h4>
+            <% options = match_question.options[:v]%>
+            <% if options.blank?%>
+            <%# option_collection %>
+             <p class="list-group-item-text">  <%= f.select "#{match_question.id}", options_for_select(option_collection(match)) %></p>
+            <%else%>
+              <ul class="list-inline">
+                <% options.each do |opt| %>
+                  <li><label><%=opt%></label>
+                   <%= f.radio_button "#{match_question.id}", "#{opt}", html:{class:'padding-4'} %></li> 
+                <% end -%>
+              </ul>
             <% end -%>
-          <% end -%>
-        </ul>
+          </div>
+        </div>
       <% end -%>
     <div class="actions">
-      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      <%= f.submit 'Submit', class: 'btn btn-primary', id:'challenge_form'%>
     </div>
     <% end -%>
     </div>
