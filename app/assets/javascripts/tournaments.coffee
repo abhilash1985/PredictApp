@@ -15,5 +15,8 @@ $(document).on 'ready page:load', ->
   $('.modal_link').click (e) ->
     e.preventDefault()
     $('#modal_' + @id).modal()
-    return  
+    return
+  $('.close_modal').click ->
+    $('.close_modal').dialog 'close'
+    return    
   return

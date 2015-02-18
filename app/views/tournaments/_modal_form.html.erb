@@ -7,6 +7,7 @@
     <div class="modal-body">
     <%= form_for :match_question, url:predict_match_tournaments_path, remote:true do |f| %>
       <%= hidden_field_tag :challenge_id, challenge.id %>
+      <%= hidden_field_tag :match_id, match.id %>
       <% match.match_questions.each do |match_question|%>
         <div class = 'list-group'>
           <div class = 'list-group-item'>

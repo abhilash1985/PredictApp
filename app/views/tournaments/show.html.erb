@@ -25,8 +25,11 @@
                 <div class="container">
                   <div class="row">    
                     <% challenge.matches.each_with_index do |match, match_index| %>
-                      <a href=<%="#new_modal_#{chlng_index}_#{match_index}"%> id =<%="#{chlng_index}_#{match_index}"%>  class = "modal_link" data-toggle="modal">
+                      <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
                       <div class="col-md-3">            
+                        <center>
+                       <p><%=match.team1.short_name%> VS <%= match.team2.short_name%> </p>
+                        </center>
                         <div class="thumbnail">
                           <div class="caption">
                             <h4><%= match.match_no%></h4>
@@ -38,7 +41,7 @@
                         </div>
                       </div>
                       </a>
-                      <div class="modal fade" id=<%="modal_#{chlng_index}_#{match_index}"%> tabindex="-1" role="dialog">
+                      <div class="modal fade" id=<%="modal_#{challenge.id}_#{match.id}"%> tabindex="-1" role="dialog">
                         <%= render partial:'modal_form', locals:{ match: match, challenge: challenge } %>
                       </div>
                     <% end -%>
@@ -48,17 +51,7 @@
               <% end -%>
             </div>
             <div class="tab-pane" id="tab_default_2">
-              <p>
-                Howdy, I'm in Tab 2.
-              </p>
-              <p>
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-              </p>
-              <p>
-                <a class="btn btn-warning" href="http://j.mp/metronictheme" target="_blank">
-                  Click for more features...
-                </a>
-              </p>
+              <%= render 'previous_challenges' %>
             </div>
             <div class="tab-pane" id="tab_default_3">
               <p>
