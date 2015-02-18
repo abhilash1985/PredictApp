@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-multiselect
 //= require jquery.countdown
 //= require_tree .
 

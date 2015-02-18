@@ -5,8 +5,8 @@ module TournamentsHelper
 	end
 
 	def option_collection(match)
-		team1_ary = match.team1.players.collect{ |u| [u.first_name, u.id] }
-		team2_ary = match.team2.players.collect{ |u| [u.first_name, u.id] }
-		team1_ary + team2_ary
+  	team1_players = match.team_players('team1')
+    team2_players = match.team_players('team2')
+	  [[match.team1_name, team1_players]] + [[match.team2_name, team2_players]]
 	end
 end
