@@ -107,3 +107,8 @@ Licensed under MIT
   color:#fff !important;
   z-index:2;
 }
+
+.modal .modal-body {
+  max-height: 450px;
+  overflow-y: auto;
+}

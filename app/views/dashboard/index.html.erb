@@ -1,6 +1,6 @@
- <%= image_tag('2015-icc-cricket-wc.jpg', {id:'full-screen-background-image'})%>
+ <%= image_tag('background_new.jpg', {id:'full-screen-background-image'})%>
 	
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -26,10 +26,21 @@
               <div class="tab-pane active mega-dropdown-menu">
                 <% @tournaments.each do |tournament| %>
                   <ul class="nav-list list-inline">
-                      <li><%= link_to tournament_path(tournament.id) do %>
+                      <li class = 'padding_icons'><%= link_to tournament_path(tournament.id) do %>
                       	<%=image_tag('cricket.png')%>
                       	<span>Cricket World Cup 2015</span>
                       	<% end -%>
+                      </li>
+                       <li class = 'padding_icons'><%= link_to '#' do %>
+                        <%=image_tag('ipl.jpg')%>
+                        <span>&nbsp;</span>
+                        <span>IPL</span>
+                        <% end -%>
+                      </li>
+                       <li class = 'padding_icons'><%= link_to '#' do %>
+                        <%=image_tag('soccer.png')%>
+                        <span>FOOT BALL</span>
+                        <% end -%>
                       </li>
                   </ul>
                 <% end -%>
@@ -56,7 +67,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container add_opacity">
-    <div class="wdell">
+    <div class="well">
         
     </div>
 </div>
