@@ -14,7 +14,7 @@
             <% options = match_question.options[:v]%>
             <% if options.blank?%>
              <p class="list-group-item-text">
-               <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match)), class: 'multi-select-players' %>
+               <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match)), {}, class: 'multi-select-players' %>
              </p>
             <% else %>
               <ul class="list-inline">
@@ -42,7 +42,7 @@
         enableCaseInsensitiveFiltering: true,
         nonSelectedText: 'Select Players',
         numberDisplayed: 1,
-        buttonWidth: '280px',
+        buttonWidth: '350px',
         maxHeight: 300
     });
 </script>
