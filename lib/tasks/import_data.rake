@@ -59,6 +59,7 @@ namespace :import do
           team = Team.by_name(row[0].strip).first
           next if team.blank?
           player = team.players.by_first_name(row[1].strip).first_or_initialize
+          player.player_style = row[2].strip
           player.save
         end
       end

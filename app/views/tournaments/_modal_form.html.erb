@@ -10,16 +10,17 @@
       <% match.match_questions.each do |match_question|%>
         <div class = 'list-group'>
           <div class = 'list-group-item'>
-            <h4 class="list-group-item-heading"><%=match_question.question.question %> ?</h4>
+            <h4 class="list-group-item-heading"><%= match_question.question.question %> ?</h4>
             <% options = match_question.options[:v]%>
             <% if options.blank?%>
-            <%# option_collection %>
-             <p class="list-group-item-text">  <%= f.select "#{match_question.id}", options_for_select(option_collection(match)) %></p>
-            <%else%>
+             <p class="list-group-item-text">
+               <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match)), class: 'multi-select-players' %>
+             </p>
+            <% else %>
               <ul class="list-inline">
                 <% options.each do |opt| %>
-                  <li><label><%=opt%></label>
-                   <%= f.radio_button "#{match_question.id}", "#{opt}", html:{class:'padding-4'} %></li> 
+                  <li><label><%= opt %></label>
+                   <%= f.radio_button "#{match_question.id}", "#{opt}", html: { class: 'padding-4' } %></li> 
                 <% end -%>
               </ul>
             <% end -%>
@@ -36,3 +37,13 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+    $('.multi-select-players').multiselect({
+        enableCaseInsensitiveFiltering: true,
+        nonSelectedText: 'Select Players',
+        numberDisplayed: 1,
+        buttonWidth: '280px',
+        maxHeight: 300
+    });
+</script>
+
