@@ -1,0 +1,35 @@
+<%- model_class = Prediction -%>
+<div class="page-header ind-body match-result text-center">
+  <h3><%=t '.title', :default => "#{@challenge.try(:name)} - #{@challenge.end_time.to_date.to_s(:date_format)} Results" %></h3>
+</div>
+<div class = "ind-body data-table">
+<table class="table table-striped table-bordered text-center" id="point_table">
+  <thead>
+    <tr>
+      <th valign="top">Sl No</th>
+      <th valign="top" class="red">User</th>
+      <th valign="top" class="red">Total Points</th>
+      <th valign="top" class="color-blue">Points in %</th>
+      <% @matches.each do |match| %>
+        <th>
+          <%= "#{match.team1_short_name} V #{match.team2_short_name} : #{match.total_points}" %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @users.each_with_index do |user, index| %>
+  	 <% index += 1 %>
+      <tr>
+      	<td><%= index %></td>
+      	<td><%= user.show_name %></td>
+      	<td class="red padding-left-15"><%= user.total_points_for_challenge(@challenge) %></td>
+      	<td class="color-blue padding-left-15"><%= user.total_percentage_for_challenge(@challenge) %></td>
+      	<% @matches.each do |match| %>
+          <td class="class-bold padding-left-15"><%= user.points_for_match(match) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

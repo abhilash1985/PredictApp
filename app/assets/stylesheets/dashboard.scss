@@ -5,7 +5,7 @@
 #bg_image {
   position: fixed; 
   top: 0; 
-  left: 0; 
+  left: 0;
 }
 .margin{
 	margin-left: -18%;
@@ -17,10 +17,52 @@
 }
 
 .navbar-brand { 
-  width: 150px;
-  height: 50px;
+  /*width: 150px;*/
+  /*height: 50px;*/
   background-size: 50px;  
 }
+
+.mrgin{
+  margin-top: 12%;
+}
+
+.add_opacity{
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+/*flash*/
+.alert{
+  margin-bottom: 0px !important;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
 
 .nav-tabs {
   display: inline-block;
@@ -38,12 +80,12 @@
   border-radius: 0;
 }
 
-.nav-list { border-bottom: 1px solid #eee; }
+/*.nav-list { border-bottom: 1px solid #eee; }*/
 .nav-list > li { 
   padding: 20px 15px 15px;
-  border-left: 1px solid #eee; 
+  /*border-left: 1px solid #eee; */
 }
-.nav-list > li:last-child { border-right: 1px solid #eee; }
+/*.nav-list > li:last-child { border-right: 1px solid #eee; }*/
 .nav-list > li > a:hover { text-decoration: none; }
 .nav-list > li > a > span {
   display: block;
@@ -56,4 +98,21 @@
   padding: 20px 15px 15px;
   text-align: center;
   width: 100%;
+}
+
+#full-screen-background-image {
+  z-index: -999;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  opacity:0.6;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.padding_icons{
+  padding-left: 90px !important;
+  padding-right: 90px !important;
 }

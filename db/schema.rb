@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212132036) do
+ActiveRecord::Schema.define(version: 20150217145928) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -61,16 +61,18 @@ ActiveRecord::Schema.define(version: 20150212132036) do
   add_index "matches", ["team2_id"], name: "index_matches_on_team2_id", using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "first_name", limit: 255
-    t.string   "last_name",  limit: 255
-    t.integer  "team_id",    limit: 4
+    t.string   "first_name",   limit: 255
+    t.string   "last_name",    limit: 255
+    t.integer  "team_id",      limit: 4
     t.date     "dob"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "player_style", limit: 255, default: "bat"
   end
 
   add_index "players", ["first_name"], name: "index_players_on_first_name", using: :btree
   add_index "players", ["last_name"], name: "index_players_on_last_name", using: :btree
+  add_index "players", ["player_style"], name: "index_players_on_player_style", using: :btree
 
   create_table "predictions", force: :cascade do |t|
     t.integer  "user_challenge_id", limit: 4

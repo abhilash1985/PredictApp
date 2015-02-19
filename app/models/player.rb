@@ -6,6 +6,6 @@ class Player < ActiveRecord::Base
   scope :by_last_name, ->(last_name) { where(last_name: last_name) }
 
   def full_name
-    "#{first_name} #{last_name}".strip
+    "#{first_name} (#{player_style.upcase})".strip
   end
 end

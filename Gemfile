@@ -33,6 +33,9 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'rspec-rails'
 gem 'spreadsheet'
+gem 'rails_admin'
+gem 'jquery-final_countdown-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,6 +45,7 @@ gem 'unicorn'
 #for the bootstrap
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
+gem 'bootstrap-multiselect-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,7 +56,8 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
+  gem 'binding_of_caller'
+  gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'rails_best_practices', require: false

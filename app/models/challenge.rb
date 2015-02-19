@@ -6,30 +6,36 @@ class Challenge < ActiveRecord::Base
   has_many :users, through: :user_challenges
   # Scopes
   scope :by_name, ->(name) { where(name: name) }
+  scope :current, -> { where('end_time > ?', DateTime.now) }
+  scope :previous, -> { where('end_time < ?', DateTime.now) }
+
+  def total_points
+    matches.reduce(0) { |a, v| a + v.total_points }
+  end
 
   def time_for(number)
     case number.to_i
     when 1
-      %W(#{'2015-02-13 00:00'} #{'2015-02-13 23:59'})
-    when 2
-      %W(#{'2015-02-16 00:00'} #{'2015-02-17 23:59'})
-    when 3
-      %W(#{'2015-02-18 00:00'} #{'2015-02-19 23:59'})
-    when 4
       %W(#{'2015-02-20 00:00'} #{'2015-02-20 23:59'})
+    when 2
+      %W(#{'2015-02-20 00:00'} #{'2015-02-21 23:59'})
+    when 3
+      %W(#{'2015-02-20 00:00'} #{'2015-02-22 23:59'})
+    when 4
+      %W(#{'2015-02-23 00:00'} #{'2015-02-23 23:59'})
     end
   end
 
   def update_match_for(number)
     match_ids = case number.to_i
     when 1
-      %w(1 2 3 4 5)
+      %w(10 11)
     when 2
-      %w(6 7 8)
+      %w(12 13)
     when 3
-      %w(9 10 11)
+      %w(14)
     when 4
-      %w(12 13 14)
+      %w(15)
     end
     Match.id_in(match_ids).update_all(challenge_id: id)
   end

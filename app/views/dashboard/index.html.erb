@@ -1,6 +1,6 @@
-<div class = "background">
+ <%= image_tag('background_new.jpg', {id:'full-screen-background-image'})%>
 	
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -19,18 +19,31 @@
         <li><a href="#"></a></li>
     		<li class="dropdown mega-dropdown active">
 			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>		
-				<div class="dropdown-menu mega-dropdown-menu">
-          <div class="container-fluid">
+				<div class="dropdown-menu mega-dropdown-menu" style = "background-color: #0E0D06;">
+          <div class="container-fluid ">
 	    		<!-- Tab panes -->
             <div class="tab-content">
               <div class="tab-pane active mega-dropdown-menu">
-                <ul class="nav-list list-inline">
-                    <li><%= link_to '#' do %>
-                    	<%=image_tag('cricket.png')%>
-                    	<span>Cricket</span>
-                    	<% end -%>
-                    </li>
-                </ul>
+                <% @tournaments.each do |tournament| %>
+                  <ul class="nav-list list-inline">
+                      <li class = 'padding_icons'><%= link_to tournament_path(tournament.id) do %>
+                      	<%=image_tag('cricket.png')%>
+                      	<span>Cricket World Cup 2015</span>
+                      	<% end -%>
+                      </li>
+                       <li class = 'padding_icons'><%= link_to '#' do %>
+                        <%=image_tag('ipl.jpg')%>
+                        <span>&nbsp;</span>
+                        <span>IPL</span>
+                        <% end -%>
+                      </li>
+                       <li class = 'padding_icons'><%= link_to '#' do %>
+                        <%=image_tag('soccer.png')%>
+                        <span>FOOT BALL</span>
+                        <% end -%>
+                      </li>
+                  </ul>
+                <% end -%>
               </div>
             </div>
           </div>
@@ -53,20 +66,8 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
+<div class="container add_opacity">
     <div class="well">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        
     </div>
-</div>
 </div>

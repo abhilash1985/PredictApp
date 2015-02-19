@@ -1,13 +1,13 @@
 class DashboardController < ApplicationController
 	before_filter :authenticate_user!, except:[:welcome]
-	skip_before_filter :require_no_authentication, only:[:welcome]
+	layout 'login'
 
   def welcome
   	@user = User.new
   end
 
   def index
-  	
+  	@tournaments = Tournament.all
   end
   
 end

@@ -1,16 +1,24 @@
 Rails.application.routes.draw do
 
+  get "users/sign_in", to: "dashboard#welcome"
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users do
   
   end
-
-  devise_scope :users do
-    get "users/sign_in", to: "dashboard#welcome"
-  end
-
   get 'dashboard/welcome'
-  root 'dashboard#welcome'
-  resources :dashboard
+  root 'dashboard#index'
+  resources :dashboard, only: :index
+  resources :tournaments, only: [:index, :show] do 
+    collection do
+      post 'predict_match'
+    end
+  end
+  
+  resources :challenges do
+    member do
+      get :points_table
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
