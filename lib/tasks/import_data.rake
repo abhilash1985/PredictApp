@@ -8,7 +8,7 @@ namespace :import do
   task tournaments: :environment do
     tournament = Tournament.world_cup.aus_nzl.first_or_initialize
     tournament.start_date = '14-02-2015'
-    tournament.start_date = '29-03-2015'
+    tournament.end_date = '29-03-2015'
     tournament.save
     p "Imported Tournaments..."
   end
@@ -71,6 +71,7 @@ namespace :import do
 
   desc 'Import Matches'
   task matches: :environment do
+    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     team_uae = Team.by_name('UAE').first
     team_uae.update_attributes(name: 'United Arab Emirates') if team_uae 
     Match.matches.each_with_index do |hash, match_no|
@@ -93,17 +94,53 @@ namespace :import do
 
   desc 'Import questions'
   task questions: :environment do
+    ActiveRecord::Base.connection.execute 'TRUNCATE questions'
     questions = {
-      'Who will win the match' => 3,
-      'Who will win the toss' => 1,
-      'Who will be batting first' => 1,
-      'Runs will be scored by the team batting first' => 2,
-      'Runs will be scored by the team batting second' => 2,
-      'Who will be the man of the match' => 3,
-      'Who will be the top scorer of the match' => 2,
-      'Who will take the most wickets of the match' => 2,
-      'Who will hit the most sixes of the match' => 2,
-      'Who will hit the most boundaries of the match' => 2
+      # defaults
+      'Who will win the match?' => 3,
+      'Who will win the toss?' => 1,
+      'Who will be the man of the match?' => 3,
+      # runs
+      'Runs will be scored by the team batting first?' => 2,
+      'Runs will be scored by the team batting second?' => 2,
+      'Runs will be scored by the team AFG will be?' => 2,
+      'Runs will be scored by the team BAN will be?' => 2,
+      'Runs will be scored by the team ENG will be?' => 2,
+      'Runs will be scored by the team NZ will be?' => 2,
+      'Runs will be scored by the team IND will be?' => 2,
+      'Runs will be scored by the team PAK will be?' => 2,
+      'Runs will be scored by the team SA will be?' => 2,
+      'Runs will be scored by the team AUS will be?' => 2,
+      'Runs will be scored by the team SRI will be?' => 2,
+      'Runs will be scored by the team UAE will be?' => 2,
+      'Runs will be scored by the team ZIM will be?' => 2,
+      'Runs will be scored by the team WI will be?' => 2,
+      'Runs will be scored by the team SCO will be?' => 2,
+      'Runs will be scored by the team IRE will be?' => 2,
+      # outs
+      'No. of bowled outs that can happen in the match?' => 2,
+      'No. of caught outs that can happen in the match?' => 2,
+      'No. of run outs that can happen in the match?' => 2,
+      'No. of LBW outs that can happen in the match?' => 2,
+      # poer plays
+      'How many runs will be scored in the batting power play by the team batting first?' => 1,
+      'How many runs will be scored in the mandatory power play by the team batting first?' => 1,
+      'How many runs will be scored in the batting power play by the team batting second?' => 1,
+      'How many runs will be scored in the mandatory power play by the team batting second?' => 1,
+      'How many runs will be scored in the slog overs by the team batting first?' => 1,
+      'How many runs will be scored in the first 25 overs by the team batting first?' => 1,
+      'How many runs will be scored in the first 25 overs by the team batting second?' => 1,
+      # others
+      'Winning margin will be?' => 2,
+      'Who will the best bowler of the match?' => 2,
+      'Who will be the top scorer of the match?' => 2,
+      'Who will hit the most sixes of the match?' => 2,
+      'Who will hit the most boundaries of the match?' => 2,
+      'How many sixes will be hit by both the teams in the match?' => 2,
+      'Highest individual score in the match will be?' => 2,
+      'Who will be batting first?' => 2,
+      'How many wickets will fell in the first innings of the match?' => 2,
+      'How many wickets will fell in the first 25 overs of the match?' => 2
     }
     questions.each do |question, weightage|
       question = Question.by_question(question).first_or_initialize
@@ -115,12 +152,14 @@ namespace :import do
 
   desc 'Import match questions'
   task match_questions: :environment do
+    ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
     MatchQuestion.add_match_questions
     p "Imported Match Questions..."
   end
 
   desc 'Import challenges'
   task challenges: :environment do
+    ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
     Challenge.add_challenges
   end
 end
