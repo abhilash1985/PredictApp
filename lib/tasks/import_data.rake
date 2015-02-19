@@ -161,5 +161,6 @@ namespace :import do
   task challenges: :environment do
     ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
     Challenge.add_challenges
+    p "Imported Challenges..."
   end
 end
