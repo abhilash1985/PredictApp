@@ -37,7 +37,7 @@ class Challenge < ActiveRecord::Base
     when 4
       %w(15)
     end
-    Match.id_in(match_ids).update_all(challenge_id: id)
+    Match.no_in(match_ids).update_all(challenge_id: id)
   end
 
   class << self

@@ -11,6 +11,7 @@ class Match < ActiveRecord::Base
   # Scopes
   scope :by_match_no, ->(match_no) { where(match_no: match_no) }
   scope :id_in, ->(match_ids) { where(id: match_ids) }
+  scope :no_in, ->(match_no) { where(match_no: match_no) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
 
   def self.by_team(team_id)
