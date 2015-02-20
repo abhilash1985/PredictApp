@@ -13,10 +13,10 @@
               <a href="#tab_default_2" data-toggle="tab">
               Previous Challenges </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#tab_default_3" data-toggle="tab">
               Tab 3 </a>
-            </li>
+            </li> -->
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_default_1">
@@ -28,14 +28,15 @@
                       <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
                       <div class="col-md-3">            
                         <center>
-                       <p><%=match.team1.short_name%> VS <%= match.team2.short_name%> </p>
+                       <p><%= match.full_name %></p>
                         </center>
                         <div class="thumbnail">
                           <div class="caption">
-                            <h4><%= match.match_no%></h4>
-                            <p><%= match.team1.name%></p>
-                            <p><%= image_tag('vs.png')%></p>
-                            <p><%= match.team2.name%></p>
+                            <h4><%= match.match_date.to_s(:default) %></h4>
+                            <p><%= match.team1_name %></p>
+                            <p><%= image_tag('vs.png') %></p>
+                            <p><%= match.team2_name %></p>
+                            <p><%= match.stadium_name %></p>
                           </div>
                           <%= image_tag("#{load_icon}")%>
                         </div>

@@ -38,6 +38,14 @@ class Match < ActiveRecord::Base
     team2.try(:short_name)
   end
 
+  def full_name
+    "Match #{match_no} : #{team1_short_name} VS #{team2_short_name}"
+  end
+
+  def stadium_name
+    stadium.try(:name)
+  end
+
   def total_points
     match_questions.sum(:points)
   end
