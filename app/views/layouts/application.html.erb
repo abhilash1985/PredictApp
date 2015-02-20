@@ -16,13 +16,12 @@
   <% end %>
 </div>
 <% if user_signed_in?%>
-  <nav class="navbar navbar-default" role="navigation" style = 'margin-bottom: 1px;'>
+  <nav class="navbar navbar-inverse" role="navigation" style = 'margin-bottom: 1px;'>
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Prediction</a>
-        <%= link_to "Home", dashboard_index_path, class:'navbar-brand' %>
-        <a class="navbar-brand" href="#" id="menu-toggle">Menu </a>
+        <%= link_to 'Prediction', dashboard_index_path, class:'navbar-brand' %>
+        <%= link_to @current_tournament.name, '#', class:'navbar-brand', style:'color:#fff' %>
         
       </div>
 

@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   # before_filter :authenticate_user!
+  before_action :current_tournament
 
   def after_sign_in_path_for(resource)
-  dashboard_index_path
+    dashboard_index_path
+  end
+
+  def current_tournament
+    @current_tournament ||= Tournament.active.first
   end
 
   protected
