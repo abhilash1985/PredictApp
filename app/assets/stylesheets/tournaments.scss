@@ -109,10 +109,44 @@ Licensed under MIT
 }
 
 .modal .modal-body {
-  max-height: 450px;
+  /*margin-top: 10px;*/
+  max-height: 600px;
   overflow-y: auto;
 }
 
 .background_image{
   background: url('http://icc-live.s3.amazonaws.com/cms/media/venues/melbourne/original/10.jpg') no-repeat center center;
 }
+
+.list-group-item{
+  background-color: #d9edf7 !important;
+}
+
+.list-group :hover{
+  background-color: #ACDAF0 !important;
+}
+
+.modal-header {
+  padding:9px 15px;
+  color: #fff;
+  border-bottom:1px solid #eee;
+  background-color: #111;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+ }
+
+ .modal-footer{
+  background-color: #111;
+ }
+
+ .close{
+  color: #fff!important;
+ }
+
+ .close :hover{
+  color: #fff!important;
+ }
