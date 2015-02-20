@@ -19,6 +19,31 @@ class User < ActiveRecord::Base
     email.split('@')[0]
   end
 
+  def has_predictions_for_match(match)
+    !predictions_for_match(match).blank?
+  end
+
+  def prediction_for_match_question(challenge, match_question)
+    user_challenge = user_challenges.by_challenge(challenge.id).first
+    return if user_challenge.blank?
+    user_challenge.predictions.by_match_question(match_question.id).first
+  end
+
+  def checked_value(option, prediction)
+    return if prediction.blank?
+    option == prediction.user_answer
+  end
+
+  def selected_value(prediction)
+    return if prediction.blank?
+    prediction.user_answer
+  end
+
+  def submit_value(match)
+    prediction = predictions_for_match(match)
+    prediction.blank? ? 'Submit' : 'Edit' 
+  end
+
   def matches
     # challenges.joins(:matches)
     challenges.flat_map(&:matches)
@@ -34,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def predictions_for(challenge)
-    predictions.where('user_challenges.challenge_id = ?', challenge.id)
+    @prediction ||= predictions.where('user_challenges.challenge_id = ?', challenge.id)
   end
 
   def total_points_for_challenge(challenge)

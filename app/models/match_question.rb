@@ -1,7 +1,9 @@
 class MatchQuestion < ActiveRecord::Base
+  # Associations
   has_many :predictions
-  belongs_to :question #added by Ashik
-
+  belongs_to :question # added by Ashik
+  belongs_to :match
+  # Scopes
   scope :by_match, ->(match) { where(match_id: match.id) }
   scope :by_question, ->(question) { where(question_id: question.id) }
 

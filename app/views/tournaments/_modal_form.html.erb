@@ -2,26 +2,32 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h4 class="modal-title">Question </h4>
+      <h4 class="modal-title">Questions</h4>
     </div>
     <div class="modal-body">
-    <%= form_for :match_question, url:predict_match_tournaments_path, remote:true do |f| %>
+    <%= form_for :match_question, url: predict_match_tournaments_path, remote: true do |f| %>
       <%= hidden_field_tag :challenge_id, challenge.id %>
       <%= hidden_field_tag :match_id, match.id %>
-      <% match.match_questions.each do |match_question|%>
+      <% match.match_questions.order(:id).each do |match_question|%>
         <div class = 'list-group'>
           <div class = 'list-group-item'>
-            <h4 class="list-group-item-heading"><%= match_question.question.question %> ?</h4>
-            <% options = match_question.options[:v]%>
-            <% if options.blank?%>
+            <h4 class="list-group-item-heading"><%= match_question.question.question %></h4>
+            <% options = match_question.options[:v] %>
+            <% prediction = current_user.prediction_for_match_question(challenge, match_question) %>
+            <% if options.blank? %>
              <p class="list-group-item-text">
-               <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match)), {}, class: 'multi-select-players' %>
+               <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match),
+                                                                               current_user.selected_value(prediction)),
+                                                    {}, class: 'multi-select-players' %>
              </p>
             <% else %>
               <ul class="list-inline">
                 <% options.each do |opt| %>
                   <li><label><%= opt %></label>
-                   <%= f.radio_button "#{match_question.id}", "#{opt}", html: { class: 'padding-4' } %></li> 
+                   <%= radio_button_tag "match_question[#{match_question.id}]", "#{opt}",
+                                      current_user.checked_value(opt, prediction),
+                                      class: 'padding-4' %>
+                  </li> 
                 <% end -%>
               </ul>
             <% end -%>
@@ -29,7 +35,7 @@
         </div>
       <% end -%>
     <div class="actions">
-      <%= f.submit 'Submit', class: 'btn btn-primary', id:'challenge_form'%>
+      <%= f.submit current_user.submit_value(match), class: 'btn btn-primary', id:'challenge_form' unless match.started? %>
     </div>
     <% end -%>
     </div>

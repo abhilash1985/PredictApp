@@ -36,7 +36,7 @@ class Question < ActiveRecord::Base
       { v: %w(0-20 21-30 31-40 41-50 50<) }
     when 'How many runs will be scored in the mandatory power play by the team batting first?',
          'How many runs will be scored in the mandatory power play by the team batting second?',
-         'How many runs will be scored in the log overs by the team batting first?'
+         'How many runs will be scored in the slog overs by the team batting first?'
       { v: %w(<30 31-50 51-65 66-80 80<) }
     when 'How many runs will be scored in the first 25 overs by the team batting first?',
          'How many runs will be scored in the first 25 overs by the team batting second?'

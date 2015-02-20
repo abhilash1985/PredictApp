@@ -4,6 +4,7 @@ class TournamentsController < ApplicationController
 	def show
 		@current_challenges = Challenge.where('end_time > ?', DateTime.now)
 		@previous_challenges = Challenge.previous
+		@prediction = Prediction.new
 	end
 
 	def predict_match

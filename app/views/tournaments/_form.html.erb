@@ -2,10 +2,10 @@
   <%# Added Bootstrap classes, and help-block container for error messages %>
   <% match.match_questions.each do |match_question|%>
     <ul>
-      <li><%=match_question.question.question %></li>
-      <% options = match_question.options[:v]%>
+      <li><%= match_question.question.question %></li>
+      <% options = match_question.options[:v] %>
       <% if options.blank?%>
-        <p> drop donwns</p>
+        <p> drop downs</p>
       <%else%>
         <% options.each do |opt| %>
           <ul>

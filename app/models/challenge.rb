@@ -51,7 +51,10 @@ class Challenge < ActiveRecord::Base
         start_time, end_time = challenge.time_for(number)
         challenge.start_time = start_time
         challenge.end_time = end_time
-        challenge.update_match_for(number) if challenge.save
+        if challenge.save
+          challenge.matches.update_all(challenge_id: nil)
+          challenge.update_match_for(number)
+        end
       end
     end
   end

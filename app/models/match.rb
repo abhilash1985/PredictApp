@@ -42,6 +42,10 @@ class Match < ActiveRecord::Base
     match_questions.sum(:points)
   end
 
+  def started?
+    match_date <= Time.now
+  end
+
   class << self
     def matches
       [{"city"=>"Christchurch", "stadium"=>"Hagley Oval", "match_date"=>"2015-02-14",
