@@ -32,11 +32,12 @@
                         </center>
                         <div class="thumbnail">
                           <div class="caption">
-                            <h4><%= match.match_date.to_s(:default) %></h4>
-                            <p><%= match.team1_name %></p>
+                            <h5><%= match.match_date.to_s(:default) %></h5>
+                            <p class = 'btn-danger btn-sm'><%= match.team1.name%></p>
                             <p><%= image_tag('vs.png') %></p>
-                            <p><%= match.team2_name %></p>
+                            <p class = 'btn-info btn-sm'><%= match.team2_name %></p>
                             <p><%= match.stadium_name %></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                           </div>
                           <%= image_tag("#{load_icon}")%>
                         </div>

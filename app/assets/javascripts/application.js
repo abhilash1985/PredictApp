@@ -20,6 +20,6 @@
 
 $(document).ready(function () {
   setTimeout(function() {
-    $('.alert').fadeOut();
-  }, '400');
+    $('.alert').fadeOut(500);
+  }, '800');
 });
