@@ -20,40 +20,10 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_default_1">
-              <% @current_challenges.each_with_index do |challenge, chlng_index| %>
-                <section> <%= challenge.name %></section>
-                <div class="container">
-                  <div class="row">    
-                    <% challenge.matches.each_with_index do |match, match_index| %>
-                      <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
-                      <div class="col-md-3">            
-                        <center>
-                       <p><%= match.full_name %></p>
-                        </center>
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <h5><%= match.match_date.to_s(:default) %></h5>
-                            <p class = 'btn-danger btn-sm'><%= match.team1.name%></p>
-                            <p><%= image_tag('vs.png') %></p>
-                            <p class = 'btn-info btn-sm'><%= match.team2_name %></p>
-                            <p><%= match.stadium_name %></p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                          </div>
-                          <%= image_tag("#{load_icon}")%>
-                        </div>
-                      </div>
-                      </a>
-                      <div class="modal fade" id=<%="modal_#{challenge.id}_#{match.id}"%> tabindex="-1" role="dialog">
-                        <%= render 'modal_form', match: match, challenge: challenge %>
-                      </div>
-                    <% end -%>
-                  </div>
-                </div>
-                <hr>
-              <% end -%>
+              <%= render 'challenges', challenges: @current_challenges, form_name: 'modal_form', name: 'current' %>
             </div>
             <div class="tab-pane" id="tab_default_2">
-              <%= render 'previous_challenges' %>
+              <%= render 'challenges', challenges: @previous_challenges, form_name: 'prev_challenge_form', name: 'previous' %>
             </div>
             <!-- <div class="tab-pane" id="tab_default_3">
               <p>

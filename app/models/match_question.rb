@@ -9,6 +9,14 @@ class MatchQuestion < ActiveRecord::Base
 
   serialize :options, Hash
 
+  def question_id_with_points(index)
+    "Q#{index + 1} #{points}pts"
+  end
+
+  def question_name
+    question.try(:question)
+  end
+
   class << self
     def add_match_questions
       Match.order(:id).each do |match|

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :challenges do
     member do
       get :points_table
+      get :predictions_table
     end
   end
   

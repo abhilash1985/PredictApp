@@ -63,7 +63,9 @@ class User < ActiveRecord::Base
   end
 
   def total_points_for_challenge(challenge)
-    predictions_for(challenge).reduce(0) { |a, v| a + v.points }
+    user_challenge = user_challenges.by_challenge(challenge.id).first
+    return 0 if user_challenge.nil?
+    user_challenge.predictions.sum(:points)
   end
 
   def total_percentage_for_challenge(challenge)
@@ -73,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def predictions_for_match(match)
-    predictions.where('predictions.match_question_id in (?)', match.match_question_ids) 
+    predictions.where('predictions.match_question_id in (?)', match.match_question_ids).select('predictions.*') 
   end
 
   def points_for_match(match)
