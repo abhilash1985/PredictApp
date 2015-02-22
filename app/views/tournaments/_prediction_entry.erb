@@ -1,0 +1,32 @@
+<%= hidden_field_tag :challenge_id, challenge.id %>
+<%= hidden_field_tag :match_id, match.id %>
+<% match.match_questions.order(:id).each_with_index do |match_question, index|%>
+  <div class = 'list-group'>
+    <div class = 'list-group-item'>
+      <h4 class="list-group-item-heading"><%= "Q#{index + 1}: " %><%= match_question.question.question %></h4>
+      <% options = match_question.options[:v] %>
+      <% prediction = current_user.prediction_for_match_question(challenge, match_question) %>
+      <% all_options = options_hash(page_from, match_question, prediction) %>
+      <% if options.blank? %>
+        <p class="list-group-item-text">
+          <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match),
+                                               current_user.selected_value(all_options)),
+                                               {}, class: 'multi-select-players' %>
+        </p>
+      <% else %>
+        <ul class="list-inline">
+          <% options.each do |opt| %>
+            <li>
+              <label>
+                <%= radio_button_tag "match_question[#{match_question.id}]", "#{opt}",
+                                      current_user.checked_value(opt, all_options),
+                                      class: 'padding-4' %>
+                <%= opt %>
+              </label>
+            </li>
+          <% end -%>
+        </ul>
+      <% end -%>
+    </div>
+  </div>
+<% end -%>

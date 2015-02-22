@@ -29,19 +29,25 @@ class User < ActiveRecord::Base
     user_challenge.predictions.by_match_question(match_question.id).first
   end
 
-  def checked_value(option, prediction)
-    return if prediction.blank?
-    option == prediction.user_answer
+  def object_from_hash(options = {})
+    options[:page_from] == 'prediction' ? options[:prediction] : options[:match_question]
   end
 
-  def selected_value(prediction)
-    return if prediction.blank?
-    prediction.user_answer
+  def checked_value(option, options = {})
+    object = object_from_hash(options)
+    return if object.blank?
+    option == object.user_answer
+  end
+
+  def selected_value(options = {})
+    object = object_from_hash(options)
+    return if object.blank?
+    object.user_answer
   end
 
   def submit_value(match)
     prediction = predictions_for_match(match)
-    prediction.blank? ? 'Submit' : 'Edit' 
+    prediction.blank? ? 'Submit' : 'Update' 
   end
 
   def matches
@@ -78,7 +84,13 @@ class User < ActiveRecord::Base
     predictions.where('predictions.match_question_id in (?)', match.match_question_ids).select('predictions.*') 
   end
 
-  def points_for_match(match)
+  def total_points_for_match(match)
     predictions_for_match(match).sum(:points)
+  end
+
+  def total_percentage_for_match(match)
+    points = BigDecimal.new total_points_for_match(match)
+    total_points = BigDecimal.new match.total_points
+    total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
 end

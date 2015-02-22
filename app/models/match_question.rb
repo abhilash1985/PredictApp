@@ -7,7 +7,11 @@ class MatchQuestion < ActiveRecord::Base
   scope :by_match, ->(match) { where(match_id: match.id) }
   scope :by_question, ->(question) { where(question_id: question.id) }
 
+  # callbacks
+  after_save :update_prediction_points
   serialize :options, Hash
+
+  alias_attribute :user_answer, :answer
 
   def question_id_with_points(index)
     "Q#{index + 1} #{points}pts"
@@ -15,6 +19,16 @@ class MatchQuestion < ActiveRecord::Base
 
   def question_name
     question.try(:question)
+  end
+
+  def update_prediction_points
+    predictions.each do |prediction|
+      prediction.update_attributes(points: points_for_prediction(prediction))
+    end
+  end
+
+  def points_for_prediction(prediction)
+    answer == prediction.user_answer ? points : 0
   end
 
   class << self

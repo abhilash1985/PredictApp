@@ -12,4 +12,8 @@ class UserChallenge < ActiveRecord::Base
     player = Player.find_by_id(user_answer)
     player.try(:first_name)
   end
+
+  def style_class
+    points == 0 ? 'btn-danger' : 'btn-success'
+  end
 end

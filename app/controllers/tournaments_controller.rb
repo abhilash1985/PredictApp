@@ -24,4 +24,15 @@ class TournamentsController < ApplicationController
 			format.html
 		end
 	end
+
+  def update_match
+    @challenge_id = params[:challenge_id]
+    @match_id = params[:match_id]
+    params[:match_question].each do |key, value|
+      match_question = MatchQuestion.find_by_id(key)
+      next if match_question.nil?
+      match_question.answer = value
+      match_question.save
+    end
+  end
 end

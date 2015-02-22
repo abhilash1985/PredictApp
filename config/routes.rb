@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :dashboard, only: :index
   resources :tournaments, only: [:index, :show] do 
     collection do
-      post 'predict_match'
+      post :predict_match
+      post :update_match
     end
   end
   
