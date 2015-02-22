@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th valign="top" class="text-center">Sl No</th>
-          <th valign="top" class="red" class="text-center">User</th>
+          <th valign="top" class="text-center">User</th>
           <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
             <th class="text-center">
               <div title="<%= match_question.question_name %>"><%= match_question.question_id_with_points(index) %></div>

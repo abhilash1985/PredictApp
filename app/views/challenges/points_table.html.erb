@@ -25,8 +25,8 @@
       	<td><%= user.show_name %></td>
       	<td class="red padding-left-15"><%= user.total_points_for_challenge(@challenge) %></td>
       	<td class="color-blue padding-left-15"><%= user.total_percentage_for_challenge(@challenge) %></td>
-      	<% @matches.each do |match| %>
-          <td class="class-bold padding-left-15"><%= user.points_for_match(match) %></td>
+        <% @matches.each do |match| %>
+          <td class="class-bold padding-left-15"><%= user.total_points_for_match(match) %></td>
         <% end %>
       </tr>
     <% end %>
