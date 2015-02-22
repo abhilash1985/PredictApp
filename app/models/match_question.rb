@@ -31,6 +31,12 @@ class MatchQuestion < ActiveRecord::Base
     answer == prediction.user_answer ? points : 0
   end
 
+  def exact_answer
+    return user_answer unless options[:v].blank?
+    player = Player.find_by_id(user_answer)
+    player.try(:first_name)
+  end
+
   class << self
     def add_match_questions
       Match.order(:id).each do |match|

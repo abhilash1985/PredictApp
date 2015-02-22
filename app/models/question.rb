@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   has_many :match_questions
   has_many :matches, through: :match_questions
   scope :by_question, ->(question) { where(question: question) }
-  scope :team_score, ->(short_name) { where(question: "Runs will be scored by the team #{short_name} will be?") }
+  scope :team_score, ->(short_name) { where(question: "Runs will be scored by the team #{short_name}?") }
   scope :defaults, -> { where(question: %W(#{'Who will win the match?'} #{'Who will win the toss?'} #{'Who will be the man of the match?'})) }
   scope :not_defaults, -> { where("question not like ? and question not like ?", '%Who will win the%', '%Runs will be scored by the team%') }
   scope :points_2, -> { where(points: 2) }
@@ -20,13 +20,13 @@ class Question < ActiveRecord::Base
     when 'Who will win the toss?', 'Who will be batting first?'
       { v: %W(#{match.team1_short_name} #{match.team2_short_name}) }
     when 'Runs will be scored by the team batting first?', 'Runs will be scored by the team batting second?',
-         'Runs will be scored by the team AFG will be?', 'Runs will be scored by the team BAN will be?',
-         'Runs will be scored by the team ENG will be?', 'Runs will be scored by the team IND will be?',
-         'Runs will be scored by the team NZ will be?', 'Runs will be scored by the team PAK will be?',
-         'Runs will be scored by the team IRE will be?', 'Runs will be scored by the team SA will be?',
-         'Runs will be scored by the team WI will be?', 'Runs will be scored by the team AUS will be?',
-         'Runs will be scored by the team ZIM will be?', 'Runs will be scored by the team SCO will be?',
-         'Runs will be scored by the team UAE will be?', 'Runs will be scored by the team SL will be?'
+         'Runs will be scored by the team AFG?', 'Runs will be scored by the team BAN?',
+         'Runs will be scored by the team ENG?', 'Runs will be scored by the team IND?',
+         'Runs will be scored by the team NZ?', 'Runs will be scored by the team PAK?',
+         'Runs will be scored by the team IRE?', 'Runs will be scored by the team SA?',
+         'Runs will be scored by the team WI?', 'Runs will be scored by the team AUS?',
+         'Runs will be scored by the team ZIM?', 'Runs will be scored by the team SCO?',
+         'Runs will be scored by the team UAE?', 'Runs will be scored by the team SRI?'
       { v: %w(<125 126-175 176-225 226-280 281-330 330<) }
     when 'No. of bowled outs that can happen in the match?', 'No. of caught outs that can happen in the match?',
          'No. of run outs that can happen in the match?', 'No. of lbw outs that can happen in the match?'
@@ -43,7 +43,7 @@ class Question < ActiveRecord::Base
       { v: %w(<75 76-100 101-120 121-150 150<) }
     when 'Highest individual score in the match will be?'
       { v: %w(<30 31-50 51-70 71-85 85<) }
-    when 'How many sixes will be hit by both the teams in the match?'
+    when 'How many sixes will be hit by both the teams together in the match?'
       { v: %w(0 1-2 3-4 5-6 6<) }
     when 'How many wickets will fell in the first innings of the match?',
          'How many wickets will fell in the first 25 overs of the match?'

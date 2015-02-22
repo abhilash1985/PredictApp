@@ -1,7 +1,8 @@
 namespace :import do
   desc "Import master data"
   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
-                    :matches, :questions, :match_questions, :challenges] do
+                    :matches] do
+    # for initial run include :questions, :match_questions, :challenges
   end
 
   desc 'Import tournament data'
