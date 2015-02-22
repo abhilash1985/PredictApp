@@ -81,7 +81,10 @@ class User < ActiveRecord::Base
   end
 
   def predictions_for_match(match)
-    predictions.where('predictions.match_question_id in (?)', match.match_question_ids).select('predictions.*') 
+    predictions.where('predictions.match_question_id in (?)',
+                       match.match_question_ids)
+               .select('predictions.*')
+               .order('predictions.match_question_id') 
   end
 
   def total_points_for_match(match)
