@@ -71,3 +71,27 @@ Licensed under MIT
  .close :hover{
   color: #fff!important;
  }
+
+ .black_color{
+  background-color: #000 !important;
+ }
+
+ .blur-me {
+  filter: grayscale(30%);
+}
+
+#full-screen-background-show {
+  z-index: -999;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  /*opacity:0.8;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.add_opacity{
+  opacity: 0.9 !important;
+}
