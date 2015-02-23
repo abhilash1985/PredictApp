@@ -29,19 +29,25 @@ class User < ActiveRecord::Base
     user_challenge.predictions.by_match_question(match_question.id).first
   end
 
-  def checked_value(option, prediction)
-    return if prediction.blank?
-    option == prediction.user_answer
+  def object_from_hash(options = {})
+    options[:page_from] == 'prediction' ? options[:prediction] : options[:match_question]
   end
 
-  def selected_value(prediction)
-    return if prediction.blank?
-    prediction.user_answer
+  def checked_value(option, options = {})
+    object = object_from_hash(options)
+    return if object.blank?
+    option == object.user_answer
+  end
+
+  def selected_value(options = {})
+    object = object_from_hash(options)
+    return if object.blank?
+    object.user_answer
   end
 
   def submit_value(match)
     prediction = predictions_for_match(match)
-    prediction.blank? ? 'Submit' : 'Edit' 
+    prediction.blank? ? 'Submit' : 'Update' 
   end
 
   def matches
@@ -63,7 +69,9 @@ class User < ActiveRecord::Base
   end
 
   def total_points_for_challenge(challenge)
-    predictions_for(challenge).reduce(0) { |a, v| a + v.points }
+    user_challenge = user_challenges.by_challenge(challenge.id).first
+    return 0 if user_challenge.nil?
+    user_challenge.predictions.sum(:points)
   end
 
   def total_percentage_for_challenge(challenge)
@@ -73,10 +81,26 @@ class User < ActiveRecord::Base
   end
 
   def predictions_for_match(match)
-    predictions.where('predictions.match_question_id in (?)', match.match_question_ids) 
+    predictions.where('predictions.match_question_id in (?)',
+                       match.match_question_ids)
+               .select('predictions.*')
+               .order('predictions.match_question_id') 
   end
 
-  def points_for_match(match)
+  def predictions_for_match_question(match_question)
+    predictions.where('predictions.match_question_id in (?)',
+                       match_question)
+               .select('predictions.*')
+               .order('predictions.match_question_id').first 
+  end
+
+  def total_points_for_match(match)
     predictions_for_match(match).sum(:points)
+  end
+
+  def total_percentage_for_match(match)
+    points = BigDecimal.new total_points_for_match(match)
+    total_points = BigDecimal.new match.total_points
+    total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
 end

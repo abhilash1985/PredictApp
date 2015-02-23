@@ -1,0 +1,32 @@
+<% challenges.each_with_index do |challenge, chlng_index| %>
+  <section> <%= link_to challenge.name, challenge_path(challenge, name) %></section>
+  <div class="container">
+    <div class="row">    
+      <% challenge.matches.each_with_index do |match, match_index| %>
+        <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
+          <div class="col-md-3">            
+            <center>
+              <p><%= match.full_name %></p>
+            </center>
+            <div class="thumbnail">
+              <div class="caption">
+                <h5><%= match.match_date.to_s(:default) %></h5>
+                <p class = 'btn-danger btn-sm'><%= match.team1.name%></p>
+                <p><%= image_tag('vs.png') %></p>
+                <p class = 'btn-info btn-sm'><%= match.team2_name %></p>
+                <p><%= match.stadium_name %></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </div>
+              <%= image_tag("#{load_icon}")%>
+            </div>
+          </div>
+        </a>
+        <div class="modal fade" id=<%= "modal_#{challenge.id}_#{match.id}" %> tabindex="-1" role="dialog">
+          <%= render form_name, match: match, challenge: challenge %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+  <hr />
+<% end -%>
+

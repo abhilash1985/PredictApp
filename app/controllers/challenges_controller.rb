@@ -1,10 +1,6 @@
 class ChallengesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :challenge_params, only: [:show, :points_table]
-
-  def points_table
-    
-  end
+	before_action :challenge_params, only: [:show, :points_table, :predictions_table]
 
   private
 

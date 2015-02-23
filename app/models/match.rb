@@ -43,6 +43,14 @@ class Match < ActiveRecord::Base
     "Match #{match_no} : #{team1_short_name} VS #{team2_short_name}"
   end
 
+  def full_name_with_date
+    "#{full_name} - #{match_date.to_s(:default)}"
+  end
+
+  def full_name_with_points
+    "#{full_name} : #{total_points}(pts)"
+  end
+
   def stadium_name
     stadium.try(:name)
   end
@@ -52,7 +60,7 @@ class Match < ActiveRecord::Base
   end
 
   def started?
-    match_date <= Time.now
+    match_date - 1.hours <= Time.now
   end
 
   class << self

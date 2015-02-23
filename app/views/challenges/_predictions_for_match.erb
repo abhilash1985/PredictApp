@@ -1,0 +1,48 @@
+<div class="page-header ind-body match-result text-center">
+  <h4><%=t '.title', default: "#{match.try(:full_name)} - #{match.match_date.to_s(:default)} - Points" %></h4>
+</div>
+<div class="data-table">
+  <table class="table table-striped table-bordered text-center" id="match_prediction">
+    <thead>
+      <tr>
+        <th valign="top" class="text-center" rowspan="2">Sl No</th>
+        <th valign="top" class="text-center" rowspan="2">User</th>
+        <th valign="top" class="text-center" rowspan="2">Total Points</th>
+        <th valign="top" class="text-center" rowspan="2">Points in %</th>
+        <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
+          <th class="text-center">
+            <div title="<%= match_question.question_name %>">
+              <%= match_question.question_id_with_points(index) %>
+            </div>
+          </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% match.match_questions.order(:id).each do |match_question| %>
+          <th class="text-center">
+            <div title="<%= match_question.question_name %>">
+              <%= match_question.exact_answer %>
+            </div>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+	  <% users.each_with_index do |user, index| %>
+        <tr>
+          <td class="text-center"><%= index + 1 %></td>
+      	  <td class="text-center"><%= user.show_name %></td>
+          <td class="text-center"><%= user.total_points_for_match(match) %></td>
+          <td class="text-center"><%= user.total_percentage_for_match(match) %></td>
+          <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
+            <% prediction = user.predictions_for_match_question(match_question) %>
+            <td class="text-center <%= prediction.try(:style_class) %>">
+              <%= prediction.try(:exact_answer) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br />
