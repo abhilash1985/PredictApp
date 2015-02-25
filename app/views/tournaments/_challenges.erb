@@ -1,6 +1,15 @@
 <% challenges.each_with_index do |challenge, chlng_index| %>
   <div class = 'add_padding'>
-    <section> <%= link_to challenge.name_with_date, challenge_path(challenge, name), class:'btn btn-success' %></section>
+    <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success' %>
+    <% if name == 'current' %>
+      <span class = 'btn btn-danger countdown' id='<%="count_down_#{challenge.id}"%>'></span>
+      <script type="text/javascript">
+        var challenge_date = '<%= challenge.end_time.to_s(:count_down)%>'
+        $('#<%="count_down_#{challenge.id}"%>').countdown(challenge_date, function(event) {
+          $(this).html(event.strftime('%d Days %HH:%MM:%SS'));
+        });
+      </script>
+    <% end -%>
   </div>
   <div class="container">
     <div class="row">    
