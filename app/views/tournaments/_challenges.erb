@@ -1,5 +1,7 @@
 <% challenges.each_with_index do |challenge, chlng_index| %>
-  <section> <%= link_to challenge.name_with_date, challenge_path(challenge, name) %></section>
+  <div class = 'add_padding'>
+    <section> <%= link_to challenge.name_with_date, challenge_path(challenge, name), class:'btn btn-success' %></section>
+  </div>
   <div class="container">
     <div class="row">    
       <% challenge.matches.each_with_index do |match, match_index| %>

@@ -1,16 +1,17 @@
+ <%= image_tag('background_new.jpg', {id:'full-screen-background-image', class:'blur-me'})%>
 <div class="container">
-    <div class="row">
+  <div class="row">
     <div class="col-md-12">
-      <h3>Choose your Challenge</h3>
-      <div class="tabbable-panel">
-        <div class="tabbable-line">
-          <ul class="nav nav-tabs ">
+      <h4 class = 'heading'>Choose your Challenge</h4>
+      <div class="panel with-nav-tabs panel-default add_opacity">
+        <div class="panel-heading black_color">
+          <ul class="nav nav-pills ">
             <li class="active">
-              <a href="#tab_default_1" data-toggle="tab">
+              <a href="#tab_default_1" data-toggle="tab" class = 'fnt_weight'>
               Current Challenges</a>
             </li>
             <li>
-              <a href="#tab_default_2" data-toggle="tab">
+              <a href="#tab_default_2" data-toggle="tab" class = 'fnt_weight'>
               Previous Challenges </a>
             </li>
             <!-- <li>
@@ -18,6 +19,7 @@
               Tab 3 </a>
             </li> -->
           </ul>
+        </div>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_default_1">
               <%= render 'challenges', challenges: @current_challenges, form_name: 'modal_form', name: 'current' %>
@@ -39,6 +41,19 @@
               </p>
             </div> -->
           </div>
+          <!-- <div class="tab-pane" id="tab_default_3">
+            <p>
+              Howdy, I'm in Tab 3.
+            </p>
+            <p>
+              Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
+            </p>
+            <p>
+              <a class="btn btn-info" href="http://j.mp/metronictheme" target="_blank">
+                Learn more...
+              </a>
+            </p>
+          </div> -->
         </div>
       </div>
     </div>
