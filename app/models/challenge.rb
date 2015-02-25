@@ -10,7 +10,7 @@ class Challenge < ActiveRecord::Base
   scope :previous, -> { where('end_time < ?', DateTime.now).includes(matches: [{ team1: :players }, { team2: :players }, :stadium, :match_questions]) }
 
   def name_with_date
-    "#{name} #{start_time.to_s(:default)}"
+    "#{name} - #{start_time.to_s(:date_only)}"
   end
 
   def total_points
