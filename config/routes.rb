@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :dashboard, only: :index
   resources :tournaments, only: [:index, :show] do 
+    member do
+      get :leaderboard
+    end
     collection do
       post :predict_match
       post :update_match

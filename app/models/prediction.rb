@@ -1,7 +1,7 @@
 class Prediction < ActiveRecord::Base
   # Associations
-  belongs_to :user_challenges
-  belongs_to :match_questions
+  belongs_to :user_challenge
+  belongs_to :match_question
   # Scopes
   scope :by_match_question, ->(match_question_id) { where(match_question_id: match_question_id) }
 

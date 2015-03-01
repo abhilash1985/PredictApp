@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
     @prediction ||= predictions.where('user_challenges.challenge_id = ?', challenge.id)
   end
 
+  def predictions_for_tournament(tournament)
+    @prediction ||= predictions.where('user_challenges.challenge_id in (?)', tournament.challenge_ids)
+  end
+
   def total_points_for_challenge(challenge)
     user_challenge = user_challenges.by_challenge(challenge.id).first
     return 0 if user_challenge.nil?

@@ -1,0 +1,26 @@
+<div class="page-header ind-body match-result text-center">
+  <h4><%=t '.title', default: "Leaderboard - #{@current_tournament.name}" %></h4>
+</div>
+<div class = "ind-body data-table">
+<table class="table table-striped table-bordered text-center" id="leaderboard">
+  <thead>
+    <tr>
+      <th class="text-center">Sl No</th>
+      <th class="text-center">User</th>
+      <th class="text-center">Total Points</th>
+      <th class="text-center">Points in %</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @leaderboards.each_with_index do |(key, value), index| %>
+  	 <% index += 1 %>
+      <tr>
+      	<td class="text-center"><%= index %></td>
+      	<td class="text-center"><%= value[:name] %></td>
+      	<td class="text-center"><%= value[:points] %></td>
+      	<td class="text-center"><%= value[:percentage] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
