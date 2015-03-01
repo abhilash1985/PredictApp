@@ -35,6 +35,6 @@ class Tournament < ActiveRecord::Base
       user_percentage = total_percentage_for_user(user)
       hash[user.id] = { name: user.show_name, points: user_points,
                         percentage: user_percentage }
-    end.sort_by { |k, v| v[:points] }.to_h
+    end.sort_by { |k, v| v[:points] }.reverse.to_h
   end
 end
