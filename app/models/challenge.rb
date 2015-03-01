@@ -6,6 +6,7 @@ class Challenge < ActiveRecord::Base
   has_many :users, through: :user_challenges
   # Scopes
   scope :by_name, ->(name) { where(name: name) }
+  scope :ids_in, ->(ids) { where(id: ids) }
   scope :current, -> { where('end_time > ?', DateTime.now).includes(matches: [{ team1: :players }, { team2: :players }, :stadium, :match_questions]) }
   scope :previous, -> { where('end_time < ?', DateTime.now).includes(matches: [{ team1: :players }, { team2: :players }, :stadium, :match_questions]) }
 

@@ -14,6 +14,10 @@ class Tournament < ActiveRecord::Base
     challenges.reduce(0) { |a, v| a + v.total_points }
   end
 
+  def participated_total_points_for(user)
+    challenges.ids_in(user.challenge_ids).reduce(0) { |a, v| a + v.total_points }
+  end
+
   def total_points_for_user(user)
     predictions = user.predictions_for_tournament(self)
     return 0 if predictions.blank?
@@ -22,6 +26,7 @@ class Tournament < ActiveRecord::Base
 
   def total_percentage_for_user(user)
     points = BigDecimal.new total_points_for_user(user)
+    total_points = BigDecimal.new participated_total_points_for(user)
     total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
 
