@@ -35,4 +35,9 @@ class TournamentsController < ApplicationController
       match_question.save
     end
   end
+
+  def leaderboard
+    tournament = Tournament.find(params[:id])
+    @leaderboards = tournament.leaderboard
+  end
 end

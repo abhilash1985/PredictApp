@@ -21,8 +21,9 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <%= link_to 'Prediction', dashboard_index_path, class:'navbar-brand' %>
-        <%= link_to @current_tournament.name, tournament_path(id:1), class:'navbar-brand', style:'color:#fff' %>
-        
+        <%= link_to @current_tournament.name, tournament_path(@current_tournament), class:'navbar-brand', style:'color:#fff' %>
+        <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
+                                   class:'navbar-brand' %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
