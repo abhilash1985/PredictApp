@@ -16,10 +16,12 @@
 //= require bootstrap-sprockets
 //= require bootstrap-multiselect
 //= require jquery.countdown
+//= require tooltipster
 //= require_tree .
 
 $(document).ready(function () {
   setTimeout(function() {
     $('.alert').fadeOut(500);
   }, '800');
+  $('.check').tooltipster();
 });
