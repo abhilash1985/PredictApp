@@ -107,4 +107,8 @@ class User < ActiveRecord::Base
     total_points = BigDecimal.new match.total_points
     total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
+
+  def match_question_ids(tournament)
+    predictions_for_tournament(tournament).pluck('predictions.match_question_id')
+  end
 end

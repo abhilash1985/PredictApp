@@ -6,6 +6,7 @@ class MatchQuestion < ActiveRecord::Base
   # Scopes
   scope :by_match, ->(match) { where(match_id: match.id) }
   scope :by_question, ->(question) { where(question_id: question.id) }
+  scope :ids_in, ->(ids) { where(id: ids) }
 
   # callbacks
   after_save :update_prediction_points
