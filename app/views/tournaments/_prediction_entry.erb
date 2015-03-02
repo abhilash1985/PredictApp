@@ -3,7 +3,7 @@
 <% match.match_questions.order(:id).each_with_index do |match_question, index|%>
   <div class = 'list-group'>
     <div class = 'list-group-item'>
-      <h4 class="list-group-item-heading"><%= "Q#{index + 1}: " %><%= match_question.question.question %></h4>
+      <h4 class="list-group-item-heading"><%= match_question.question_name_with_points(index) %></h4>
       <% options = match_question.options[:v] %>
       <% prediction = current_user.prediction_for_match_question(challenge, match_question) %>
       <% all_options = options_hash(page_from, match_question, prediction) %>
