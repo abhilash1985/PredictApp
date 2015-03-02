@@ -29,6 +29,12 @@ class Tournament < ActiveRecord::Base
     MatchQuestion.where(id: match_question_ids).pluck(:match_id).uniq
   end
 
+  def no_of_matches(user)
+    challenges.reduce(0) { |a, v|
+      a + v.matches.id_in(match_ids(user)).count
+    }
+  end
+
   def total_points_for_user(user)
     predictions = user.predictions_for_tournament(self)
     return 0 if predictions.blank?
@@ -49,7 +55,9 @@ class Tournament < ActiveRecord::Base
     users.each_with_object({}) do |user, hash|
       user_points = total_points_for_user(user)
       user_percentage = total_percentage_for_user(user)
+      no_of_matches = no_of_matches(user)
       hash[user.id] = { name: user.show_name, points: user_points,
+                        no_of_matches: no_of_matches,
                         percentage: user_percentage }
     end.sort_by { |k, v| v[:points] }.reverse.to_h
   end

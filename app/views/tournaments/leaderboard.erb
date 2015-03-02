@@ -8,7 +8,8 @@
       <th class="text-center">Sl No</th>
       <th class="text-center">User</th>
       <th class="text-center">Total Points</th>
-      <th class="text-center">Points in %</th>
+      <th class="text-center">No.of Matches Predicted</th>
+      <th class="text-center">Prediction %</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
       	<td class="text-center"><%= index %></td>
       	<td class="text-center"><%= value[:name] %></td>
       	<td class="text-center"><%= value[:points] %></td>
+      	<td class="text-center"><%= value[:no_of_matches] %></td>
       	<td class="text-center"><%= value[:percentage] %></td>
       </tr>
     <% end %>
