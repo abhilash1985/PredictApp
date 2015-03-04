@@ -11,7 +11,8 @@
         <p class="list-group-item-text">
           <%= f.select "#{match_question.id}", grouped_options_for_select(option_collection(match),
                                                current_user.selected_value(all_options)),
-                                               {}, class: 'multi-select-players' %>
+                                               { prompt: 'Select Player' },
+                                               class: 'multi-select-players' %>
         </p>
       <% else %>
         <ul class="list-inline">
@@ -33,7 +34,7 @@
 <script type="text/javascript">
     $('.multi-select-players').multiselect({
         enableCaseInsensitiveFiltering: true,
-        nonSelectedText: 'Select Players',
+        nonSelectedText: 'Select Player',
         numberDisplayed: 1,
         buttonWidth: '350px',
         maxHeight: 300
