@@ -25,6 +25,7 @@
               <%= render 'challenges', challenges: @current_challenges, form_name: 'modal_form', name: 'current' %>
             </div>
             <div class="tab-pane" id="tab_default_2">
+              <%= paginate @previous_challenges %>
               <%= render 'challenges', challenges: @previous_challenges, form_name: 'prev_challenge_form', name: 'previous' %>
             </div>
             <!-- <div class="tab-pane" id="tab_default_3">
