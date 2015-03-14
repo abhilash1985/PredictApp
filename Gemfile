@@ -62,13 +62,6 @@ group :development, :test do
   gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  gem 'rspec-rails', '~> 2.0'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  
   gem 'rails_best_practices', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -80,6 +73,11 @@ end
 group :test do
   gem 'simplecov'
   gem 'simplecov-rcov'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'capybara'
+  gem 'database_cleaner'
+  # gem 'selenium-webdriver'
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'codeclimate-test-reporter', require: nil
