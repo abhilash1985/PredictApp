@@ -65,7 +65,7 @@ namespace :import do
         end
       end
       p "Imported players"
-    rescue Exception => e
+    rescue => e
       puts "Error while importing #{e} #{e.backtrace}"
     end
   end

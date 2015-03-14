@@ -31,10 +31,12 @@ gem 'cancancan'
 gem 'kaminari'
 
 gem 'carrierwave'
-gem 'rspec-rails'
 gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
+
+gem 'bower-rails'
+gem 'angularjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -60,6 +62,13 @@ group :development, :test do
   gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  
   gem 'rails_best_practices', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -71,7 +80,6 @@ end
 group :test do
   gem 'simplecov'
   gem 'simplecov-rcov'
-  gem "factory_girl_rails", "~> 4.0"
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'codeclimate-test-reporter', require: nil
