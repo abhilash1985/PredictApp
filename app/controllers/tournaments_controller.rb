@@ -39,6 +39,6 @@ class TournamentsController < ApplicationController
 
   def leaderboard
     tournament = Tournament.find(params[:id])
-    @leaderboards = tournament.leaderboard
+    @leaderboards = tournament.leaderboard(params[:from])
   end
 end

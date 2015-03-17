@@ -24,6 +24,8 @@
         <%= link_to @current_tournament.name, tournament_path(@current_tournament), class:'navbar-brand', style:'color:#fff' %>
         <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
                                    class:'navbar-brand' %>
+        <%= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko'),
+                                   class:'navbar-brand' %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,8 +37,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email%> <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">My Points</a></li>
-                  <li><a href="#">Profile</a></li>
+                  <li>
+                    <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament) %>
+                  </li>
+                  <li>
+                    <%= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>
+                  </li>
                   <li><a href="#">Change Password</a></li>
                   <li class="divider"></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
