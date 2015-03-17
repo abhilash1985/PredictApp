@@ -1,5 +1,5 @@
 <div class="page-header ind-body match-result text-center">
-  <h4><%=t '.title', default: "Leaderboard - #{@current_tournament.name}" %></h4>
+  <h4><%=t '.title', default: "#{leaderboard(params[:from])} - #{@current_tournament.name}" %></h4>
 </div>
 <div class = "ind-body data-table">
 <table class="table table-striped table-bordered text-center" id="leaderboard">
