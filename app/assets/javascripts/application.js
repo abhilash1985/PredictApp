@@ -18,7 +18,8 @@
 //= require bootstrap-multiselect
 //= require jquery.countdown
 //= require tooltipster
-//= require turbolinks_transitions
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
 
 $(document).ready(function () {
