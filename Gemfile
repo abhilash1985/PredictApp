@@ -34,6 +34,7 @@ gem 'carrierwave'
 gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
+gem 'turbolinks_transitions'
 
 gem 'bower-rails'
 gem 'angularjs-rails'
