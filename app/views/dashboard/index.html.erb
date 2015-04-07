@@ -24,26 +24,24 @@
 	    		<!-- Tab panes -->
             <div class="tab-content">
               <div class="tab-pane active mega-dropdown-menu">
-                <% @tournaments.each do |tournament| %>
                   <ul class="nav-list list-inline">
-                      <li class = 'padding_icons'><%= link_to tournament_path(tournament.id) do %>
-                      	<%=image_tag('cricket.png')%>
+                      <li class = 'padding_icons'><%= link_to tournament_path(tournament.world_cup.first) do %>
+                      	<%= image_tag('cricket.png') %>
                       	<span>Cricket World Cup 2015</span>
                       	<% end -%>
                       </li>
-                       <li class = 'padding_icons'><%= link_to '#' do %>
-                        <%=image_tag('ipl.jpg')%>
+                       <li class = 'padding_icons'><%= link_to tournament_path(tournament.ipl2015.first) do %>
+                        <%= image_tag('ipl.jpg') %>
                         <span>&nbsp;</span>
                         <span>IPL</span>
                         <% end -%>
                       </li>
                        <li class = 'padding_icons'><%= link_to '#' do %>
-                        <%=image_tag('soccer.png')%>
+                        <%= image_tag('soccer.png') %>
                         <span>FOOT BALL</span>
                         <% end -%>
                       </li>
                   </ul>
-                <% end -%>
               </div>
             </div>
           </div>

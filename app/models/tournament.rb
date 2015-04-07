@@ -3,11 +3,16 @@ class Tournament < ActiveRecord::Base
   has_many :challenges
   # Scopes
   scope :world_cup, -> { where(name: 'ICC Cricket World Cup 2015') }
+  scope :ipl2015, -> { where(name: 'IPL 2015') }
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
-  scope :active, -> { where('end_date > ?', Date.today) }
+  scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
   	"#{name}"
+  end
+
+  def cwc2015?
+    name == world_cup.first.name
   end
 
   def ko_challenges(from)
