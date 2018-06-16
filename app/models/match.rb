@@ -44,7 +44,7 @@ class Match < ActiveRecord::Base
   end
 
   def full_name_with_date
-    "#{full_name} - #{match_date.to_s(:default)}"
+    "#{full_name} - #{match_date.to_s(:default_with_time)}"
   end
 
   def full_name_with_points

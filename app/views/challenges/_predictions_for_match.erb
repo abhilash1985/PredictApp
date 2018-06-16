@@ -1,27 +1,18 @@
 <div class="page-header ind-body match-result text-center">
-  <h4><%=t '.title', default: "#{match.try(:full_name)} - #{match.match_date.to_s(:default)} - Points" %></h4>
+  <h4><%=t '.title', default: "#{match.try(:full_name)} - #{match.match_date.to_s(:default_with_time)} - Points" %></h4>
 </div>
 <div class="data-table">
   <table class="table table-striped table-bordered text-center" id="match_prediction">
     <thead>
       <tr>
-        <th valign="top" class="text-center" rowspan="2">Sl No</th>
-        <th valign="top" class="text-center" rowspan="2">User</th>
-        <th valign="top" class="text-center" rowspan="2">Total Points</th>
-        <th valign="top" class="text-center" rowspan="2">Points in %</th>
+        <th valign="top" class="text-center btn-success" rowspan="1">Sl No</th>
+        <th valign="top" class="text-center btn-success" rowspan="1">User</th>
+        <th valign="top" class="text-center btn-success" rowspan="1">Total Points</th>
+        <th valign="top" class="text-center btn-success" rowspan="1">Points in %</th>
         <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
-          <th class="text-center">
+          <th class="text-center btn-success">
             <div class='check' title="<%= match_question.question_name %>">
-              <%= match_question.question_id_with_points(index) %>
-            </div>
-          </th>
-        <% end %>
-      </tr>
-      <tr>
-        <% match.match_questions.order(:id).each do |match_question| %>
-          <th class="text-center">
-            <div class='check' title="<%= match_question.question_name %>">
-              <%= match_question.exact_answer %>
+              <%= match_question.question_id_with_points(index) %> - <%= match_question.exact_answer %>
             </div>
           </th>
         <% end %>

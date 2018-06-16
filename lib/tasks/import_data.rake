@@ -19,8 +19,8 @@ namespace :import do
     stadiums = %W(Adelaide Hobart Brisbane Auckland Christchurch
                   Canberra Napier Melbourne Nelson Hamilton Sydney
                   Dunedin Perth Wellington)
-    stadiums.each do |statdium|
-      stadium = Stadium.by_name(statdium).first_or_initialize
+    stadiums.each do |stadium|
+      stadium = Stadium.by_name(stadium).first_or_initialize
       stadium.save
     end
     p "Imported Stadiums..."
@@ -74,7 +74,7 @@ namespace :import do
   task matches: :environment do
     ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     team_uae = Team.by_name('UAE').first
-    team_uae.update_attributes(name: 'United Arab Emirates') if team_uae 
+    team_uae.update_attributes(name: 'United Arab Emirates') if team_uae
     Match.matches.each_with_index do |hash, match_no|
       match = Match.by_match_no(match_no + 1).first_or_initialize
       team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first

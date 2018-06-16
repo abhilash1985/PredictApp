@@ -12,23 +12,23 @@
     <% end -%>
   </div>
   <div class="container">
-    <div class="row">    
+    <div class="row">
       <% challenge.matches.each_with_index do |match, match_index| %>
         <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
-          <div class="col-md-3">            
+          <div class="col-md-3">
             <center>
-              <p><%= match.full_name %></p>
+              <p class="match-full-name"><%= match.full_name %></p>
             </center>
             <div class="thumbnail">
               <div class="caption">
-                <h5><%= match.match_date.to_s(:default) %></h5>
-                <p class = 'btn-danger btn-sm'><%= match.team1.name%></p>
-                <p><%= image_tag('vs.png') %></p>
-                <p class = 'btn-info btn-sm'><%= match.team2_name %></p>
+                <h5><%= match.match_date.to_s(:default_with_time) %></h5>
+                <p class='btn-warning btn-sm team-font'><%= match.team1.name.upcase %></p>
+                <p><%= image_tag('vs.png', size: '40x40') %></p>
+                <p class = 'btn-success btn-sm team-font'><%= match.team2_name.upcase %></p>
                 <p><%= match.stadium_name %></p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
-              <%= image_tag("#{load_icon}")%>
+              <%= image_tag("icons/#{load_icon}", size: '400x300')%>
             </div>
           </div>
         </a>

@@ -3,23 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #bg_image {
-  position: fixed; 
-  top: 0; 
+  position: fixed;
+  top: 0;
   left: 0;
 }
 .margin{
 	margin-left: -18%;
-	margin-top: 2%; 
+	margin-top: 2%;
 }
 
 .fxd_position{
 	position: fixed;
 }
 
-.navbar-brand { 
+.navbar-brand {
   /*width: 150px;*/
   /*height: 50px;*/
-  background-size: 50px;  
+  background-size: 50px;
 }
 
 .mrgin{
@@ -70,10 +70,10 @@
   padding-top: 15px;
   font-weight: bold;
 }
-.nav-tabs > li > a, 
-.nav-tabs > li > a:hover, 
-.nav-tabs > li > a:focus, 
-.nav-tabs > li.active > a, 
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus,
+.nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   border: none;
@@ -81,7 +81,7 @@
 }
 
 /*.nav-list { border-bottom: 1px solid #eee; }*/
-.nav-list > li { 
+.nav-list > li {
   padding: 20px 15px 15px;
   /*border-left: 1px solid #eee; */
 }
@@ -112,7 +112,16 @@
   left: 0;
 }
 
+.background-white {
+  background-color: #FFF;
+}
+
 .padding_icons{
   padding-left: 90px !important;
   padding-right: 90px !important;
+}
+
+.prediction-results {
+  color: #FFF;
+  font-weight: bold;
 }

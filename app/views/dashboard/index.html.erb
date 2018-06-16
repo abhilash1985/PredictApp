@@ -1,5 +1,5 @@
- <%= image_tag('background_new.jpg', {id:'full-screen-background-image'})%>
-	
+<%= image_tag('background_new.jpg', {id:'full-screen-background-image'})%>
+
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -18,35 +18,36 @@
         <ul class="nav navbar-nav">
         <li><a href="#"></a></li>
     		<li class="dropdown mega-dropdown active">
-			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>		
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>
 				<div class="dropdown-menu mega-dropdown-menu" style = "background-color: #090909; opacity:0.8;">
           <div class="container-fluid ">
 	    		<!-- Tab panes -->
             <div class="tab-content">
               <div class="tab-pane active mega-dropdown-menu">
                   <ul class="nav-list list-inline">
-                      <li class = 'padding_icons'><%= link_to tournament_path(tournament.world_cup.first) do %>
-                      	<%= image_tag('cricket.png') %>
-                      	<span>Cricket World Cup 2015</span>
-                      	<% end -%>
-                      </li>
-                       <li class = 'padding_icons'><%= link_to tournament_path(tournament.ipl2015.first) do %>
-                        <%= image_tag('ipl.jpg') %>
-                        <span>&nbsp;</span>
-                        <span>IPL</span>
-                        <% end -%>
-                      </li>
-                       <li class = 'padding_icons'><%= link_to '#' do %>
-                        <%= image_tag('soccer.png') %>
-                        <span>FOOT BALL</span>
-                        <% end -%>
-                      </li>
+                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.fifa_world_cup.first) do %>
+                      <%= image_tag('russia.jpg', size: '150x100') %>
+                      <span>FIFA World Cup 2018</span>
+                      <% end -%>
+                    </li>
+
+                    <li class = 'padding_icons'><%= link_to '#' do %>
+                    	<%= image_tag('cricket_2019.jpg', size: '150x100') %>
+                    	<span>COMING SOON</span>
+                    	<% end -%>
+                    </li>
+                    <li class = 'padding_icons'><%= link_to '#' do %>
+                      <%= image_tag('ipl.jpg', size: '150x100') %>
+                      <span>&nbsp;</span>
+                      <span>COMING SOON</span>
+                      <% end -%>
+                    </li>
                   </ul>
               </div>
             </div>
           </div>
           <!-- Nav tabs -->
-				</div>				
+				</div>
 			</li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -65,5 +66,5 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container add_opacity" id="content">
-    
+
 </div>

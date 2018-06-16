@@ -1,21 +1,24 @@
+<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
-  <h4><%=t '.title', default: "#{leaderboard(params[:from])} - #{@current_tournament.name}" %></h4>
+  <h4 class="prediction-results">
+    <%=t '.title', default: "#{leaderboard(params[:from])} - #{@current_tournament.name}" %>
+  </h4>
 </div>
 <div class = "ind-body data-table">
 <table class="table table-striped table-bordered text-center" id="leaderboard">
   <thead>
-    <tr>
-      <th class="text-center">Sl No</th>
-      <th class="text-center">User</th>
-      <th class="text-center">Total Points</th>
-      <th class="text-center">No.of Matches Predicted</th>
-      <th class="text-center">Prediction %</th>
+    <tr class="background-white">
+      <th class="text-center btn-success">Sl No</th>
+      <th class="text-center btn-success">User</th>
+      <th class="text-center btn-success">Total Points</th>
+      <th class="text-center btn-success">No.of Matches Predicted</th>
+      <th class="text-center btn-success">Prediction %</th>
     </tr>
   </thead>
   <tbody>
   	<% @leaderboards.each_with_index do |(key, value), index| %>
   	 <% index += 1 %>
-      <tr>
+      <tr class="background-white">
       	<td class="text-center"><%= index %></td>
       	<td class="text-center"><%= value[:name] %></td>
       	<td class="text-center"><%= value[:points] %></td>

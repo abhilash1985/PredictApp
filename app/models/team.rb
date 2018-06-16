@@ -1,3 +1,4 @@
+# team
 class Team < ActiveRecord::Base
   # Associations
   # has_many :team1_matches, class_name: 'Match', foreign_key: 'team1_id'
@@ -9,5 +10,9 @@ class Team < ActiveRecord::Base
 
   def matches
     Match.by_team(id)
+  end
+
+  def rank_details
+    "Rank: #{rank}"
   end
 end

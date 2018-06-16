@@ -15,7 +15,7 @@ class MatchQuestion < ActiveRecord::Base
   alias_attribute :user_answer, :answer
 
   def question_id_with_points(index)
-    "Q#{index + 1} #{points}pts"
+    "Q#{index + 1} (#{points}pts)"
   end
 
   def question_name_with_points(index)
@@ -59,9 +59,27 @@ class MatchQuestion < ActiveRecord::Base
       end
     end
 
-    def create_match_question_for(match, question)
+    def add_football_match_questions
+      Match.order(:id).each do |match|
+        team1_name = match.team1_name
+        team2_name = match.team2_name
+        all_questions = [Question.fifa_defaults,
+                         Question.fifa_team_score(team1_name),
+                         Question.fifa_team_score(team2_name),
+                         Question.fifa_cards_percentage(team1_name, team2_name).offset(rand(7)).limit(1),
+                         Question.fifa_shots_first_goal_percentage(team1_name, team2_name).offset(rand(6)).limit(1)]
+        all_questions.each do |questions|
+          questions.each do |question|
+            create_match_question_for(match, question, 'fifa')
+          end
+        end
+      end
+    end
+
+    def create_match_question_for(match, question, by = 'cricket')
       match_question = by_match(match).by_question(question).first_or_initialize
-      match_question.options = question.all_options_for(match)
+      match_question.options =
+        by == 'cricket' ? question.all_options_for(match) : question.all_fifa_options_for(match)
       match_question.points = question.weightage
       match_question.save
     end

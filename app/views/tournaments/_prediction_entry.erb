@@ -2,8 +2,8 @@
 <%= hidden_field_tag :match_id, match.id %>
 <% match.match_questions.order(:id).each_with_index do |match_question, index|%>
   <div class = 'list-group'>
-    <div class = 'list-group-item'>
-      <h4 class="list-group-item-heading"><%= match_question.question_name_with_points(index) %></h4>
+    <div class = 'list-group-item border-radius-10'>
+      <h5 class="list-group-item-heading"><%= match_question.question_name_with_points(index) %></h5>
       <% options = match_question.options[:v] %>
       <% prediction = current_user.prediction_for_match_question(challenge, match_question) %>
       <% all_options = options_hash(page_from, match_question, prediction) %>
@@ -15,10 +15,10 @@
                                                class: 'multi-select-players' %>
         </p>
       <% else %>
-        <ul class="list-inline">
+        <ul class="list-inline" style="margin-bottom: 0">
           <% options.each do |opt| %>
             <li>
-              <label>
+              <label style="font-size: 12px;">
                 <%= radio_button_tag "match_question[#{match_question.id}]", "#{opt}",
                                       current_user.checked_value(opt, all_options),
                                       class: 'padding-4' %>

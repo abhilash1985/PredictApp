@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cricketwc2015</title>
+  <title>FifaWorldCup2018</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -24,7 +24,7 @@
         <%= link_to @current_tournament.name, tournament_path(@current_tournament), class:'navbar-brand', style: 'color:#fff' %>
         <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
                                    class:'navbar-brand' %>
-        <%= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko'),
+        <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko'),
                                    class:'navbar-brand' %>
       </div>
 
@@ -40,11 +40,11 @@
                   <li>
                     <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament) %>
                   </li>
-                  <% if @current_tournament.cwc2015? %>
-                  <li>
-                    <%= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>
-                  </li>
-                  <% end %>
+                  <%# if @current_tournament.fifa2019? %>
+                  <!-- <li> -->
+                    <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>
+                  <!-- </li> -->
+                  <%# end %>
                   <li><a href="#">Change Password</a></li>
                   <li class="divider"></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>

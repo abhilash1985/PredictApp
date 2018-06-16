@@ -13,6 +13,32 @@ class Question < ActiveRecord::Base
   scope :not_power_plays, -> { where('question not like ?', '%How many runs will be scored%') }
   scope :not_mom, -> { where('question not like ?', '%man of the match%') }
 
+
+  # FIFA QUESTION SCOPES
+  scope :fifa_team_score, ->(name) { where(question: "Goals scored by #{name}?") }
+  scope :fifa_defaults, -> { where(question: 'Who will win the match?') }
+  scope :fifa_not_defaults, -> { where("question not like ?", '%Who will win the%') }
+  scope :fifa_cards, ->(name) { where('question = ?', "Total shots by #{name}?") }
+  scope :fifa_shots, -> { where('question like ?', 'Total shots%') }
+  scope :fifa_possession, -> { where('question like ?', 'Possession percentage by%') }
+
+  scope :fifa_cards_percentage, lambda { |name1, name2|
+    where('question like ? or question = ? or question = ?', 'No of%in the match%',
+                                                              "Possession percentage by #{name1}?",
+                                                              "Possession percentage by #{name2}?")
+  }
+
+  scope :fifa_shots_first_goal, lambda { |name1, name2|
+    where('question = ? or question = ? or
+           question = ? or question = ? or
+           question = ? or question = ?', "Total shots by #{name1}?",
+                                          "Total shots by #{name2}?",
+                                          "Total shots on Target by #{name1}?",
+                                          "Total shots on Target by #{name2}?",
+                                          "Time of first goal by #{name1}?",
+                                          "Time of first goal by #{name2}?")
+  }
+
   def all_options_for(match)
     case question
     when 'Who will win the match?'
@@ -55,9 +81,33 @@ class Question < ActiveRecord::Base
     end
   end
 
+  def all_fifa_options_for(match)
+    if question == 'Who will win the match?'
+      { v: %W(#{match.team1_name} #{match.team2_name} Draw #{'No Result'}) }
+    elsif question.match(/Goals scored by/)
+      { v: %w(0 1 2 3 3+) }
+    elsif question.match(/No of/)
+      { v: %w(0-1 2-3 4-6 6+) }
+    elsif question.match(/Total shots by/)
+      { v: %w(0-3 3-5 6-9 10-15 15+) }
+    elsif question.match(/Total shots on Target by/)
+      { v: %w(0 1-2 3-5 6-8 8+) }
+    elsif question.match(/Possession percentage/)
+      { v: %w(0-15 16-30 31-50 51-65 65+) }
+    elsif question.match(/Time of first goal/)
+      { v: %w(0-25 26-45 46-75 75-90 No\ Goal) }
+    else
+      { v: %w() }
+    end
+  end
+
   class << self
     def others
       not_defaults.not_outs.not_power_plays.not_mom
+    end
+
+    def fifa_others
+      fifa_not_defaults.fifa_not_cards.fifa_not_possession
     end
   end
 end

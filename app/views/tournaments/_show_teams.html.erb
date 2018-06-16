@@ -1,0 +1,23 @@
+<% team1 = match.team1 %>
+<% team2 = match.team2 %>
+<% team1_short_name = team1.try(:short_name) %>
+<% team2_short_name = team2.try(:short_name) %>
+<div class="text-center team-details">
+  <div>
+    <h5><%= match.stadium_name %> - <%= match.match_date.to_s(:default_with_time) %></h5>
+  </div>
+  <div class="col-sm-4 text-right">
+    <p class='team-font'><%= team1.name.upcase %></p>
+    <p class='team-font'><%= team1.rank_details %></p>
+  </div>
+  <div class="col-sm-4">
+    <%= image_tag("flags/#{team1_short_name}.png", size: '60x50') %>
+    <%= image_tag('vs2.png', size: '42x20') %>
+    <%= image_tag("flags/#{team2_short_name}.png", size: '60x50') %>
+  </div>
+  <div class="col-sm-4 text-left">
+    <p class='team-font'><%= team2.name.upcase %></p>
+    <p class='team-font'><%= team2.rank_details %></p>
+  </div>
+</div>
+<div class="clear: both"></div>

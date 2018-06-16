@@ -1,16 +1,17 @@
+<%= image_tag('welcome3.jpg', { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4><%=t '.title', default: "#{@challenge.try(:name)} - #{@challenge.end_time.to_s(:default)} - Predictions" %></h4>
 </div>
 <% @matches.each do |match| %>
-  <p><h5><%= match.full_name_with_date %></h5></p>
+  <p><h5 class="prediction-results"><%= match.full_name_with_date %></h5></p>
   <div class="ind-body data-table">
     <table class="table table-striped table-bordered text-center" id="predictions">
       <thead>
-        <tr>
-          <th valign="top" class="text-center">Sl No</th>
-          <th valign="top" class="text-center">User</th>
+        <tr class="background-white">
+          <th valign="top" class="text-center btn-success">Sl No</th>
+          <th valign="top" class="text-center btn-success">User</th>
           <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
-            <th class="text-center">
+            <th class="text-center btn-success">
               <div title="<%= match_question.question_name %>">
                 <%= match_question.question_id_with_points(index) %>
               </div>
@@ -20,7 +21,7 @@
       </thead>
       <tbody>
   	    <% @users.each_with_index do |user, index| %>
-          <tr>
+          <tr class="background-white">
       	    <td class="text-center"><%= index + 1 %></td>
       	    <td class="text-center"><%= user.show_name %></td>
       	    <% user.predictions_for_match(match).each do |prediction| %>

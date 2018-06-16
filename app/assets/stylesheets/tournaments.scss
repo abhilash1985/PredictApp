@@ -13,7 +13,7 @@ Licensed under MIT
   position:relative;
   overflow:hidden;
 }
- 
+
 .caption {
   position:absolute;
   top:0;
@@ -111,7 +111,7 @@ font-weight: bold;
 
 ._no_class{
   max-height: 500px;
-  overflow-y:scroll; 
+  overflow-y:scroll;
 }
 
 .float_left{
@@ -125,4 +125,48 @@ font-weight: bold;
   margin-left: 20px;
   margin-right: 20px;
   text-align: center;
+}
+
+.panel_custom {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.match-full-name {
+  width: 100%;
+  background-color: #000;
+  color: #FFF;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.team-font {
+  font-color: #000;
+  font-weight: bold;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
+.valign-top {
+  vertical-align: top !important;
+}
+
+.team-details {
+
+}
+
+.team1 {
+  margin-left: 30%;
+}
+
+.flags, .team2 {
+  margin-left: 10px;
+}
+
+.float-left {
+  float: left !important;
 }

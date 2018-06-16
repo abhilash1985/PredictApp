@@ -27,6 +27,7 @@ class TournamentsController < ApplicationController
 	end
 
   def update_match
+    return unless current_user.admin
     @challenge_id = params[:challenge_id]
     @match_id = params[:match_id]
     params[:match_question].each do |key, value|

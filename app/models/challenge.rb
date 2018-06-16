@@ -16,33 +16,34 @@ class Challenge < ActiveRecord::Base
   end
 
   def total_points
-    matches.reduce(0) { |a, v| a + v.total_points }
+    matches.reduce(0) { |a, e| a + e.total_points }
   end
 
   def time_for(number)
     case number.to_i
     when 1
-      %W(#{'2015-02-20 00:00'} #{'2015-02-20 23:59'})
+      %w(2015-02-20 00:00 2015-02-20 23:59)
     when 2
-      %W(#{'2015-02-20 00:00'} #{'2015-02-21 23:59'})
+      %w(2015-02-20 00:00 2015-02-21 23:59)
     when 3
-      %W(#{'2015-02-20 00:00'} #{'2015-02-22 23:59'})
+      %w(2015-02-20 00:00 2015-02-22 23:59)
     when 4
-      %W(#{'2015-02-23 00:00'} #{'2015-02-23 23:59'})
+      %w(2015-02-23 00:00 2015-02-23 23:59)
     end
   end
 
   def update_match_for(number)
-    match_ids = case number.to_i
-    when 1
-      %w(10 11)
-    when 2
-      %w(12 13)
-    when 3
-      %w(14)
-    when 4
-      %w(15)
-    end
+    match_ids =
+      case number.to_i
+      when 1
+        %w(10 11)
+      when 2
+        %w(12 13)
+      when 3
+        %w(14)
+      when 4
+        %w(15)
+      end
     Match.no_in(match_ids).update_all(challenge_id: id)
   end
 
