@@ -1,6 +1,8 @@
 <% challenges.each_with_index do |challenge, chlng_index| %>
   <div class = 'add_padding'>
-    <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success' %>
+    <% challenge_title = name == 'current' ? 'All Predictions' : 'Points' %>
+    <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success',
+                title: "Click Here to see #{challenge_title}" %>
     <% if name == 'current' %>
       <span class = 'btn btn-danger countdown' id='<%="count_down_#{challenge.id}"%>'></span>
       <script type="text/javascript">
