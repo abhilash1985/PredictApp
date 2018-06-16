@@ -3,7 +3,7 @@ class TournamentsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def show
-		@current_challenges = Challenge.where('end_time > ?', DateTime.now).order(:id).limit(4)
+		@current_challenges = Challenge.where('end_time > ?', DateTime.now).order(:start_time).limit(4)
 		@previous_challenges = Challenge.previous.order('id desc').page(params[:page]).per(3)
 		@prediction = Prediction.new
 	end
