@@ -7,6 +7,6 @@ class ChallengesController < ApplicationController
   def challenge_params
     @challenge = Challenge.find(params[:id])
     @matches = current_user.matches_for_challenge(@challenge)
-    @users = @challenge.users 
+    @users = @challenge.users
   end
 end

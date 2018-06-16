@@ -67,7 +67,7 @@ class MatchQuestion < ActiveRecord::Base
                          Question.fifa_team_score(team1_name),
                          Question.fifa_team_score(team2_name),
                          Question.fifa_cards_percentage(team1_name, team2_name).offset(rand(7)).limit(1),
-                         Question.fifa_shots_first_goal_percentage(team1_name, team2_name).offset(rand(6)).limit(1)]
+                         Question.fifa_shots_first_goal(team1_name, team2_name).offset(rand(6)).limit(1)]
         all_questions.each do |questions|
           questions.each do |question|
             create_match_question_for(match, question, 'fifa')
