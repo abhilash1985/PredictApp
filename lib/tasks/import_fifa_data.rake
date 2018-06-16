@@ -1,7 +1,8 @@
 namespace :import do
   desc "Import FIFA master data"
   task fifa_master_data: [:fifa_tournaments, :fifa_stadiums, :fifa_teams, :fifa_rounds,
-                          :fifa_matches] do
+                          :fifa_matches, :fifa_questions, :fifa_match_questions,
+                          :fifa_challenges] do
     # for initial run include :questions, :match_questions, :challenges
   end
 
@@ -9,7 +10,7 @@ namespace :import do
   task fifa_tournaments: :environment do
     tournament = Tournament.fifa_world_cup.russia.first_or_initialize
     tournament.start_date = '14-06-2018'
-    tournament.end_date = '15-07-2017'
+    tournament.end_date = '15-07-2018'
     tournament.save
     p "Imported Tournaments..."
   end
@@ -93,8 +94,6 @@ namespace :import do
     matches_array.sort_by { |x| x[0]['date'].to_time }.each do |m|
       group_match = m[0]
       group_name = m[1]
-
-      binding.pry
 
       team1_id = group_match['home_team']
       team1 = find_team_name(team1_id, data)
@@ -327,7 +326,7 @@ namespace :import do
   desc 'Import challenges'
   task fifa_challenges: :environment do
     ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
-    Challenge.add_challenges
+    Challenge.add_fifa_challenges
     p "Imported Challenges..."
   end
 end
