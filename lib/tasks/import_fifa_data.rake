@@ -319,6 +319,7 @@ namespace :import do
   desc 'Import match questions'
   task fifa_match_questions: :environment do
     ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    ActiveRecord::Base.connection.execute 'TRUNCATE predictions'
     MatchQuestion.add_football_match_questions
     p "Imported Match Questions..."
   end
