@@ -18,6 +18,10 @@ class MatchQuestion < ActiveRecord::Base
     "Q#{index + 1} (#{points}pts)"
   end
 
+  def question_names_with_points(index)
+    "#{question_name} (#{points}pts)"
+  end
+
   def question_name_with_points(index)
     "Q#{index + 1}: #{question_name} (#{points}pts)"
   end
