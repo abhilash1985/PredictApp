@@ -44,6 +44,18 @@ class Challenge < ActiveRecord::Base
       %w(2018-06-21\ 00:00 2018-06-21\ 17:25)
     when 5
       %w(2018-06-22\ 00:00 2018-06-22\ 17:25)
+    when 6
+      %w(2018-06-23\ 00:00 2018-06-23\ 17:25)
+    when 7
+      %w(2018-06-24\ 00:00 2018-06-24\ 17:25)
+    when 8
+      %w(2018-06-25\ 00:00 2018-06-25\ 19:25)
+    when 9
+      %w(2018-06-26\ 00:00 2018-06-26\ 19:25)
+    when 10
+      %w(2018-06-27\ 00:00 2018-06-27\ 19:25)
+    when 11
+      %w(2018-06-28\ 00:00 2018-06-28\ 19:25)
     end
   end
 
@@ -97,8 +109,8 @@ class Challenge < ActiveRecord::Base
     def add_fifa_challenges
       world_cup = Tournament.fifa_world_cup.first
       return if world_cup.blank?
-      %w(1 2 3 4).each do |number|
-        name = 'Challenge ' + number
+      (1..11).each do |number|
+        name = 'Challenge ' + number.to_s
         challenge = by_name(name).first_or_initialize
         challenge.tournament_id = world_cup.id
         start_time, end_time = challenge.fifa_time_for(number)

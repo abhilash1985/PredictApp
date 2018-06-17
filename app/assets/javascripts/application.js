@@ -18,6 +18,7 @@
 //= require bootstrap-multiselect
 //= require jquery.countdown
 //= require tooltipster
+//= require dataTables/jquery.dataTables
 //= require nprogress
 //= require nprogress-turbolinks
 //= require_tree .
@@ -27,4 +28,16 @@ $(document).ready(function () {
     $('.alert').fadeOut(500);
   }, '800');
   $('.check').tooltipster();
+
+  $('#point_table').dataTable({
+    'iDisplayLength': 30,
+    searching: false,
+    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0, 4, 5, 6] } ],
+    "order": [[ 2, "desc" ]],
+    "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      var index = iDisplayIndexFull + 1;
+      $("td:first", nRow).html(index);
+      return nRow;
+    }
+  });
 });

@@ -35,6 +35,7 @@ gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
+gem 'jquery-datatables-rails'
 
 gem 'bower-rails'
 gem 'angularjs-rails'
