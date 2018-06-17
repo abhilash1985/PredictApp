@@ -60,7 +60,7 @@ class Match < ActiveRecord::Base
   end
 
   def started?
-    match_date - 1.hours <= Time.now
+    match_date - 5.minutes <= Time.zone.now
   end
 
   class << self
