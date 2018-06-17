@@ -12,7 +12,7 @@
           <th valign="top" class="text-center btn-success">User</th>
           <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
             <th class="text-center btn-success">
-              <div title="<%= match_question.question_name_with_points(index) %>">
+              <div class='check' title="<%= match_question.question_name_with_points(index) %>">
                 <%= match_question.question_name %>
               </div>
             </th>

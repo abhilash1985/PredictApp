@@ -40,6 +40,11 @@
                   <li>
                     <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament) %>
                   </li>
+                  <% if current_user.admin %>
+                    <li>
+                      <%= link_to 'Admin', '/admin' %>
+                    </li>
+                  <% end %>
                   <%# if @current_tournament.fifa2019? %>
                   <!-- <li> -->
                     <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>

@@ -60,6 +60,18 @@ class Challenge < ActiveRecord::Base
         %w(21 22 23)
       when 5
         %w(24 25 26)
+      when 6
+        %w(27 28 29)
+      when 7
+        %w(30 31 32)
+      when 8
+        %w(33 34 35 36)
+      when 9
+        %w(37 38 39 40)
+      when 10
+        %w(41 42 43 44)
+      when 11
+        %w(45 46 47 48)
       end
     Match.no_in(match_ids).update_all(challenge_id: id)
   end

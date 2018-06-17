@@ -326,7 +326,7 @@ namespace :import do
 
   desc 'Import challenges'
   task fifa_challenges: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
     Challenge.add_fifa_challenges
     p "Imported Challenges..."
   end
