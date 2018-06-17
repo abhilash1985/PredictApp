@@ -97,11 +97,11 @@ class Question < ActiveRecord::Base
     elsif question.match(/Total shots by/)
       { v: %w(0-3 3-5 6-9 10-15 15+) }
     elsif question.match(/Total shots on Target by/)
-      { v: %w(0 1-2 3-5 6-8 8+) }
+      { v: %w(0-1 2-3 4-6 7-10 10+) }
     elsif question.match(/Possession percentage/)
-      { v: %w(0-15 16-30 31-50 51-65 65+) }
+      { v: %w(0-30 31-40 41-50 51-60 60+) }
     elsif question.match(/Time of first goal/)
-      { v: %w(0-25 26-45 46-75 75-90 No\ Goal) }
+      { v: %w(0-25 26-45 46-75 76-90 No\ Goal) }
     else
       { v: %w() }
     end
