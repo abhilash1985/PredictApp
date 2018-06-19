@@ -32,7 +32,7 @@ $(document).ready(function () {
   $('#point_table').dataTable({
     'iDisplayLength': 30,
     searching: false,
-    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0, 4, 5, 6] } ],
+    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0] } ],
     "order": [[ 2, "desc" ]],
     "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       var index = iDisplayIndexFull + 1;
