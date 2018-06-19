@@ -5,7 +5,8 @@
       <h4 class="modal-title">Match Points</h4>
     </div>
     <div class="modal-body">
-      <%= render '/challenges/predictions_for_match', match: match, challenge: challenge, users: challenge.users %>
+      <%= render '/challenges/predictions_for_match', match: match, challenge: challenge, users: challenge.users,
+                                                      match_index: match_index %>
       <% if current_user.admin %>
         <%= form_for :match_question, url: update_match_tournaments_path, remote: true do |f| %>
           <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'match_question' %>

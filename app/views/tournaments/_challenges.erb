@@ -35,7 +35,7 @@
           </div>
         </a>
         <div class="modal fade" id=<%= "modal_#{challenge.id}_#{match.id}" %> tabindex="-1" role="dialog">
-          <%= render form_name, match: match, challenge: challenge %>
+          <%= render form_name, match: match, challenge: challenge, match_index: match_index %>
         </div>
       <% end -%>
     </div>

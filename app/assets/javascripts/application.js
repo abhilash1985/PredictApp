@@ -40,4 +40,16 @@ $(document).ready(function () {
       return nRow;
     }
   });
+
+  $('#match_prediction_0, #match_prediction_1, #match_prediction_2').dataTable({
+    'iDisplayLength': 30,
+    searching: false, paging: false, bInfo: false,
+    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0, 4, 5, 6, 7, 8] } ],
+    "order": [[ 2, "desc" ]],
+    "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      var index = iDisplayIndexFull + 1;
+      $("td:first", nRow).html(index);
+      return nRow;
+    }
+  });
 });

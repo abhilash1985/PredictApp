@@ -2,7 +2,7 @@
   <h4><%=t '.title', default: "#{match.try(:full_name)} - #{match.match_date.to_s(:default_with_time)} - Points" %></h4>
 </div>
 <div class="data-table">
-  <table class="table table-striped table-bordered text-center" id="match_prediction">
+  <table class="table table-striped table-bordered text-center" id="match_prediction_<%= match_index %>">
     <thead>
       <tr>
         <th valign="top" class="text-center btn-success" rowspan="1">Sl No</th>
