@@ -10,14 +10,17 @@
       <% if current_user.admin %>
         <%= form_for :match_question, url: update_match_tournaments_path, remote: true do |f| %>
           <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'match_question' %>
-          <div class="actions">
+          <div class="actions modal-footer">
             <%= f.submit 'Update', class: 'btn btn-primary', id:'challenge_form' %>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         <% end -%>
       <% end -%>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-    </div>
+    <% unless current_user.admin %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    <% end %>
   </div>
 </div>

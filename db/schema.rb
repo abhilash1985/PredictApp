@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180613194048) do
+ActiveRecord::Schema.define(version: 20180619185746) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -146,8 +146,9 @@ ActiveRecord::Schema.define(version: 20180613194048) do
   create_table "user_challenges", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "challenge_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "paid",         limit: 1, default: false
   end
 
   add_index "user_challenges", ["challenge_id"], name: "index_user_challenges_on_challenge_id", using: :btree

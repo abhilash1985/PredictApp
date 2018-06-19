@@ -9,13 +9,11 @@
     <div class="modal-body">
     <%= form_for :match_question, url: predict_match_tournaments_path, remote: true do |f| %>
       <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'prediction' %>
-      <div class="actions">
+      <div class="modal-footer actions">
         <%= f.submit current_user.submit_value(match), class: 'btn btn-primary', id:'challenge_form' unless match.started? %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     <% end -%>
     </div>
-    <!-- <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-    </div> -->
   </div>
 </div>

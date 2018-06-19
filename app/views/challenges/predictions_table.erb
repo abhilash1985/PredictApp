@@ -23,7 +23,7 @@
   	    <% @users.each_with_index do |user, index| %>
           <tr class="background-white">
       	    <td class="text-center"><%= index + 1 %></td>
-      	    <td class="text-center"><%= user.show_name %></td>
+      	    <td class="text-left"><%= user.show_name %><%= amount_paid_tag(user, match.try(:challenge)) %></td>
       	    <% user.predictions_for_match(match).each do |prediction| %>
               <td class="text-center"><%= prediction.try(:exact_answer) %></td>
             <% end %>

@@ -2,7 +2,7 @@
   <div class = 'add_padding'>
     <% challenge_title = name == 'current' ? 'All Predictions' : 'Points' %>
     <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success',
-                title: "Click Here to see #{challenge_title}" %>
+                title: "Click Here to see #{challenge_title}", data: { no_turbolink: true } %>
     <% if name == 'current' %>
       <span class = 'btn btn-danger countdown' id='<%="count_down_#{challenge.id}"%>'></span>
       <script type="text/javascript">

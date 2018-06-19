@@ -47,14 +47,14 @@ class User < ActiveRecord::Base
 
   def submit_value(match)
     prediction = predictions_for_match(match)
-    prediction.blank? ? 'Submit' : 'Update' 
+    prediction.blank? ? 'Submit' : 'Update'
   end
 
   def matches
     # challenges.joins(:matches)
     challenges.flat_map(&:matches)
   end
-  
+
   def matches_for_challenge(challenge)
     # matches.where('matches.challenge_id = ?', challenge.id)
     matches.select { |match| match.challenge_id == challenge.id }
@@ -73,6 +73,13 @@ class User < ActiveRecord::Base
     @prediction ||= predictions.where('user_challenges.challenge_id in (?)', challenge_ids)
   end
 
+  def amount_paid_for(challenge)
+    return false if challenge.blank?
+    user_challenge = user_challenges.by_challenge(challenge.id).first
+    return false if user_challenge.nil?
+    user_challenge.try(:paid)
+  end
+
   def total_points_for_challenge(challenge)
     user_challenge = user_challenges.by_challenge(challenge.id).first
     return 0 if user_challenge.nil?
@@ -89,14 +96,14 @@ class User < ActiveRecord::Base
     predictions.where('predictions.match_question_id in (?)',
                        match.match_question_ids)
                .select('predictions.*')
-               .order('predictions.match_question_id') 
+               .order('predictions.match_question_id')
   end
 
   def predictions_for_match_question(match_question)
     predictions.where('predictions.match_question_id in (?)',
                        match_question)
                .select('predictions.*')
-               .order('predictions.match_question_id').first 
+               .order('predictions.match_question_id').first
   end
 
   def total_points_for_match(match)

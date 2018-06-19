@@ -10,6 +10,7 @@ class Challenge < ActiveRecord::Base
   scope :current, -> { where('end_time > ?', DateTime.now).includes(matches: [{ team1: :players }, { team2: :players }, :stadium, :match_questions]) }
   scope :previous, -> { where('end_time < ?', DateTime.now).includes(matches: [{ team1: :players }, { team2: :players }, :stadium, :match_questions]) }
   scope :knockout, -> { where('id > ?', 26) }
+  scope :completed, -> { where('end_time < ?', DateTime.now) }
 
   def name_with_date
     "#{name} - #{start_time.to_s(:date_only)}"

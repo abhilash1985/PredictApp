@@ -24,7 +24,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def ko_challenges(from)
-    from.blank? ? challenges : challenges.knockout
+    from.blank? ? challenges.completed : challenges.knockout
   end
 
   def total_points(from)

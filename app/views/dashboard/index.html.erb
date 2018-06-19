@@ -15,15 +15,15 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-        <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav">
         <li><a href="#"></a></li>
-    		<li class="dropdown mega-dropdown active">
-			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>
-				<div class="dropdown-menu mega-dropdown-menu" style = "background-color: #090909; opacity:0.8;">
-          <div class="container-fluid ">
-	    		<!-- Tab panes -->
-            <div class="tab-content">
-              <div class="tab-pane active mega-dropdown-menu">
+        <li class="dropdown mega-dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>
+          <div class="dropdown-menu mega-dropdown-menu" style = "background-color: #090909; opacity:0.8;">
+            <div class="container-fluid ">
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane active mega-dropdown-menu">
                   <ul class="nav-list list-inline">
                     <li class = 'padding_icons'><%= link_to tournament_path(Tournament.fifa_world_cup.first) do %>
                       <%= image_tag('russia.jpg', size: '150x100') %>
@@ -32,38 +32,40 @@
                     </li>
 
                     <li class = 'padding_icons'><%= link_to '#' do %>
-                    	<%= image_tag('cricket_2019.jpg', size: '150x100') %>
-                    	<span>COMING SOON</span>
-                    	<% end -%>
+                      <%= image_tag('cricket_2019.jpg', size: '150x100') %>
+                      <span>COMING SOON</span>
+                      <% end -%>
                     </li>
+
                     <li class = 'padding_icons'><%= link_to '#' do %>
                       <%= image_tag('ipl.jpg', size: '150x100') %>
                       <span>COMING SOON</span>
                       <% end -%>
                     </li>
                   </ul>
+                </div>
               </div>
             </div>
+            <!-- Nav tabs -->
           </div>
-          <!-- Nav tabs -->
-				</div>
-			</li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email%> <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <!-- <li><a href="#">My Points</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Change Password</a></li> -->
-                <li class="divider"></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
-              </ul>
-            </li>
-        </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- <li><a href="#">My Points</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><%#= link_to 'Change Password', edit_user_registration_path %></li> -->
+            <li class="divider"></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+          </ul>
+        </li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container add_opacity" id="content">
-
-</div>
+<div class="container add_opacity" id="content"></div>
