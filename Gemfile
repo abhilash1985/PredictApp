@@ -45,6 +45,7 @@ gem 'angularjs-rails'
 
 # Use Puma as the app server
 gem 'puma'
+gem 'sprockets', '2.12.5'
 
 #for the bootstrap
 gem 'bootstrap-sass', '~> 3.3.3'
