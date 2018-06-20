@@ -13,12 +13,13 @@
       <th class="text-center btn-success">Date</th>
       <th class="text-center btn-success">Challenge</th>
       <th class="text-center btn-success">Total Prize Amount</th>
-      <th class="text-center btn-success">Winner Prize Amount</th>
       <th class="text-center btn-success">Who Won</th>
+      <th class="text-center btn-success">Winner Prize Amount</th>
       <th class="text-center btn-success">Account Balance</th>
     </tr>
   </thead>
   <tbody>
+    <% total_balance = 0 %>
   	<% @challenge_payments.each_with_index do |payment, index| %>
   	 <% index += 1 %>
       <tr class="background-white">
@@ -26,11 +27,15 @@
       	<td class="text-left"><%= payment.challenge.end_time.to_s(:default) rescue '-' %></td>
         <td class="text-left"><%= payment.challenge.name rescue '-' %></td>
         <td class="text-center"><%= payment.total_prize_amount %></td>
-        <td class="text-center"><%= payment.winner_prize_amount %></td>
         <td class="text-left"><%= payment.user.show_name %></td>
-        <td class="text-center"><%= payment.total_prize_amount - payment.winner_prize_amount %></td>
+        <td class="text-center"><%= payment.winner_prize_amount %></td>
+        <td class="text-center"><%= total_balance += (payment.total_prize_amount - payment.winner_prize_amount) %></td>
       </tr>
     <% end %>
+    <tr class="background-white">
+      <td class="text-right" colspan="6"><b>Total Balance >></b></td>
+      <td class="text-center"><b><%= total_balance %></b></td>
+    </tr>
   </tbody>
 </table>
 </div>
