@@ -16,6 +16,10 @@ class Challenge < ActiveRecord::Base
     "#{name} - #{start_time.to_s(:date_only)}"
   end
 
+  def started?
+    end_time <= DateTime.now
+  end
+
   def total_points
     matches.reduce(0) { |a, e| a + e.total_points }
   end

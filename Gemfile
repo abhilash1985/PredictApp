@@ -30,15 +30,15 @@ gem 'devise'
 gem 'cancancan'
 gem 'kaminari'
 
-gem 'carrierwave'
-gem 'spreadsheet'
+# gem 'carrierwave'
+# gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
 gem 'jquery-datatables-rails'
 
-gem 'bower-rails'
-gem 'angularjs-rails'
+# gem 'bower-rails'
+# gem 'angularjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -51,6 +51,8 @@ gem 'sprockets', '2.12.5'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
 gem 'bootstrap-multiselect-rails'
+# gem 'nokogiri'
+# gem 'site_prism'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -60,29 +62,30 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'pry'
-  gem 'web-console', '~> 2.0'
-  gem 'binding_of_caller'
-  gem 'better_errors'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'rails_best_practices', require: false
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
-  #gem 'brakeman', '2.6.3', require: false
-  gem 'flog', require: false
-  gem 'flay', require: false
+  # gem 'pry'
+  # gem 'web-console', '~> 2.0'
+  # gem 'binding_of_caller'
+  # gem 'better_errors'
+  # # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # gem 'spring'
+  # gem 'rails_best_practices', require: false
+  # gem 'rubocop', require: false
+  # gem 'rubocop-rspec', require: false
+  # #gem 'brakeman', '2.6.3', require: false
+  # gem 'flog', require: false
+  # gem 'flay', require: false
+  # gem 'derailed'
 end
 
 group :test do
-  gem 'simplecov'
-  gem 'simplecov-rcov'
-  gem 'rspec-rails', '~> 2.0'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'capybara'
-  gem 'database_cleaner'
-  # gem 'selenium-webdriver'
-  # Pretty printed test output
-  gem 'turn', :require => false
-  gem 'codeclimate-test-reporter', require: nil
+  # gem 'simplecov'
+  # gem 'simplecov-rcov'
+  # gem 'rspec-rails', '~> 2.0'
+  # gem 'factory_girl_rails', '~> 4.0'
+  # gem 'capybara'
+  # gem 'database_cleaner'
+  # # gem 'selenium-webdriver'
+  # # Pretty printed test output
+  # gem 'turn', :require => false
+  # gem 'codeclimate-test-reporter', require: nil
 end

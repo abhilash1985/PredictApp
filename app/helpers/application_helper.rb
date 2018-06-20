@@ -25,6 +25,6 @@ module ApplicationHelper
     return if challenge.blank?
     paid = user.amount_paid_for(challenge)
     return unless paid
-    image_tag 'paid.png', { size: '22x22', class: 'margin-left-5' }
+    image_tag 'paid.png', { size: '16x16', class: 'margin-left-5' }
   end
 end

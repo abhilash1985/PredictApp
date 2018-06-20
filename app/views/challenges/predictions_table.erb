@@ -1,6 +1,8 @@
-<%= image_tag('welcome3.jpg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag('welcome1.jpg', { id: 'full-screen-background-image' }) %>
 <div class="page-header ind-body match-result text-center">
-  <h4><%=t '.title', default: "#{@challenge.try(:name)} - #{@challenge.end_time.to_s(:default)} - Predictions" %></h4>
+  <h4 class="prediction-results">
+    <%=t '.title', default: "#{@challenge.try(:name)} - #{@challenge.end_time.to_s(:default)} - Predictions" %>
+  </h4>
 </div>
 <% @matches.each do |match| %>
   <p><h5 class="prediction-results"><%= match.full_name_with_date %></h5></p>
