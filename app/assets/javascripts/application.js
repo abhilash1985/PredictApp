@@ -52,7 +52,7 @@ $(document).ready(function () {
     }
   });
 
-  $('#payment_table, #challenge_payment_table').dataTable({
+  $('#payment_table').dataTable({
     'iDisplayLength': 50,
     searching: false,
     "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0] } ],
