@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :user_challenges
   has_many :challenges, through: :user_challenges
-  has_one :payment_detail
+  has_many :payments, dependent: :destroy
   has_many :challenge_payments, dependent: :destroy
 
   def show_name

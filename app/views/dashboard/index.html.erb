@@ -61,6 +61,11 @@
             <li><a href="#">Profile</a></li>
             <li><%#= link_to 'Change Password', edit_user_registration_path %></li> -->
             <li class="divider"></li>
+            <% if current_user.admin %>
+              <li>
+                <%= link_to 'Admin', '/admin' %>
+              </li>
+            <% end %>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
           </ul>
         </li>
