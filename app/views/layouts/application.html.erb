@@ -51,6 +51,14 @@
                 <li>
                   <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament) %>
                 </li>
+                <li>
+                  <%= link_to 'Payment Details', payment_details_challenge_path,
+                                                 data: { no_turbolink: true } %>
+                </li>
+                <li>
+                  <%= link_to 'Total Payment Details', challenge_payments_challenge_path,
+                                                       data: { no_turbolink: true } %>
+                </li>
                 <% if current_user.admin %>
                   <li>
                     <%= link_to 'Admin', '/admin' %>

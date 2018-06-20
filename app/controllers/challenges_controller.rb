@@ -4,6 +4,14 @@ class ChallengesController < ApplicationController
   before_action :challenge_params, only: [:show, :points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
 
+  def payment_details
+    @payments = Payment.includes(:user)
+  end
+
+  def challenge_payments
+    @challenge_payments = ChallengePayment.includes(:user, :challenge)
+  end
+
   private
 
   def challenge_params

@@ -51,4 +51,16 @@ $(document).ready(function () {
       return nRow;
     }
   });
+
+  $('#payment_table, #challenge_payment_table').dataTable({
+    'iDisplayLength': 50,
+    searching: false,
+    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0] } ],
+    "order": [[ 1, "asc" ]],
+    "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      var index = iDisplayIndexFull + 1;
+      $("td:first", nRow).html(index);
+      return nRow;
+    }
+  });
 });

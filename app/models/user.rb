@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :user_challenges
   has_many :challenges, through: :user_challenges
+  has_one :payment_detail
 
   def show_name
     full_name.blank? ? show_email : full_name

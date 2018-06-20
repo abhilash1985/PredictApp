@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180619185746) do
+ActiveRecord::Schema.define(version: 20180620185737) do
+
+  create_table "challenge_payments", force: :cascade do |t|
+    t.integer  "user_id",             limit: 4
+    t.integer  "challenge_id",        limit: 4
+    t.integer  "total_prize_amount",  limit: 4
+    t.integer  "winner_prize_amount", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "challenge_payments", ["challenge_id"], name: "index_challenge_payments_on_challenge_id", using: :btree
+  add_index "challenge_payments", ["user_id"], name: "index_challenge_payments_on_user_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -63,6 +75,21 @@ ActiveRecord::Schema.define(version: 20180619185746) do
   add_index "matches", ["stadium_id"], name: "index_matches_on_stadium_id", using: :btree
   add_index "matches", ["team1_id"], name: "index_matches_on_team1_id", using: :btree
   add_index "matches", ["team2_id"], name: "index_matches_on_team2_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id",            limit: 4
+    t.integer  "predictions",        limit: 4
+    t.integer  "paid_predictions",   limit: 4
+    t.integer  "amount_paid",        limit: 4
+    t.integer  "matches_won",        limit: 4
+    t.integer  "prize_won",          limit: 4
+    t.integer  "balance",            limit: 4
+    t.integer  "future_predictions", limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "first_name",   limit: 255
@@ -176,4 +203,7 @@ ActiveRecord::Schema.define(version: 20180619185746) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "challenge_payments", "challenges"
+  add_foreign_key "challenge_payments", "users"
+  add_foreign_key "payments", "users"
 end

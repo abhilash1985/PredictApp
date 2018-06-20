@@ -4,6 +4,7 @@ class Challenge < ActiveRecord::Base
   has_many :matches
   has_many :user_challenges
   has_many :users, through: :user_challenges
+  has_many :challenge_payments
   # Scopes
   scope :by_name, ->(name) { where(name: name) }
   scope :ids_in, ->(ids) { where(id: ids) }

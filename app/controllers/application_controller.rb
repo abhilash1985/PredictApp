@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     session[:user_id] = params[:id] unless params[:id].blank?
     @current_tournament ||= Tournament.find_by_id(session[:user_id])
     @current_tournament ||= Tournament.active.first
+    @current_tournament ||= Tournament.first
   end
 
   protected
