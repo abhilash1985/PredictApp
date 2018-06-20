@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_challenges
   has_many :challenges, through: :user_challenges
   has_one :payment_detail
+  has_many :challenge_payments, dependent: :destroy
 
   def show_name
     full_name.blank? ? show_email : full_name
