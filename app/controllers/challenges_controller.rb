@@ -9,7 +9,7 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_payments
-    @challenge_payments = ChallengePayment.includes(:user, :challenge)
+    @challenge_payments = ChallengePayment.includes(:user, :challenge).order('challenges.id')
   end
 
   private
