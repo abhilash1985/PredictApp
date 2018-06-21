@@ -58,6 +58,12 @@ class Tournament < ActiveRecord::Base
     predictions.sum(:points)
   end
 
+  def total_paid_points_for_user(user, from)
+    paid_predictions = user.paid_predictions_for_tournament(self, from).uniq
+    return 0 if paid_predictions.blank?
+    paid_predictions.sum(:points)
+  end
+
   def total_percentage_for_user(user, from)
     points = BigDecimal.new total_points_for_user(user, from)
     total_points = BigDecimal.new total_points_for_match(user, from)
@@ -69,14 +75,18 @@ class Tournament < ActiveRecord::Base
   end
 
   def leaderboard(from = nil)
-    users(from).each_with_object({}) do |user, hash|
-      user_points = total_points_for_user(user, from)
-      user_percentage = total_percentage_for_user(user, from)
-      no_of_matches = no_of_matches(user, from)
-      hash[user.id] = { name: user.show_name, points: user_points,
-                        no_of_matches: no_of_matches,
-                        percentage: user_percentage }
-    end.sort_by { |_k, v| v[:points] }.reverse.to_h
+    points =
+      users(from).each_with_object({}) do |user, hash|
+        user_points = total_points_for_user(user, from)
+        user_paid_points = total_paid_points_for_user(user, from)
+        user_percentage = total_percentage_for_user(user, from)
+        no_of_matches = no_of_matches(user, from)
+        hash[user.id] = { name: user.show_name, points: user_points,
+                          paid_points: user_paid_points,
+                          no_of_matches: no_of_matches,
+                          percentage: user_percentage }
+      end
+    points.sort_by { |_k, v| v[:points] }.reverse.to_h
   end
 
   def ko_challenge_ids

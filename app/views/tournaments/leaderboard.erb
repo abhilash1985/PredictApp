@@ -11,6 +11,7 @@
       <th class="text-center btn-success">Sl No</th>
       <th class="text-center btn-success">User</th>
       <th class="text-center btn-success">Total Points</th>
+      <th class="text-center btn-success">Paid Points</th>
       <th class="text-center btn-success">No.of Matches Predicted</th>
       <th class="text-center btn-success">Prediction %</th>
     </tr>
@@ -22,6 +23,7 @@
       	<td class="text-center"><%= index %></td>
       	<td class="text-left"><%= value[:name] %></td>
       	<td class="text-center"><%= value[:points] %></td>
+        <td class="text-center"><%= value[:paid_points] %></td>
       	<td class="text-center"><%= value[:no_of_matches] %></td>
       	<td class="text-center"><%= value[:percentage] %></td>
       </tr>

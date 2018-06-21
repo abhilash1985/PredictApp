@@ -75,6 +75,12 @@ class User < ActiveRecord::Base
     @prediction ||= predictions.where('user_challenges.challenge_id in (?)', challenge_ids)
   end
 
+  def paid_predictions_for_tournament(tournament, from = nil)
+    challenge_ids = from.blank? ? tournament.challenge_ids : tournament.ko_challenge_ids
+    @paid_prediction ||= predictions.where('user_challenges.challenge_id in (?)
+                                            and user_challenges.paid = ?', challenge_ids, true)
+  end
+
   def amount_paid_for(challenge)
     return false if challenge.blank?
     user_challenge = user_challenges.by_challenge(challenge.id).first
