@@ -27,7 +27,7 @@
       	<td class="text-left"><%= payment.challenge.end_time.to_s(:default) rescue '-' %></td>
         <td class="text-left"><%= payment.challenge.name rescue '-' %></td>
         <td class="text-center"><%= payment.total_prize_amount %></td>
-        <td class="text-left"><%= payment.user.show_name %></td>
+        <td class="text-left"><%= payment.user.show_name rescue '-' %></td>
         <td class="text-center"><%= payment.winner_prize_amount %></td>
         <td class="text-center"><%= total_balance += (payment.total_prize_amount - payment.winner_prize_amount) %></td>
       </tr>
