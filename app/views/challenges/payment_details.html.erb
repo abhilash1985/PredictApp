@@ -31,8 +31,10 @@
         <td class="text-center"><%= payment.amount_paid %></td>
         <td class="text-center"><%= payment.matches_won %></td>
         <td class="text-center"><%= payment.prize_won %></td>
-        <td class="text-center"><%= payment.balance %></td>
-        <td class="text-center"><%= payment.future_predictions %></td>
+        <td class="text-center">
+          <%= balance = (payment.amount_paid.to_i + payment.prize_won.to_i) - (payment.paid_predictions.to_i * 10) %>
+        </td>
+        <td class="text-center"><%= balance/10 %></td>
       </tr>
     <% end %>
   </tbody>
