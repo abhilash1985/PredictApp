@@ -63,4 +63,25 @@ $(document).ready(function () {
       return nRow;
     }
   });
+
+  $('#leaderboard').dataTable({
+    'iDisplayLength': 50,
+    searching: false,
+    "columnDefs": [ { "searchable": false, "orderable": false, "targets": [0] } ],
+    "order": [[ 2, "desc" ]],
+    "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      var index = iDisplayIndexFull + 1;
+      $("td:first", nRow).html(index);
+      return nRow;
+    }
+  });
+
+  $('#challenge_select, #user_select').multiselect({
+    includeSelectAllOption: true,
+    enableCaseInsensitiveFiltering: true,
+    nonSelectedText: 'Select',
+    numberDisplayed: 2,
+    buttonWidth: '300px',
+    maxHeight: 400
+  });
 });

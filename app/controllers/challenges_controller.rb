@@ -12,6 +12,26 @@ class ChallengesController < ApplicationController
     @challenge_payments = ChallengePayment.includes(:user, :challenge).order('challenges.id')
   end
 
+  def show_user_challenges
+    @challenges = Challenge.all
+    @users = User.all
+  end
+
+  def update_user_challenges
+    user_challenge = UserChallenge.by_challenge(params[:challenge])
+                                  .by_user(params[:users])
+    if user_challenge.blank?
+      flash[:notice] = 'No Challenges found'
+    else
+      user_challenge.update_all(paid: true)
+      flash[:notice] = "Updated paid status for #{params[:users]}"
+    end
+    redirect_to show_user_challenges_challenge_path
+  rescue
+    flash[:notice] = 'Something Went Wrong'
+    redirect_to show_user_challenges_challenge_path
+  end
+
   private
 
   def challenge_params

@@ -1,0 +1,37 @@
+<%- model_class = Prediction -%>
+<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: "Update User Paid" %>
+  </h4>
+</div>
+<div class="ind-body data-table text-center" style="width: 80%;">
+<%= form_tag(update_user_challenges_challenge_path, method: :post) do %>
+  <table class="table table-striped table-bordered text-center">
+    <thead>
+      <tr class="background-white">
+        <th class="text-center btn-success">Challenge</th>
+        <th class="text-center btn-success">User</th>
+        <th class="text-center btn-success">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="background-white">
+      	<td class="text-left">
+          <%= select_tag 'challenge', options_from_collection_for_select(@challenges, 'id', 'name'),
+                                      id: "challenge_select", prompt: 'Select Challenge' %>
+        </td>
+        <td class="text-left">
+          <%= select_tag 'users[]', options_from_collection_for_select(@users, 'id', 'show_name'),
+                                    multiple: true, id: "user_select" %>
+        </td>
+        <td>
+          <div class="actions">
+            <%= submit_tag 'Submit', class: 'btn btn-success' %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+</div>
