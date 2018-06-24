@@ -30,7 +30,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'kaminari'
 
-# gem 'carrierwave'
+gem 'carrierwave'
 # gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
