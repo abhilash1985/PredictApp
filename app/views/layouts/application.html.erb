@@ -52,23 +52,9 @@
                     <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
                                                data: { no_turbolink: true } %>
                   </li>
-                  <li>
-                    <%= link_to 'Payment Details', payment_details_challenge_path(current_user),
-                                                   data: { no_turbolink: true } %>
-                  </li>
-                  <li>
-                    <%= link_to 'Total Payment', challenge_payments_challenge_path(current_user),
-                                                         data: { no_turbolink: true } %>
-                  </li>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to 'Admin', '/admin' %>
-                    </li>
-                  <% end %>
-                  <% if current_user.admin %>
-                    <li>
-                      <%= link_to 'Update Paid Status', show_user_challenges_challenge_path,
-                                                        data: { no_turbolink: true } %>
                     </li>
                   <% end %>
                   <%# if @current_tournament.fifa2019? %>
