@@ -1,39 +1,76 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= image_tag 'welcome1.jpg', { id:'full-screen-background-image' } %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: "Edit #{resource_name.to_s.humanize}" %>
+  </h4>
+</div>
+<div class="margin">
+  <div class="tab-pane col-md-offset-2 col-md-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+      <fieldset>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="control-group">
+          <label class="prediction-results control-label" for="userid">Email:</label>
+          <div class="controls">
+           <%= f.email_field :email, autofocus: true, required: true, placeholder: "Email", class:"form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="controls">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password_confirmation">
+            Password: <i>(leave blank if you don't want to change it)</i>
+          </label>
+          <div class="controls">
+            <%= f.password_field :password, autofocus: true, autocomplete: "off", required: true,
+                                 placeholder: 'Password', class:'form-control' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password_confirmation">Confirm New Password:</label>
+          <div class="controls">
+            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "off", required: true,
+                                 placeholder: 'Confirm New password', class:'form-control' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="current_password">
+            Current Password: <i>(we need your current password to confirm your changes)</i>
+          </label>
+          <div class="controls">
+            <%= f.password_field :current_password, autofocus: true, autocomplete: "off", required: true,
+                                 placeholder: 'Confirm New password', class:'form-control' %>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="confirmsignup"></label>
+          <div class="controls">
+            <%= f.submit "Update", class: 'btn btn-success' %>
+            <span>
+              <%= render "devise/shared/links" %>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<h4 class="prediction-results">
+  <%=t '.title', default: "Cancel my account" %>
+</h4>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p class="prediction-results">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-success', data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

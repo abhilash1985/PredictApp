@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  predictions: 1
+  paid_predictions: 1
+  amount: 1
+  matches_won: 1
+  prize_won: 1
+  balance: 1
+  future_predictions: 1
+
+two:
+  user_id: 
+  predictions: 1
+  paid_predictions: 1
+  amount: 1
+  matches_won: 1
+  prize_won: 1
+  balance: 1
+  future_predictions: 1

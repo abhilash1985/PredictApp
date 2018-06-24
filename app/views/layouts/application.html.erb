@@ -53,11 +53,11 @@
                                              data: { no_turbolink: true } %>
                 </li>
                 <li>
-                  <%= link_to 'Payment Details', payment_details_challenge_path,
+                  <%= link_to 'Payment Details', payment_details_challenge_path(current_user),
                                                  data: { no_turbolink: true } %>
                 </li>
                 <li>
-                  <%= link_to 'Total Payment', challenge_payments_challenge_path,
+                  <%= link_to 'Total Payment', challenge_payments_challenge_path(current_user),
                                                        data: { no_turbolink: true } %>
                 </li>
                 <% if current_user.admin %>
@@ -76,8 +76,8 @@
                   <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>
                   <!-- </li> -->
                   <%# end %>
-                  <!-- <li><a href="#">Change Password</a></li>
-                  <li><%#= link_to 'Change Password', edit_user_registration_path %></li> -->
+                  <!-- <li><a href="#">Change Password</a></li> -->
+                  <li><%= link_to 'Change Password', edit_user_registration_path %></li>
                   <li class="divider"></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
                 </ul>

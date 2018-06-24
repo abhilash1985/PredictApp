@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  challenge_id: 
+  total_prize_amount: 1
+  winner_prize_amount: 1
+
+two:
+  user_id: 
+  challenge_id: 
+  total_prize_amount: 1
+  winner_prize_amount: 1

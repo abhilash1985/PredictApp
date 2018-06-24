@@ -89,13 +89,13 @@ class Question < ActiveRecord::Base
     elsif question.match(/No of Fouls/)
       { v: %w(0-10 11-15 16-20 21-25 25+) }
     elsif question.match(/No of Corners/)
-      { v: %w(0-2 3-5 6-7 8-10 10+) }
+      { v: %w(0-3 4-7 8-10 11-15 15+) }
     elsif question.match(/No of Offsides/)
       { v: %w(0 1-2 3-4 5-6 6+) }
     elsif question.match(/No of/)
       { v: %w(0 1 2 3-5 5+) }
     elsif question.match(/Total shots by/)
-      { v: %w(0-3 3-5 6-9 10-15 15+) }
+      { v: %w(0-3 4-6 7-9 10-15 15+) }
     elsif question.match(/Total shots on Target by/)
       { v: %w(0-1 2-3 4-6 7-10 10+) }
     elsif question.match(/Possession percentage/)

@@ -1,22 +1,43 @@
-<h2>Change your password</h2>
+<%= image_tag 'welcome1.jpg', { id:'full-screen-background-image' } %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: 'Change your password' %>
+  </h4>
+</div>
+<div class="margin">
+  <div class="tab-pane col-md-offset-2 col-md-3">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+      <fieldset>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password">Password:</label>
+          <div class="controls">
+            <%= f.password_field :password, autofocus: true, autocomplete: "off", required: true,
+                                 placeholder: 'New password', class:'form-control' %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password_confirmation">Confirm New Password:</label>
+          <div class="controls">
+            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "off", required: true,
+                                 placeholder: 'Confirm New password', class:'form-control' %>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="confirmsignup"></label>
+          <div class="controls">
+            <%= f.submit "Change my password", class:'btn btn-success' %>
+            <span>
+              <%= render "devise/shared/links" %>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

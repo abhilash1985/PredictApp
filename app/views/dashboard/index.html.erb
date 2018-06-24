@@ -58,8 +58,8 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <!-- <li><a href="#">My Points</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><%#= link_to 'Change Password', edit_user_registration_path %></li> -->
+            <li><a href="#">Profile</a></li> -->
+            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
             <li class="divider"></li>
             <% if current_user.admin %>
               <li>
