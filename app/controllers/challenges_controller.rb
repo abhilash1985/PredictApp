@@ -5,7 +5,8 @@ class ChallengesController < ApplicationController
   before_action :prediction_challenge_params, only: [:predictions_table]
 
   def payment_details
-    @payments = Payment.includes(:user)
+    # @payments = Payment.includes(:user)
+    @users = User.order_by_name.includes(:payments, :challenge_payments, :user_challenges)
   end
 
   def challenge_payments
@@ -14,7 +15,7 @@ class ChallengesController < ApplicationController
 
   def show_user_challenges
     @challenges = Challenge.all
-    @users = User.all
+    @users = User.order_by_name
   end
 
   def update_user_challenges
@@ -37,7 +38,7 @@ class ChallengesController < ApplicationController
   def challenge_params
     @challenge = Challenge.find(params[:id])
     @matches = current_user.matches_for_challenge(@challenge)
-    @users = @challenge.users
+    @users = @challenge.users.order_by_name
   end
 
   def prediction_challenge_params

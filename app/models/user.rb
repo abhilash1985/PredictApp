@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :challenges, through: :user_challenges
   has_many :payments, dependent: :destroy
   has_many :challenge_payments, dependent: :destroy
+  # scope
+  scope :order_by_name, -> { order(:first_name) }
 
   def show_name
     full_name.blank? ? show_email : full_name
