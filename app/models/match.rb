@@ -13,6 +13,7 @@ class Match < ActiveRecord::Base
   scope :id_in, ->(match_ids) { where(id: match_ids) }
   scope :no_in, ->(match_no) { where(match_no: match_no) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
+  scope :knockouts, -> { where('match_no >= ?', 49) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)

@@ -21,11 +21,33 @@ class Question < ActiveRecord::Base
   scope :fifa_cards, ->(name) { where('question = ?', "Total shots by #{name}?") }
   scope :fifa_shots, -> { where('question like ?', 'Total shots%') }
   scope :fifa_possession, -> { where('question like ?', 'Possession percentage by%') }
+  scope :match_ends_in, -> { where('question like ?', 'This Match ends in%') }
 
   scope :fifa_cards_percentage, lambda { |name1, name2|
     where('question like ? or question = ? or question = ?', 'No of%in the match%',
-                                                              "Possession percentage by #{name1}?",
-                                                              "Possession percentage by #{name2}?")
+                                                              )
+  }
+
+  scope :fifa_ko_cards_defensive_only, lambda {
+    where('(question like ? or question like ?) and question not like ?',
+             'No of%in the match%', "Total no. of%", "%Red cards%").order('id desc')
+  }
+
+  scope :fifa_shots_first_goal_percentage, lambda { |name1, name2|
+    where('question = ? or question = ? or
+           question = ? or question = ? or
+           question = ? or question = ? or
+           question = ? or question = ? or
+           question like ? or question like ?', "Total shots by #{name1}?",
+                                          "Total shots by #{name2}?",
+                                          "Total shots on Target by #{name1}?",
+                                          "Total shots on Target by #{name2}?",
+                                          "Time of first goal by #{name1}?",
+                                          "Time of first goal by #{name2}?",
+                                          "Possession percentage by #{name1}?",
+                                          "Possession percentage by #{name2}?",
+                                          "Total goals in extra time%",
+                                          "Total goal attempts in the match%")
   }
 
   scope :fifa_shots_first_goal, lambda { |name1, name2|
@@ -102,6 +124,50 @@ class Question < ActiveRecord::Base
       { v: %w(0-30 31-40 41-50 51-60 60+) }
     elsif question.match(/Time of first goal/)
       { v: %w(0-25 26-45 46-75 76-90 No\ Goal) }
+    else
+      { v: %w() }
+    end
+  end
+
+  def all_fifa_ko_options_for(match)
+    if question == 'Who will win the match?'
+      { v: %W(#{match.team1_name} #{match.team2_name} #{'No Result'}) }
+    elsif question.match(/Total pass accuracy by/)
+      { v: %w(0-75 76-80 81-85 86-90 91-95 96-100) }
+    elsif question.match(/This Match ends in/)
+      { v: %w(Full\ Time Extra\ Time Shoot\ Out Sudden\ Death) }
+    elsif question.match(/Total goals in extra time/)
+      { v: %w(0 1 2 3 3+ Game\ ends\ in\ Full\ Time) }
+    elsif question.match(/Total goal attempts in the match/)
+      { v: %w(0-10 11-20 21-26 26-31 31-35 35+) }
+
+    elsif question.match(/Total no. of tackles in the match/)
+      { v: %w(0-10 11-20 21-26 26-31 31-35 35+) }
+    elsif question.match(/Total no. of blocks in the match/)
+      { v: %w(0-2 3-5 6-8 9-10 11-12 12+) }
+    elsif question.match(/Total no. of clearances in the match/)
+      { v: %w(0-25 26-35 36-45 46-55 56-60 60+) }
+    elsif question.match(/Total no. of cards/)
+      { v: %w(0-1 2-3 4-5 6-7 8 8+) }
+
+    elsif question.match(/Goals scored by/)
+      { v: %w(0 1 2 3 4 4+) }
+    elsif question.match(/No of Fouls/)
+      { v: %w(0-10 11-15 16-20 21-25 26-30 30+) }
+    elsif question.match(/No of Corners/)
+      { v: %w(0-3 4-6 7-9 10-12 13-15 15+) }
+    elsif question.match(/No of Offsides/)
+      { v: %w(0-1 2 3 4 5 5+) }
+    elsif question.match(/No of/)
+      { v: %w(0-1 2 3 4 5 5+) }
+    elsif question.match(/Total shots by/)
+      { v: %w(0-3 4-6 7-9 10-12 13-15 15+) }
+    elsif question.match(/Total shots on Target by/)
+      { v: %w(0-1 2-3 4-5 6-7 8-10 10+) }
+    elsif question.match(/Possession percentage/)
+      { v: %w(0-30 31-40 41-45 46-50 51-60 60+) }
+    elsif question.match(/Time of first goal/)
+      { v: %w(0-25 26-45 46-75 76-90 Extra\ Time Penalty No\ Goal) }
     else
       { v: %w() }
     end
