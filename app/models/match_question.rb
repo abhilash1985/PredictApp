@@ -80,10 +80,29 @@ class MatchQuestion < ActiveRecord::Base
       end
     end
 
+    def add_football_ko_match_questions
+      Match.knockouts.each_with_index do |match, index|
+        team1_name = match.team1_name
+        team2_name = match.team2_name
+        all_questions = [Question.fifa_defaults,
+                         Question.fifa_team_score(team1_name),
+                         Question.fifa_team_score(team2_name),
+                         Question.match_ends_in,
+                         Question.fifa_ko_cards_defensive_only.offset(index).limit(1),
+                         Question.fifa_shots_first_goal_percentage(team1_name, team2_name)
+                                 .offset(rand(10)).limit(1)]
+        all_questions.each do |questions|
+          questions.each do |question|
+            create_match_question_for(match, question, 'fifa')
+          end
+        end
+      end
+    end
+
     def create_match_question_for(match, question, by = 'cricket')
       match_question = by_match(match).by_question(question).first_or_initialize
       match_question.options =
-        by == 'cricket' ? question.all_options_for(match) : question.all_fifa_options_for(match)
+        by == 'cricket' ? question.all_options_for(match) : question.all_fifa_ko_options_for(match)
       match_question.points = question.weightage
       match_question.save
     end

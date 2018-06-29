@@ -330,4 +330,104 @@ namespace :import do
     Challenge.add_fifa_challenges
     p "Imported Challenges..."
   end
+
+  # KNOCKOUT QUESTIONS.............
+
+  desc "Import FIFA knockout master data"
+  task fifa_ko_master_data: [:fifa_ko_matches, :fifa_ko_questions, :fifa_ko_match_questions,
+                             :fifa_ko_challenges] do
+    # for initial run include :questions, :match_questions, :challenges
+  end
+
+  def ko_matches
+    {
+      49 => ['France', 'Argentina', '2018-06-30 19:30:00'],
+      50 => ['Uruguay', 'Portugal', '2018-06-30 23:30:00'],
+      51 => ['Spain', 'Russia', '2018-07-01 19:30:00'],
+      52 => ['Croatia', 'Denmark', '2018-07-01 23:30:00'],
+      53 => ['Brazil', 'Mexico', '2018-07-02 19:30:00'],
+      54 => ['Belgium', 'Japan', '2018-07-01 23:30:00'],
+      55 => ['Sweden', 'Switzerland', '2018-07-03 19:30:00'],
+      56 => ['Colombia', 'England', '2018-07-03 23:30:00']
+    }
+  end
+
+
+  desc 'Import knockout Matches'
+  task fifa_ko_matches: :environment do
+    ko_matches.each do |match_no, values|
+      match = Match.by_match_no(match_no).first_or_initialize
+
+      team1 = Team.by_name(values[0]).first
+      team2 = Team.by_name(values[1]).first
+
+      next if team1.blank? || team2.blank?
+
+      match.team1_id = team1.id
+      match.team2_id = team2.id
+
+      stadium = Stadium.by_name('Pre-Quarter-Final').first_or_initialize
+      stadium.save
+
+      match.stadium_id = stadium.try(:id)
+      match.match_date = values[2].to_time
+
+      round = Round.by_name('Round-Of-16').first
+      match.round_id = round.try(:id)
+
+      match.save
+    end
+  end
+
+
+  desc 'Import knockout questions'
+  task fifa_ko_questions: :environment do
+    questions = {
+      # defaults
+      'Total pass accuracy by Argentina in the match?' => 2,
+      'Total pass accuracy by Belgium in the match?' => 2,
+      'Total pass accuracy by Brazil in the match?' => 2,
+      'Total pass accuracy by Colombia in the match?' => 2,
+      'Total pass accuracy by Croatia in the match?' => 2,
+      'Total pass accuracy by Denmark in the match?' => 2,
+      'Total pass accuracy by England in the match?' => 2,
+      'Total pass accuracy by France in the match?' => 2,
+      'Total pass accuracy by Japan in the match?' => 2,
+      'Total pass accuracy by Mexico in the match?' => 2,
+      'Total pass accuracy by Portugal in the match?' => 2,
+      'Total pass accuracy by Russia in the match?' => 2,
+      'Total pass accuracy by Spain in the match?' => 2,
+      'Total pass accuracy by Sweden in the match?' => 2,
+      'Total pass accuracy by Switzerland in the match?' => 2,
+      'Total pass accuracy by Uruguay in the match?' => 2,
+
+      'This Match ends in?' => 3,
+      'Total goals in extra time?' => 2,
+      'Total goal attempts in the match?' => 2,
+      'Total no. of tackles in the match?' => 2,
+      'Total no. of blocks in the match?' => 2,
+      'Total no. of clearances in the match?' => 2,
+      'Total no. of cards (Yellow and Red) in the match?' => 2,
+
+      'Who scored first goal in the match?' => 2
+    }
+    questions.each do |question, weightage|
+      question = Question.by_question(question).first_or_initialize
+      question.weightage = weightage
+      question.save
+    end
+    p "Imported knockout Questions..."
+  end
+
+  desc 'Import knockout match questions'
+  task fifa_ko_match_questions: :environment do
+    MatchQuestion.add_football_ko_match_questions
+    p "Imported knockout Match Questions..."
+  end
+
+  desc 'Import knockout challenges'
+  task fifa_ko_challenges: :environment do
+    Challenge.add_fifa_challenges
+    p "Imported knockout Challenges..."
+  end
 end

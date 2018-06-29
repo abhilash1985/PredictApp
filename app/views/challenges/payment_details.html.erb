@@ -21,18 +21,18 @@
     </tr>
   </thead>
   <tbody>
-  	<% @payments.each_with_index do |payment, index| %>
+  	<% @users.each_with_index do |user, index| %>
   	 <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
-      	<td class="text-left"><%= payment.user.show_name %></td>
-      	<td class="text-center"><%= payment.predictions %></td>
-        <td class="text-center"><%= payment.paid_predictions %></td>
-        <td class="text-center"><%= payment.amount_paid %></td>
-        <td class="text-center"><%= payment.matches_won %></td>
-        <td class="text-center"><%= payment.prize_won %></td>
+      	<td class="text-left"><%= user.show_name %></td>
+      	<td class="text-center"><%= user.user_challenges.size %></td>
+        <td class="text-center"><%= paid_predictions = user.user_challenges.paid.size %></td>
+        <td class="text-center"><%= amount_paid = user.payments.sum(:amount_paid) %></td>
+        <td class="text-center"><%= user.challenge_payments.size %></td>
+        <td class="text-center"><%= prize_won = user.challenge_payments.sum(:winner_prize_amount) %></td>
         <td class="text-center">
-          <%= balance = (payment.amount_paid.to_i + payment.prize_won.to_i) - (payment.paid_predictions.to_i * 10) %>
+          <%= balance = (amount_paid.to_i + prize_won.to_i) - (paid_predictions.to_i * 10) %>
         </td>
         <td class="text-center"><%= balance/10 %></td>
       </tr>

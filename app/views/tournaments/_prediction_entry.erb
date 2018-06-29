@@ -1,5 +1,6 @@
 <%= hidden_field_tag :challenge_id, challenge.id %>
 <%= hidden_field_tag :match_id, match.id %>
+<h5 class="list-group-item-heading">NB: Goals Scored = Goals from F.T + E.T + Penalty + Sudden Death</h5>
 <% match.match_questions.order(:id).each_with_index do |match_question, index|%>
   <div class = 'list-group'>
     <div class = 'list-group-item border-radius-10'>
