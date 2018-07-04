@@ -23,7 +23,7 @@ class Tournament < ActiveRecord::Base
     name == self.class.fifa_world_cup.first.name
   end
 
-  def ko_challenges(from)
+  def ko_challenges(from = nil)
     from.blank? ? challenges.completed : challenges.knockout
   end
 
@@ -50,6 +50,11 @@ class Tournament < ActiveRecord::Base
     ko_challenges(from).reduce(0) do |a, v|
       a + v.matches.id_in(match_ids(user)).count
     end
+  end
+
+  def no_of_zero_points(user)
+    matches = Match.where(id: match_ids(user))
+    matches.select { |m| user.total_points_for_match(m) == 0 }.size
   end
 
   def total_points_for_user(user, from)
@@ -81,9 +86,11 @@ class Tournament < ActiveRecord::Base
         user_paid_points = total_paid_points_for_user(user, from)
         user_percentage = total_percentage_for_user(user, from)
         no_of_matches = no_of_matches(user, from)
+        no_of_zero = no_of_zero_points(user)
         hash[user.id] = { name: user.show_name, points: user_points,
                           paid_points: user_paid_points,
                           no_of_matches: no_of_matches,
+                          no_of_zero: no_of_zero,
                           percentage: user_percentage }
       end
     points.sort_by { |_k, v| v[:points] }.reverse.to_h

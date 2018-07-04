@@ -80,17 +80,118 @@ class MatchQuestion < ActiveRecord::Base
       end
     end
 
-    def add_football_ko_match_questions
-      Match.knockouts.each_with_index do |match, index|
+    def knockout_questions(team1_name, team2_name, index)
+      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
+       Question.fifa_team_score(team2_name), Question.match_ends_in,
+       Question.fifa_ko_cards_defensive_only.offset(index).limit(1),
+       Question.fifa_shots_first_goal_percentage(team1_name, team2_name)
+               .offset(rand(10)).limit(1)]
+    end
+
+    def quarter_questions(team1_name, team2_name, index)
+      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
+       Question.fifa_team_score(team2_name), Question.match_ends_in,
+       quarter_defensive_questions(index),
+       quarter_shots_questions(index, team1_name, team2_name),
+       Question.first_goal(team1_name, team2_name).limit(1)]
+    end
+
+    def semi_questions(team1_name, team2_name, index)
+      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
+       Question.fifa_team_score(team2_name), Question.match_ends_in,
+       semi_points_questions(index)[0], semi_points_questions(index)[1],
+       semi_defensive_questions(index),
+       semi_shots_questions(index, team1_name, team2_name),
+       Question.first_goal(team1_name, team2_name).limit(1)]
+    end
+
+    def final_questions(team1_name, team2_name, index)
+      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
+       Question.fifa_team_score(team2_name), Question.match_ends_in,
+       Question.golden_ball,
+       semi_points_questions(index)[0], semi_points_questions(index)[1],
+       semi_defensive_questions(index),
+       semi_shots_questions(index, team1_name, team2_name),
+       Question.first_goal(team1_name, team2_name).limit(1)]
+    end
+
+    def quarter_defensive_questions(index)
+      case index
+      when 0
+        Question.recovered_balls.limit(1)
+      when 1
+        Question.blocked_balls.limit(1)
+      when 2
+        Question.tackled_balls.limit(1)
+      when 3
+        Question.cleared_balls.limit(1)
+      end
+    end
+
+    def quarter_shots_questions(index, team1_name, team2_name)
+      case index
+      when 0
+        Question.pass_accuracy(team1_name, team1_name).limit(1)
+      when 1
+        Question.time_of_first_goal(team2_name, team2_name).limit(1)
+      when 2
+        Question.possession_percentage(team1_name, team1_name).limit(1)
+      when 3
+        Question.distance_covered(team1_name, team1_name).limit(1)
+      end
+    end
+
+    def semi_points_questions(index)
+      case index
+      when 0
+        [Question.mom.limit(1), Question.woodworks.limit(1)]
+      when 1
+        [Question.goal_type.limit(1), Question.penalties.limit(1)]
+      end
+    end
+
+    def semi_defensive_questions(index)
+      case index
+      when 0
+        Question.total_fouls.limit(1)
+      when 1
+        Question.corners.limit(1)
+      when 2
+        Question.goal_attempts.limit(1)
+      when 3
+        Question.recovered_balls.limit(1)
+      end
+    end
+
+    def semi_shots_questions(index, team1_name, team2_name)
+      case index
+      when 0
+        Question.pass_accuracy(team1_name, team1_name).limit(1)
+      when 1
+        Question.distance_covered(team2_name, team2_name).limit(1)
+      when 2
+        Question.possession_percentage(team1_name, team1_name).limit(1)
+      when 3
+        Question.time_of_first_goal(team2_name, team2_name).limit(1)
+      end
+    end
+
+    def find_all_questions(team1_name, team2_name, index, play = 'ko')
+      if play == 'ko'
+        knockout_questions(team1_name, team2_name, index)
+      elsif play == 'semi'
+        semi_questions(team1_name, team2_name, index)
+      else
+        quarter_questions(team1_name, team2_name, index)
+      end
+
+    end
+
+    def add_football_ko_match_questions(play = 'ko')
+      Match.quarter.each_with_index do |match, index|
         team1_name = match.team1_name
         team2_name = match.team2_name
-        all_questions = [Question.fifa_defaults,
-                         Question.fifa_team_score(team1_name),
-                         Question.fifa_team_score(team2_name),
-                         Question.match_ends_in,
-                         Question.fifa_ko_cards_defensive_only.offset(index).limit(1),
-                         Question.fifa_shots_first_goal_percentage(team1_name, team2_name)
-                                 .offset(rand(10)).limit(1)]
+        all_questions = find_all_questions(team1_name, team2_name, index, play)
         all_questions.each do |questions|
           questions.each do |question|
             create_match_question_for(match, question, 'fifa')

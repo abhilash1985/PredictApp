@@ -9,6 +9,8 @@
         var challenge_date = '<%= challenge.end_time.to_s(:count_down)%>'
         $('#<%="count_down_#{challenge.id}"%>').countdown(challenge_date, function(event) {
           $(this).html(event.strftime('%d Days %HH:%MM:%SS'));
+        }).on('finish.countdown', function(event) {
+          window.location.href = '<%= predictions_table_challenge_path(challenge) %>';
         });
       </script>
     <% end -%>

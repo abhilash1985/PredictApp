@@ -14,6 +14,7 @@ class Match < ActiveRecord::Base
   scope :no_in, ->(match_no) { where(match_no: match_no) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
   scope :knockouts, -> { where('match_no >= ?', 49) }
+  scope :quarter, -> { where('match_no >= ?', 57) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)
