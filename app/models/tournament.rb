@@ -83,7 +83,7 @@ class Tournament < ActiveRecord::Base
     points =
       users(from).each_with_object({}) do |user, hash|
         user_points = total_points_for_user(user, from)
-        user_paid_points = total_paid_points_for_user(user, from)
+        user_paid_points = 0
         user_percentage = total_percentage_for_user(user, from)
         no_of_matches = no_of_matches(user, from)
         no_of_zero = no_of_zero_points(user)
