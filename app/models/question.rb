@@ -3,8 +3,8 @@ class Question < ActiveRecord::Base
   has_many :matches, through: :match_questions
   scope :by_question, ->(question) { where(question: question) }
   scope :team_score, ->(short_name) { where(question: "Runs will be scored by the team #{short_name}?") }
-  scope :defaults, -> { where(question: %W(#{'Who will win the match?'} #{'Who will win the toss?'} #{'Who will be the man of the match?'})) }
-  scope :not_defaults, -> { where("question not like ? and question not like ?", '%Who will win the%', '%Runs will be scored by the team%') }
+  scope :defaults, -> { where(question: %w(Who will win the match? Who will win the toss? Who will be the man of the match?)) }
+  scope :not_defaults, -> { where('question not like ? and question not like ?', '%Who will win the%', '%Runs will be scored by the team%') }
   scope :points_2, -> { where(points: 2) }
   scope :points_1, -> { where(points: 1) }
   scope :outs, -> { where('question like ?', '%outs that can happen in the match%') }
@@ -13,24 +13,24 @@ class Question < ActiveRecord::Base
   scope :not_power_plays, -> { where('question not like ?', '%How many runs will be scored%') }
   scope :not_mom, -> { where('question not like ?', '%man of the match%') }
 
-
   # FIFA QUESTION SCOPES
   scope :fifa_team_score, ->(name) { where(question: "Goals scored by #{name}?") }
   scope :fifa_defaults, -> { where(question: 'Who will win the match?') }
-  scope :fifa_not_defaults, -> { where("question not like ?", '%Who will win the%') }
+  scope :fifa_not_defaults, -> { where('question not like ?', '%Who will win the%') }
   scope :fifa_cards, ->(name) { where('question = ?', "Total shots by #{name}?") }
   scope :fifa_shots, -> { where('question like ?', 'Total shots%') }
   scope :fifa_possession, -> { where('question like ?', 'Possession percentage by%') }
   scope :match_ends_in, -> { where('question like ?', 'This Match ends in%') }
 
-  scope :fifa_cards_percentage, lambda { |name1, name2|
-    where('question like ? or question = ? or question = ?', 'No of%in the match%',
-                                                              )
+  scope :fifa_cards_percentage, lambda { |_name1, _name2|
+    where('question like ? or question = ? or question = ?', 'No of%in the match%')
   }
 
   scope :fifa_ko_cards_defensive_only, lambda {
-    where('(question like ? or question like ?) and question not like ?',
-             'No of%in the match%', "Total no. of%", "%Red cards%").order('id desc')
+    where('(question like ? or question like ? or question like ?) and question not like ?',
+          'No of%in the match%', 'Total no. of%',
+          'Total no. of balls recovered in the match%',
+          '%Red cards%').order('id desc')
   }
 
   scope :fifa_shots_first_goal_percentage, lambda { |name1, name2|
@@ -38,33 +38,112 @@ class Question < ActiveRecord::Base
            question = ? or question = ? or
            question = ? or question = ? or
            question = ? or question = ? or
-           question like ? or question like ?', "Total shots by #{name1}?",
-                                          "Total shots by #{name2}?",
-                                          "Total shots on Target by #{name1}?",
-                                          "Total shots on Target by #{name2}?",
-                                          "Time of first goal by #{name1}?",
-                                          "Time of first goal by #{name2}?",
-                                          "Possession percentage by #{name1}?",
-                                          "Possession percentage by #{name2}?",
-                                          "Total goals in extra time%",
-                                          "Total goal attempts in the match%")
+           question = ? or question = ? or
+           question like ?', "Total shots by #{name1}?",
+          "Total shots by #{name2}?",
+          "Total shots on Target by #{name1}?",
+          "Total shots on Target by #{name2}?",
+          "Time of first goal by #{name1}?",
+          "Time of first goal by #{name2}?",
+          "Possession percentage by #{name1}?",
+          "Possession percentage by #{name2}?",
+          "Total pass accuracy by #{name1} in the match?",
+          "Total pass accuracy by #{name2} in the match?",
+          'Total goal attempts in the match%')
   }
 
   scope :fifa_shots_first_goal, lambda { |name1, name2|
     where('question = ? or question = ? or
            question = ? or question = ? or
            question = ? or question = ?', "Total shots by #{name1}?",
-                                          "Total shots by #{name2}?",
-                                          "Total shots on Target by #{name1}?",
-                                          "Total shots on Target by #{name2}?",
-                                          "Time of first goal by #{name1}?",
-                                          "Time of first goal by #{name2}?")
+          "Total shots by #{name2}?",
+          "Total shots on Target by #{name1}?",
+          "Total shots on Target by #{name2}?",
+          "Time of first goal by #{name1}?",
+          "Time of first goal by #{name2}?")
+  }
+
+  scope :total_fouls, lambda {
+    where('question like ?', 'No of Fouls%')
+  }
+
+  scope :corners, lambda {
+    where('question like ?', 'No of Corners in the match%')
+  }
+
+  scope :total_cards, lambda {
+    where('question like ?', 'Total no. of cards%')
+  }
+
+  scope :recovered_balls, lambda {
+    where('question like ?', 'Total no. of balls recovered in the match%')
+  }
+
+  scope :tackled_balls, lambda {
+    where('question like ?', 'Total no. of tackles in the match%')
+  }
+
+  scope :blocked_balls, lambda {
+    where('question like ?', 'Total no. of blocks in the match%')
+  }
+
+  scope :cleared_balls, lambda {
+    where('question like ?', 'Total no. of clearances in the match%')
+  }
+
+  scope :first_goal, lambda { |name1, name2|
+    where('question = ? or question = ?', "Who will score first goal for #{name1}?",
+          "Who will score first goal for #{name2}?")
+  }
+
+  scope :pass_accuracy, lambda { |name1, name2|
+    where('question = ? or question = ?', "Total pass accuracy by #{name1} in the match?",
+          "Total pass accuracy by #{name2} in the match?")
+  }
+
+  scope :time_of_first_goal, lambda { |name1, name2|
+    where('question = ? or question = ?', "Time of first goal by #{name1}?",
+          "Time of first goal by #{name2}?")
+  }
+
+  scope :possession_percentage, lambda { |name1, name2|
+    where('question = ? or question = ?', "Possession percentage by #{name1}?",
+          "Possession percentage by #{name2}?")
+  }
+
+  scope :distance_covered, lambda { |name1, name2|
+    where('question = ? or question = ?', "Total distance(km) covered by #{name1}?",
+          "Total distance(km) covered by #{name2}?")
+  }
+
+  scope :woodworks, lambda {
+    where('question like ?', 'Total no. of woodworks in the match%')
+  }
+
+  scope :penalties, lambda {
+    where('question like ?', 'Total no. of penalties in the match%')
+  }
+
+  scope :goal_attempts, lambda {
+    where('question like ?', 'Total goal attempts in the match%')
+  }
+
+  scope :goal_type, lambda {
+    where('question like ?', 'First goal in the match will be from%')
+  }
+
+  scope :mom, lambda {
+    where('question like ?', 'Who will be Man of the Match%')
+  }
+
+  scope :golden_ball, lambda {
+    where('question like ?', 'Who will win Golden Ball of the tournament%')
   }
 
   def all_options_for(match)
     case question
     when 'Who will win the match?'
-      { v: %W(#{match.team1_short_name} #{match.team2_short_name} Tie #{'No Result'}) }
+      { v: %W(#{match.team1_short_name} #{match.team2_short_name} Tie No\ Result) }
     when 'Who will win the toss?', 'Who will be batting first?'
       { v: %W(#{match.team1_short_name} #{match.team2_short_name}) }
     when 'Runs will be scored by the team batting first?', 'Runs will be scored by the team batting second?',
@@ -97,7 +176,7 @@ class Question < ActiveRecord::Base
          'How many wickets will fell in the first 25 overs of the match?'
       { v: %w(0 1-3 4-6 7-8 9-10) }
     when 'Winning margin will be?'
-      { v: %W(#{'1-3 wkts'} #{'4-6 wkts'} #{'7< wkts'} #{'0-20 runs'} #{'21-50 runs'} #{'50< runs'} Tie #{'No Result'}) }
+      { v: %w(1-3\ wkts 4-6\ wkts 7<\ wkts 0-20\ runs 21-50\ runs 50<\ runs Tie\ No\ Result) }
     else
       { v: %w() }
     end
@@ -105,24 +184,24 @@ class Question < ActiveRecord::Base
 
   def all_fifa_options_for(match)
     if question == 'Who will win the match?'
-      { v: %W(#{match.team1_name} #{match.team2_name} Draw #{'No Result'}) }
-    elsif question.match(/Goals scored by/)
+      { v: %W(#{match.team1_name} #{match.team2_name} Draw No\ Result) }
+    elsif question =~ /Goals scored by/
       { v: %w(0 1 2 3 3+) }
-    elsif question.match(/No of Fouls/)
+    elsif question =~ /No of Fouls/
       { v: %w(0-10 11-15 16-20 21-25 25+) }
-    elsif question.match(/No of Corners/)
+    elsif question =~ /No of Corners/
       { v: %w(0-3 4-7 8-10 11-15 15+) }
-    elsif question.match(/No of Offsides/)
+    elsif question =~ /No of Offsides/
       { v: %w(0 1-2 3-4 5-6 6+) }
-    elsif question.match(/No of/)
+    elsif question =~ /No of/
       { v: %w(0 1 2 3-5 5+) }
-    elsif question.match(/Total shots by/)
+    elsif question =~ /Total shots by/
       { v: %w(0-3 4-6 7-9 10-15 15+) }
-    elsif question.match(/Total shots on Target by/)
+    elsif question =~ /Total shots on Target by/
       { v: %w(0-1 2-3 4-6 7-10 10+) }
-    elsif question.match(/Possession percentage/)
+    elsif question =~ /Possession percentage/
       { v: %w(0-30 31-40 41-50 51-60 60+) }
-    elsif question.match(/Time of first goal/)
+    elsif question =~ /Time of first goal/
       { v: %w(0-25 26-45 46-75 76-90 No\ Goal) }
     else
       { v: %w() }
@@ -131,42 +210,63 @@ class Question < ActiveRecord::Base
 
   def all_fifa_ko_options_for(match)
     if question == 'Who will win the match?'
-      { v: %W(#{match.team1_name} #{match.team2_name} #{'No Result'}) }
-    elsif question.match(/Total pass accuracy by/)
+      { v: %W(#{match.team1_name} #{match.team2_name} No\ Result) }
+    elsif question =~ /Total pass accuracy by/
       { v: %w(0-75 76-80 81-85 86-90 91-95 96-100) }
-    elsif question.match(/This Match ends in/)
+    elsif question =~ /This Match ends in/
       { v: %w(Full\ Time Extra\ Time Shoot\ Out Sudden\ Death) }
-    elsif question.match(/Total goals in extra time/)
+    elsif question =~ /Total goals in extra time/
       { v: %w(0 1 2 3 3+ Game\ ends\ in\ Full\ Time) }
-    elsif question.match(/Total goal attempts in the match/)
-      { v: %w(0-10 11-20 21-26 26-31 31-35 35+) }
+    elsif question =~ /Total goal attempts in the match/
+      { v: %w(0-10 11-20 21-25 26-30 31-35 35+) }
 
-    elsif question.match(/Total no. of tackles in the match/)
-      { v: %w(0-10 11-20 21-26 26-31 31-35 35+) }
-    elsif question.match(/Total no. of blocks in the match/)
+    elsif question =~ /Total no. of tackles in the match/
+      { v: %w(0-10 11-20 21-25 26-30 31-35 35+) }
+    elsif question =~ /Total no. of blocks in the match/
       { v: %w(0-2 3-5 6-8 9-10 11-12 12+) }
-    elsif question.match(/Total no. of clearances in the match/)
+    elsif question =~ /Total no. of clearances in the match/
       { v: %w(0-25 26-35 36-45 46-55 56-60 60+) }
-    elsif question.match(/Total no. of cards/)
+    elsif question =~ /Total no. of cards/
       { v: %w(0-1 2-3 4-5 6-7 8 8+) }
 
-    elsif question.match(/Goals scored by/)
+    elsif question =~ /Total no. of balls recovered in the match/
+      { v: %w(0-50 51-60 61-70 71-80 81-90 90+) }
+    elsif question =~ /Total no. of woodworks in the match?/
+      { v: %w(0-1 2 3 4 5 5+) }
+    elsif question =~ /Total no. of penalties in the match/
+      { v: %w(0-1 2 3 4 5 5+) }
+    elsif question =~ /Total distance/
+      { v: %w(0-80 81-90 91-100 101-110 111-120 120+) }
+
+    elsif question =~ /Who will score first goal for France/
+      { v: %w(Griezmann Mbappe Giroud Pogba Others No\ Goal) }
+    elsif question =~ /Who will score first goal for Croatia/
+      { v: %w(Modric Rebic Mandzukic Rakitic Others No\ Goal) }
+    elsif question =~ /Who will score first goal for Brazil/
+      { v: %w(NeymarJr Coutinho Willian Paulinho Others No\ Goal) }
+    elsif question =~ /Who will score first goal for England/
+      { v: %w(Kane Sterling Lingard Stones Others No\ Goal) }
+
+    elsif question =~ /First goal in the match will be/
+      { v: %w(Penalty Free-kick Long-range Header Volley Own-Goal Others) }
+
+    elsif question =~ /Goals scored by/
       { v: %w(0 1 2 3 4 4+) }
-    elsif question.match(/No of Fouls/)
+    elsif question =~ /No of Fouls/
       { v: %w(0-10 11-15 16-20 21-25 26-30 30+) }
-    elsif question.match(/No of Corners/)
+    elsif question =~ /No of Corners/
       { v: %w(0-3 4-6 7-9 10-12 13-15 15+) }
-    elsif question.match(/No of Offsides/)
+    elsif question =~ /No of Offsides/
       { v: %w(0-1 2 3 4 5 5+) }
-    elsif question.match(/No of/)
+    elsif question =~ /No of/
       { v: %w(0-1 2 3 4 5 5+) }
-    elsif question.match(/Total shots by/)
+    elsif question =~ /Total shots by/
       { v: %w(0-3 4-6 7-9 10-12 13-15 15+) }
-    elsif question.match(/Total shots on Target by/)
+    elsif question =~ /Total shots on Target by/
       { v: %w(0-1 2-3 4-5 6-7 8-10 10+) }
-    elsif question.match(/Possession percentage/)
+    elsif question =~ /Possession percentage/
       { v: %w(0-30 31-40 41-45 46-50 51-60 60+) }
-    elsif question.match(/Time of first goal/)
+    elsif question =~ /Time of first goal/
       { v: %w(0-25 26-45 46-75 76-90 Extra\ Time Penalty No\ Goal) }
     else
       { v: %w() }

@@ -346,7 +346,7 @@ namespace :import do
       51 => ['Spain', 'Russia', '2018-07-01 19:30:00'],
       52 => ['Croatia', 'Denmark', '2018-07-01 23:30:00'],
       53 => ['Brazil', 'Mexico', '2018-07-02 19:30:00'],
-      54 => ['Belgium', 'Japan', '2018-07-01 23:30:00'],
+      54 => ['Belgium', 'Japan', '2018-07-02 23:30:00'],
       55 => ['Sweden', 'Switzerland', '2018-07-03 19:30:00'],
       56 => ['Colombia', 'England', '2018-07-03 23:30:00']
     }
@@ -378,7 +378,6 @@ namespace :import do
       match.save
     end
   end
-
 
   desc 'Import knockout questions'
   task fifa_ko_questions: :environment do
@@ -427,6 +426,102 @@ namespace :import do
 
   desc 'Import knockout challenges'
   task fifa_ko_challenges: :environment do
+    Challenge.add_fifa_challenges
+    p "Imported knockout Challenges..."
+  end
+
+  # QUARTER QUESTIONS.............
+
+  desc "Import FIFA QUARTER master data"
+  task fifa_quarter_master_data: [:fifa_quarter_matches, :fifa_quarter_questions,
+                                  :fifa_quarter_match_questions,
+                                  :fifa_quarter_challenges] do
+    # for initial run include :questions, :match_questions, :challenges
+  end
+
+  def quarter_matches
+    {
+      57 => ['Uruguay', 'France', '2018-07-06 19:30:00'],
+      58 => ['Brazil', 'Belgium', '2018-07-06 23:30:00'],
+      59 => ['Sweden', 'England', '2018-07-07 19:30:00'],
+      60 => ['Russia', 'Croatia', '2018-07-07 23:30:00']
+    }
+  end
+
+
+  desc 'Import quarter Matches'
+  task fifa_quarter_matches: :environment do
+    quarter_matches.each do |match_no, values|
+      match = Match.by_match_no(match_no).first_or_initialize
+
+      team1 = Team.by_name(values[0]).first
+      team2 = Team.by_name(values[1]).first
+
+      next if team1.blank? || team2.blank?
+
+      match.team1_id = team1.id
+      match.team2_id = team2.id
+
+      stadium = Stadium.by_name('Quarter-Final').first_or_initialize
+      stadium.save
+
+      match.stadium_id = stadium.try(:id)
+      match.match_date = values[2]
+
+      round = Round.by_name('Quarter-Final').first
+      match.round_id = round.try(:id)
+
+      match.save
+    end
+  end
+
+  desc 'Import quarter questions'
+  task fifa_quarter_questions: :environment do
+    questions = {
+      # defaults
+      'Who will score first goal for France?' => 2, # Griezmann Mbappe Giroud Pogba
+      # 'Who will score first goal for Uruguay?' => 2,
+      'Who will score first goal for Croatia?' => 2, # Modric Rebic Mandzukic Rakitic
+      # 'Who will score first goal for Croatia?' => 2,
+      'Who will score first goal for Brazil?' => 2, # Neymar Coutinho Willian Paulinho
+      # 'Who will score first goal for Belgium?' => 2,
+      # 'Who will score first goal for Sweden?' => 2,
+      'Who will score first goal for England?' => 2, # Kane Sterling Lingard Stones
+
+      'Who will be Man of the Match?' => 3,
+
+      'First goal in the match will be from?' => 3,
+
+      'Who will win Golden Ball of the tournament?' => 5,
+      'Who will win Golden Boot of the tournament?' => 5,
+
+      'Total no. of balls recovered in the match?' => 2, # 0-50 51-60 61-70 71-85 86-100 100+
+
+      'Total no. of woodworks in the match?' => 2, # 0-1 2 3 4 5 5+
+
+      'Total no. of penalties in the match?' => 2, # 0-1 2 3 4 5 5+
+
+      'Total distance(km) covered by Uruguay?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+      'Total distance(km) covered by Russia?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+      'Total distance(km) covered by Belgium?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+      'Total distance(km) covered by Sweden?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+    }
+    questions.each do |question, weightage|
+      question = Question.by_question(question).first_or_initialize
+      question.weightage = weightage
+      question.save
+    end
+    p "Imported knockout Questions..."
+  end
+
+  desc 'Import knockout match questions'
+  task fifa_quarter_match_questions: :environment do
+    MatchQuestion.add_football_ko_match_questions('quarter')
+    p "Imported knockout Match Questions..."
+  end
+
+  desc 'Import knockout challenges'
+  task fifa_quarter_challenges: :environment do
     Challenge.add_fifa_challenges
     p "Imported knockout Challenges..."
   end
