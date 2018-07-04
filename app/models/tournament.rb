@@ -86,7 +86,7 @@ class Tournament < ActiveRecord::Base
         user_paid_points = total_paid_points_for_user(user, from)
         user_percentage = total_percentage_for_user(user, from)
         no_of_matches = no_of_matches(user, from)
-        no_of_zero = no_of_zero_points(user)
+        no_of_zero = 0
         hash[user.id] = { name: user.show_name, points: user_points,
                           paid_points: user_paid_points,
                           no_of_matches: no_of_matches,
