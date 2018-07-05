@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620185737) do
+ActiveRecord::Schema.define(version: 20180705133207) do
 
   create_table "challenge_payments", force: :cascade do |t|
     t.integer  "user_id",             limit: 4
@@ -119,6 +119,16 @@ ActiveRecord::Schema.define(version: 20180620185737) do
   add_index "predictions", ["user_answer"], name: "index_predictions_on_user_answer", using: :btree
   add_index "predictions", ["user_challenge_id"], name: "index_predictions_on_user_challenge_id", using: :btree
 
+  create_table "prizes", force: :cascade do |t|
+    t.string   "prize_type", limit: 255
+    t.integer  "user_id",    limit: 4
+    t.integer  "amount",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "prizes", ["user_id"], name: "index_prizes_on_user_id", using: :btree
+
   create_table "questions", force: :cascade do |t|
     t.string   "question",   limit: 255
     t.datetime "created_at",             null: false
@@ -206,4 +216,5 @@ ActiveRecord::Schema.define(version: 20180620185737) do
   add_foreign_key "challenge_payments", "challenges"
   add_foreign_key "challenge_payments", "users"
   add_foreign_key "payments", "users"
+  add_foreign_key "prizes", "users"
 end

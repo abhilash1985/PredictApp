@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :predictions_table
       get :payment_details
       get :challenge_payments
+      get :prize_list
       get :show_user_challenges
       post :update_user_challenges
     end

@@ -2,7 +2,7 @@
 <%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "Challenge Payment Details" %>
+    <%=t '.title', default: "Winners List" %>
   </h4>
 </div>
 <div class = "ind-body data-table">
@@ -13,7 +13,7 @@
       <th class="text-center btn-success">Date</th>
       <th class="text-center btn-success">Challenge</th>
       <th class="text-center btn-success">Total Prize Amount</th>
-      <th class="text-center btn-success">Who Won</th>
+      <th class="text-center btn-success">Winner</th>
       <th class="text-center btn-success">Winner Prize Amount</th>
       <th class="text-center btn-success">Account Balance</th>
     </tr>
@@ -21,20 +21,20 @@
   <tbody>
     <% total_balance = 0 %>
   	<% @challenge_payments.each_with_index do |payment, index| %>
-  	 <% index += 1 %>
+  	  <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
       	<td class="text-left"><%= payment.challenge.end_time.to_s(:default) rescue '-' %></td>
         <td class="text-left"><%= payment.challenge.name rescue '-' %></td>
         <td class="text-center"><%= payment.total_prize_amount %></td>
-        <td class="text-left"><%= payment.user.show_name rescue '-' %></td>
-        <td class="text-center"><%= payment.winner_prize_amount %></td>
+        <td class="text-left alert-info"><strong><%= payment.user.show_name rescue '-' %></strong></td>
+        <td class="text-center alert-danger"><strong><%= payment.winner_prize_amount %></strong></td>
         <td class="text-center"><%= total_balance += (payment.total_prize_amount - payment.winner_prize_amount) %></td>
       </tr>
     <% end %>
     <tr class="background-white">
-      <td class="text-right" colspan="6"><b>Total Balance >></b></td>
-      <td class="text-center"><b><%= total_balance %></b></td>
+      <td class="text-right alert-success" colspan="6"><b>Total Balance >></b></td>
+      <td class="text-center alert-success"><b><%= total_balance %></b></td>
     </tr>
   </tbody>
 </table>

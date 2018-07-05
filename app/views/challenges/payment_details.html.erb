@@ -2,7 +2,7 @@
 <%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "Payment Details" %>
+    <%=t '.title', default: "User Payment Details" %>
   </h4>
 </div>
 <div class = "ind-body data-table">
@@ -22,7 +22,7 @@
   </thead>
   <tbody>
   	<% @users.each_with_index do |user, index| %>
-  	 <% index += 1 %>
+  	  <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
       	<td class="text-left"><%= user.show_name %></td>
