@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tournaments, only: [:index, :show] do
     member do
       get :leaderboard
+      get :leader_board
     end
     collection do
       post :predict_match

@@ -1,5 +1,6 @@
 # Tournament
 class Tournament < ActiveRecord::Base
+  include Leaderboard
   # Associations
   has_many :challenges
   # Scopes
@@ -76,6 +77,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def users(from = nil)
+    # User.all
     ko_challenges(from).flat_map(&:users).uniq
   end
 

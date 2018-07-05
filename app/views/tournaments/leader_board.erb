@@ -18,16 +18,16 @@
     </tr>
   </thead>
   <tbody>
-  	<% @leaderboards.each_with_index do |value, index| %>
+  	<% @leaderboards.each_with_index do |(key, value), index| %>
   	 <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center"><%= index %></td>
-      	<td class="text-left"><%= value['user'] %></td>
-      	<td class="text-center"><%= value['total_points'] %></td>
-        <td class="text-center"><%= value['paid_points'] %></td>
-      	<td class="text-center"><%= value['no_of_matches'] %></td>
-        <td class="text-center"><%= value['no_of_zero_points'] %></td>
-      	<td class="text-center"><%= value['prediction_percentage'].to_s %></td>
+      	<td class="text-left"><%= value[:name] %></td>
+      	<td class="text-center"><%= value[:points] %></td>
+        <td class="text-center"><%= value[:paid_points] %></td>
+      	<td class="text-center"><%= value[:no_of_matches] %></td>
+        <td class="text-center"><%= value[:no_of_zero] %></td>
+      	<td class="text-center"><%= value[:percentage] %></td>
       </tr>
     <% end %>
   </tbody>
