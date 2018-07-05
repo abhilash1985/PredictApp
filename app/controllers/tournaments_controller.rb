@@ -42,6 +42,12 @@ class TournamentsController < ApplicationController
 
   def leaderboard
     tournament = Tournament.find(params[:id])
+    @leaderboards = tournament.leader_board
+  end
+
+  # Old leader_board data
+  def leader_board
+    tournament = Tournament.find(params[:id])
     @leaderboards = tournament.leaderboard(params[:from])
   end
 end

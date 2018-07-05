@@ -13,6 +13,11 @@ class ChallengesController < ApplicationController
     @challenge_payments = ChallengePayment.includes(:user, :challenge).order('challenges.id')
   end
 
+  def prize_list
+    @prize_lists = Prize.includes(:user).order('prizes.id')
+    @challenge_payments = ChallengePayment.all
+  end
+
   def show_user_challenges
     @challenges = Challenge.all
     @users = User.order_by_name
