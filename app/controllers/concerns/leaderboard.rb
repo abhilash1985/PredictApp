@@ -14,7 +14,8 @@ module Leaderboard
       :sanitize_sql,
       [
         "SELECT
-            a.user, a.id as user_id,
+            a.user,
+            a.id AS user_id,
             SUM(a.total_points) total_points,
             SUM(a.paid_points) AS paid_points,
             COUNT(a.match_id) AS no_of_matches,
@@ -30,13 +31,11 @@ module Leaderboard
                 u.id,
                     CONCAT(u.first_name, ' ', u.last_name) AS user,
                     SUM(p.points) AS total_points,
-                    p.points AS points,
                     SUM(CASE
-                        WHEN uc.paid = 1 THEN p.points
+                        WHEN uc.paid = TRUE THEN p.points
                         ELSE 0
                     END) AS paid_points,
                     m.id AS match_id,
-                    c.id AS challenge,
                     SUM(mq.points) AS match_points
             FROM
                 users u
@@ -48,8 +47,8 @@ module Leaderboard
                 AND p.match_question_id = mq.id
             WHERE
                 p.points IS NOT NULL
-            GROUP BY user , match_id) a
-        GROUP BY a.user
+            GROUP BY u.id , user , m.id) a
+        GROUP BY a.id , a.user
         ORDER BY a.user;"
       ], ''
     )
