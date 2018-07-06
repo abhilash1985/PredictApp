@@ -13,6 +13,7 @@
       <th class="text-center btn-success">Total Points</th>
       <th class="text-center btn-success">Paid Points</th>
       <th class="text-center btn-success">No.of Matches Predicted</th>
+      <th class="text-center btn-success">No.of Full Points</th>
       <th class="text-center btn-success">No.of Zero Points</th>
       <th class="text-center btn-success">Prediction %</th>
     </tr>
@@ -26,7 +27,11 @@
       	<td class="text-center"><%= value['total_points'] %></td>
         <td class="text-center"><%= value['paid_points'] %></td>
       	<td class="text-center"><%= value['no_of_matches'] %></td>
-        <td class="text-center"><%= value['no_of_zero_points'] %></td>
+        <td class="text-center"><%= value['no_of_full_points'] %></td>
+        <td class="text-center">
+          <%= value['no_of_zero_points'] %>
+          <%= image_tag 'icons/duck.jpeg', { size: '12x12', class: 'margin-left-5' } %>
+        </td>
       	<td class="text-center"><%= value['prediction_percentage'].to_s %></td>
       </tr>
     <% end %>
