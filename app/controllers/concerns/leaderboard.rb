@@ -25,7 +25,8 @@ module Leaderboard
             COUNT(CASE
                 WHEN a.total_points = 0 THEN a.match_id
                 ELSE NULL
-            END) AS no_of_zero_points
+            END) AS no_of_zero_points,
+            SUM(a.no_of_full_points) no_of_full_points
         FROM
             (SELECT
                 u.id,
@@ -36,7 +37,11 @@ module Leaderboard
                         ELSE 0
                     END) AS paid_points,
                     m.id AS match_id,
-                    SUM(mq.points) AS match_points
+                    SUM(mq.points) AS match_points,
+                    (CASE
+                        WHEN SUM(mq.points) = SUM(p.points) THEN 1
+                        ELSE 0
+                    END) AS no_of_full_points
             FROM
                 users u
             INNER JOIN user_challenges uc ON uc.user_id = u.id

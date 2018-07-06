@@ -5,7 +5,7 @@ class TournamentsController < ApplicationController
 
   def show
     @current_challenges = Challenge.where('end_time > ?', DateTime.now).order(:start_time).limit(4)
-    @previous_challenges = Challenge.previous.order('id desc').page(params[:page]).per(3)
+    @previous_challenges = Challenge.previous.order('id desc').page(params[:page]).per(2)
     @prediction = Prediction.new
   end
 
