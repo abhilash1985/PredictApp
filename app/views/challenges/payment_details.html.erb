@@ -13,10 +13,11 @@
       <th class="text-center btn-success">User</th>
       <th class="text-center btn-success">Total Predictions</th>
       <th class="text-center btn-success">Total Paid Predictions</th>
+      <th class="text-center btn-success">Total Challenge Fee</th>
       <th class="text-center btn-success">Amount Paid</th>
       <th class="text-center btn-success">Matches Won</th>
       <th class="text-center btn-success">Amount Won</th>
-      <th class="text-center btn-success">Account Balance</th>
+      <th class="text-center btn-success" title="Amount Paid + Amount Won - Total Challenge Fee">Account Balance</th>
       <th class="text-center btn-success">No.of Matches can be predicted</th>
     </tr>
   </thead>
@@ -27,14 +28,18 @@
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
       	<td class="text-left"><%= user.show_name %></td>
       	<td class="text-center"><%= user.user_challenges.size %></td>
-        <td class="text-center"><%= paid_predictions = user.user_challenges.paid.size %></td>
-        <td class="text-center"><%= amount_paid = user.payments.sum(:amount_paid) %></td>
-        <td class="text-center"><%= user.challenge_payments.size %></td>
-        <td class="text-center"><%= prize_won = user.challenge_payments.sum(:winner_prize_amount) %></td>
+        <td class="text-center"><%= paid_predictions = user.user_challenges.paid.size rescue 0 %></td>
         <td class="text-center">
-          <%= balance = (amount_paid.to_i + prize_won.to_i) - (paid_predictions.to_i * 10) %>
+          <%= challenge_fees = user.user_challenges.paid.map(&:challenge).map(&:fee).sum(&:to_i) rescue 0 %>
         </td>
-        <td class="text-center"><%= balance/10 %></td>
+        <td class="text-center"><%= amount_paid = user.payments.sum(:amount_paid) rescue 0 %></td>
+        <td class="text-center"><%= user.challenge_payments.size %></td>
+        <td class="text-center"><%= prize_won = user.challenge_payments.sum(:winner_prize_amount) rescue 0 %></td>
+        <td class="text-center">
+          <%= balance = (amount_paid.to_i + prize_won.to_i) - challenge_fees.to_i %>
+        </td>
+        <% fee = Challenge.last.fee %>
+        <td class="text-center"><%= balance/fee rescue 0 %></td>
       </tr>
     <% end %>
   </tbody>

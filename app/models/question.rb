@@ -212,7 +212,7 @@ class Question < ActiveRecord::Base
     if question == 'Who will win the match?'
       { v: %W(#{match.team1_name} #{match.team2_name} No\ Result) }
     elsif question =~ /Total pass accuracy by/
-      { v: %w(0-65 66-75 76-80 81-85 86-90 91-100) }
+      { v: %w(0-70 71-75 76-80 81-85 86-90 91-100) }
     elsif question =~ /This Match ends in/
       { v: %w(Full\ Time Extra\ Time Shoot\ Out Sudden\ Death) }
     elsif question =~ /Total goals in extra time/
@@ -232,9 +232,9 @@ class Question < ActiveRecord::Base
     elsif question =~ /Total no. of balls recovered in the match/
       { v: %w(0-50 51-60 61-70 71-80 81-90 90+) }
     elsif question =~ /Total no. of woodworks in the match?/
-      { v: %w(0-1 2 3 4 5 5+) }
+      { v: %w(0 1 2 3 4 5 5+) }
     elsif question =~ /Total no. of penalties in the match/
-      { v: %w(0-1 2 3 4 5 5+) }
+      { v: %w(0 1 2 3 4 5 5+) }
     elsif question =~ /Total distance/
       { v: %w(0-80 81-90 91-100 101-110 111-120 120+) }
 
@@ -246,6 +246,12 @@ class Question < ActiveRecord::Base
       { v: %w(NeymarJr Coutinho Willian Paulinho Others No\ Goal) }
     elsif question =~ /Who will score first goal for England/
       { v: %w(Kane Sterling Lingard Stones Others No\ Goal) }
+
+    elsif question =~ /Who will score first goal for Belgium/
+      { v: %w(Lukaku Hazard DeBruyne Fellaini Others No\ Goal) }
+
+    elsif question =~ /Who will be Man of the Match/
+      { v: %w(Lukaku Mbappe DeBruyne Griezmann Hazard Giroud Others) }
 
     elsif question =~ /First goal in the match will be/
       { v: %w(Penalty Free-kick Long-range Header Volley Own-Goal Others) }
