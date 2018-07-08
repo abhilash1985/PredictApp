@@ -96,15 +96,6 @@ class MatchQuestion < ActiveRecord::Base
        Question.first_goal(team1_name, team2_name).limit(1)]
     end
 
-    def semi_questions(team1_name, team2_name, index)
-      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
-       Question.fifa_team_score(team2_name), Question.match_ends_in,
-       semi_points_questions(index)[0], semi_points_questions(index)[1],
-       semi_defensive_questions(index),
-       semi_shots_questions(index, team1_name, team2_name),
-       Question.first_goal(team1_name, team2_name).limit(1)]
-    end
-
     def final_questions(team1_name, team2_name, index)
       [Question.fifa_defaults, Question.fifa_team_score(team1_name),
        Question.fifa_team_score(team2_name), Question.match_ends_in,
@@ -141,6 +132,15 @@ class MatchQuestion < ActiveRecord::Base
       end
     end
 
+    def semi_questions(team1_name, team2_name, index)
+      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
+       Question.fifa_team_score(team2_name), Question.match_ends_in,
+       semi_points_questions(index)[0], semi_points_questions(index)[1],
+       semi_defensive_questions(index),
+       semi_shots_questions(index, team1_name, team1_name),
+       Question.first_goal(team2_name, team2_name).limit(1)]
+    end
+
     def semi_points_questions(index)
       case index
       when 0
@@ -166,13 +166,13 @@ class MatchQuestion < ActiveRecord::Base
     def semi_shots_questions(index, team1_name, team2_name)
       case index
       when 0
-        Question.pass_accuracy(team1_name, team1_name).limit(1)
+        Question.pass_accuracy(team1_name, team2_name).limit(1)
       when 1
-        Question.distance_covered(team2_name, team2_name).limit(1)
+        Question.distance_covered(team1_name, team2_name).limit(1)
       when 2
-        Question.possession_percentage(team1_name, team1_name).limit(1)
+        Question.possession_percentage(team1_name, team2_name).limit(1)
       when 3
-        Question.time_of_first_goal(team2_name, team2_name).limit(1)
+        Question.time_of_first_goal(team1_name, team2_name).limit(1)
       end
     end
 
@@ -184,11 +184,22 @@ class MatchQuestion < ActiveRecord::Base
       else
         quarter_questions(team1_name, team2_name, index)
       end
+    end
 
+    def find_matches(play = 'ko')
+      if play == 'ko'
+        Match.knockouts
+      elsif play == 'quarter'
+        Match.quarter
+      elsif play == 'semi'
+        Match.semi
+      else
+        Match.all
+      end
     end
 
     def add_football_ko_match_questions(play = 'ko')
-      Match.quarter.each_with_index do |match, index|
+      find_matches(play).each_with_index do |match, index|
         team1_name = match.team1_name
         team2_name = match.team2_name
         all_questions = find_all_questions(team1_name, team2_name, index, play)

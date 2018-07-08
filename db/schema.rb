@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705133207) do
+ActiveRecord::Schema.define(version: 20180707085845) do
 
   create_table "challenge_payments", force: :cascade do |t|
     t.integer  "user_id",             limit: 4
@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 20180705133207) do
     t.integer  "tournament_id", limit: 4
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "fee",           limit: 4,   default: 10
   end
 
   add_index "challenges", ["end_time"], name: "index_challenges_on_end_time", using: :btree
+  add_index "challenges", ["fee"], name: "index_challenges_on_fee", using: :btree
   add_index "challenges", ["name"], name: "index_challenges_on_name", using: :btree
   add_index "challenges", ["start_time"], name: "index_challenges_on_start_time", using: :btree
   add_index "challenges", ["tournament_id"], name: "index_challenges_on_tournament_id", using: :btree

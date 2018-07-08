@@ -74,6 +74,10 @@ class Challenge < ActiveRecord::Base
       %w(2018-07-06\ 00:00 2018-07-06\ 19:25)
     when 17
       %w(2018-07-07\ 00:00 2018-07-07\ 19:25)
+    when 18
+      %w(2018-07-10\ 00:00 2018-07-10\ 23:25)
+    when 19
+      %w(2018-07-11\ 00:00 2018-07-11\ 23:25)
     end
   end
 
@@ -114,6 +118,10 @@ class Challenge < ActiveRecord::Base
         %w(57 58)
       when 17
         %w(59 60)
+      when 18
+        %w(61)
+      when 19
+        %w(62)
       end
     Match.no_in(match_ids).update_all(challenge_id: id)
   end
@@ -136,10 +144,26 @@ class Challenge < ActiveRecord::Base
       end
     end
 
-    def add_fifa_challenges
+    def find_challenges(play = 'ko')
+      if play == 'ko'
+        (12..15)
+      elsif play == 'quarter'
+        (16..17)
+      elsif play == 'semi'
+        (18..19)
+      elsif play == 'lf'
+        (20)
+      elsif play == 'final'
+        (21)
+      else
+        (1..11)
+      end
+    end
+
+    def add_fifa_challenges(play = 'ko')
       world_cup = Tournament.fifa_world_cup.first
       return if world_cup.blank?
-      (16..17).each do |number|
+      find_challenges(play).each do |number|
         name = 'Challenge ' + number.to_s
         challenge = by_name(name).first_or_initialize
         challenge.tournament_id = world_cup.id

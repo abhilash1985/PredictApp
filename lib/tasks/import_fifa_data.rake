@@ -520,9 +520,86 @@ namespace :import do
     p "Imported knockout Match Questions..."
   end
 
-  desc 'Import knockout challenges'
+  desc 'Import Quarter challenges'
   task fifa_quarter_challenges: :environment do
-    Challenge.add_fifa_challenges
-    p "Imported knockout Challenges..."
+    Challenge.add_fifa_challenges('quarter')
+    p "Imported Quarter Challenges..."
+  end
+
+  def import_ko_matches(collection, match_type)
+    collection.each do |match_no, values|
+      match = Match.by_match_no(match_no).first_or_initialize
+
+      team1 = Team.by_name(values[0]).first
+      team2 = Team.by_name(values[1]).first
+
+      next if team1.blank? || team2.blank?
+
+      match.team1_id = team1.id
+      match.team2_id = team2.id
+
+      stadium = Stadium.by_name(match_type).first_or_initialize
+      stadium.save
+
+      match.stadium_id = stadium.try(:id)
+      match.match_date = values[2]
+
+      round = Round.by_name(match_type).first
+      match.round_id = round.try(:id)
+
+      match.save
+    end
+  end
+
+  # SEMI QUESTIONS.............
+
+  desc "Import FIFA SEMI master data"
+  task fifa_semi_master_data: [:fifa_semi_matches, :fifa_semi_questions,
+                                :fifa_semi_match_questions,
+                                :fifa_semi_challenges] do
+    # for initial run include :questions, :match_questions, :challenges
+  end
+
+  def semi_matches
+    {
+      61 => ['France', 'Belgium', '2018-07-10 23:30:00'],
+      62 => ['Croatia', 'England', '2018-07-11 23:30:00']
+    }
+  end
+
+
+  desc 'Import Semi Matches'
+  task fifa_semi_matches: :environment do
+    import_ko_matches(semi_matches, 'Semi-Final')
+  end
+
+  desc 'Import semi questions'
+  task fifa_semi_questions: :environment do
+    questions = {
+      # defaults
+      'Who will score first goal for Belgium?' => 2, # Lukaku Hazard DeBruyne Fellaini Others NoGoal
+
+      'Total distance(km) covered by France?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+
+      'Total distance(km) covered by Croatia?' => 2
+    }
+    questions.each do |question, weightage|
+      question = Question.by_question(question).first_or_initialize
+      question.weightage = weightage
+      question.save
+    end
+    p "Imported Semi Questions..."
+  end
+
+  desc 'Import semi match questions'
+  task fifa_semi_match_questions: :environment do
+    MatchQuestion.add_football_ko_match_questions('semi')
+    p "Imported Semi Match Questions..."
+  end
+
+  desc 'Import Semi challenges'
+  task fifa_semi_challenges: :environment do
+    Challenge.add_fifa_challenges('semi')
+    p "Imported Semi Challenges..."
   end
 end
