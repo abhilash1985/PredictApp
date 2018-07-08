@@ -563,6 +563,7 @@ namespace :import do
   def semi_matches
     {
       61 => ['France', 'Belgium', '2018-07-10 23:30:00'],
+      62 => ['Croatia', 'England', '2018-07-11 23:30:00']
     }
   end
 
@@ -579,6 +580,8 @@ namespace :import do
       'Who will score first goal for Belgium?' => 2, # Lukaku Hazard DeBruyne Fellaini Others NoGoal
 
       'Total distance(km) covered by France?' => 2, # 0-80 81-90 91-100 101-110 111-120 120+
+
+      'Total distance(km) covered by Croatia?' => 2
     }
     questions.each do |question, weightage|
       question = Question.by_question(question).first_or_initialize
