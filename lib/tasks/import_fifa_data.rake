@@ -76,7 +76,7 @@ namespace :import do
 
   desc 'Import Matches'
   task fifa_matches: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     url = 'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json'
 
     data = JSON.parse(open(url).read).with_indifferent_access
@@ -131,7 +131,7 @@ namespace :import do
 
   desc 'Import questions'
   task fifa_questions: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
     questions = {
       # defaults
       'Who will win the match?' => 5,
