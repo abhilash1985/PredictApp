@@ -254,7 +254,7 @@ class Question < ActiveRecord::Base
       { v: %w(Lukaku Mbappe DeBruyne Griezmann Hazard Giroud Others) }
 
     elsif question =~ /First goal in the match will be/
-      { v: %w(Penalty Free-kick Long-range Header Volley Own-Goal Others) }
+      { v: %w(Penalty Free-kick Long-range Header Own-Goal Others) }
 
     elsif question =~ /Goals scored by/
       { v: %w(0 1 2 3 4 4+) }
