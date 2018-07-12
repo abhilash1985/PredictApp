@@ -16,6 +16,8 @@ class Match < ActiveRecord::Base
   scope :knockouts, -> { where('match_no >= ?', 49) }
   scope :quarter, -> { where('match_no >= ?', 57) }
   scope :semi, -> { where('match_no >= ?', 61) }
+  scope :lf, -> { where('match_no = ?', 63) }
+  scope :final, -> { where('match_no = ?', 64) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)

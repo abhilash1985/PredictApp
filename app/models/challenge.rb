@@ -78,6 +78,10 @@ class Challenge < ActiveRecord::Base
       %w(2018-07-10\ 00:00 2018-07-10\ 23:25)
     when 19
       %w(2018-07-11\ 00:00 2018-07-11\ 23:25)
+    when 20
+      %w(2018-07-14\ 00:00 2018-07-14\ 19:25)
+    when 21
+      %w(2018-07-15\ 00:00 2018-07-15\ 20:25)
     end
   end
 
@@ -122,6 +126,10 @@ class Challenge < ActiveRecord::Base
         %w(61)
       when 19
         %w(62)
+      when 20
+        %w(63)
+      when 21
+        %w(64)
       end
     Match.no_in(match_ids).update_all(challenge_id: id)
   end
@@ -151,10 +159,8 @@ class Challenge < ActiveRecord::Base
         (16..17)
       elsif play == 'semi'
         (18..19)
-      elsif play == 'lf'
-        (20)
-      elsif play == 'final'
-        (21)
+      elsif play == 'finals'
+        (20..21)
       else
         (1..11)
       end
