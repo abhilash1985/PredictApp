@@ -96,16 +96,6 @@ class MatchQuestion < ActiveRecord::Base
        Question.first_goal(team1_name, team2_name).limit(1)]
     end
 
-    def final_questions(team1_name, team2_name, index)
-      [Question.fifa_defaults, Question.fifa_team_score(team1_name),
-       Question.fifa_team_score(team2_name), Question.match_ends_in,
-       Question.golden_ball,
-       semi_points_questions(index)[0], semi_points_questions(index)[1],
-       semi_defensive_questions(index),
-       semi_shots_questions(index, team1_name, team2_name),
-       Question.first_goal(team1_name, team2_name).limit(1)]
-    end
-
     def quarter_defensive_questions(index)
       case index
       when 0
@@ -169,11 +159,25 @@ class MatchQuestion < ActiveRecord::Base
         Question.pass_accuracy(team1_name, team2_name).limit(1)
       when 1
         Question.distance_covered(team1_name, team2_name).limit(1)
-      when 2
-        Question.possession_percentage(team1_name, team2_name).limit(1)
-      when 3
-        Question.time_of_first_goal(team1_name, team2_name).limit(1)
       end
+    end
+
+    def final_questions(team1_name, team2_name, index)
+      [Question.final_winner, Question.total_team_score(team1_name),
+       Question.total_team_score(team2_name), Question.match_ends_in,
+       Question.golden_ball, Question.goal_type,
+       Question.recovered_balls, Question.goal_attempts,
+       Question.distance_covered(team1_name, team1_name),
+       Question.first_goal_by_any_team]
+    end
+
+    def lf_questions(team1_name, team2_name, _index)
+      [Question.third_place, Question.total_team_score(team1_name),
+       Question.total_team_score(team2_name), Question.match_ends_in,
+       Question.budweiser_mom, Question.tackled_balls,
+       Question.cleared_balls, Question.blocked_balls,
+       Question.first_goal_in_match(team1_name),
+       Question.pass_accuracy_in_match(team2_name)]
     end
 
     def find_all_questions(team1_name, team2_name, index, play = 'ko')
@@ -181,6 +185,10 @@ class MatchQuestion < ActiveRecord::Base
         knockout_questions(team1_name, team2_name, index)
       elsif play == 'semi'
         semi_questions(team1_name, team2_name, index)
+      elsif play == 'lf'
+        lf_questions(team1_name, team2_name, index)
+      elsif play == 'final'
+        final_questions(team1_name, team2_name, index)
       else
         quarter_questions(team1_name, team2_name, index)
       end
@@ -193,6 +201,10 @@ class MatchQuestion < ActiveRecord::Base
         Match.quarter
       elsif play == 'semi'
         Match.semi
+      elsif play == 'lf'
+        Match.lf
+      elsif play == 'final'
+        Match.final
       else
         Match.all
       end

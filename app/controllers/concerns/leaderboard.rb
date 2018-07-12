@@ -14,21 +14,34 @@ module Leaderboard
       :sanitize_sql,
       [
         "SELECT
-            a.user,
-            a.id AS user_id,
-            SUM(a.total_points) total_points,
-            SUM(a.paid_points) AS paid_points,
-            COUNT(a.match_id) AS no_of_matches,
-            SUM(a.match_points) AS total_match_points,
-            ROUND((SUM(a.total_points) * 100 / SUM(a.match_points)),
-                    2) AS prediction_percentage,
-            COUNT(CASE
-                WHEN a.total_points = 0 THEN a.match_id
-                ELSE NULL
-            END) AS no_of_zero_points,
-            SUM(a.no_of_full_points) no_of_full_points
+            us.id,
+            CONCAT(us.first_name, ' ', us.last_name) AS user,
+            us.id AS user_id,
+            b.total_points,
+            b.paid_points,
+            b.no_of_matches,
+            b.total_match_points,
+            b.prediction_percentage,
+            b.no_of_zero_points,
+            b.no_of_full_points
         FROM
+            users us
+                LEFT JOIN
             (SELECT
+                a.user,
+                    a.id AS user_id,
+                    SUM(a.total_points) total_points,
+                    SUM(a.paid_points) AS paid_points,
+                    COUNT(a.match_id) AS no_of_matches,
+                    SUM(a.match_points) AS total_match_points,
+                    ROUND((SUM(a.total_points) * 100 / SUM(a.match_points)), 2) AS prediction_percentage,
+                    COUNT(CASE
+                        WHEN a.total_points = 0 THEN a.match_id
+                        ELSE NULL
+                    END) AS no_of_zero_points,
+                    SUM(a.no_of_full_points) no_of_full_points
+            FROM
+                (SELECT
                 u.id,
                     CONCAT(u.first_name, ' ', u.last_name) AS user,
                     SUM(p.points) AS total_points,
@@ -53,14 +66,15 @@ module Leaderboard
             WHERE
                 p.points IS NOT NULL
             GROUP BY u.id , user , m.id) a
-        GROUP BY a.id , a.user
-        ORDER BY a.user;"
+            GROUP BY a.id , a.user
+            ORDER BY a.user) b ON b.user_id = us.id
+        ORDER BY us.first_name , us.last_name"
       ], ''
     )
   end
 
   def leader_board
     leader_board_data
-    @leaderbord.sort_by { |x| x['total_points'] }.reverse
+    @leaderbord.sort_by { |x| x['total_points'].to_i }.reverse
   end
 end
