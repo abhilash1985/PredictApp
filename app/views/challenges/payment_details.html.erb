@@ -42,7 +42,7 @@
         <td class="text-center">
           <%= balance = (amount_paid.to_i + prize_won.to_i) - challenge_fees.to_i %>
         </td>
-        <% profit = prize_won.to_i - amount_paid.to_i rescue 0 %>
+        <% profit = balance.to_i - amount_paid.to_i rescue 0 %>
         <% profit_klass = profit >= 0 ? 'alert-success' : 'alert-danger' %>
         <td class="text-center <%= profit_klass %>" style="font-weight: bold;">
           <%= profit.abs %>
