@@ -18,7 +18,7 @@
       <th class="text-center btn-success">Matches Won</th>
       <th class="text-center btn-success">Amount Won</th>
       <th class="text-center btn-success" title="Amount Paid + Amount Won - Total Challenge Fee">Account Balance</th>
-      <th class="text-center btn-success">No.of Matches can be predicted</th>
+      <th class="text-center btn-success" title="Amount Won - Amount Paid">Profit/Loss</th>
     </tr>
   </thead>
   <tbody>
@@ -34,12 +34,19 @@
         </td>
         <td class="text-center"><%= amount_paid = user.payments.sum(:amount_paid) rescue 0 %></td>
         <td class="text-center"><%= user.challenge_payments.size %></td>
-        <td class="text-center"><%= prize_won = user.challenge_payments.sum(:winner_prize_amount) rescue 0 %></td>
+        <td class="text-center">
+          <%= prize_won =
+            user.challenge_payments.sum(:winner_prize_amount).to_i +
+            user.prizes.sum(:amount).to_i rescue 0 %>
+        </td>
         <td class="text-center">
           <%= balance = (amount_paid.to_i + prize_won.to_i) - challenge_fees.to_i %>
         </td>
-        <% fee = Challenge.last.fee %>
-        <td class="text-center"><%= balance/fee rescue 0 %></td>
+        <% profit = prize_won.to_i - amount_paid.to_i rescue 0 %>
+        <% profit_klass = profit >= 0 ? 'alert-success' : 'alert-danger' %>
+        <td class="text-center <%= profit_klass %>" style="font-weight: bold;">
+          <%= profit.abs %>
+        </td>
       </tr>
     <% end %>
   </tbody>
