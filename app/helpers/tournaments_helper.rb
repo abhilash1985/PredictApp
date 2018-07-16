@@ -25,6 +25,7 @@ module TournamentsHelper
   end
 
   def fixed_lb(user)
+    return [0, 0, 0, 0, 0] unless @current_tournament.try(:name).to_s.include?('FIFA')
     case user
     when 'Matz V'
       [342, 342, 49, 2, 4, 779]
