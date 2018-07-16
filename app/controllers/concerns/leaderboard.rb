@@ -64,7 +64,7 @@ module Leaderboard
             INNER JOIN predictions p ON p.user_challenge_id = uc.id
                 AND p.match_question_id = mq.id
             WHERE
-                p.points IS NOT NULL
+                p.points IS NOT NULL and c.tournament_id = #{id}
             GROUP BY u.id , user , m.id) a
             GROUP BY a.id , a.user
             ORDER BY a.user) b ON b.user_id = us.id
