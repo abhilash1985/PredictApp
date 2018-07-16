@@ -152,6 +152,19 @@ class Challenge < ActiveRecord::Base
       end
     end
 
+    def add_eng_tour_challenges
+      eng_tour = Tournament.india_tour_of_england.first
+      return if eng_tour.blank?
+      name = '3rd ODI'
+      challenge = by_name(name).first_or_initialize
+      challenge.tournament_id = eng_tour.id
+      challenge.start_time = '2018-07-17 00:00'
+      challenge.end_time = '2018-07-17 16:25'
+      if challenge.save
+        Match.by_match_no(4018).update_all(challenge_id: challenge.id)
+      end
+    end
+
     def find_challenges(play = 'ko')
       if play == 'ko'
         (12..15)

@@ -1,4 +1,6 @@
+# MatchQuestion
 class MatchQuestion < ActiveRecord::Base
+  include EnglandTourMatchQuestion
   # Associations
   has_many :predictions
   belongs_to :question # added by Ashik
@@ -226,7 +228,11 @@ class MatchQuestion < ActiveRecord::Base
     def create_match_question_for(match, question, by = 'cricket')
       match_question = by_match(match).by_question(question).first_or_initialize
       match_question.options =
-        by == 'cricket' ? question.all_options_for(match) : question.all_fifa_ko_options_for(match)
+        if by == 'cricket'
+          question.england_tour_options_for(match)
+        else
+          question.all_fifa_ko_options_for(match)
+        end
       match_question.points = question.weightage
       match_question.save
     end

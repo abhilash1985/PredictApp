@@ -526,30 +526,30 @@ namespace :import do
   #   p "Imported Quarter Challenges..."
   # end
 
-  def import_ko_matches(collection, match_type)
-    collection.each do |match_no, values|
-      match = Match.by_match_no(match_no).first_or_initialize
+  # def import_ko_matches(collection, match_type)
+  #   collection.each do |match_no, values|
+  #     match = Match.by_match_no(match_no).first_or_initialize
 
-      team1 = Team.by_name(values[0]).first
-      team2 = Team.by_name(values[1]).first
+  #     team1 = Team.by_name(values[0]).first
+  #     team2 = Team.by_name(values[1]).first
 
-      next if team1.blank? || team2.blank?
+  #     next if team1.blank? || team2.blank?
 
-      match.team1_id = team1.id
-      match.team2_id = team2.id
+  #     match.team1_id = team1.id
+  #     match.team2_id = team2.id
 
-      stadium = Stadium.by_name(match_type).first_or_initialize
-      stadium.save
+  #     stadium = Stadium.by_name(match_type).first_or_initialize
+  #     stadium.save
 
-      match.stadium_id = stadium.try(:id)
-      match.match_date = values[2]
+  #     match.stadium_id = stadium.try(:id)
+  #     match.match_date = values[2]
 
-      round = Round.by_name(match_type).first
-      match.round_id = round.try(:id)
+  #     round = Round.by_name(match_type).first
+  #     match.round_id = round.try(:id)
 
-      match.save
-    end
-  end
+  #     match.save
+  #   end
+  # end
 
   # # SEMI QUESTIONS.............
 
@@ -604,76 +604,76 @@ namespace :import do
   # end
 
   # Import FINAL DATA
-  desc "Import FIFA FINAL master data"
-  task fifa_final_master_data: [:fifa_final_matches, :fifa_final_questions,
-                                :fifa_final_match_questions,
-                                :fifa_final_challenges] do
-    # for initial run include :questions, :match_questions, :challenges
-  end
+  # desc "Import FIFA FINAL master data"
+  # task fifa_final_master_data: [:fifa_final_matches, :fifa_final_questions,
+  #                               :fifa_final_match_questions,
+  #                               :fifa_final_challenges] do
+  #   # for initial run include :questions, :match_questions, :challenges
+  # end
 
-  def l_final_matches
-    {
-      63 => ['Belgium', 'England', '2018-07-14 19:30:00'],
-    }
-  end
+  # def l_final_matches
+  #   {
+  #     63 => ['Belgium', 'England', '2018-07-14 19:30:00'],
+  #   }
+  # end
 
-  def final_matches
-    {
-      64 => ['France', 'Croatia', '2018-07-15 20:30:00']
-    }
-  end
+  # def final_matches
+  #   {
+  #     64 => ['France', 'Croatia', '2018-07-15 20:30:00']
+  #   }
+  # end
 
-  desc 'Import LP Matches'
-  task fifa_final_matches: :environment do
-    import_ko_matches(l_final_matches, 'Play-Off for 3rd Place')
-    import_ko_matches(final_matches, 'Final')
-  end
+  # desc 'Import LP Matches'
+  # task fifa_final_matches: :environment do
+  #   import_ko_matches(l_final_matches, 'Play-Off for 3rd Place')
+  #   import_ko_matches(final_matches, 'Final')
+  # end
 
-  desc 'Import final questions'
-  task fifa_final_questions: :environment do
-    questions = {
-      # defaults
-      'Who will win 3rd Place?' => 20, # Belgium England No\ Result
-      'Total Goals scored by Belgium?' => 5, # 0 1 2 3 4 5 5+
-      'Total Goals scored by England?' => 5, # 0 1 2 3 4 5 5+
-      'Who will be Budweiser Man of the Match?' => 5,
-      'Total no. of tackles in the match?' => 2,
-      'Total no. of clearances in the match?' => 2,
-      'Total no. of blocks in the match?' => 2,
-      'Who will score first goal for Belgium in the match?' => 3, # Lukaku Debruyne Hazard Fellaini Others
-      'Total pass accuracy by England in the match?' => 3,
+  # desc 'Import final questions'
+  # task fifa_final_questions: :environment do
+  #   questions = {
+  #     # defaults
+  #     'Who will win 3rd Place?' => 20, # Belgium England No\ Result
+  #     'Total Goals scored by Belgium?' => 5, # 0 1 2 3 4 5 5+
+  #     'Total Goals scored by England?' => 5, # 0 1 2 3 4 5 5+
+  #     'Who will be Budweiser Man of the Match?' => 5,
+  #     'Total no. of tackles in the match?' => 2,
+  #     'Total no. of clearances in the match?' => 2,
+  #     'Total no. of blocks in the match?' => 2,
+  #     'Who will score first goal for Belgium in the match?' => 3, # Lukaku Debruyne Hazard Fellaini Others
+  #     'Total pass accuracy by England in the match?' => 3,
 
-      # --------------------------------------------------------------------
+  #     # --------------------------------------------------------------------
 
-      'Who will win Fifa World Cup 2018?' => 20, # France Croatia No\ Result
-      'Total Goals scored by France?' => 5, # 0 1 2 3 4 5 5+
-      'Total Goals scored by Croatia?' => 5, # 0 1 2 3 4 5 5+
-      'Who will win Golden Ball of the tournament?' => 5, # Hazard Modric Mbappe Kante Griezmann Kane Dyzuba Subasic Others
-      'First goal in the match will be from?' => 3,
-      'Total no. of balls recovered in the match?' => 2,
-      'Total goal attempts in the match?' => 2,
-      'Total distance(km) covered by France?' => 2, # 0-80 81-90 91-100 101-110 111-120 121-130 130+
-      'Who will score first goal in the Match?' => 3 # Modric Mbappe Umtiti Perisic Griezmann Mandzukic Others
-      # Total 50 points
-    }
-    questions.each do |question, weightage|
-      question = Question.by_question(question).first_or_initialize
-      question.weightage = weightage
-      question.save
-    end
-    p "Imported Final Questions..."
-  end
+  #     'Who will win Fifa World Cup 2018?' => 20, # France Croatia No\ Result
+  #     'Total Goals scored by France?' => 5, # 0 1 2 3 4 5 5+
+  #     'Total Goals scored by Croatia?' => 5, # 0 1 2 3 4 5 5+
+  #     'Who will win Golden Ball of the tournament?' => 5, # Hazard Modric Mbappe Kante Griezmann Kane Dyzuba Subasic Others
+  #     'First goal in the match will be from?' => 3,
+  #     'Total no. of balls recovered in the match?' => 2,
+  #     'Total goal attempts in the match?' => 2,
+  #     'Total distance(km) covered by France?' => 2, # 0-80 81-90 91-100 101-110 111-120 121-130 130+
+  #     'Who will score first goal in the Match?' => 3 # Modric Mbappe Umtiti Perisic Griezmann Mandzukic Others
+  #     # Total 50 points
+  #   }
+  #   questions.each do |question, weightage|
+  #     question = Question.by_question(question).first_or_initialize
+  #     question.weightage = weightage
+  #     question.save
+  #   end
+  #   p "Imported Final Questions..."
+  # end
 
-  desc 'Import Final match questions'
-  task fifa_final_match_questions: :environment do
-    MatchQuestion.add_football_ko_match_questions('lf')
-    MatchQuestion.add_football_ko_match_questions('final')
-    p "Imported Final Match Questions..."
-  end
+  # desc 'Import Final match questions'
+  # task fifa_final_match_questions: :environment do
+  #   MatchQuestion.add_football_ko_match_questions('lf')
+  #   MatchQuestion.add_football_ko_match_questions('final')
+  #   p "Imported Final Match Questions..."
+  # end
 
-  desc 'Import Final challenges'
-  task fifa_final_challenges: :environment do
-    Challenge.add_fifa_challenges('finals')
-    p "Imported Final Challenges..."
-  end
+  # desc 'Import Final challenges'
+  # task fifa_final_challenges: :environment do
+  #   Challenge.add_fifa_challenges('finals')
+  #   p "Imported Final Challenges..."
+  # end
 end

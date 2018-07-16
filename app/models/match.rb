@@ -4,7 +4,7 @@ class Match < ActiveRecord::Base
   belongs_to :stadium
   belongs_to :team1, class_name: 'Team', foreign_key: :team1_id
   belongs_to :team2, class_name: 'Team', foreign_key: :team2_id
-  has_many :match_questions
+  has_many :match_questions, dependent: :destroy
   has_many :questions, through: :match_questions
   # validations
   validates :match_no, :team1_id, :team2_id, presence: true
@@ -65,10 +65,18 @@ class Match < ActiveRecord::Base
   end
 
   def started?
-    match_date - 1.minutes <= Time.zone.now
+    (match_date - 35.minutes) <= Time.zone.now
   end
 
   class << self
+    def india_tour_of_england
+      [{"city"=>"Leeds", "stadium"=>"Leeds", "match_date"=>"2018-07-17",
+        "match_day"=>"Saturday", "match_type"=>"D", "team_two_long"=>"India",
+        "team_two_short"=>"IND", "team_one_long"=>"England", "team_one_short"=>"ENG",
+        "start_time"=>"05=>00 pm", "match_datetime"=>"2018-07-17 17:00", "timezone"=>"IST",
+        "pool"=>"A"}]
+    end
+
     def matches
       [{"city"=>"Christchurch", "stadium"=>"Hagley Oval", "match_date"=>"2015-02-14",
         "match_day"=>"Saturday", "match_type"=>"D", "team_two_long"=>"Sri Lanka",

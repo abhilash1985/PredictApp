@@ -10,6 +10,7 @@ class Tournament < ActiveRecord::Base
   scope :russia, -> { where(location: 'Russia') }
   # scope :ipl2015, -> { where(name: 'IPL 2015') }
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
+  scope :india_tour_of_england, -> { where(name: 'India Tour of England 2018') }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params

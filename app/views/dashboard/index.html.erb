@@ -25,9 +25,9 @@
               <div class="tab-content">
                 <div class="tab-pane active mega-dropdown-menu">
                   <ul class="nav-list list-inline">
-                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.fifa_world_cup.first) do %>
-                      <%= image_tag('russia.jpg', size: '150x100') %>
-                      <span>FIFA World Cup 2018</span>
+                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.india_tour_of_england.first) do %>
+                      <%= image_tag('india_tour.jpg', size: '150x100') %>
+                      <span>India Tour of England 2018</span>
                       <% end -%>
                     </li>
 
@@ -42,6 +42,14 @@
                       <span>COMING SOON</span>
                       <% end -%>
                     </li>
+
+                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.fifa_world_cup.first) do %>
+                      <%= image_tag('russia.jpg', size: '150x100') %>
+                      <span>FIFA World Cup 2018</span>
+                      <% end -%>
+                    </li>
+
+
                   </ul>
                 </div>
               </div>

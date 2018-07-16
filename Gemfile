@@ -31,7 +31,7 @@ gem 'cancancan'
 gem 'kaminari'
 
 gem 'carrierwave'
-# gem 'spreadsheet'
+gem 'spreadsheet'
 gem 'rails_admin'
 gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
