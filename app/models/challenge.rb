@@ -1,4 +1,5 @@
-class Challenge < ActiveRecord::Base
+# Challenge
+class Challenge < ApplicationRecord
   # Associations
   belongs_to :tournament
   has_many :matches

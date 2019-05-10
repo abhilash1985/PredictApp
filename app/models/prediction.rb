@@ -1,4 +1,5 @@
-class Prediction < ActiveRecord::Base
+# Prediction
+class Prediction < ApplicationRecord
   # Associations
   belongs_to :user_challenge
   belongs_to :match_question

@@ -1,4 +1,4 @@
 # Prize
-class Prize < ActiveRecord::Base
+class Prize < ApplicationRecord
   belongs_to :user
 end

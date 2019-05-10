@@ -1,5 +1,5 @@
 # Tournament
-class Tournament < ActiveRecord::Base
+class Tournament < ApplicationRecord
   include Leaderboard
   # Associations
   has_many :challenges
@@ -11,6 +11,7 @@ class Tournament < ActiveRecord::Base
   # scope :ipl2015, -> { where(name: 'IPL 2015') }
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
   scope :india_tour_of_england, -> { where(name: 'India Tour of England 2018') }
+  scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params

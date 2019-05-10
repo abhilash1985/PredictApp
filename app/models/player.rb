@@ -1,4 +1,5 @@
-class Player < ActiveRecord::Base
+# Player
+class Player < ApplicationRecord
   # Associations
   belongs_to :team
   # Scopes
