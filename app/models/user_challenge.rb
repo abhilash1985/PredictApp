@@ -1,4 +1,5 @@
-class UserChallenge < ActiveRecord::Base
+# UserChallenge
+class UserChallenge < ApplicationRecord
   # Associations
   belongs_to :user
   belongs_to :challenge

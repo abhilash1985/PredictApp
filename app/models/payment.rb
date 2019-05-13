@@ -1,4 +1,4 @@
 # Payment
-class Payment < ActiveRecord::Base
-  belongs_to :user
+class Payment < ApplicationRecord
+  belongs_to :user, optional: true
 end

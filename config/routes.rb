@@ -1,9 +1,9 @@
+# Rails routes
 Rails.application.routes.draw do
-
-  get "users/sign_in", to: "dashboard#welcome"
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'users/sign_in', to: 'dashboard#welcome'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users do
-
   end
   get 'dashboard/welcome'
   root 'dashboard#index'

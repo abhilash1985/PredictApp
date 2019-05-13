@@ -1,5 +1,5 @@
 # Question
-class Question < ActiveRecord::Base
+class Question < ApplicationRecord
   include CricketQuestions
   include CricketOptions
   has_many :match_questions, dependent: :destroy

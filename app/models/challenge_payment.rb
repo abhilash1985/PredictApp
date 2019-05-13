@@ -1,5 +1,5 @@
 # ChallengePayment
-class ChallengePayment < ActiveRecord::Base
+class ChallengePayment < ApplicationRecord
   belongs_to :user
   belongs_to :challenge
 end

@@ -1,5 +1,5 @@
 # MatchQuestion
-class MatchQuestion < ActiveRecord::Base
+class MatchQuestion < ApplicationRecord
   include EnglandTourMatchQuestion
   # Associations
   has_many :predictions

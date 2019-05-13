@@ -1,4 +1,5 @@
-class Match < ActiveRecord::Base
+# Match
+class Match < ApplicationRecord
   # Associations
   belongs_to :challenge
   belongs_to :stadium

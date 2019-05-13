@@ -1,4 +1,4 @@
 # Prize
-class Prize < ActiveRecord::Base
-  belongs_to :user
+class Prize < ApplicationRecord
+  belongs_to :user, optional: true
 end
