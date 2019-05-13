@@ -56,7 +56,7 @@ gem 'jquery-datatables'
 gem 'sprockets', '~> 3.0'
 
 #for the bootstrap
-gem 'bootstrap-sass', '~> 3.3.3'
+gem 'bootstrap-sass', '>= 3.4.1'
 gem 'autoprefixer-rails'
 gem 'bootstrap-multiselect-rails'
 # gem 'nokogiri'
@@ -75,7 +75,7 @@ end
 
 group :development do
   # Rack Mini profiler
-  # gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'pry'
   gem 'web-console', '>= 3.3.0'
