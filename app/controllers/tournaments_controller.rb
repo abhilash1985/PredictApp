@@ -2,6 +2,7 @@
 class TournamentsController < ApplicationController
   # include ActionController::Live
   before_action :authenticate_user!
+  before_action :current_tournament
 
   def show
     @current_challenges = Challenge.where('end_time > ?', DateTime.now).order(:start_time).limit(4)

@@ -43,13 +43,13 @@ module CricketOptions
          'Runs will be scored by the team WI?', 'Runs will be scored by the team AUS?',
          'Runs will be scored by the team ZIM?', 'Runs will be scored by the team SCO?',
          'Runs will be scored by the team UAE?', 'Runs will be scored by the team SRI?'
-      { v: %w(<125 126-175 176-225 226-280 281-330 330<) }
+      { v: %w(<150 150-200 201-235 236-275 276-325 325<) }
     when 'No. of bowled outs that can happen in the match?', 'No. of caught outs that can happen in the match?',
          'No. of run outs that can happen in the match?', 'No. of lbw outs that can happen in the match?'
       { v: %w(0 1-3 4-7 8-10 10<) }
     when 'How many runs will be scored in the batting power play by the team batting first?',
          'How many runs will be scored in the batting power play by the team batting second?'
-      { v: %w(0-20 21-30 31-40 41-50 50<) }
+      { v: %w(0-30 31-45 46-55 56-65 66-75 75<) }
     when 'How many runs will be scored in the mandatory power play by the team batting first?',
          'How many runs will be scored in the mandatory power play by the team batting second?',
          'How many runs will be scored in the slog overs by the team batting first?'

@@ -1,6 +1,7 @@
 # ChallengesController
 class ChallengesController < ApplicationController
   before_action :authenticate_user!
+  before_action :current_tournament
   before_action :challenge_params, only: [:show, :points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
 

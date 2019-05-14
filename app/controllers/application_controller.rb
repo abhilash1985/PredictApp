@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_filter :authenticate_user!
-  before_action :current_tournament
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     dashboard_index_path
   end
 
   def current_tournament
+    return unless user_signed_in?
     session[:user_id] = params[:id] unless params[:id].blank?
     @current_tournament ||= Tournament.find_by_id(session[:user_id])
     @current_tournament ||= Tournament.active.first

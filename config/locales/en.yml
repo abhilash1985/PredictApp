@@ -30,4 +30,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+
+  app_name: 'PredictApp2019'
+
+  cwc2019: 'cwc2019'
+  cricket: 'cricket'
+
+  menu:
+    home: 'Home'
+    leaderboard: 'Leaderboard'
+    user_payments: 'User Payments'
+    winners_list: 'Winners List'
+    prize_list: 'Prize List'
+    admin: 'Admin'
+    update_paid_status: 'Update Paid Status'
+    change_password: 'Change Password'
+    logout: 'Logout'
+
+  footer:
+    all_rights_reserved: '2019 All rights reserved.'
+   
