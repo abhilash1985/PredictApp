@@ -37,6 +37,11 @@ en:
   cwc2019: 'cwc2019'
   cricket: 'cricket'
 
+  tournaments: 'Tournaments'
+  cricket_2019: 'ICC Cricket World Cup 2019'
+  fifa_2018: '2018 FIFA World Cup Russia'
+  eng_ind_tour: 'India Tour of England 2018'
+
   menu:
     home: 'Home'
     leaderboard: 'Leaderboard'

@@ -13,10 +13,12 @@ class ApplicationController < ActionController::Base
 
   def current_tournament
     return unless user_signed_in?
-    session[:user_id] = params[:id] unless params[:id].blank?
-    @current_tournament ||= Tournament.find_by_id(session[:user_id])
+    session[:tournament_id] = params[:id] unless params[:id].blank?
+    @current_tournament ||= Tournament.find_by_id(session[:tournament_id])
     @current_tournament ||= Tournament.active.first
     @current_tournament ||= Tournament.first
+    @current_tournament_name = @current_tournament.tournament_type.name
+    @current_tournament_type = @current_tournament.tournament_type.game
   end
 
   protected

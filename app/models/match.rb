@@ -1,7 +1,7 @@
 # Match
 class Match < ApplicationRecord
   # Associations
-  belongs_to :challenge
+  belongs_to :challenge, optional: true
   belongs_to :stadium
   belongs_to :team1, class_name: 'Team', foreign_key: :team1_id
   belongs_to :team2, class_name: 'Team', foreign_key: :team2_id

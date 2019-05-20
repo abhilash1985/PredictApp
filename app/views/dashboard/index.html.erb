@@ -18,37 +18,20 @@
       <ul class="nav navbar-nav">
         <li><a href="#"></a></li>
         <li class="dropdown mega-dropdown active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournaments <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t(:tournaments) %> <span class="caret"></span></a>
           <div class="dropdown-menu mega-dropdown-menu" style = "background-color: #090909; opacity:0.8;">
             <div class="container-fluid ">
               <!-- Tab panes -->
               <div class="tab-content">
                 <div class="tab-pane active mega-dropdown-menu">
                   <ul class="nav-list list-inline">
-                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.india_tour_of_england.first) do %>
-                      <%= image_tag('india_tour.jpg', size: '150x100') %>
-                      <span>India Tour of England 2018</span>
-                      <% end -%>
-                    </li>
-
-                    <li class = 'padding_icons'><%= link_to '#' do %>
-                      <%= image_tag('cricket_2019.jpg', size: '150x100') %>
-                      <span>COMING SOON</span>
-                      <% end -%>
-                    </li>
-
-                    <li class = 'padding_icons'><%= link_to '#' do %>
-                      <%= image_tag('ipl.jpg', size: '150x100') %>
-                      <span>COMING SOON</span>
-                      <% end -%>
-                    </li>
-
-                    <li class = 'padding_icons'><%= link_to tournament_path(Tournament.fifa_world_cup.first) do %>
-                      <%= image_tag('russia.jpg', size: '150x100') %>
-                      <span>FIFA World Cup 2018</span>
-                      <% end -%>
-                    </li>
-
+                    <% @tournaments.each do |tournament| %>
+                      <li class = 'padding_icons'><%= link_to tournament_path(tournament) do %>
+                        <%= image_tag(tournament.image_name, size: '150x100') %>
+                        <span><%= tournament.name.upcase %></span>
+                        <% end -%>
+                      </li>
+                    <% end %>
 
                   </ul>
                 </div>
@@ -67,14 +50,14 @@
           <ul class="dropdown-menu" role="menu">
             <!-- <li><a href="#">My Points</a></li>
             <li><a href="#">Profile</a></li> -->
-            <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <li><%= link_to t('menu.change_password'), edit_user_registration_path %></li>
             <li class="divider"></li>
             <% if current_user.admin %>
               <li>
-                <%= link_to 'Admin', '/admin' %>
+                <%= link_to t('menu.admin'), '/admin' %>
               </li>
             <% end %>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+            <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete  %></li>
           </ul>
         </li>
       </ul>

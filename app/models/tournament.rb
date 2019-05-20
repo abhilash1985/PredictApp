@@ -6,17 +6,28 @@ class Tournament < ApplicationRecord
   belongs_to :tournament_type
   # Scopes
   scope :world_cup, -> { where(name: 'ICC Cricket World Cup 2015') }
-  scope :fifa_world_cup, -> { where(name: '2018 FIFA World Cup Russia') }
-  scope :cricket_2019, -> { where(name: 'ICC Cricket World Cup 2019') }
+  scope :fifa_world_cup, -> { where(name: I18n.t(:fifa_2018)) }
+  scope :cricket_2019, -> { where(name: I18n.t(:cricket_2019)) }
   scope :russia, -> { where(location: 'Russia') }
   # scope :ipl2015, -> { where(name: 'IPL 2015') }
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
-  scope :india_tour_of_england, -> { where(name: 'India Tour of England 2018') }
+  scope :india_tour_of_england, -> { where(name: I18n.t(:eng_ind_tour)) }
   scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
     name.to_s
+  end
+
+  def image_name
+    case name
+    when I18n.t(:cricket_2019)
+      'cricket_2019.jpg'
+    when I18n.t(:fifa_2018)
+      'russia.jpg'
+    when I18n.t(:eng_ind_tour)
+      'ipl.jpg'
+    end
   end
 
   def cwc2015?
