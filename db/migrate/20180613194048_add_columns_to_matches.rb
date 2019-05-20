@@ -1,5 +1,5 @@
 # AddColumnsToMatches
-class AddColumnsToMatches < ActiveRecord::Migration
+class AddColumnsToMatches < ActiveRecord::Migration[5.2]
   def change
     add_column :matches, :round_id, :integer
     add_column :matches, :team1_score, :integer, default: 0

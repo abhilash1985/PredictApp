@@ -1,4 +1,5 @@
-class AddIndicesToTable < ActiveRecord::Migration
+# AddIndicesToTable
+class AddIndicesToTable < ActiveRecord::Migration[5.2]
   def change
     add_index :tournaments, :name
     add_index :tournaments, :start_date

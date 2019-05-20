@@ -1,4 +1,5 @@
-class CreateChallenges < ActiveRecord::Migration
+# CreateChallenges
+class CreateChallenges < ActiveRecord::Migration[5.2]
   def change
     create_table :challenges do |t|
       t.string :name

@@ -1,4 +1,5 @@
-class CreateChallengePayments < ActiveRecord::Migration
+# CreateChallengePayments
+class CreateChallengePayments < ActiveRecord::Migration[5.2]
   def change
     create_table :challenge_payments do |t|
       t.references :user, index: true

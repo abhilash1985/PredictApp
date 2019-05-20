@@ -1,4 +1,5 @@
-class CreateMatchQuestions < ActiveRecord::Migration
+# CreateMatchQuestions
+class CreateMatchQuestions < ActiveRecord::Migration[5.2]
   def change
     create_table :match_questions do |t|
       t.integer :match_id
