@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_05_13_193733) do
 
-  create_table "challenge_payments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "challenge_id"
+  create_table "challenge_payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "challenge_id"
     t.integer "total_prize_amount"
     t.integer "winner_prize_amount"
     t.datetime "created_at", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["user_id"], name: "index_challenge_payments_on_user_id"
   end
 
-  create_table "challenges", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "challenges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "tournament_id"
     t.datetime "start_time"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["tournament_id"], name: "index_challenges_on_tournament_id"
   end
 
-  create_table "match_questions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "match_questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "match_id"
     t.integer "question_id"
     t.text "options"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["question_id"], name: "index_match_questions_on_question_id"
   end
 
-  create_table "matches", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "matches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "match_no"
     t.integer "team1_id"
     t.integer "team2_id"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["team2_id"], name: "index_matches_on_team2_id"
   end
 
-  create_table "payments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.integer "predictions"
     t.integer "paid_predictions"
     t.integer "amount_paid"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  create_table "players", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "players", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.integer "team_id"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["player_style"], name: "index_players_on_player_style"
   end
 
-  create_table "predictions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "predictions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_challenge_id"
     t.integer "match_question_id"
     t.string "user_answer"
@@ -113,16 +113,16 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["user_challenge_id"], name: "index_predictions_on_user_challenge_id"
   end
 
-  create_table "prizes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "prizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "prize_type"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_prizes_on_user_id"
   end
 
-  create_table "questions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,21 +131,21 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["weightage"], name: "index_questions_on_weightage"
   end
 
-  create_table "rounds", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "rounds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_rounds_on_name"
   end
 
-  create_table "stadia", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "stadia", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_stadia_on_name"
   end
 
-  create_table "teams", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "rank"
     t.datetime "created_at", null: false
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["short_name"], name: "index_teams_on_short_name"
   end
 
-  create_table "tournament_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "tournament_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "game"
     t.boolean "active", default: true
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["name"], name: "index_tournament_types_on_name"
   end
 
-  create_table "tournaments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "tournaments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.date "start_date"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["tournament_type_id"], name: "index_tournaments_on_tournament_type_id"
   end
 
-  create_table "user_challenges", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "user_challenges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "challenge_id"
     t.datetime "created_at", null: false
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.index ["user_id"], name: "index_user_challenges_on_user_id"
   end
 
-  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "middle_name"
     t.string "last_name"

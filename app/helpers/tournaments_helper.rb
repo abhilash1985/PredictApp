@@ -1,9 +1,7 @@
 # TournamentsHelper
 module TournamentsHelper
   def load_icon
-    # ['icon1.jpg', 'icon2.jpg', 'icon3.jpg', 'icon4.jpg', 'icon5.jpg', 'icon6.jpg',
-    #  'icon7.jpg', 'icon8.jpg', 'icon9.jpg', 'icon10.jpg', 'icon11.jpg'].sample
-    ['icon10.jpg', 'icon11.jpg', 'icon12.jpg', 'icon13.jpg'].sample
+    ['icon1.jpg', 'icon2.jpg', 'icon3.jpg', 'icon4.jpg', 'icon5.jpg', 'icon6.jpg'].sample
   end
 
   def option_collection(match)
