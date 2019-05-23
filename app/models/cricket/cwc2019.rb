@@ -2,7 +2,7 @@
 module Cricket
   # Cwc2019
   class Cwc2019 < BasicClass
-    def initialize(tournament)
+    def initialize(args = {})
       super
     end
   end

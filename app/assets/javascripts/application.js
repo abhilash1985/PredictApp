@@ -11,12 +11,13 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+// require jquery_ujs
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-multiselect
+//= require jquery.plugin
 //= require jquery.countdown
 //= require tooltipster
 //= require dataTables/jquery.dataTables
