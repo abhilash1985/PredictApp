@@ -42,6 +42,7 @@ en:
     win_the_toss: 'Who will win the toss?'
     mom: 'Who will be the man of the match?'
     winning_margin: 'Winning margin will be?'
+    runs_with_team_name: "Runs will be scored by %{team_name}?"
     runs_1st_innings: 'Runs will be scored by the team batting 1st?'
     runs_2nd_innings: 'Runs will be scored by the team batting 2nd?'
     runs_afg: 'Runs will be scored by Afghanistan?'
@@ -98,7 +99,7 @@ en:
     individual_score: 'Highest individual score in the match will be?'
     individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
-    first_boundary_in_match: 'First boundary in the match will be?'
+    first_boundary_in_match: 'First boundary in the match will be through?'
 
 
   tournaments: 'Tournaments'
