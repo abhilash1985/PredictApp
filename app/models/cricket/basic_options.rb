@@ -21,7 +21,7 @@ module Cricket
     end
 
     def no_of_out_options
-      %w(0 1-2 3-4 5-6 7-8 9-10 11-15 15+)
+      %w(0 1-2 3-4 5-6 7 8 9-10 10+)
     end
 
     def no_of_extras_options
@@ -83,7 +83,7 @@ module Cricket
     end
 
     def first_boundary_options
-      ['Cover Drive', 'Square Cut', 'Stright Drive', 'Edge', 'Pull Shot', 'Hook', 'Others',
+      ['Cover Drive', 'Square Cut', 'Stright Drive', 'Edge', 'Pull Shot', 'Hook Shot', 'Others',
        'No Boundary']
     end
   end

@@ -3,6 +3,7 @@ class Tournament < ApplicationRecord
   include Leaderboard
   # Associations
   has_many :challenges
+  has_many :matches
   belongs_to :tournament_type
   # Scopes
   scope :world_cup, -> { where(name: 'ICC Cricket World Cup 2015') }
