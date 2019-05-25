@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_193733) do
+ActiveRecord::Schema.define(version: 2019_05_25_161520) do
 
   create_table "challenge_payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -65,12 +65,14 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
     t.integer "team1_score", default: 0
     t.integer "team2_score", default: 0
     t.string "won_in", default: "FT"
+    t.bigint "tournament_id"
     t.index ["challenge_id"], name: "index_matches_on_challenge_id"
     t.index ["match_date"], name: "index_matches_on_match_date"
     t.index ["match_no"], name: "index_matches_on_match_no"
     t.index ["stadium_id"], name: "index_matches_on_stadium_id"
     t.index ["team1_id"], name: "index_matches_on_team1_id"
     t.index ["team2_id"], name: "index_matches_on_team2_id"
+    t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -214,6 +216,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_193733) do
 
   add_foreign_key "challenge_payments", "challenges"
   add_foreign_key "challenge_payments", "users"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "payments", "users"
   add_foreign_key "prizes", "users"
   add_foreign_key "tournaments", "tournament_types"
