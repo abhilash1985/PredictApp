@@ -133,3 +133,13 @@ en:
     questions: 'Questions'
     close: 'Close'
     click_here_to_see: "Click Here to see %{challenge_title}"
+
+  leaderboard:
+    sl_no: 'Sl No'
+    user: 'User'
+    total_points: 'Total Points'
+    paid_points: 'Paid Points'
+    match_predicted: 'No.of Matches Predicted'
+    full_points: 'No.of Full Points'
+    zero_points: 'No.of Zero Points'
+    prediction_perc: 'Prediction %'
