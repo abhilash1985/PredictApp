@@ -17,13 +17,17 @@
             <div class="thumbnail">
               <div class="caption">
                 <h5><%= match.match_date.to_s(:default_with_time) %></h5>
-                <p class='btn-warning btn-sm team-font'><%= match.team1.name.upcase %></p>
+                <% team1 = match.team1 %>
+                <% team2 = match.team2 %>
+                <p class='btn-danger btn-sm team-font'><%= team1.name.upcase %></p>
                 <p><%= image_tag('vs.png', size: '40x40') %></p>
-                <p class = 'btn-success btn-sm team-font'><%= match.team2_name.upcase %></p>
+                <p class = 'btn-success btn-sm team-font'><%= team2.name.upcase %></p>
                 <p><%= match.stadium_name %></p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
-              <%= image_tag("icons/#{@current_tournament_type}/#{@current_tournament_name}/#{load_icon}", size: '400x300')%>
+              <% team1_short = team1.short_name %>
+              <% team2_short = team2.short_name %>
+              <%= show_icon(team1_short, team2_short) %>
             </div>
           </div>
         </a>

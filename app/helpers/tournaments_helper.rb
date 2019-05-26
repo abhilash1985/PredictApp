@@ -1,6 +1,21 @@
 # TournamentsHelper
 module TournamentsHelper
-  def load_icon
+  def load_icon(team1, team2)
+    path = "icons/#{@current_tournament_type}/#{@current_tournament_name}"
+    team_icon_img = teams_icon(path, team1, team2)
+    if Rails.application.assets.resolve(team_icon_img).present?
+      team_icon_img
+    else
+      "#{path}/#{deafult_icon}"
+    end
+  end
+
+  def teams_icon(path, team1, team2)
+    team_image = "#{team1}_#{team2}"
+    "#{path}/#{team_image}.jpg"
+  end
+
+  def deafult_icon
     ['icon1.jpg', 'icon2.jpg', 'icon3.jpg', 'icon4.jpg', 'icon5.jpg', 'icon6.jpg'].sample
   end
 
@@ -20,6 +35,10 @@ module TournamentsHelper
 
   def leaderboard(from = nil)
     from.blank? ? 'Leaderboard' : 'Knockout Board'
+  end
+
+  def show_icon(team1, team2)
+    image_tag(load_icon(team1, team2).to_s, size: '400x300')
   end
 
   def show_team_logo(team_short_name)
