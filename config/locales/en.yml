@@ -35,7 +35,7 @@ en:
   app_name: 'PredictApp2019'
 
   cwc2019: 'cwc2019'
-  cricket: 'cricket'
+  cricket_name: 'cricket'
   
   cricket:
     win_the_match: 'Who will win the match?'
@@ -101,11 +101,11 @@ en:
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
     first_boundary_in_match: 'First boundary in the match will be through?'
 
-
   tournaments: 'Tournaments'
   cricket_2019: 'ICC Cricket World Cup 2019'
   fifa_2018: '2018 FIFA World Cup Russia'
   eng_ind_tour: 'India Tour of England 2018'
+  prediction: 'Prediction'
 
   menu:
     home: 'Home'
@@ -120,4 +120,16 @@ en:
 
   footer:
     all_rights_reserved: '2019 All rights reserved.'
-   
+  
+  tournament:
+    current_challenges: 'Current Challenges'
+    prev_challenges: 'Previous Challenges'
+    choose_challenges: 'Choose your Challenge'
+
+  predictions:
+    all: 'All Predictions'
+    points: 'Points'
+    please_wait: 'Please wait...'
+    questions: 'Questions'
+    close: 'Close'
+    click_here_to_see: "Click Here to see %{challenge_title}"

@@ -1,19 +1,10 @@
 <% challenges.each_with_index do |challenge, chlng_index| %>
   <div class = 'add_padding'>
-    <% challenge_title = name == 'current' ? 'All Predictions' : 'Points' %>
+    <% challenge_title = name == 'current' ? t('predictions.all') : t('predictions.points') %>
     <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success',
-                title: "Click Here to see #{challenge_title}", data: { no_turbolink: true } %>
-    <% if name == 'current' %>
-      <span class = 'btn btn-danger countdown' id='<%="count_down_#{challenge.id}"%>'></span>
-      <script type="text/javascript">
-        var challenge_date = '<%= challenge.end_time.to_s(:count_down)%>'
-        $('#<%="count_down_#{challenge.id}"%>').countdown(challenge_date, function(event) {
-          $(this).html(event.strftime('%d Days %HH:%MM:%SS'));
-        }).on('finish.countdown', function(event) {
-          window.location.href = '<%= predictions_table_challenge_path(challenge) %>';
-        });
-      </script>
-    <% end -%>
+                title: t('predictions.click_here_to_see', challenge_title: challenge_title), 
+                data: { no_turbolink: true } %>
+    <%= render 'count_down', name: name, challenge: challenge %>
   </div>
   <div class="container">
     <div class="row">
