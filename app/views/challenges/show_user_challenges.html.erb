@@ -1,8 +1,8 @@
 <%- model_class = Prediction -%>
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "Update User Paid" %>
+    <%=t '.title', default: t('user_challenges.name') %>
   </h4>
 </div>
 <div class="ind-body data-table text-center" style="width: 80%;">
@@ -10,16 +10,16 @@
   <table class="table table-striped table-bordered text-center">
     <thead>
       <tr class="background-white">
-        <th class="text-center btn-success">Challenge</th>
-        <th class="text-center btn-success">User</th>
-        <th class="text-center btn-success">Action</th>
+        <th class="text-center btn-success"><%= t('user_challenges.challenge') %></th>
+        <th class="text-center btn-success"><%= t('user_challenges.user') %></th>
+        <th class="text-center btn-success"><%= t('user_challenges.action') %></th>
       </tr>
     </thead>
     <tbody>
       <tr class="background-white">
       	<td class="text-left">
           <%= select_tag 'challenge', options_from_collection_for_select(@challenges, 'id', 'name'),
-                                      id: "challenge_select", prompt: 'Select Challenge' %>
+                                      id: "challenge_select", prompt: t('user_challengess.select_challenge') %>
         </td>
         <td class="text-left">
           <%= select_tag 'users[]', options_from_collection_for_select(@users, 'id', 'show_name'),
@@ -27,7 +27,7 @@
         </td>
         <td>
           <div class="actions">
-            <%= submit_tag 'Submit', class: 'btn btn-success' %>
+            <%= submit_tag t('submit'), class: 'btn btn-success' %>
           </div>
         </td>
       </tr>

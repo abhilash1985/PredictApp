@@ -1,7 +1,8 @@
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "#{leaderboard(params[:from])} - #{@current_tournament.name}" %>
+    <%=t '.title', default: t('leaderboard.header', name: leaderboard(params[:from]), 
+                                                    tournament: @current_tournament.name) %>
   </h4>
 </div>
 <div class = "ind-body data-table">

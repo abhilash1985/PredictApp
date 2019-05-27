@@ -1,8 +1,8 @@
-<%= image_tag('background_new.jpg', { id:'full-screen-background-image', class:'blur-me' }) %>
+<%= image_tag(load_welcome_image, { id:'full-screen-background-image', class:'blur-me' }) %>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4 class = 'heading'><%= t('tournament.choose_challenges') %></h4>
+      <h4 class='heading'><%= t('tournament.choose_challenges').upcase %></h4>
       <div class="panel_custom with-nav-tabs panel-default add_opacity">
         <div class="panel-heading black_color">
           <ul class="nav nav-pills ">

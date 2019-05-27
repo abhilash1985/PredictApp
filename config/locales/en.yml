@@ -106,6 +106,8 @@ en:
   fifa_2018: '2018 FIFA World Cup Russia'
   eng_ind_tour: 'India Tour of England 2018'
   prediction: 'Prediction'
+  submit: 'Submit'
+  close: 'Close'
 
   menu:
     home: 'Home'
@@ -117,6 +119,24 @@ en:
     update_paid_status: 'Update Paid Status'
     change_password: 'Change Password'
     logout: 'Logout'
+
+  login:
+    lets_play: 'Lets Predict'
+    sign_in: 'Sign In'
+    register: 'Register'
+    why: 'Why?'
+    instructions: 'We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.'
+    contact: 'Please contact'
+    name: 'Abhilash Vannarath'
+    other_enquiry: 'for any other inquiries.'
+    email: 'Email:'
+    password: 'Password:'
+    forgot_password: 'Forgot password'
+    first_name: 'First Name:'
+    middle_name: 'Middle Name:'
+    last_name: 'Last Name:'
+    re_enter_password: 'Re-Enter Password:'
+    sign_up: 'Sign Up'
 
   footer:
     all_rights_reserved: '2019 All rights reserved.'
@@ -135,6 +155,7 @@ en:
     click_here_to_see: "Click Here to see %{challenge_title}"
 
   leaderboard:
+    header: "%{name} - %{tournament}"
     sl_no: 'Sl No'
     user: 'User'
     total_points: 'Total Points'
@@ -153,6 +174,13 @@ en:
     winner_prize: 'Winner Prize Amount'
     account_balance: 'Account Balance'
     total_balance: 'Total Balance >>'
+
+  user_challenges:
+    name: 'Update User Paid'
+    challenge: 'Challenge'
+    user: 'User'
+    action: 'Action'
+    select_challenge: 'Select Challenge'
 
   user_payments:
     details: 'User Payment Details'

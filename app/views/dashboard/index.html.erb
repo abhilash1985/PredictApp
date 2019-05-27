@@ -1,4 +1,4 @@
-<%= image_tag('background_new.jpg', {id:'full-screen-background-image'})%>
+<%= image_tag(load_welcome_image, { id: 'full-screen-background-image' }) %>
 
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
@@ -54,7 +54,7 @@
             <li class="divider"></li>
             <% if current_user.admin %>
               <li>
-                <%= link_to t('menu.admin'), '/admin' %>
+                <%= link_to t('menu.admin'), '/admin', target: '_self' %>
               </li>
             <% end %>
             <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete  %></li>

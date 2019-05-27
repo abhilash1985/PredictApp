@@ -32,9 +32,9 @@
             <% if @current_tournament %>
               <%= link_to @current_tournament.name, tournament_path(@current_tournament),
                                                     class:'navbar-brand', style: 'color:#fff',
-                                                    data: { no_turbolink: true } %>
+                                                    data: { no_turbolink: true }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                         class: 'navbar-brand', data: { no_turbolink: true } %>
+                                         class: 'navbar-brand', data: { no_turbolink: true }, target: '_self' %>
             <% end %>
           </div>
 
@@ -52,23 +52,23 @@
                   <% if @current_tournament %>
                     <li>
                       <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                                 data: { no_turbolink: true } %>
+                                                 data: { no_turbolink: true }, target: '_self' %>
                     </li>
                   <% end %>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
-                                                     data: { no_turbolink: true } %>
+                                                     data: { no_turbolink: true }, target: '_self' %>
                     </li>
                   <% end %>
                   <li>
                     <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(current_user),
-                                                         data: { no_turbolink: true } %>
+                                                         data: { no_turbolink: true }, target: '_self' %>
                   </li>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to t('menu.prize_list'), prize_list_challenge_path(current_user),
-                                                data: { no_turbolink: true } %>
+                                                data: { no_turbolink: true }, target: '_self' %>
                     </li>
                   <% end %>  
                   <% if current_user.admin %>
@@ -77,7 +77,8 @@
                     </li>
                     <li>
                       <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
-                                                        data: { no_turbolink: true } if @current_tournament %>
+                                                        data: { no_turbolink: true },
+                                                        target: '_self' if @current_tournament %>
                     </li>
                   <% end %>
                   <%# if @current_tournament.fifa2019? %>
@@ -87,7 +88,7 @@
                     <%# end %>
                   <li><%= link_to t('menu.change_password'), edit_user_registration_path %></li>
                   <li class="divider"></li>
-                  <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete  %></li>
+                  <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete %></li>
                 </ul>
               </li>
             </ul>

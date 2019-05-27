@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def load_login_image
-    load_image('login.png')
+    load_image('login.jpg')
   end
 
   def load_bg_image
