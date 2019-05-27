@@ -3,7 +3,7 @@ module TournamentsHelper
   def load_icon(team1, team2)
     path = "icons/#{@current_tournament_type}/#{@current_tournament_name}"
     team_icon_img = teams_icon(path, team1, team2)
-    if Rails.application.config.assets.resolve(team_icon_img).present?
+    if asset_present?(team_icon_img)
       team_icon_img
     else
       "#{path}/#{deafult_icon}"

@@ -28,9 +28,17 @@ module ApplicationHelper
     image_tag 'paid.png', size: '12x12', class: 'margin-left-5'
   end
 
+  def asset_present?(image_path)
+    if Rails.env.production?
+      Rails.application.assets_manifest.assets[image_path].present?
+    else
+      Rails.application.assets.resolve(image_path).present?
+    end
+  end
+
   def load_image(name)
     img_path = "#{@current_tournament_type}/#{@current_tournament_name}/#{name}"
-    if Rails.application.config.assets.resolve(img_path).present?
+    if asset_present?(img_path)
       img_path
     else
       "background/#{name}"
