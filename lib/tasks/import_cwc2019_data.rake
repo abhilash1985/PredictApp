@@ -76,7 +76,7 @@ namespace :import_cwc2019 do
 
   desc 'Import Matches'
   task matches: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     begin
       file = 'db/data/matches.xls'
@@ -111,7 +111,7 @@ namespace :import_cwc2019 do
 
   desc 'Import questions'
   task questions: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
     predict_app = generate_predict_class.klass_name.new
     questions = predict_app.all_questions
     questions.each do |quest, weightage|
@@ -125,7 +125,7 @@ namespace :import_cwc2019 do
 
   desc 'Import match questions'
   task match_questions: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
     generate_predict_class
     @predict_class.import_match_questions
     p 'Imported Match Questions...'
