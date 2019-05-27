@@ -31,7 +31,7 @@
         <td class="text-center"><%= value['no_of_full_points'].to_i %></td>
         <td class="text-center">
           <%= value['no_of_zero_points'].to_i %>
-          <%= image_tag 'icons/duck.jpeg', { size: '12x12', class: 'margin-left-5' } %>
+          <%= image_tag 'icons/duck.jpg', { size: '12x12', class: 'margin-left-5' } %>
         </td>
         <% tm = value['total_match_points'].to_i %>
       	<td class="text-center"><%= tm.to_i == 0 ? 0 : (tp.to_f * 100/tm).round(2) %></td>
