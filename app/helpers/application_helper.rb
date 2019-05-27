@@ -30,7 +30,7 @@ module ApplicationHelper
 
   def load_image(name)
     img_path = "#{@current_tournament_type}/#{@current_tournament_name}/#{name}"
-    if Rails.application.assets.config.resolve(img_path).present?
+    if Rails.application.config.assets.resolve(img_path).present?
       img_path
     else
       "background/#{name}"
