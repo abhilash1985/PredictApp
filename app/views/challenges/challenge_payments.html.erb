@@ -1,21 +1,21 @@
 <%- model_class = Prediction -%>
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "Winners List" %>
+    <%=t '.title', default: t('menu.winners_list') %>
   </h4>
 </div>
 <div class = "ind-body data-table">
 <table class="table table-striped table-bordered text-center" id="challenge_payment_table">
   <thead>
     <tr class="background-white">
-      <th class="text-center btn-success no-sort" data-orderable="false">Sl No</th>
-      <th class="text-center btn-success">Date</th>
-      <th class="text-center btn-success">Challenge</th>
-      <th class="text-center btn-success">Total Prize Amount</th>
-      <th class="text-center btn-success">Winner</th>
-      <th class="text-center btn-success">Winner Prize Amount</th>
-      <th class="text-center btn-success">Account Balance</th>
+      <th class="text-center btn-success no-sort" data-orderable="false"><%= t('challenge_payments.sl_no') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.date') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.challenge') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.total_prize') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.winner') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.winner_prize') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.account_balance') %></th>
     </tr>
   </thead>
   <tbody>
@@ -33,7 +33,7 @@
       </tr>
     <% end %>
     <tr class="background-white">
-      <td class="text-right alert-success" colspan="6"><b>Total Balance >></b></td>
+      <td class="text-right alert-success" colspan="6"><b><%= t('challenge_payments.total_balance') %></b></td>
       <td class="text-center alert-success"><b><%= total_balance %></b></td>
     </tr>
   </tbody>

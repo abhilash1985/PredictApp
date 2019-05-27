@@ -143,3 +143,27 @@ en:
     full_points: 'No.of Full Points'
     zero_points: 'No.of Zero Points'
     prediction_perc: 'Prediction %'
+
+  challenge_payments:
+    sl_no: 'Sl No'
+    date: 'Date'
+    challenge: 'Challenge'
+    total_prize: 'Total Prize Amount'
+    winner: 'Winner'
+    winner_prize: 'Winner Prize Amount'
+    account_balance: 'Account Balance'
+    total_balance: 'Total Balance >>'
+
+  user_payments:
+    details: 'User Payment Details'
+    sl_no: 'Sl No'
+    user: 'User'
+    total_predictions: 'Total Predictions'
+    total_paid_predictions: 'Total Paid Predictions'
+    challenge_fee: 'Total Challenge Fee'
+    amount_paid: 'Amount Paid'
+    matches_won: 'Matches Won'
+    amount_won: 'Amount Won'
+    account_balance: 'Account Balance'
+    profit_loss: 'Profit/Loss'
+
