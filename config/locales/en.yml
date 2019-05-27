@@ -174,3 +174,7 @@ en:
     total_points: 'Total Points'
     points_in_perc: 'Points in %'
 
+  predictions_table:
+    predictions: "%{name} - %{end_time} - Predictions"
+    sl_no: 'Sl No'
+    user: 'User'

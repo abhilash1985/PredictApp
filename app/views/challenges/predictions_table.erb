@@ -1,7 +1,8 @@
-<%= image_tag('welcome1.jpg', { id: 'full-screen-background-image' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "#{@challenge.try(:name)} - #{@challenge.end_time.to_s(:default)} - Predictions" %>
+    <%=t '.title', default: t('predictions_table.prediction', name: @challenge.try(:name), 
+                                                              end_time: @challenge.end_time.to_s(:default)) %>
   </h4>
 </div>
 <% @matches.each do |match| %>
@@ -10,8 +11,8 @@
     <table class="table table-striped table-bordered text-center" id="predictions">
       <thead>
         <tr class="background-white">
-          <th valign="top" class="text-center btn-success">Sl No</th>
-          <th valign="top" class="text-center btn-success">User</th>
+          <th valign="top" class="text-center btn-success"><%= t('predictions_table.sl_no') %></th>
+          <th valign="top" class="text-center btn-success"><%= t('predictions_table.user') %></th>
           <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
             <th class="text-center btn-success">
               <div class='check' title="<%= match_question.question_name_with_points(index) %>">
