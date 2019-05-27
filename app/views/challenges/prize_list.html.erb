@@ -1,8 +1,8 @@
 <%- model_class = Prediction -%>
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "Prize List" %>
+    <%=t '.title', default: t('menu.prize_list') %>
   </h4>
 </div>
 <div class = "ind-body data-table">
@@ -12,10 +12,10 @@
   <table class="table table-striped table-bordered text-center" id="prize_list_table">
     <thead>
       <tr class="background-white">
-        <th class="text-center btn-success no-sort" data-orderable="false">Sl No</th>
+        <th class="text-center btn-success no-sort" data-orderable="false"><%= t('prize_lists.sl_no') %></th>
         <th class="text-center btn-success"></th>
-        <th class="text-center btn-success">Winner</th>
-        <th class="text-center btn-success">Prize</th>
+        <th class="text-center btn-success"><%= t('prize_lists.winner') %></th>
+        <th class="text-center btn-success"><%= t('prize_lists.prize') %></th>
       </tr>
     </thead>
     <tbody>
@@ -32,11 +32,11 @@
         </tr>
       <% end %>
       <tr class="background-white">
-        <td class="text-right alert-success" colspan="3"><b>Total Prize Amount >></b></td>
+        <td class="text-right alert-success" colspan="3"><b><%= t('prize_lists.total_prize') %></b></td>
         <td class="text-center alert-success"><b><%= total_prize_amount %></b></td>
       </tr>
       <tr class="background-white">
-        <td class="text-right alert-success" colspan="3"><b>Total Amount Recovered >></b></td>
+        <td class="text-right alert-success" colspan="3"><b><%= t('prize_lists.total_amount_recovered') %></b></td>
         <td class="text-center alert-success"><b><%= total_amount %></b></td>
       </tr>
     </tbody>

@@ -178,3 +178,10 @@ en:
     predictions: "%{name} - %{end_time} - Predictions"
     sl_no: 'Sl No'
     user: 'User'
+
+  prize_lists:
+    sl_no: 'Sl No'
+    winner: 'Winner'
+    prize: 'Prize'
+    total_prize: 'Total Prize Amount >>'
+    total_amount_recovered: 'Total Amount Recovered >>'
