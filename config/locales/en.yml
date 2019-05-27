@@ -167,3 +167,10 @@ en:
     account_balance: 'Account Balance'
     profit_loss: 'Profit/Loss'
 
+  points_table:
+    results: "%{name} - %{end_time} - Results"
+    sl_no: 'Sl No'
+    user: 'User'
+    total_points: 'Total Points'
+    points_in_perc: 'Points in %'
+

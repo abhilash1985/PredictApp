@@ -1,18 +1,19 @@
 <%- model_class = Prediction -%>
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "#{@challenge.try(:name)} - #{@challenge.end_time.to_s(:default)} - Results" %>
+    <%=t '.title', default: t('points_table.results', name: @challenge.try(:name), 
+                                                      end_time: @challenge.end_time.to_s(:default)) %>
   </h4>
 </div>
 <div class = "ind-body data-table">
 <table class="table table-striped table-bordered text-center" id="point_table">
   <thead>
     <tr class="background-white">
-      <th class="text-center btn-success no-sort" data-orderable="false">Sl No</th>
-      <th class="text-center btn-success">User</th>
-      <th class="text-center btn-success">Total Points</th>
-      <th class="text-center btn-success">Points in %</th>
+      <th class="text-center btn-success no-sort" data-orderable="false"><%= t('points_table.sl_no') %></th>
+      <th class="text-center btn-success"><%= t('points_table.user') %></th>
+      <th class="text-center btn-success"><%= t('points_table.total_points') %></th>
+      <th class="text-center btn-success"><%= t('points_table.points_in_perc') %></th>
       <% @matches.each do |match| %>
         <th class="text-center btn-success">
           <%= match.full_name_with_points %>
