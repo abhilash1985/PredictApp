@@ -49,6 +49,10 @@ module ApplicationHelper
     load_image('login.jpg')
   end
 
+  def load_challenge_image
+    load_image('login.jpg')
+  end
+
   def load_bg_image
     load_image('background.jpg')
   end
