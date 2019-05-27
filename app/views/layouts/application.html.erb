@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PredictNWin2019</title>
+    <title><%= t(:app_name) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -28,14 +28,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to 'Home', dashboard_index_path, class:'navbar-brand' %>
-            <%= link_to @current_tournament.name, tournament_path(@current_tournament),
-                                                  class:'navbar-brand', style: 'color:#fff',
-                                                  data: { no_turbolink: true } %>
-            <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
-                                       class: 'navbar-brand', data: { no_turbolink: true } %>
-            <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko'),
-                                            class:'navbar-brand' %>
+            <%= link_to t('menu.home'), dashboard_index_path, class:'navbar-brand' %>
+            <% if @current_tournament %>
+              <%= link_to @current_tournament.name, tournament_path(@current_tournament),
+                                                    class:'navbar-brand', style: 'color:#fff',
+                                                    data: { no_turbolink: true }, target: '_self' %>
+              <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
+                                         class: 'navbar-brand', data: { no_turbolink: true }, target: '_self' %>
+            <% end %>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,31 +49,36 @@
                   <%= current_user.email %> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <%= link_to 'Leaderboard', leaderboard_tournament_path(@current_tournament),
-                                               data: { no_turbolink: true } %>
-                  </li>
-                  <li>
-                    <%= link_to 'User Payments', payment_details_challenge_path(current_user),
-                                                   data: { no_turbolink: true } %>
-                  </li>
-                  <li>
-                    <%= link_to 'Winners List', challenge_payments_challenge_path(current_user),
-                                                         data: { no_turbolink: true } %>
-                  </li>
-                  <li>
-                    <%= link_to 'Prize List', prize_list_challenge_path(current_user),
-                                              data: { no_turbolink: true } %>
-                  </li>
-                  <% if current_user.admin %>
+                  <% if @current_tournament %>
                     <li>
-                      <%= link_to 'Admin', '/admin' %>
+                      <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
+                                                 data: { no_turbolink: true }, target: '_self' %>
                     </li>
                   <% end %>
                   <% if current_user.admin %>
                     <li>
-                      <%= link_to 'Update Paid Status', show_user_challenges_challenge_path,
-                                                        data: { no_turbolink: true } %>
+                      <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
+                                                     data: { no_turbolink: true }, target: '_self' %>
+                    </li>
+                  <% end %>
+                  <li>
+                    <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(current_user),
+                                                         data: { no_turbolink: true }, target: '_self' %>
+                  </li>
+                  <% if current_user.admin %>
+                    <li>
+                      <%= link_to t('menu.prize_list'), prize_list_challenge_path(current_user),
+                                                data: { no_turbolink: true }, target: '_self' %>
+                    </li>
+                  <% end %>  
+                  <% if current_user.admin %>
+                    <li>
+                      <%= link_to t('menu.admin'), rails_admin_path, target: '_self' %>
+                    </li>
+                    <li>
+                      <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
+                                                        data: { no_turbolink: true },
+                                                        target: '_self' if @current_tournament %>
                     </li>
                   <% end %>
                   <%# if @current_tournament.fifa2019? %>
@@ -81,9 +86,9 @@
                     <%#= link_to 'Knockout Board', leaderboard_tournament_path(@current_tournament, from: 'ko') %>
                     <!-- </li> -->
                     <%# end %>
-                  <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+                  <li><%= link_to t('menu.change_password'), edit_user_registration_path %></li>
                   <li class="divider"></li>
-                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+                  <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete %></li>
                 </ul>
               </li>
             </ul>

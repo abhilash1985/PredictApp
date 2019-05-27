@@ -4,15 +4,17 @@
       <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <!-- Need to work on page design  -->
       <%= render 'show_teams', match: match %>
-      <h4 class="modal-title">Questions</h4>
+      <h4 class="modal-title"><%= t('predictions.questions') %></h4>
     </div>
     <div class="modal-body">
     <%= form_for :match_question, url: predict_match_tournaments_path, remote: true do |f| %>
       <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'prediction' %>
       <div class="modal-footer actions">
         <%= f.submit current_user.submit_value(match), class: 'btn btn-primary',
-                    id:'challenge_form', data: { disable_with: "Please wait..." } unless match.started? %>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    id: 'challenge_form', data: { disable_with: t('predictions.please_wait') } unless match.started? %>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" data-backdrop="false">
+          <%= t('predictions.close') %>
+        </button>
       </div>
     <% end -%>
     </div>

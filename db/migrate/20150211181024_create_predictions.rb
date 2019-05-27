@@ -1,4 +1,5 @@
-class CreatePredictions < ActiveRecord::Migration
+# CreatePredictions
+class CreatePredictions < ActiveRecord::Migration[5.2]
   def change
     create_table :predictions do |t|
       t.integer :user_challenge_id

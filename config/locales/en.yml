@@ -30,4 +30,186 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+
+  app_name: 'PredictApp2019'
+
+  cwc2019: 'cwc2019'
+  cricket_name: 'cricket'
+  
+  cricket:
+    win_the_match: 'Who will win the match?'
+    win_the_toss: 'Who will win the toss?'
+    mom: 'Who will be the man of the match?'
+    winning_margin: 'Winning margin will be?'
+    runs_with_team_name: "Runs will be scored by %{team_name}?"
+    runs_1st_innings: 'Runs will be scored by the team batting 1st?'
+    runs_2nd_innings: 'Runs will be scored by the team batting 2nd?'
+    runs_afg: 'Runs will be scored by Afghanistan?'
+    runs_ban: 'Runs will be scored by Bangladesh?'
+    runs_eng: 'Runs will be scored by England?'
+    runs_nzl: 'Runs will be scored by New Zealand?'
+    runs_ind: 'Runs will be scored by India?'
+    runs_pak: 'Runs will be scored by Pakistan?'
+    runs_sa: 'Runs will be scored by South Africa?'
+    runs_aus: 'Runs will be scored by Australia?'
+    runs_sl: 'Runs will be scored by Sri Lanka?'
+    runs_wi: 'Runs will be scored by West Indies?'
+    no_of_bowled: 'Total No. of Bowled outs in the match?'
+    no_of_caught: 'Total No. of Caught outs in the match?'
+    no_of_run_out: 'Total No. of Run outs in the match?'
+    no_of_stumped: 'Total No. of Stumped outs in the match?'
+    no_of_lbw: 'Total No. of LBW outs in the match?'
+    no_of_hit_wicket: 'Total No. of Hit wickets in the match?'
+    no_of_extras: 'Total No. of Extras in the match?'
+    no_of_wide: 'Total No. of Wides in the match?'
+    no_of_no_ball: 'Total No. of No Balls in the match?'
+    no_of_bye: 'Total No. of Byes in the match?'
+    no_of_leg_bye: 'Total No. of Leg Byes in the match?'
+    pp1_batting1: 'How many runs will be scored in the Power Play1 by the team batting 1st?'
+    pp1_batting2: 'How many runs will be scored in the Power Play1 by the team batting 2nd?'
+    pp2_batting1: 'How many runs will be scored in the Power Play2 by the team batting 1st?'
+    pp2_batting2: 'How many runs will be scored in the Power Play2 by the team batting 2nd?'
+    pp3_batting1: 'How many runs will be scored in the Power Play3 by the team batting 1st?'
+    pp3_batting2: 'How many runs will be scored in the Power Play3 by the team batting 2nd?'
+    overs_25_batting1: 'How many runs will be scored in the first 25 overs by the team batting 1st?'
+    overs_25_batting2: 'How many runs will be scored in the first 25 overs by the team batting 2nd?'
+    overs_30_40_batting1: 'How many runs will be scored between 30-40 overs by the team batting 1st?'
+    overs_30_40_batting2: 'How many runs will be scored between 30-40 overs by the team batting 2nd?'
+    best_bowler: 'Who will be the best bowler of the match?'
+    top_scoorer: 'Who will be the top scorer of the match?'
+    top_six_hitter: 'Who will hit the most no. of sixes in the match?'
+    top_four_hitter: 'Who will hit the most no. of boundaries in the match?'
+    first_wicket_taker: 'Who will take the first wicket of the match?'
+    first_six_hitter: 'Who will hit the first boundary of the match?'
+    first_four_hitter: 'Who will hit the first six of the match?'
+    total_sixes: 'Total no. of sixes in the match?'
+    total_sixes_1st_innings: 'Total no. of sixes in the 1st innings?'
+    total_sixes_2nd_innings: 'Total no. of sixes in the 2nd innings?'
+    total_boundaries: 'Total no. of boundaries in the match?'
+    total_boundaries_1st_innings: 'Total no. of boundaries in the 1st innings?'
+    total_boundaries_2nd_innings: 'Total no. of boundaries in the 2nd innings?'
+    wickets_in_1st_innings: 'How many wickets will fell in the 1st innings of the match?'
+    wickets_in_2nd_innings: 'How many wickets will fell in the 2nd innings of the match?'
+    wickets_in_25_1st_innings: 'How many wickets will fell in the first 25 overs of the match in the 1st innings?'
+    wickets_in_25_2nd_innings: 'How many wickets will fell in the first 25 overs of the match in the 2nd innings?'
+    total_drs: 'Total No. of DRS usage in the match?'
+    first_wicket_in_match: 'First wicket in the match will be?'
+    first_caught_out_in_match: 'First Caught out in the match will be?'
+    individual_score: 'Highest individual score in the match will be?'
+    individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
+    individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
+    first_boundary_in_match: 'First boundary in the match will be through?'
+
+  tournaments: 'Tournaments'
+  cricket_2019: 'ICC Cricket World Cup 2019'
+  fifa_2018: '2018 FIFA World Cup Russia'
+  eng_ind_tour: 'India Tour of England 2018'
+  prediction: 'Prediction'
+  submit: 'Submit'
+  close: 'Close'
+
+  menu:
+    home: 'Home'
+    leaderboard: 'Leaderboard'
+    user_payments: 'User Payments'
+    winners_list: 'Winners List'
+    prize_list: 'Prize List'
+    admin: 'Admin'
+    update_paid_status: 'Update Paid Status'
+    change_password: 'Change Password'
+    logout: 'Logout'
+
+  login:
+    lets_play: 'Lets Predict'
+    sign_in: 'Sign In'
+    register: 'Register'
+    why: 'Why?'
+    instructions: 'We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.'
+    contact: 'Please contact'
+    name: 'Abhilash Vannarath'
+    other_enquiry: 'for any other inquiries.'
+    email: 'Email:'
+    password: 'Password:'
+    forgot_password: 'Forgot password'
+    first_name: 'First Name:'
+    middle_name: 'Middle Name:'
+    last_name: 'Last Name:'
+    re_enter_password: 'Re-Enter Password:'
+    sign_up: 'Sign Up'
+
+  footer:
+    all_rights_reserved: '2019 All rights reserved.'
+  
+  tournament:
+    current_challenges: 'Current Challenges'
+    prev_challenges: 'Previous Challenges'
+    choose_challenges: 'Choose your Challenge'
+
+  predictions:
+    all: 'All Predictions'
+    points: 'Points'
+    please_wait: 'Please wait...'
+    questions: 'Questions'
+    close: 'Close'
+    click_here_to_see: "Click Here to see %{challenge_title}"
+
+  leaderboard:
+    header: "%{name} - %{tournament}"
+    sl_no: 'Sl No'
+    user: 'User'
+    total_points: 'Total Points'
+    paid_points: 'Paid Points'
+    match_predicted: 'No.of Matches Predicted'
+    full_points: 'No.of Full Points'
+    zero_points: 'No.of Zero Points'
+    prediction_perc: 'Prediction %'
+
+  challenge_payments:
+    sl_no: 'Sl No'
+    date: 'Date'
+    challenge: 'Challenge'
+    total_prize: 'Total Prize Amount'
+    winner: 'Winner'
+    winner_prize: 'Winner Prize Amount'
+    account_balance: 'Account Balance'
+    total_balance: 'Total Balance >>'
+
+  user_challenges:
+    name: 'Update User Paid'
+    challenge: 'Challenge'
+    user: 'User'
+    action: 'Action'
+    select_challenge: 'Select Challenge'
+
+  user_payments:
+    details: 'User Payment Details'
+    sl_no: 'Sl No'
+    user: 'User'
+    total_predictions: 'Total Predictions'
+    total_paid_predictions: 'Total Paid Predictions'
+    challenge_fee: 'Total Challenge Fee'
+    amount_paid: 'Amount Paid'
+    matches_won: 'Matches Won'
+    amount_won: 'Amount Won'
+    account_balance: 'Account Balance'
+    profit_loss: 'Profit/Loss'
+
+  points_table:
+    results: "%{name} - %{end_time} - Results"
+    sl_no: 'Sl No'
+    user: 'User'
+    total_points: 'Total Points'
+    points_in_perc: 'Points in %'
+
+  predictions_table:
+    predictions: "%{name} - %{end_time} - Predictions"
+    sl_no: 'Sl No'
+    user: 'User'
+
+  prize_lists:
+    sl_no: 'Sl No'
+    winner: 'Winner'
+    prize: 'Prize'
+    total_prize: 'Total Prize Amount >>'
+    total_amount_recovered: 'Total Amount Recovered >>'

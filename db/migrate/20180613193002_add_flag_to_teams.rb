@@ -1,5 +1,5 @@
 # AddFlagToTeams
-class AddFlagToTeams < ActiveRecord::Migration
+class AddFlagToTeams < ActiveRecord::Migration[5.2]
   def change
     add_column :teams, :flag, :string
   end

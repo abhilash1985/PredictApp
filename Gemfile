@@ -75,7 +75,7 @@ end
 
 group :development do
   # Rack Mini profiler
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'pry'
   gem 'web-console', '>= 3.3.0'

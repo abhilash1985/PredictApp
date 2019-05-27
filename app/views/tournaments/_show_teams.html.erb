@@ -12,9 +12,9 @@
       <p class='team-font'><%= team1.rank_details %></p>
     </div>
     <div class="col-sm-4">
-      <%= image_tag("flags/cricket/#{team1_short_name}.png", size: '70x70') %>
+      <%= show_team_logo(team1_short_name) %>
       <%= image_tag('vs2.png', size: '42x20') %>
-      <%= image_tag("flags/cricket/#{team2_short_name}.png", size: '70x70') %>
+      <%= show_team_logo(team2_short_name) %>
     </div>
     <div class="col-sm-4">
       <p class='team-font'><%= team2.name.upcase %></p>

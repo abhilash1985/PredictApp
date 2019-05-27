@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# Seed the Tournament Type
+{ 'cwc2019' => 'cricket' }.each do |key, value|
+  tournament_type = TournamentType.where(name: key, game: value)
+                                  .first_or_initialize
+  tournament_type.save!
+end

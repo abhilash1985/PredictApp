@@ -1,21 +1,22 @@
-<%= image_tag('background/background2.jpeg', { id: 'full-screen-background-image', size: '1366x768' }) %>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: "#{leaderboard(params[:from])} - #{@current_tournament.name}" %>
+    <%=t '.title', default: t('leaderboard.header', name: leaderboard(params[:from]), 
+                                                    tournament: @current_tournament.name) %>
   </h4>
 </div>
 <div class = "ind-body data-table">
 <table class="table table-striped table-bordered text-center" id="leaderboard">
   <thead>
     <tr class="background-white">
-      <th class="text-center btn-success">Sl No</th>
-      <th class="text-center btn-success">User</th>
-      <th class="text-center btn-success">Total Points</th>
-      <th class="text-center btn-success">Paid Points</th>
-      <th class="text-center btn-success">No.of Matches Predicted</th>
-      <th class="text-center btn-success">No.of Full Points</th>
-      <th class="text-center btn-success">No.of Zero Points</th>
-      <th class="text-center btn-success">Prediction %</th>
+      <th class="text-center btn-success"><%= t('leaderboard.sl_no') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.user') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.total_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.paid_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.match_predicted') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.full_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.zero_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.prediction_perc') %></th>
     </tr>
   </thead>
   <tbody>
@@ -24,15 +25,15 @@
       <tr class="background-white">
       	<td class="text-center"><%= index %></td>
       	<td class="text-left"><%= user = value['user'] %></td>
-      	<td class="text-center"><%= tp = fixed_lb(user)[0].to_i + value['total_points'].to_i %></td>
-        <td class="text-center"><%= fixed_lb(user)[1].to_i + value['paid_points'].to_i %></td>
-      	<td class="text-center"><%= fixed_lb(user)[2].to_i + value['no_of_matches'].to_i %></td>
-        <td class="text-center"><%= fixed_lb(user)[3].to_i + value['no_of_full_points'].to_i %></td>
+        <td class="text-center"><%= tp = value['total_points'].to_i %></td>
+        <td class="text-center"><%= value['paid_points'].to_i %></td>
+        <td class="text-center"><%= value['no_of_matches'].to_i %></td>
+        <td class="text-center"><%= value['no_of_full_points'].to_i %></td>
         <td class="text-center">
-          <%= fixed_lb(user)[4] + value['no_of_zero_points'].to_i %>
+          <%= value['no_of_zero_points'].to_i %>
           <%= image_tag 'icons/duck.jpeg', { size: '12x12', class: 'margin-left-5' } %>
         </td>
-        <% tm = fixed_lb(user)[5].to_i + value['total_match_points'].to_i %>
+        <% tm = value['total_match_points'].to_i %>
       	<td class="text-center"><%= tm.to_i == 0 ? 0 : (tp.to_f * 100/tm).round(2) %></td>
       </tr>
     <% end %>

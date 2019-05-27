@@ -1,11 +1,11 @@
 <!-- Button trigger modal -->
-
-<%= image_tag 'welcome.jpg', id:'bg_image', class:'ad_opacity' %>
+<%= image_tag load_login_image, id:'bg_image', class:'ad_opacity' %>
 <div class="container fxd_position">
-
-    <center>
+  <center>
     <br>
-  <button class="btn btn-danger btn-lg mrgin" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">Lets Play <span class="glyphicon glyphicon-forward"></span></button>
+    <button class="btn btn-danger btn-lg mrgin" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">
+      <%= t('login.lets_play') %> <span class="glyphicon glyphicon-forward"></span>
+    </button>
   </center>
   <br>
  </div>
@@ -15,41 +15,43 @@
 <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-        <br>
-        <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-              <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-              <li class=""><a href="#why" data-toggle="tab">Why?</a></li>
-            </ul>
-        </div>
+      <br>
+      <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"><a href="#signin" data-toggle="tab"><%= t('login.sign_in') %></a></li>
+          <li class=""><a href="#signup" data-toggle="tab"><%= t('login.register') %></a></li>
+          <li class=""><a href="#why" data-toggle="tab"><%= t('login.why') %></a></li>
+        </ul>
+      </div>
       <div class="modal-body">
         <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in" id="why">
-        <p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
-        <p></p><br> Please contact <a mailto:href="abhivannarath006@gmail.com"></a>Abhilash Vannarath</a> for any other inquiries.</p>
-        </div>
-        <div class="tab-pane fade active in" id="signin">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'form-horizontal') do |f| %>
-            <fieldset>
+        <p><%= t('login.instructions') %></p>
+        <p>
+          <%= t('login.contact') %> <a mailto:href="abhivannarath006@gmail.com"><%= t('login.name') %></a> <%= t('login.other_enquiry') %>
+        </p>
+      </div>
+      <div class="tab-pane fade active in" id="signin">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'form-horizontal') do |f| %>
+          <fieldset>
             <!-- Sign In Form -->
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="userid">Email:</label>
+              <label class="control-label" for="userid"><%= t('login.email') %></label>
               <div class="controls">
-               <%= f.email_field :email, autofocus: true, required: true, placeholder:"Email", class:"form-control" %>
+               <%= f.email_field :email, autofocus: true, required: true, placeholder: t('login.email'), class:"form-control" %>
               </div>
             </div>
 
             <!-- Password input-->
             <div class="control-group">
-              <label class="control-label" for="passwordinput">Password:</label>
+              <label class="control-label" for="passwordinput"><%= t('login.password') %></label>
               <div class="controls">
-                <%= f.password_field :password, autocomplete: "off", required: true, placeholder:"Password", class:"form-control" %>
+                <%= f.password_field :password, autocomplete: "off", required: true, placeholder: t('login.password'), class:"form-control" %>
               </div>
             </div>
 
-            <!-- Multiple Checkboxes (inline) -->
+              <!-- Multiple Checkboxes (inline) -->
             <div class="control-group">
               <div class="controls">
                 <% if devise_mapping.rememberable? -%>
@@ -58,73 +60,77 @@
                   </div>
                 <% end -%>
               </div>
-               <div class = "controls">
+              <div class = "controls">
                 <div class = "frog-pswd">
-                <%= link_to "Forgot password", new_password_path(resource_name), class:"control-label" %>
+                  <%= link_to t('login.forgot_password'), new_password_path(resource_name), class:"control-label" %>
+                </div>
               </div>
             </div>
-          </div>
 
             <!-- Button -->
             <div class="control-group">
               <label class="control-label" for="signin"></label>
               <div class="controls">
-                <%= f.submit "Sign in", class:"btn btn-success" %>
+                <%= f.submit t('login.sign_in'), class:"btn btn-success" %>
               </div>
             </div>
-            </fieldset>
-            <% end -%>
-        </div>
-        <div class="tab-pane fade" id="signup">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class:'form-horizontal') do |f| %>
-              <%= devise_error_messages! %>
-            <fieldset>
+          </fieldset>
+        <% end -%>
+      </div>
+
+      <div class="tab-pane fade" id="signup">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class:'form-horizontal') do |f| %>
+          <%= devise_error_messages! %>
+          <fieldset>
             <!-- Sign Up Form -->
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="Email">Email:</label>
+              <label class="control-label" for="Email"><%= t('login.email') %></label>
               <div class="controls">
-                 <%= f.email_field :email, autofocus: true, placeholder:'Email', class:'form-control' %>
+                 <%= f.email_field :email, autofocus: true, placeholder: t('login.email'), class:'form-control' %>
               </div>
             </div>
 
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="userid">First Name:</label>
+              <label class="control-label" for="userid"><%= t('login.first_name') %></label>
               <div class="controls">
-                <%= f.text_field :first_name, required:true, placeholder:'First Name', class:'form-control' %>
+                <%= f.text_field :first_name, required:true, placeholder: t('login.first_name'), class:'form-control' %>
               </div>
             </div>
 
             <div class="control-group">
-              <label class="control-label" for="userid">Middle Name:</label>
+              <label class="control-label" for="userid"><%= t('login.middle_name') %></label>
               <div class="controls">
-                <%= f.text_field :middle_name, class:'form-control', placeholder:'Middle Name' %>
+                <%= f.text_field :middle_name, class:'form-control', placeholder: t('login.middle_name')  %>
               </div>
             </div>
+
             <div class="control-group">
-              <label class="control-label" for="userid">Last Name:</label>
+              <label class="control-label" for="userid"><%= t('login.last_name') %></label>
               <div class="controls">
-                <%= f.text_field :last_name, required:true, class:'form-control', placeholder:'Last Name' %>
+                <%= f.text_field :last_name, required:true, class:'form-control', placeholder: t('login.last_name') %>
               </div>
             </div>
 
             <!-- Password input-->
             <div class="control-group">
-              <label class="control-label" for="password">Password:</label>
+              <label class="control-label" for="password"><%= t('login.password') %></label>
               <div class="controls">
-                  <% if @validatable %>
+                <% if @validatable %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <% end %>
-                  <%= f.password_field :password, autocomplete: "off", class:'form-control', placeholder:'Password' %>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "off", class:'form-control', 
+                                      placeholder: t('login.password') %>
               </div>
             </div>
 
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+              <label class="control-label" for="reenterpassword"><%= t('login.re_enter_password') %></label>
               <div class="controls">
-                <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control', placeholder:'Re-Enter Password' %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control', 
+                                      placeholder: t('login.re_enter_password') %>
               </div>
             </div>
 
@@ -132,19 +138,17 @@
             <div class="control-group">
               <label class="control-label" for="confirmsignup"></label>
               <div class="controls">
-               <%= f.submit "Sign Up", class:'btn btn-success' %>
+               <%= f.submit t('login.sign_up'), class:'btn btn-success' %>
               </div>
             </div>
-            </fieldset>
-            <% end -%>
+          </fieldset>
+        <% end -%>
       </div>
     </div>
-      </div>
-      <div class="modal-footer">
-      <center>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </center>
-      </div>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <center>
+      <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+    </center>
   </div>
 </div>

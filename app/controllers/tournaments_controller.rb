@@ -2,10 +2,11 @@
 class TournamentsController < ApplicationController
   # include ActionController::Live
   before_action :authenticate_user!
+  before_action :current_tournament
 
   def show
-    @current_challenges = Challenge.where('end_time > ?', DateTime.now).order(:start_time).limit(4)
-    @previous_challenges = Challenge.previous.order('id desc').page(params[:page]).per(2)
+    @current_challenges = @current_tournament.challenges.current.order(:start_time).limit(4)
+    @previous_challenges = @current_tournament.challenges.previous.order('id desc').page(params[:page]).per(2)
     @prediction = Prediction.new
   end
 

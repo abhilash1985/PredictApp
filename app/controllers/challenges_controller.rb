@@ -1,5 +1,7 @@
 # ChallengesController
 class ChallengesController < ApplicationController
+  skip_before_action :current_tournament, only: [:show, :points_table, 
+                                                 :predictions_table]
   before_action :authenticate_user!
   before_action :challenge_params, only: [:show, :points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
@@ -19,7 +21,7 @@ class ChallengesController < ApplicationController
   end
 
   def show_user_challenges
-    @challenges = Challenge.all
+    @challenges = @current_tournament.challenges.all
     @users = User.order_by_name
   end
 
@@ -32,23 +34,29 @@ class ChallengesController < ApplicationController
       user_challenge.update_all(paid: true)
       flash[:notice] = "Updated paid status for #{params[:users]}"
     end
-    redirect_to show_user_challenges_challenge_path
+    redirect_to show_user_challenges_challenge_path(@current_tournament)
   rescue
     flash[:notice] = 'Something Went Wrong'
-    redirect_to show_user_challenges_challenge_path
+    redirect_to show_user_challenges_challenge_path(@current_tournament)
   end
 
   private
 
   def challenge_params
-    @challenge = Challenge.find(params[:id])
+    current_tournament_params
     @matches = current_user.matches_for_challenge(@challenge)
     @users = @challenge.users.order_by_name
   end
 
   def prediction_challenge_params
-    @challenge = Challenge.find(params[:id])
+    current_tournament_params
     @matches = current_user.matches_for_challenge(@challenge)
     @users = @challenge.started? || current_user.admin ? @challenge.users : [current_user]
+  end
+
+  def current_tournament_params
+    @challenge = Challenge.find(params[:id])
+    @current_tournament = @challenge.tournament
+    current_tournament_type
   end
 end

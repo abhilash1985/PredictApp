@@ -1,23 +1,19 @@
- <%= image_tag('background_new.jpg', {id:'full-screen-background-image', class:'blur-me'})%>
+<%= image_tag(load_challenge_image, { id:'full-screen-background-image', class:'blur-me' }) %>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4 class = 'heading'>Choose your Challenge</h4>
+      <h4 class='heading'><%= t('tournament.choose_challenges').upcase %></h4>
       <div class="panel_custom with-nav-tabs panel-default add_opacity">
         <div class="panel-heading black_color">
           <ul class="nav nav-pills ">
             <li class="active">
               <a href="#tab_default_1" data-toggle="tab" class = 'fnt_weight'>
-              Current Challenges</a>
+              <%= t('tournament.current_challenges') %></a>
             </li>
             <li>
               <a href="#tab_default_2" data-toggle="tab" class = 'fnt_weight'>
-              Previous Challenges </a>
+              <%= t('tournament.prev_challenges') %></a>
             </li>
-            <!-- <li>
-              <a href="#tab_default_3" data-toggle="tab">
-              Tab 3 </a>
-            </li> -->
           </ul>
         </div>
           <div class="tab-content">
@@ -28,33 +24,7 @@
               <%= paginate @previous_challenges %>
               <%= render 'challenges', challenges: @previous_challenges, form_name: 'prev_challenge_form', name: 'previous' %>
             </div>
-            <!-- <div class="tab-pane" id="tab_default_3">
-              <p>
-                Howdy, I'm in Tab 3.
-              </p>
-              <p>
-                Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
-              </p>
-              <p>
-                <a class="btn btn-info" href="http://j.mp/metronictheme" target="_blank">
-                  Learn more...
-                </a>
-              </p>
-            </div> -->
           </div>
-          <!-- <div class="tab-pane" id="tab_default_3">
-            <p>
-              Howdy, I'm in Tab 3.
-            </p>
-            <p>
-              Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
-            </p>
-            <p>
-              <a class="btn btn-info" href="http://j.mp/metronictheme" target="_blank">
-                Learn more...
-              </a>
-            </p>
-          </div> -->
         </div>
       </div>
     </div>
@@ -68,6 +38,6 @@
 <script type="text/javascript">
 $('.modal_link').click(function (e) {
   e.preventDefault();
-  $('#modal_' + this.id).modal();
+  $('#modal_' + this.id).modal({ backdrop: false });
 });
 </script>
