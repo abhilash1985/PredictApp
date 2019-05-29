@@ -38,4 +38,10 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'User' do
+    object_label_method do
+     :full_name
+    end
+  end
 end
