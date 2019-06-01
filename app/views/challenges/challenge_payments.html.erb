@@ -29,8 +29,7 @@
       	<td class="text-left"><%= payment.challenge.end_time.to_s(:default) rescue '-' %></td>
         <td class="text-left"><%= c_name = payment.challenge.name rescue '-' %></td>
         <td class="text-center"><%= show_amount(payment.total_prize_amount) %></td>
-        <% alert_klass = show_winners_info(c_name_array, c_name) %>
-        <% c_name_array << c_name %>
+        <% alert_klass = show_winners_info(payment.position) %>
         <td class="text-center <%= alert_klass %>"><strong><%= show_position(alert_klass) %></strong></td>
         <td class="text-left <%= alert_klass %>"><strong><%= payment.user.show_name rescue '-' %></strong></td>
         <td class="text-center <%= alert_klass %>"><strong><%= payment.winner_prize_amount %></strong></td>

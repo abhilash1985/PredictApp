@@ -9,12 +9,12 @@ module ChallengesHelper
     end
   end
 
-  def show_winners_info(array, name)
-    if array.include?(name)
-      'alert-info'
-    else
-      'alert-warning'
-    end
+  def position_hash
+    { 1 => 'alert-warning', 2 => 'alert-info', 3 => 'alert-danger' }
+  end
+
+  def show_winners_info(position)
+    position_hash[position]
   end
 
   def show_amount(amount)
@@ -23,6 +23,7 @@ module ChallengesHelper
   end
 
   def show_position(klass)
-    klass == 'alert-warning' ? '1st' : '2nd'
+    value = position_hash.invert[klass]
+    value.ordinalize
   end
 end
