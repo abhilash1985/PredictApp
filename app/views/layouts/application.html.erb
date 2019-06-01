@@ -62,12 +62,10 @@
                                                  data: { no_turbolink: true }, target: '_self' %>
                     </li>
                   <% end %>
-                  <% if current_user.admin %>
-                    <li>
-                      <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
-                                                     data: { no_turbolink: true }, target: '_self' %>
-                    </li>
-                  <% end %>
+                  <li>
+                    <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
+                                                   data: { no_turbolink: true }, target: '_self' %>
+                  </li>
                   <li>
                     <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(current_user),
                                                          data: { no_turbolink: true }, target: '_self' %>
