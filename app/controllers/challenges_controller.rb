@@ -12,12 +12,13 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_payments
-    @challenge_payments = ChallengePayment.includes(:user, :challenge).order('challenges.id')
+    @challenge_payments = ChallengePayment.includes(:user, :challenge)
+                                          .order('challenges.id, challenge_payments.id')
   end
 
   def prize_list
     @prize_lists = Prize.includes(:user).order('prizes.id')
-    @challenge_payments = ChallengePayment.all
+    @challenge_payments = ChallengePayment.oldest
   end
 
   def show_user_challenges

@@ -20,15 +20,18 @@
   </thead>
   <tbody>
     <% total_balance = 0 %>
+    <% c_name_array = [] %>
   	<% @challenge_payments.each_with_index do |payment, index| %>
   	  <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
       	<td class="text-left"><%= payment.challenge.end_time.to_s(:default) rescue '-' %></td>
-        <td class="text-left"><%= payment.challenge.name rescue '-' %></td>
-        <td class="text-center"><%= payment.total_prize_amount %></td>
-        <td class="text-left alert-info"><strong><%= payment.user.show_name rescue '-' %></strong></td>
-        <td class="text-center alert-danger"><strong><%= payment.winner_prize_amount %></strong></td>
+        <td class="text-left"><%= c_name = payment.challenge.name rescue '-' %></td>
+        <td class="text-center"><%= show_amount(payment.total_prize_amount) %></td>
+        <% alert_klass = show_winners_info(c_name_array, c_name) %>
+        <% c_name_array << c_name %>
+        <td class="text-left <%= alert_klass %>"><strong><%= payment.user.show_name rescue '-' %></strong></td>
+        <td class="text-center <%= alert_klass %>"><strong><%= payment.winner_prize_amount %></strong></td>
         <td class="text-center"><%= total_balance += (payment.total_prize_amount - payment.winner_prize_amount) %></td>
       </tr>
     <% end %>
