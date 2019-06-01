@@ -5,6 +5,7 @@ class ChallengesController < ApplicationController
   before_action :authenticate_user!
   before_action :challenge_params, only: [:show, :points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
+  before_action :current_tournament_params,  only: [:payment_details, :challenge_payments]
 
   def payment_details
     # @payments = Payment.includes(:user)

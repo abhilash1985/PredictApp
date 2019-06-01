@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_161520) do
+ActiveRecord::Schema.define(version: 2019_06_01_195418) do
 
   create_table "challenge_payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_161520) do
     t.integer "winner_prize_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position", default: 1
     t.index ["challenge_id"], name: "index_challenge_payments_on_challenge_id"
     t.index ["user_id"], name: "index_challenge_payments_on_user_id"
   end
