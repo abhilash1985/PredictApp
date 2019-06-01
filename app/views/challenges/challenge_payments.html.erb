@@ -13,6 +13,7 @@
       <th class="text-center btn-success"><%= t('challenge_payments.date') %></th>
       <th class="text-center btn-success"><%= t('challenge_payments.challenge') %></th>
       <th class="text-center btn-success"><%= t('challenge_payments.total_prize') %></th>
+      <th class="text-center btn-success"><%= t('challenge_payments.position') %></th>
       <th class="text-center btn-success"><%= t('challenge_payments.winner') %></th>
       <th class="text-center btn-success"><%= t('challenge_payments.winner_prize') %></th>
       <th class="text-center btn-success"><%= t('challenge_payments.account_balance') %></th>
@@ -30,6 +31,7 @@
         <td class="text-center"><%= show_amount(payment.total_prize_amount) %></td>
         <% alert_klass = show_winners_info(c_name_array, c_name) %>
         <% c_name_array << c_name %>
+        <td class="text-center <%= alert_klass %>"><strong><%= show_position(alert_klass) %></strong></td>
         <td class="text-left <%= alert_klass %>"><strong><%= payment.user.show_name rescue '-' %></strong></td>
         <td class="text-center <%= alert_klass %>"><strong><%= payment.winner_prize_amount %></strong></td>
         <td class="text-center"><%= total_balance += (payment.total_prize_amount - payment.winner_prize_amount) %></td>

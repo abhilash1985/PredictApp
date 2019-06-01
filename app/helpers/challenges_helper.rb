@@ -21,4 +21,8 @@ module ChallengesHelper
     return '-' if amount == 0
     amount
   end
+
+  def show_position(klass)
+    klass == 'alert-warning' ? '1st' : '2nd'
+  end
 end
