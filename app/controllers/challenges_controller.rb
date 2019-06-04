@@ -14,7 +14,7 @@ class ChallengesController < ApplicationController
 
   def challenge_payments
     @challenge_payments = ChallengePayment.includes(:user, :challenge)
-                                          .order('challenges.id, challenge_payments.id')
+                                          .order('challenge_payments.id')
   end
 
   def prize_list
