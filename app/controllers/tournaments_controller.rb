@@ -6,7 +6,7 @@ class TournamentsController < ApplicationController
 
   def show
     @current_challenges = @current_tournament.challenges.current.order(:start_time).limit(4)
-    @previous_challenges = @current_tournament.challenges.previous.order('id desc').page(params[:page]).per(2)
+    @previous_challenges = @current_tournament.challenges.previous.order('start_time desc').page(params[:page]).per(2)
     @prediction = Prediction.new
   end
 
