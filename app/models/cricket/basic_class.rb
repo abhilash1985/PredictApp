@@ -3,6 +3,7 @@ module Cricket
   # BasicClass
   class BasicClass
     include ::Cricket::BasicQuestions
+    include ::Cricket::BonusQuestions
     include ::Cricket::SelectQuestions
     include ::Cricket::BasicOptions
     include ::Cricket::BasicPoints

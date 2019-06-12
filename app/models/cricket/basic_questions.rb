@@ -184,7 +184,7 @@ module Cricket
     end
 
     def toss_questions
-      { I18n.t('cricket.win_the_toss') => [2, default_win_options] }
+      { I18n.t('cricket.win_the_toss') => [2, default_toss_options] }
     end
 
     def drs_questions

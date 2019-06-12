@@ -139,6 +139,28 @@ namespace :import_cwc2019 do
     p 'Imported Challenges...'
   end
 
+  desc 'Import Bonus questions'
+  task bonus_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.all_bonus_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      question.save
+      p "#{question.id}: Bonus Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported Bonus Questions...'
+  end
+
+  desc 'Import Bonus match questions'
+  task bonus_match_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    predict_app = generate_predict_class.klass_name.new
+    predict_app.import_bonus_match_questions
+    p 'Imported Bonus Match Questions...'
+  end
+
   def generate_predict_class
     tournament = Tournament.cricket_2019.first
     tournament_type = TournamentType.cwc2019.first
