@@ -100,6 +100,23 @@ en:
     individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
     first_boundary_in_match: 'First boundary in the match will be through?'
+    
+  bonus:
+    win_world_cup: 'Who will win the ICC Cricket World Cup 2019?'
+    team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
+    leading_wickets: 'How many wickets will the leading wicket-taker of the 2019 World Cup finish with?'
+    leading_runs: 'How many runs will the leading run-scorer of the 2019 World Cup finish with?'
+    player_of_the_tournament: 'Who will be the Player of the Tournament at ICC Cricket World Cup 2019?'
+    most_runs_in_tournament: 'Among these players, who will score the most runs at ICC Cricket World Cup 2019?'
+    leading_wicket_taker: 'Among these players, who will take the most wickets at ICC Cricket World Cup 2019?'
+    will_india_reach_finals: 'Will India reach the finals of ICC Cricket World Cup 2019?'
+    highest_individual_score: 'Highest individual score at ICC Cricket World Cup 2019 will be?'
+    first_500_prediction_points: 'First user to score 500 points in the prediction game will be?'
+    prediction_game_winner: 'Who will be the winner of prediction game(excluding this Qn)?'
+    total_tournament_sixes: 'Total number of sixes at ICC Cricket World Cup 2019 will be?'
+
+    # best_partnership_in_the_match: 'Best Partnership in the match will be?'
+
 
   tournaments: 'Tournaments'
   cricket_2019: 'ICC Cricket World Cup 2019'

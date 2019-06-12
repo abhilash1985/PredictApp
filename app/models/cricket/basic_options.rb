@@ -11,8 +11,13 @@ module Cricket
       [match.team1_name, match.team2_name, 'Tie', 'No Result']
     end
 
+    def default_toss_options
+      return [] if match.blank?
+      [match.team1_name, match.team2_name, 'No Result']
+    end
+
     def default_winning_margin_options
-      ['No Results', 'Tie', '1-25Runs', '26-50Runs', '50+Runs', '1-3Wickets', '4-7Wickets',
+      ['No Results', 'Tie', '1-25Runs', '26-50Runs', '50+Runs', '1-4Wickets', '5-7Wickets',
        '7+Wickets']
     end
 
@@ -61,7 +66,7 @@ module Cricket
     end
 
     def wickets_options
-      %w(0-1 2-3 4 5 6 7 8 9-10)
+      %w(0-1 2 3 4 5 6 7-8 9-10)
     end
 
     def drs_options
