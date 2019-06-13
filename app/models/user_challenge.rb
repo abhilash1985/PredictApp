@@ -17,6 +17,12 @@ class UserChallenge < ApplicationRecord
   end
 
   def style_class
-    points == 0 ? 'btn-danger' : 'btn-success'
+    if points.nil?
+      'btn-primary'
+    elsif points == 0
+      'btn-danger'
+    else
+      'btn-success'
+    end
   end
 end

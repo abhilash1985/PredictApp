@@ -9,6 +9,12 @@ class Prediction < ApplicationRecord
   validates :user_challenge_id, uniqueness: { scope: :match_question_id, message: 'Only one prediction allowed' }
 
   def style_class
-    points == 0 ? 'btn-danger' : 'btn-success'
+    if points.nil?
+      'btn-primary'
+    elsif points == 0
+      'btn-danger'
+    else
+      'btn-success'
+    end
   end
 end
