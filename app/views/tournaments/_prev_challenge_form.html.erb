@@ -13,14 +13,14 @@
           <div class="actions modal-footer">
             <%= f.submit 'Update', class: 'btn btn-primary', id:'challenge_form',
                                    data: { disable_with: "Please wait..." } %>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('predictions.close') %></button>
           </div>
         <% end -%>
       <% end -%>
     </div>
     <% unless current_user.admin %>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t('predictions.close') %></button>
       </div>
     <% end %>
   </div>

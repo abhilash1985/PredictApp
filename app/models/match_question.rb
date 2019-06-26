@@ -40,7 +40,8 @@ class MatchQuestion < ApplicationRecord
   end
 
   def points_for_prediction(prediction)
-    answer == prediction.user_answer ? points : 0
+    result = answer == prediction.user_answer ? points : 0
+    prediction.user_challenge.point_booster ? result * 2 : result
   end
 
   def exact_answer

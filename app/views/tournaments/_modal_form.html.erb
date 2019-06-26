@@ -10,6 +10,13 @@
     <%= form_for :match_question, url: predict_match_tournaments_path, remote: true do |f| %>
       <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'prediction' %>
       <div class="modal-footer actions">
+        <% pb_value = current_user.point_booster_selected_for(match) %>
+        <% if current_user.point_booster_available? || pb_value %>
+          <span class="point_booster_div">
+            <%= check_box_tag :point_booster, true, pb_value, class: 'form-check-input', id: 'pointboosterCheck' %> 
+            <%= label_tag :point_booster, 'Point Booster', class: 'form-check-label', for: 'pointboosterCheck' %>
+          </span>
+        <% end %>
         <%= f.submit current_user.submit_value(match), class: 'btn btn-primary',
                     id: 'challenge_form', data: { disable_with: t('predictions.please_wait') } unless match.started? %>
         <button type="button" class="btn btn-danger" data-dismiss="modal" data-backdrop="false">
