@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :prizes, dependent: :destroy
   # scope
   scope :order_by_name, -> { order(:first_name) }
+  # Constants
+  POINT_BOOSTER = 3
 
   def show_name
     full_name.blank? ? show_email : full_name
@@ -130,5 +132,23 @@ class User < ApplicationRecord
 
   def match_question_ids(tournament)
     predictions_for_tournament(tournament).pluck('predictions.match_question_id')
+  end
+
+  def point_booster_available?
+    user_challenges.point_booster_enabled.size < ::User::POINT_BOOSTER
+  end
+
+  def user_challenges_for_match(match)
+    user_challenges.by_challenge(match.challenge_id)
+  end
+
+  def point_booster_enabled_for(match)
+    pb_enabled = point_booster_selected_for(match)
+    pb_enabled ? 'YES' : 'NO'
+  end
+
+  def point_booster_selected_for(match)
+    user_challenge = user_challenges_for_match(match).first
+    user_challenge.try(:point_booster)
   end
 end

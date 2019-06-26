@@ -16,6 +16,8 @@ class TournamentsController < ApplicationController
     match = Match.find_by_id(@match_id)
     if match && !match.started?
       user_challenge = current_user.user_challenges.by_challenge(params[:challenge_id]).first_or_initialize
+      user_challenge.point_booster = 
+        params[:point_booster] if current_user.point_booster_available? || params[:point_booster].blank?
       user_challenge.save
       params[:match_question].each do |key, value|
         prediction = user_challenge.predictions.by_match_question(key).first_or_initialize

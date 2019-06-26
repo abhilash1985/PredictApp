@@ -225,6 +225,7 @@ en:
     predictions: "%{name} - %{end_time} - Predictions"
     sl_no: 'Sl No'
     user: 'User'
+    point_booster: 'Point Booster Enabled'
 
   prize_lists:
     sl_no: 'Sl No'
