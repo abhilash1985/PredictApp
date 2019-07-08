@@ -91,5 +91,21 @@ module Cricket
       ['Cover Drive', 'Square Cut', 'Stright Drive', 'Edge', 'Pull Shot', 'Hook Shot', 'Others',
        'No Boundary']
     end
+
+    def partnership_options
+      %w(0-50 51-70 71-85 86-100 101-125 126-150 151-175 175+)
+    end
+
+    def no_of_runs_in_40_options
+      %w(0-1 2-3 4-5 6-7 8 9 10 10+)
+    end
+
+    def no_of_runs_in_25_options
+      %w(0-1 2-3 4 5 6 7 8 8+)
+    end
+
+    def no_of_wickets_by_starc_and_behren_options
+      %w(0-1 2 3 4 5 6 7 7+)
+    end
   end
 end

@@ -77,5 +77,41 @@ module Cricket
     def first_boundary_points
       [2, first_boundary_options]
     end
+
+    def partnership_points
+      [2, partnership_options]
+    end
+
+    def economy_bowler_points
+      [2, default_options]
+    end
+
+    def best_sr_points
+      [2, default_options]
+    end
+
+    def best_extras_points
+      [2, default_options]
+    end
+
+    def best_avg_points
+      [2, default_options]
+    end
+
+    def best_sr_bowler_points
+      [2, default_options]
+    end
+
+    def no_of_runs_in_40_points
+      [2, no_of_runs_in_40_options]
+    end
+
+    def no_of_runs_in_25_points
+      [2, no_of_runs_in_25_options]
+    end
+
+    def no_of_wickets_by_starc_and_behren_points
+      [2, no_of_wickets_by_starc_and_behren_options]
+    end
   end
 end

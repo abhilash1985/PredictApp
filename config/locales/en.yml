@@ -115,7 +115,34 @@ en:
     prediction_game_winner: 'Who will be the winner of prediction game(excluding this Qn)?'
     total_tournament_sixes: 'Total number of sixes at ICC Cricket World Cup 2019 will be?'
 
-    # best_partnership_in_the_match: 'Best Partnership in the match will be?'
+  semi:
+    semi_win: 'Who will reach the finals of ICC Cricket World Cup 2019?'
+    team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
+    leading_wickets: 'How many wickets will the leading wicket-taker of the 2019 World Cup finish with?'
+    leading_runs: 'How many runs will the leading run-scorer of the 2019 World Cup finish with?'
+    player_of_the_tournament: 'Who will be the Player of the Tournament at ICC Cricket World Cup 2019?'
+    most_runs_in_tournament: 'Among these players, who will score the most runs at ICC Cricket World Cup 2019?'
+    leading_wicket_taker: 'Among these players, who will take the most wickets at ICC Cricket World Cup 2019?'
+    will_india_reach_finals: 'Will India reach the finals of ICC Cricket World Cup 2019?'
+    highest_individual_score: 'Highest individual score at ICC Cricket World Cup 2019 will be?'
+    first_500_prediction_points: 'First user to score 500 points in the prediction game will be?'
+    prediction_game_winner: 'Who will be the winner of prediction game(excluding this Qn)?'
+    total_tournament_sixes: 'Total number of sixes at ICC Cricket World Cup 2019 will be?'
+
+    best_partnership_in_the_match: 'Best Partnership in the match will be?'
+    best_economy_bowler: 'Most economical bowler in the match will be?'
+    best_sr_batsman: 'Which batsman will have the best strike rate in the match?'
+    no_of_runs_in_40_over: 'No. of Runs scored in the 40th over by team batting first?'
+    no_of_runs_in_25_over: 'No. of Runs scored in the 25th over by team batting second?'
+    no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
+
+  final:
+    most_boundaries_scored_in_over: "Most Boundaries(4's & 6's) scored in an over in the match will be?"
+    most_runs_scored_in_over: 'Most Runs scored in an over in the match will be?'
+    bowler_with_most_extras: 'Which bowler will concede most extras in the match?'
+    best_bowler_with_avg: 'Which bowler will have the best average in the match?'
+    best_sr_bowler: 'Which bowler will have the best strike rate in the match?'
+
 
 
   tournaments: 'Tournaments'
@@ -225,7 +252,7 @@ en:
     predictions: "%{name} - %{end_time} - Predictions"
     sl_no: 'Sl No'
     user: 'User'
-    point_booster: 'Point Booster Enabled'
+    point_booster: 'Point Booster Used'
 
   prize_lists:
     sl_no: 'Sl No'
