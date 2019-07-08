@@ -78,8 +78,8 @@ class Match < ApplicationRecord
     raise 'Invalid options' if options.nil?
     match_question.options = { v: options }
     match_question.points = question.weightage
-    p "Match: #{match_no}, Q: #{question.question}, Options: #{options}"
     match_question.save
+    p "#{match_question.id} - Match: #{match_no}, Q: #{question.question}, Options: #{options}"
   end
 
   class << self
