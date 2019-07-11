@@ -137,9 +137,12 @@ en:
     no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
 
   final:
-    most_boundaries_scored_in_over: "Most Boundaries(4's & 6's) scored in an over in the match will be?"
-    most_runs_scored_in_over: 'Most Runs scored in an over in the match will be?'
-    bowler_with_most_extras: 'Which bowler will concede most extras in the match?'
+    no_of_boundaries_scored_in_final: "Total No. of Boundaries(4's & 6's) scored in the final will be?"
+    most_runs_scored_in_over: 'Most Runs scored in an over in the final will be?'
+    bowler_with_most_extras: 'Which bowler will concede most extras in the final?'
+    longest_six: 'Longest Six in the final (in meters) will be?'
+    best_sr_batsman_in_final: 'Best strike rate by a batsman in the final will be?'
+    overs_46_50_batting1: 'How many runs will be scored between 46-50 overs by the team batting 1st?'
     best_bowler_with_avg: 'Which bowler will have the best average in the match?'
     best_sr_bowler: 'Which bowler will have the best strike rate in the match?'
 
