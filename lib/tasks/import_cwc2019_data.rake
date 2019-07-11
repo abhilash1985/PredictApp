@@ -216,6 +216,29 @@ namespace :import_cwc2019 do
     p 'Imported SEMI-FINAL Match Questions...'
   end
 
+  desc 'Import FINAL questions'
+  task final_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.final_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      sleep(1)
+      question.updated_at = Time.now
+      question.save
+      p "#{question.id}: FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported FINAL Questions...'
+  end
+
+  desc 'Import FINAL match questions'
+  task final_match_questions: :environment do
+    generate_predict_class
+    @predict_class.import_final_match_questions
+    p 'Imported FINAL Match Questions...'
+  end
+
   def generate_predict_class
     tournament = Tournament.cricket_2019.first
     tournament_type = TournamentType.cwc2019.first

@@ -35,6 +35,15 @@ class PredictClass
     end
   end
 
+  def import_final_match_questions
+    predict_app = klass_name
+    matches = tournament.matches.includes(:round).references(:round)
+                        .where('rounds.name = ?', 'FINAL')
+    matches.order(:id).each_with_index do |match, index|
+      predict_app.new(match: match, index: index).import_final_match_questions
+    end
+  end
+
   def import_challenges
     predict_app = klass_name
     grouped_matches = tournament.matches.order(:id).group_by { |x| x.match_date.to_date }
