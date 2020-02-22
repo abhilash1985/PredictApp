@@ -27,16 +27,16 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: 'Hello world'
+  hello: "Hello world"
 
-  app_name: 'PredictApp2019'
+  app_name: 'PredictApp2020'
 
   cwc2019: 'cwc2019'
   cricket_name: 'cricket'
-  
+
   cricket:
     win_the_match: 'Who will win the match?'
     win_the_toss: 'Who will win the toss?'
@@ -100,7 +100,7 @@ en:
     individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
     first_boundary_in_match: 'First boundary in the match will be through?'
-    
+
   bonus:
     win_world_cup: 'Who will win the ICC Cricket World Cup 2019?'
     team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
@@ -188,7 +188,7 @@ en:
 
   footer:
     all_rights_reserved: '2019 All rights reserved.'
-  
+
   tournament:
     current_challenges: 'Current Challenges'
     prev_challenges: 'Previous Challenges'
