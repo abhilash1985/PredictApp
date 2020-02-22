@@ -14,6 +14,7 @@ class Tournament < ApplicationRecord
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
   scope :india_tour_of_england, -> { where(name: I18n.t(:eng_ind_tour)) }
   scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
+  scope :ipl2020, -> { where(name: I18n.t(:ipl_2020)) }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
@@ -27,6 +28,8 @@ class Tournament < ApplicationRecord
     when I18n.t(:fifa_2018)
       'russia.jpg'
     when I18n.t(:eng_ind_tour)
+      'ipl.jpg'
+    when I18n.t(:ipl_2020)
       'ipl.jpg'
     end
   end
