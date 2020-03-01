@@ -101,8 +101,8 @@ class User < ApplicationRecord
   end
 
   def total_percentage_for_challenge(challenge)
-    points = BigDecimal.new total_points_for_challenge(challenge)
-    total_points = BigDecimal.new challenge.total_points
+    points = BigDecimal(total_points_for_challenge(challenge))
+    total_points = BigDecimal(challenge.total_points)
     total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
 
@@ -125,8 +125,8 @@ class User < ApplicationRecord
   end
 
   def total_percentage_for_match(match)
-    points = BigDecimal.new total_points_for_match(match)
-    total_points = BigDecimal.new match.total_points
+    points = BigDecimal(total_points_for_match(match))
+    total_points = BigDecimal(match.total_points)
     total_points == 0 ? 0 : (points/total_points * 100).round(2)
   end
 

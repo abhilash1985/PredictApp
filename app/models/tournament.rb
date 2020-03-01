@@ -89,8 +89,8 @@ class Tournament < ApplicationRecord
   end
 
   def total_percentage_for_user(user, from)
-    points = BigDecimal.new total_points_for_user(user, from)
-    total_points = BigDecimal.new total_points_for_match(user, from)
+    points = BigDecimal(total_points_for_user(user, from))
+    total_points = BigDecimal(total_points_for_match(user, from))
     total_points == 0 ? 0 : (points / total_points * 100).round(2)
   end
 
