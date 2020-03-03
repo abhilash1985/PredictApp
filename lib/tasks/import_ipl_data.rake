@@ -1,195 +1,248 @@
-# namespace :import do
-#   desc "Import master data"
-#   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
-#                      :matches, :questions, :match_questions, :challenges] do
-#     # for initial run include :questions, :match_questions, :challenges
-#   end
+namespace :import_cwc2019 do
+  desc 'Import master data'
+  task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
+                     :matches, :questions, :match_questions, :challenges] do
+    # for initial run include :questions, :match_questions, :challenges
+  end
 
-#   desc 'Import tournament data'
-#   task tournaments: :environment do
-#     # tournament = Tournament.world_cup.aus_nzl.first_or_initialize
-#     tournament = Tournament.ipl2019.first_or_initialize
-#     tournament.start_date = '23-03-2019'
-#     tournament.end_date = '30-05-2019'
-#     tournament.save
-#     p "Imported Tournaments..."
-#   end
+  desc 'Import tournaments'
+  task tournaments: :environment do
+    tournament_type = TournamentType.ipl2020.first
+    tournament = tournament_type.tournaments.ipl2020.first_or_initialize
+    tournament.start_date = '29-03-2020'
+    tournament.end_date = '24-05-2020'
+    tournament.location = 'India'
+    tournament.save
+    p 'Imported Tournaments...'
+  end
 
-#   desc 'Import stadiums'
-#   task stadiums: :environment do
-#     stadiums = %W(Lords Leeds)
-#     stadiums.each do |stadium|
-#       stadium = Stadium.by_name(stadium).first_or_initialize
-#       stadium.save
-#     end
-#     p "Imported Stadiums..."
-#   end
+  desc 'Import stadiums'
+  task stadiums: :environment do
+    stadiums = %w(Mumbai Delhi Bengaluru Hyderabad Chennai Kolkata Mohali Guwahati)
+    stadiums.each do |stadium|
+      stadium = Stadium.by_name(stadium).first_or_initialize
+      stadium.save
+    end
+    p 'Imported Stadiums...'
+  end
 
-#   desc 'Import teams'
-#   task teams: :environment do
-#     teams = { 'Afghanistan' => 10, 'Australia' => 6, 'Bangladesh' => 7,
-#               'England' => 1, 'India' => 2, 'Ireland' => 12, 'New Zealand' => 4,
-#               'Pakistan' => 5, 'Scotland' => 13, 'South Africa' => 3,
-#               'Sri Lanka' => 8, 'United Arab Emirates' => 14, 'West Indies' => 9, 'Zimbabwe' => 11 }
-#     teams.each do |team, rank|
-#       team = Team.by_name(team).first_or_initialize
-#       team.rank = rank
-#       team.save
-#     end
-#     p "Imported Teams..."
-#   end
+  desc 'Import teams'
+  task teams: :environment do
+    teams = { 'Mumbai Indians' => [1, 'MI'], 'Chennai Super Kings' => [2, 'CSK'],
+    	      'Delhi Capitals' => [3, 'DC'],
+              'Sunrisers Hyderabad' => [4, 'SRH'], 'Kolkata Knight Riders' => [5, 'KKR'],
+              'Kings XI Punjab' => [6, 'KXIP'],
+              'Rajasthan Royals' => [7, 'RCB'], 'Royal Challengers Bangalore' => [8, 'RCB'] }
+    teams.each do |name, rank|
+      team = Team.by_name(name).first_or_initialize
+      team.rank = rank[0]
+      team.short_name = rank[1]
+      p "Team: #{name}(#{rank[1]}) - Rank: #{rank[0]}"
+      team.save
+    end
+    p 'Imported Teams...'
+  end
 
-#   desc 'Import rounds'
-#   task rounds: :environment do
-#     %W(3rd\ ODI).each do |name|
-#       round = Round.by_name(name).first_or_initialize
-#       round.save
-#     end
-#     p "Imported Rounds..."
-#   end
+  desc 'Import rounds'
+  task rounds: :environment do
+    %w(GROUP-STAGE QUALIFIER1 ELIMINATOR QUALIFIER2 FINAL).each do |name|
+      round = Round.by_name(name).first_or_initialize
+      round.save
+      p "Round: #{name}"
+    end
+    p 'Imported Rounds...'
+  end
 
-#   desc 'Import players'
-#   task players: :environment do
-#     begin
-#       file = "db/data/players.xls"
-#       Spreadsheet.open(file) do |sheet|
-#         sheet1 = sheet.worksheet 0
-#         sheet1.each 1 do |row|
-#           next if row[0].blank?
-#           team = Team.by_name(row[0].strip).first
-#           next if team.blank?
-#           player = team.players.by_first_name(row[1].strip).first_or_initialize
-#           player.player_style = row[2].strip
-#           player.save
-#         end
-#       end
-#       p "Imported players"
-#     rescue => e
-#       puts "Error while importing #{e} #{e.backtrace}"
-#     end
-#   end
+  desc 'Import players'
+  task players: :environment do
+    begin
+      file = 'db/data/ipl_players.xls'
+      Spreadsheet.open(file) do |sheet|
+        sheet1 = sheet.worksheet 0
+        sheet1.each 1 do |row|
+          next if row[0].blank?
+          team = Team.by_name(row[0]).first
+          next if team.blank?
+          player = team.players.by_first_name(row[1].strip).first_or_initialize
+          player.player_style = row[2].strip
+          p "Team: #{row[0]}, Player: #{row[1]}, Style: #{row[2]}"
+          player.save
+        end
+      end
+      p 'Imported players'
+    rescue => e
+      puts "Error while importing #{e} #{e.backtrace}"
+    end
+  end
 
-#   desc 'Import Matches'
-#   task matches: :environment do
-#     # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
-#     team_uae = Team.by_name('UAE').first
-#     team_uae.update_attributes(name: 'United Arab Emirates') if team_uae
-#     # Match.matches.each_with_index do |hash, match_no|
-#     #   match = Match.by_match_no(match_no + 1).first_or_initialize
-#     #   team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
-#     #   next if team1.blank?
-#     #   team1.update_attributes(short_name: hash['team_one_short'])
-#     #   team2 = Team.by_name(hash['team_two_long']).first || Team.by_name(hash['team_two_short']).first
-#     #   next if team2.blank?
-#     #   team2.update_attributes(short_name: hash['team_two_short'])
-#     #   match.team1_id = team1.id
-#     #   match.team2_id = team2.id
-#     #   stadium = Stadium.like_name(hash['city']).first
-#     #   match.stadium_id = stadium.try(:id)
-#     #   match.match_date = hash['match_datetime']
-#     #   match.save
-#     # end
+  desc 'Import Matches'
+  task matches: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
+    # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
+    begin
+      file = 'db/data/ipl_matches.xls'
+      tournament = Tournament.ipl2020.first
+      return if tournament.blank?
+      Spreadsheet.open(file) do |sheet|
+        sheet1 = sheet.worksheet 0
+        sheet1.each 1 do |row|
+          next if row[0].blank?
+          team1 = Team.by_name(row[1].strip).first
+          next if team1.blank?
+          team2 = Team.by_name(row[2].strip).first
+          next if team2.blank?
+          match = tournament.matches.by_match_no(row[0])
+                            .where(team1_id: team1.id, team2_id: team2.id)
+                            .first_or_initialize
+          stadium = Stadium.by_name(row[3].strip).first_or_initialize
+          stadium.save
+          match.stadium_id = stadium.try(:id)
+          round = Round.by_name('GROUP-STAGE').first
+          match.round_id = round.try(:id)
+          match.match_date = row[4].to_time
+          match.save!
+          p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
+        end
+      end
+      p 'Imported Matches...'
+    rescue => e
+      puts "Error while importing #{e} #{e.backtrace}"
+    end
+  end
 
-#     Match.india_tour_of_england.each_with_index do |hash, match_no|
-#       match = Match.by_match_no(4018).first_or_initialize
-#       team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
-#       next if team1.blank?
-#       team1.update_attributes(short_name: hash['team_one_short'])
-#       team2 = Team.by_name(hash['team_two_long']).first || Team.by_name(hash['team_two_short']).first
-#       next if team2.blank?
-#       team2.update_attributes(short_name: hash['team_two_short'])
-#       match.team1_id = team1.id
-#       match.team2_id = team2.id
-#       stadium = Stadium.like_name(hash['city']).first
-#       match.stadium_id = stadium.try(:id)
-#       match.match_date = hash['match_datetime']
-#       match.save
-#     end
-#     p "Imported Matches..."
-#   end
+  desc 'Import questions'
+  task questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.all_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      question.save
+      p "#{question.id}: Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported Questions...'
+  end
 
-#   desc 'Import questions'
-#   task questions: :environment do
-#     # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
-#     questions = {
-#       # Defaults
-#       'Who will win the match?' => 25,
-#       'Who will win the toss?' => 2,
-#       'Who will be the man of the match?' => 5,
-#       # Runs
-#       # 'Runs will be scored by the team batting first?' => 5,
-#       # 'Runs will be scored by the team batting second?' => 5,
-#       # 'Runs will be scored by the team AFG?' => 2,
-#       # 'Runs will be scored by the team BAN?' => 2,
-#       'Runs will be scored by England?' => 5,
-#       # 'Runs will be scored by the team NZ?' => 2,
-#       'Runs will be scored by India?' => 5,
-#       # 'Runs will be scored by the team PAK?' => 2,
-#       # 'Runs will be scored by the team SA?' => 2,
-#       # 'Runs will be scored by the team AUS?' => 2,
-#       # 'Runs will be scored by the team SRI?' => 2,
-#       # 'Runs will be scored by the team UAE?' => 2,
-#       # 'Runs will be scored by the team ZIM?' => 2,
-#       # 'Runs will be scored by the team WI?' => 2,
-#       # 'Runs will be scored by the team SCO?' => 2,
-#       # 'Runs will be scored by the team IRE?' => 2,
+  desc 'Import match questions'
+  task match_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    generate_predict_class
+    @predict_class.import_match_questions
+    p 'Imported Match Questions...'
+  end
 
-#       # Outs
-#       'Total No. of Bowled outs in the match?' => 2,
-#       'Total No. of Caught outs in the match?' => 2,
-#       'Total No. of Run outs in the match?' => 2,
-#       'Total No. of Stumped outs in the match?' => 2,
-#       'Total No. of LBW outs in the match?' => 2,
+  desc 'Import challenges'
+  task challenges: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
+    generate_predict_class
+    @predict_class.import_challenges
+    p 'Imported Challenges...'
+  end
 
-#       # Extras
-#       'Total No. of Extras in the match?' => 2,
-#       'Total No. of Wides in the match?' => 2,
-#       'Total No. of No Balls in the match?' => 2,
+  desc 'Import Bonus questions'
+  task bonus_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.all_bonus_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      question.save
+      p "#{question.id}: Bonus Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported Bonus Questions...'
+  end
 
-#       # Power Plays
-#       # 'How many runs will be scored in the Power Play1 by the team batting first?' => 2,
-#       'How many runs will be scored in the Power Play2 by the team batting first?' => 2,
-#       # 'How many runs will be scored in the Power Play3 by the team batting first?' => 2,
-#       # 'How many runs will be scored in the Power Play1 by the team batting second?' => 2,
-#       # 'How many runs will be scored in the Power Play2 by the team batting second?' => 2,
-#       # 'How many runs will be scored in the first 25 overs by the team batting first?' => 2,
-#       # 'How many runs will be scored in the first 25 overs by the team batting second?' => 2,
+  desc 'Import Bonus match questions'
+  task bonus_match_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    predict_app = generate_predict_class.klass_name.new
+    predict_app.import_bonus_match_questions
+    p 'Imported Bonus Match Questions...'
+  end
 
-#       # DRS
-#       'Total No. of DRS usage in the match?' => 2,
+  desc 'Import SEMI-FINAL Matches'
+  task semi_matches: :environment do
+    begin
+      semi_matches =
+        [[46, 'India', 'New Zealand', 'Old Trafford', '09-07-2019 15:00:00'],
+         [47, 'England', 'Australia', 'Edgbaston', '11-07-2019 15:00:00']]
+      tournament = Tournament.cricket_2019.first
+      return if tournament.blank?
+      semi_matches.each do |row|
+        next if row[0].blank?
+        team1 = Team.by_name(row[1].strip).first
+        next if team1.blank?
+        team2 = Team.by_name(row[2].strip).first
+        next if team2.blank?
+        match = tournament.matches.by_match_no(row[0])
+                          .where(team1_id: team1.id, team2_id: team2.id)
+                          .first_or_initialize
+        stadium = Stadium.by_name(row[3].strip).first_or_initialize
+        stadium.save
+        match.stadium_id = stadium.try(:id)
+        round = Round.by_name('SEMI-FINAL').first
+        match.round_id = round.try(:id)
+        match.match_date = row[4]
+        match.save!
+        p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
+      end
+      p 'Imported SEMI-FINAL Matches...'
+    rescue => e
+      puts "Error while importing #{e} #{e.backtrace}"
+    end
+  end
 
-#       # Others
-#       'Winning margin will be?' => 2,
-#       'Who will the best bowler of the match?' => 2,
-#       'Who will be the top scorer of the match?' => 2,
-#       'Who will hit the most no. of sixes of the match?' => 2,
-#       'Who will hit the most no. of boundaries of the match?' => 2,
-#       'Total no. of sixes in the match?' => 2,
-#       'Total no. of boundaries in the match?' => 2,
-#       'Highest individual score in the match will be?' => 2,
-#       # 'Who will be batting first?' => 2,
-#       'How many wickets will fell in the first innings of the match?' => 2,
-#       'How many wickets will fell in the first 25 overs of the match?' => 2
-#     }
-#     questions.each do |question, weightage|
-#       question = Question.by_question(question).first_or_initialize
-#       question.weightage = weightage
-#       question.save
-#     end
-#     p "Imported Questions..."
-#   end
+  desc 'Import SEMI-FINAL questions'
+  task semi_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.all_semi_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      sleep(1)
+      question.updated_at = Time.now
+      question.save
+      p "#{question.id}: SEMI-FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported SEMI-FINAL Questions...'
+  end
 
-#   desc 'Import match questions'
-#   task match_questions: :environment do
-#     # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
-#     MatchQuestion.new.add_eng_tour_match_questions
-#     p "Imported Match Questions..."
-#   end
+  desc 'Import SEMI-FINAL match questions'
+  task semi_match_questions: :environment do
+    generate_predict_class
+    @predict_class.import_semi_match_questions
+    p 'Imported SEMI-FINAL Match Questions...'
+  end
 
-#   desc 'Import challenges'
-#   task challenges: :environment do
-#     # ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
-#     Challenge.add_eng_tour_challenges
-#     p "Imported Challenges..."
-#   end
-# end
+  desc 'Import FINAL questions'
+  task final_questions: :environment do
+    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    predict_app = generate_predict_class.klass_name.new
+    questions = predict_app.final_questions
+    questions.each do |quest, weightage|
+      question = Question.by_question(quest).first_or_initialize
+      question.weightage = weightage[0]
+      sleep(1)
+      question.updated_at = Time.now
+      question.save
+      p "#{question.id}: FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+    end
+    p 'Imported FINAL Questions...'
+  end
+
+  desc 'Import FINAL match questions'
+  task final_match_questions: :environment do
+    generate_predict_class
+    @predict_class.import_final_match_questions
+    p 'Imported FINAL Match Questions...'
+  end
+
+  def generate_predict_class
+    tournament = Tournament.ipl2020.first
+    tournament_type = TournamentType.cwc2019.first
+    @predict_class = PredictClass.new(tournament, tournament_type.name, tournament_type.game)
+  end
+end

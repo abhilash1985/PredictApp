@@ -9,7 +9,7 @@ module Cricket
     include ::Cricket::BasicOptions
     include ::Cricket::BasicPoints
 
-    attr_accessor :tournament, :match, :question, :date, :matches, :index
+    attr_accessor :tournament, :match, :question, :date, :matches, :index, :challenge
 
     def initialize(args = {})
       args.each { |k, v| instance_variable_set("@#{k}", v) }
@@ -39,7 +39,7 @@ module Cricket
     end
 
     def import_challenges
-      challenge = tournament.challenges.by_name("CWC2019 - Day#{index + 1}").first_or_initialize
+      challenge = tournament.challenges.by_name("#{challenge} - Day#{index + 1}").first_or_initialize
       dates = challenge_dates
       challenge.start_time = dates[0]
       challenge.end_time = dates[1]
@@ -55,7 +55,7 @@ module Cricket
 
     def challenge_dates
       start_time = date.to_time
-      end_time = matches.first.match_date - 35.minutes
+      end_time = matches.first.match_date - 10.minutes
       [start_time, end_time]
     end
   end
