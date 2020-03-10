@@ -1,4 +1,4 @@
-namespace :import_cwc2019 do
+namespace :import_ipl do
   desc 'Import master data'
   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,
                      :matches, :questions, :match_questions, :challenges] do
@@ -7,7 +7,9 @@ namespace :import_cwc2019 do
 
   desc 'Import tournaments'
   task tournaments: :environment do
-    tournament_type = TournamentType.ipl2020.first
+    tournament_type = TournamentType.where(name: 'ipl2020', game: 'cricket')
+                                    .first_or_initialize
+    tournament_type.save
     tournament = tournament_type.tournaments.ipl2020.first_or_initialize
     tournament.start_date = '29-03-2020'
     tournament.end_date = '24-05-2020'
@@ -29,7 +31,7 @@ namespace :import_cwc2019 do
   desc 'Import teams'
   task teams: :environment do
     teams = { 'Mumbai Indians' => [1, 'MI'], 'Chennai Super Kings' => [2, 'CSK'],
-    	      'Delhi Capitals' => [3, 'DC'],
+              'Delhi Capitals' => [3, 'DC'],
               'Sunrisers Hyderabad' => [4, 'SRH'], 'Kolkata Knight Riders' => [5, 'KKR'],
               'Kings XI Punjab' => [6, 'KXIP'],
               'Rajasthan Royals' => [7, 'RCB'], 'Royal Challengers Bangalore' => [8, 'RCB'] }

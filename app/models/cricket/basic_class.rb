@@ -9,7 +9,8 @@ module Cricket
     include ::Cricket::BasicOptions
     include ::Cricket::BasicPoints
 
-    attr_accessor :tournament, :match, :question, :date, :matches, :index, :challenge
+    attr_accessor :tournament, :match, :question, :date, :matches, :index,
+                  :challenge
 
     def initialize(args = {})
       args.each { |k, v| instance_variable_set("@#{k}", v) }
@@ -39,15 +40,16 @@ module Cricket
     end
 
     def import_challenges
-      challenge = tournament.challenges.by_name("#{challenge} - Day#{index + 1}").first_or_initialize
+      challenge = tournament.challenges.by_name("#{challenge} - Day#{index + 1}")
+                            .first_or_initialize
       dates = challenge_dates
       challenge.start_time = dates[0]
       challenge.end_time = dates[1]
       if challenge.save
         challenge.matches.update_all(challenge_id: nil)
         matches.each { |m| m.update_attributes(challenge_id: challenge.id) }
-        p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time}, ET: #{challenge.end_time}, " \
-           "Matches: #{matches.map(&:id).join}"
+        p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time},
+           ET: #{challenge.end_time}, Matches: #{matches.map(&:id).join}"
       end
     end
 

@@ -46,10 +46,12 @@ class PredictClass
 
   def import_challenges
     predict_app = klass_name
-    grouped_matches = tournament.matches.order(:id).group_by { |x| x.match_date.to_date }
+    grouped_matches =
+      tournament.matches.order(:id).group_by { |x| x.match_date.to_date }
     grouped_matches.each_with_index do |(date, matches), index|
-      predict_app.new(date: date, matches: matches, tournament: tournament, index: index,
-                      challenge: 'VIVO IPL2020')
+      predict_app.new(date: date, matches: matches, tournament: tournament,
+                      index: index,
+                      challenge: tournament_name.capitalize)
                  .import_challenges
     end
   end
