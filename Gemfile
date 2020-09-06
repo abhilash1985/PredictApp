@@ -10,7 +10,7 @@ gem 'mysql2'
 # Use Postgres in production
 gem 'pg', '~> 0.15'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 # Use SCSS for stylesheets
