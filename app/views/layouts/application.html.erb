@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -75,7 +76,7 @@
                       <%= link_to t('menu.prize_list'), prize_list_challenge_path(current_user),
                                                 data: { no_turbolink: true }, target: '_self' %>
                     </li>
-                  <% end %>  
+                  <% end %>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to t('menu.admin'), rails_admin_path, target: '_self' %>

@@ -16,11 +16,6 @@ class Match < ApplicationRecord
   scope :id_in, ->(match_ids) { where(id: match_ids) }
   scope :no_in, ->(match_no) { where(match_no: match_no) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
-  scope :knockouts, -> { where('match_no >= ?', 49) }
-  scope :quarter, -> { where('match_no >= ?', 57) }
-  scope :semi, -> { where('match_no >= ?', 61) }
-  scope :lf, -> { where('match_no = ?', 63) }
-  scope :final, -> { where('match_no = ?', 64) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)
@@ -68,7 +63,7 @@ class Match < ApplicationRecord
   end
 
   def started?
-    (match_date - 35.minutes) <= Time.zone.now
+    (match_date - 10.minutes) <= Time.zone.now
   end
 
   # Creating match questions based on question
@@ -80,16 +75,6 @@ class Match < ApplicationRecord
     match_question.points = question.weightage
     match_question.save
     p "#{match_question.id} - Match: #{match_no}, Q: #{question.question}, Options: #{options}"
-  end
-
-  class << self
-    def india_tour_of_england
-      [{"city"=>"Leeds", "stadium"=>"Leeds", "match_date"=>"2018-07-17",
-        "match_day"=>"Saturday", "match_type"=>"D", "team_two_long"=>"India",
-        "team_two_short"=>"IND", "team_one_long"=>"England", "team_one_short"=>"ENG",
-        "start_time"=>"05=>00 pm", "match_datetime"=>"2018-07-17 17:00", "timezone"=>"IST",
-        "pool"=>"A"}]
-    end
   end
 
   rails_admin do

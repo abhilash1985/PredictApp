@@ -14,6 +14,7 @@ class Tournament < ApplicationRecord
   scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
   scope :india_tour_of_england, -> { where(name: I18n.t(:eng_ind_tour)) }
   scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
+  scope :ipl2020, -> { where(name: I18n.t(:ipl_2020)) }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
@@ -27,6 +28,8 @@ class Tournament < ApplicationRecord
     when I18n.t(:fifa_2018)
       'russia.jpg'
     when I18n.t(:eng_ind_tour)
+      'ipl.jpg'
+    when I18n.t(:ipl_2020)
       'ipl.jpg'
     end
   end
@@ -86,8 +89,8 @@ class Tournament < ApplicationRecord
   end
 
   def total_percentage_for_user(user, from)
-    points = BigDecimal.new total_points_for_user(user, from)
-    total_points = BigDecimal.new total_points_for_match(user, from)
+    points = BigDecimal(total_points_for_user(user, from))
+    total_points = BigDecimal(total_points_for_match(user, from))
     total_points == 0 ? 0 : (points / total_points * 100).round(2)
   end
 

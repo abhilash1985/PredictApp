@@ -27,16 +27,16 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: 'Hello world'
+  hello: "Hello world"
 
-  app_name: 'PredictApp2019'
+  app_name: 'PredictApp2020'
 
   cwc2019: 'cwc2019'
   cricket_name: 'cricket'
-  
+
   cricket:
     win_the_match: 'Who will win the match?'
     win_the_toss: 'Who will win the toss?'
@@ -100,7 +100,27 @@ en:
     individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
     first_boundary_in_match: 'First boundary in the match will be through?'
-    
+
+  ipl:
+    runs_mi: 'Runs will be scored by Mumbai Indians?'
+    runs_csk: 'Runs will be scored by Chennai Super Kings?'
+    runs_dc: 'Runs will be scored by Delhi Capitals?'
+    runs_srh: 'Runs will be scored by Sunrisers Hyderabad?'
+    runs_kkr: 'Runs will be scored by Kolkata Knight Riders?'
+    runs_rcb: 'Runs will be scored by Royal Challengers Bangalore?'
+    runs_kxip: 'Runs will be scored by Kings XI Punjab?'
+    runs_rr: 'Runs will be scored by Rajasthan Royals?'
+    wickets_in_10_1st_innings: 'How many wickets will fell in the first 10 overs of the match in the 1st innings?'
+    wickets_in_10_2nd_innings: 'How many wickets will fell in the first 10 overs of the match in the 2nd innings?'
+    pp1_batting1: 'How many runs will be scored in the Power Play(0-6 overs) by the team batting 1st?'
+    pp1_batting2: 'How many runs will be scored in the Power Play(0-6 overs) by the team batting 2nd?'
+    overs_10_batting1: 'How many runs will be scored in the first 10 overs by the team batting 1st?'
+    overs_10_batting2: 'How many runs will be scored in the first 10 overs by the team batting 2nd?'
+    overs_10_20_batting1: 'How many runs will be scored between 10-20 overs by the team batting 1st?'
+    overs_10_20_batting2: 'How many runs will be scored between 10-20 overs by the team batting 2nd?'
+    overs_16_20_batting1: 'How many runs will be scored between 16-20 overs by the team batting 1st?'
+    overs_16_20_batting2: 'How many runs will be scored between 16-20 overs by the team batting 2nd?'
+
   bonus:
     win_world_cup: 'Who will win the ICC Cricket World Cup 2019?'
     team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
@@ -152,6 +172,7 @@ en:
   cricket_2019: 'ICC Cricket World Cup 2019'
   fifa_2018: '2018 FIFA World Cup Russia'
   eng_ind_tour: 'India Tour of England 2018'
+  ipl_2020: 'VIVO IPL 2020'
   prediction: 'Prediction'
   submit: 'Submit'
   close: 'Close'
@@ -187,8 +208,8 @@ en:
     sign_up: 'Sign Up'
 
   footer:
-    all_rights_reserved: '2019 All rights reserved.'
-  
+    all_rights_reserved: '2020 All rights reserved.'
+
   tournament:
     current_challenges: 'Current Challenges'
     prev_challenges: 'Previous Challenges'

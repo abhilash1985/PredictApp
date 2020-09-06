@@ -8,7 +8,7 @@
 
 
 # Seed the Tournament Type
-{ 'cwc2019' => 'cricket' }.each do |key, value|
+{ 'ipl2020' => 'cricket' }.each do |key, value|
   tournament_type = TournamentType.where(name: key, game: value)
                                   .first_or_initialize
   tournament_type.save!
