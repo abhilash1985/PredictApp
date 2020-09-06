@@ -244,7 +244,7 @@ namespace :import_ipl do
 
   def generate_predict_class
     tournament = Tournament.ipl2020.first
-    tournament_type = TournamentType.cwc2019.first
+    tournament_type = TournamentType.ipl2020.first
     @predict_class = PredictClass.new(tournament, tournament_type.name, tournament_type.game)
   end
 end

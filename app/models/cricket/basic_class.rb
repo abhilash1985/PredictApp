@@ -40,7 +40,7 @@ module Cricket
     end
 
     def import_challenges
-      challenge = tournament.challenges.by_name("#{challenge} - Day#{index + 1}")
+      challenge = tournament.challenges.by_name("#{@challenge} - Day#{index + 1}")
                             .first_or_initialize
       dates = challenge_dates
       challenge.start_time = dates[0]

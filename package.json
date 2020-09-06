@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "4.2.2",
+    "jquery": "^3.4.1",
     "jquery-countdown": "^2.2.0"
   },
   "devDependencies": {

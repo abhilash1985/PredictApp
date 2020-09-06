@@ -51,7 +51,7 @@ class PredictClass
     grouped_matches.each_with_index do |(date, matches), index|
       predict_app.new(date: date, matches: matches, tournament: tournament,
                       index: index,
-                      challenge: tournament_name.capitalize)
+                      challenge: tournament_name.upcase)
                  .import_challenges
     end
   end
