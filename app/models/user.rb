@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # Associations
-  has_many :user_challenges
+  has_many :user_challenges, dependent: :destroy
   has_many :challenges, through: :user_challenges
   has_many :payments, dependent: :destroy
   has_many :challenge_payments, dependent: :destroy

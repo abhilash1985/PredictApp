@@ -11,16 +11,16 @@ namespace :import_ipl do
                                     .first_or_initialize
     tournament_type.save
     tournament = tournament_type.tournaments.ipl2020.first_or_initialize
-    tournament.start_date = '29-03-2020'
-    tournament.end_date = '24-05-2020'
-    tournament.location = 'India'
+    tournament.start_date = '19-09-2020'
+    tournament.end_date = '10-11-2020'
+    tournament.location = 'United Arab Emirates'
     tournament.save
     p 'Imported Tournaments...'
   end
 
   desc 'Import stadiums'
   task stadiums: :environment do
-    stadiums = %w(Mumbai Delhi Bengaluru Hyderabad Chennai Kolkata Mohali Guwahati)
+    stadiums = %w[Abu\ Dhabi Dubai Sharjah]
     stadiums.each do |stadium|
       stadium = Stadium.by_name(stadium).first_or_initialize
       stadium.save
