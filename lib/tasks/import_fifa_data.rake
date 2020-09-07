@@ -125,7 +125,7 @@ namespace :import do
   #   team_flag = team_data['flag']
   #   team = Team.by_name(team_name).first || Team.by_name(team_fifa_code).first
   #   return if team.blank?
-  #   team.update_attributes(short_name: team_fifa_code, flag: team_flag)
+  #   team.update(short_name: team_fifa_code, flag: team_flag)
   #   team
   # end
 

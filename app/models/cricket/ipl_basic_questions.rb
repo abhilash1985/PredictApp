@@ -4,7 +4,6 @@ module Cricket
   module IplBasicQuestions
     def all_team_score_questions
       # Points 2
-      # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
       {
         I18n.t('ipl.runs_mi') => team_score_points,
         I18n.t('ipl.runs_csk') => team_score_points,
@@ -25,7 +24,6 @@ module Cricket
 
     def powerplay1_questions
       # Points 2
-      # 0-30, 31-40, 41-50, 51-55, 56-65, 66-75, 76-85, 85+
       {
         I18n.t('ipl.pp1_batting1') => powerplay1_points,
         I18n.t('ipl.pp1_batting2') => powerplay1_points
@@ -34,7 +32,6 @@ module Cricket
 
     def overs_10_questions
       # Points 2
-      # 0-75, 76-100, 101-120, 121-130, 131-140, 141-150, 151-175, 175+
       {
         I18n.t('ipl.overs_10_batting1') => overs_10_points,
         I18n.t('ipl.overs_10_batting2') => overs_10_points
@@ -43,7 +40,6 @@ module Cricket
 
     def overs_10_20_questions
       # Points 2
-      # 0-75, 76-100, 101-120, 121-130, 131-140, 141-150, 151-175, 175+
       {
         I18n.t('ipl.overs_10_20_batting1') => overs_10_20_points,
         I18n.t('ipl.overs_10_20_batting2') => overs_10_20_points
@@ -52,7 +48,6 @@ module Cricket
 
     def overs_16_20_questions
       # Points 2
-      # 0-30, 31-40, 41-50, 51-55, 56-65, 66-75, 76-85, 85+
       {
         I18n.t('ipl.overs_16_20_batting1') => overs_16_20_points,
         I18n.t('ipl.overs_16_20_batting2') => overs_16_20_points
@@ -61,7 +56,6 @@ module Cricket
 
     def wickets_questions
       # Points 2
-      # 0-1, 2-3, 4, 5, 6, 7, 8, 9-10
       {
         I18n.t('cricket.wickets_in_1st_innings') => wickets_points,
         I18n.t('cricket.wickets_in_2nd_innings') => wickets_points,

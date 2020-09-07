@@ -92,22 +92,22 @@ module Cricket
        %w(0-50 51-60 61-70 71-80 81-90 91-100 101-110 111-120 120+)
     end
 
-    def no_of_runs_in_40_options
-      %w(0-1 2-3 4-5 6-7 8 9 10 10+)
-    end
+    # def no_of_runs_in_40_options
+    #   %w(0-1 2-3 4-5 6-7 8 9 10 10+)
+    # end
 
-    def no_of_runs_in_25_options
-      %w(0-1 2-3 4 5 6 7 8 8+)
-    end
+    # def no_of_runs_in_25_options
+    #   %w(0-1 2-3 4 5 6 7 8 8+)
+    # end
 
-    def no_of_wickets_by_starc_and_behren_options
-      %w(0-1 2 3 4 5 6 7 7+)
-    end
+    # def no_of_wickets_by_starc_and_behren_options
+    #   %w(0-1 2 3 4 5 6 7 7+)
+    # end
 
     # Final options
-    def overs_46_50_batting1_options
-      %w(0-10 11-20 21-25 26-30 31-35 36-40 41-45 46-50 50+)
-    end
+    # def overs_46_50_batting1_options
+    #   %w(0-10 11-20 21-25 26-30 31-35 36-40 41-45 46-50 50+)
+    # end
 
     def most_runs_scored_in_over_options
       %w(0-6 7-10 11-12 13-15 16-18 19-20 21-23 24-25 25+)
@@ -126,7 +126,11 @@ module Cricket
     end
 
     def best_sr_batsman_in_final_options
-      %w(0-80 81-90 91-100 101-110 111-120 121-130 131-140 141-150 150+)
+      %w(0-90 91-100 101-110 111-120 121-130 131-140 141-150 151-170 170+)
     end
+
+    # Strike Rate of Top Scorer
+    # Economy of Best Bowler
+    # Runs scored by the batsman who got out first
   end
 end

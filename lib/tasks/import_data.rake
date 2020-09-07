@@ -73,15 +73,15 @@ namespace :import do
   task matches: :environment do
     # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     team_uae = Team.by_name('UAE').first
-    team_uae.update_attributes(name: 'United Arab Emirates') if team_uae
+    team_uae.update(name: 'United Arab Emirates') if team_uae
     # Match.matches.each_with_index do |hash, match_no|
     #   match = Match.by_match_no(match_no + 1).first_or_initialize
     #   team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
     #   next if team1.blank?
-    #   team1.update_attributes(short_name: hash['team_one_short'])
+    #   team1.update(short_name: hash['team_one_short'])
     #   team2 = Team.by_name(hash['team_two_long']).first || Team.by_name(hash['team_two_short']).first
     #   next if team2.blank?
-    #   team2.update_attributes(short_name: hash['team_two_short'])
+    #   team2.update(short_name: hash['team_two_short'])
     #   match.team1_id = team1.id
     #   match.team2_id = team2.id
     #   stadium = Stadium.like_name(hash['city']).first
@@ -94,10 +94,10 @@ namespace :import do
       match = Match.by_match_no(4018).first_or_initialize
       team1 = Team.by_name(hash['team_one_long']).first || Team.by_name(hash['team_one_short']).first
       next if team1.blank?
-      team1.update_attributes(short_name: hash['team_one_short'])
+      team1.update(short_name: hash['team_one_short'])
       team2 = Team.by_name(hash['team_two_long']).first || Team.by_name(hash['team_two_short']).first
       next if team2.blank?
-      team2.update_attributes(short_name: hash['team_two_short'])
+      team2.update(short_name: hash['team_two_short'])
       match.team1_id = team1.id
       match.team2_id = team2.id
       stadium = Stadium.like_name(hash['city']).first

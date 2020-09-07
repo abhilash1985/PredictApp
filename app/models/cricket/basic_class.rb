@@ -47,7 +47,7 @@ module Cricket
       challenge.end_time = dates[1]
       if challenge.save
         challenge.matches.update_all(challenge_id: nil)
-        matches.each { |m| m.update_attributes(challenge_id: challenge.id) }
+        matches.each { |m| m.update(challenge_id: challenge.id) }
         p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time},
            ET: #{challenge.end_time}, Matches: #{matches.map(&:id).join}"
       end

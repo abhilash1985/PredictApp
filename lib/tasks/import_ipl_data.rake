@@ -142,105 +142,105 @@ namespace :import_ipl do
     p 'Imported Challenges...'
   end
 
-  desc 'Import Bonus questions'
-  task bonus_questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
-    predict_app = generate_predict_class.klass_name.new
-    questions = predict_app.all_bonus_questions
-    questions.each do |quest, weightage|
-      question = Question.by_question(quest).first_or_initialize
-      question.weightage = weightage[0]
-      question.save
-      p "#{question.id}: Bonus Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
-    end
-    p 'Imported Bonus Questions...'
-  end
+  # desc 'Import Bonus questions'
+  # task bonus_questions: :environment do
+  #   # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+  #   predict_app = generate_predict_class.klass_name.new
+  #   questions = predict_app.all_bonus_questions
+  #   questions.each do |quest, weightage|
+  #     question = Question.by_question(quest).first_or_initialize
+  #     question.weightage = weightage[0]
+  #     question.save
+  #     p "#{question.id}: Bonus Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+  #   end
+  #   p 'Imported Bonus Questions...'
+  # end
 
-  desc 'Import Bonus match questions'
-  task bonus_match_questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
-    predict_app = generate_predict_class.klass_name.new
-    predict_app.import_bonus_match_questions
-    p 'Imported Bonus Match Questions...'
-  end
+  # desc 'Import Bonus match questions'
+  # task bonus_match_questions: :environment do
+  #   # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+  #   predict_app = generate_predict_class.klass_name.new
+  #   predict_app.import_bonus_match_questions
+  #   p 'Imported Bonus Match Questions...'
+  # end
 
-  desc 'Import SEMI-FINAL Matches'
-  task semi_matches: :environment do
-    begin
-      semi_matches =
-        [[46, 'India', 'New Zealand', 'Old Trafford', '09-07-2019 15:00:00'],
-         [47, 'England', 'Australia', 'Edgbaston', '11-07-2019 15:00:00']]
-      tournament = Tournament.cricket_2019.first
-      return if tournament.blank?
-      semi_matches.each do |row|
-        next if row[0].blank?
-        team1 = Team.by_name(row[1].strip).first
-        next if team1.blank?
-        team2 = Team.by_name(row[2].strip).first
-        next if team2.blank?
-        match = tournament.matches.by_match_no(row[0])
-                          .where(team1_id: team1.id, team2_id: team2.id)
-                          .first_or_initialize
-        stadium = Stadium.by_name(row[3].strip).first_or_initialize
-        stadium.save
-        match.stadium_id = stadium.try(:id)
-        round = Round.by_name('SEMI-FINAL').first
-        match.round_id = round.try(:id)
-        match.match_date = row[4]
-        match.save!
-        p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
-      end
-      p 'Imported SEMI-FINAL Matches...'
-    rescue => e
-      puts "Error while importing #{e} #{e.backtrace}"
-    end
-  end
+  # desc 'Import SEMI-FINAL Matches'
+  # task semi_matches: :environment do
+  #   begin
+  #     semi_matches =
+  #       [[46, 'India', 'New Zealand', 'Old Trafford', '09-07-2019 15:00:00'],
+  #        [47, 'England', 'Australia', 'Edgbaston', '11-07-2019 15:00:00']]
+  #     tournament = Tournament.cricket_2019.first
+  #     return if tournament.blank?
+  #     semi_matches.each do |row|
+  #       next if row[0].blank?
+  #       team1 = Team.by_name(row[1].strip).first
+  #       next if team1.blank?
+  #       team2 = Team.by_name(row[2].strip).first
+  #       next if team2.blank?
+  #       match = tournament.matches.by_match_no(row[0])
+  #                         .where(team1_id: team1.id, team2_id: team2.id)
+  #                         .first_or_initialize
+  #       stadium = Stadium.by_name(row[3].strip).first_or_initialize
+  #       stadium.save
+  #       match.stadium_id = stadium.try(:id)
+  #       round = Round.by_name('SEMI-FINAL').first
+  #       match.round_id = round.try(:id)
+  #       match.match_date = row[4]
+  #       match.save!
+  #       p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
+  #     end
+  #     p 'Imported SEMI-FINAL Matches...'
+  #   rescue => e
+  #     puts "Error while importing #{e} #{e.backtrace}"
+  #   end
+  # end
 
-  desc 'Import SEMI-FINAL questions'
-  task semi_questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
-    predict_app = generate_predict_class.klass_name.new
-    questions = predict_app.all_semi_questions
-    questions.each do |quest, weightage|
-      question = Question.by_question(quest).first_or_initialize
-      question.weightage = weightage[0]
-      sleep(1)
-      question.updated_at = Time.now
-      question.save
-      p "#{question.id}: SEMI-FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
-    end
-    p 'Imported SEMI-FINAL Questions...'
-  end
+  # desc 'Import SEMI-FINAL questions'
+  # task semi_questions: :environment do
+  #   # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+  #   predict_app = generate_predict_class.klass_name.new
+  #   questions = predict_app.all_semi_questions
+  #   questions.each do |quest, weightage|
+  #     question = Question.by_question(quest).first_or_initialize
+  #     question.weightage = weightage[0]
+  #     sleep(1)
+  #     question.updated_at = Time.now
+  #     question.save
+  #     p "#{question.id}: SEMI-FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+  #   end
+  #   p 'Imported SEMI-FINAL Questions...'
+  # end
 
-  desc 'Import SEMI-FINAL match questions'
-  task semi_match_questions: :environment do
-    generate_predict_class
-    @predict_class.import_semi_match_questions
-    p 'Imported SEMI-FINAL Match Questions...'
-  end
+  # desc 'Import SEMI-FINAL match questions'
+  # task semi_match_questions: :environment do
+  #   generate_predict_class
+  #   @predict_class.import_semi_match_questions
+  #   p 'Imported SEMI-FINAL Match Questions...'
+  # end
 
-  desc 'Import FINAL questions'
-  task final_questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
-    predict_app = generate_predict_class.klass_name.new
-    questions = predict_app.final_questions
-    questions.each do |quest, weightage|
-      question = Question.by_question(quest).first_or_initialize
-      question.weightage = weightage[0]
-      sleep(1)
-      question.updated_at = Time.now
-      question.save
-      p "#{question.id}: FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
-    end
-    p 'Imported FINAL Questions...'
-  end
+  # desc 'Import FINAL questions'
+  # task final_questions: :environment do
+  #   # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+  #   predict_app = generate_predict_class.klass_name.new
+  #   questions = predict_app.final_questions
+  #   questions.each do |quest, weightage|
+  #     question = Question.by_question(quest).first_or_initialize
+  #     question.weightage = weightage[0]
+  #     sleep(1)
+  #     question.updated_at = Time.now
+  #     question.save
+  #     p "#{question.id}: FINAL Question: #{quest}, Weightage: #{weightage[0]}, Options: #{weightage[1]}"
+  #   end
+  #   p 'Imported FINAL Questions...'
+  # end
 
-  desc 'Import FINAL match questions'
-  task final_match_questions: :environment do
-    generate_predict_class
-    @predict_class.import_final_match_questions
-    p 'Imported FINAL Match Questions...'
-  end
+  # desc 'Import FINAL match questions'
+  # task final_match_questions: :environment do
+  #   generate_predict_class
+  #   @predict_class.import_final_match_questions
+  #   p 'Imported FINAL Match Questions...'
+  # end
 
   def generate_predict_class
     tournament = Tournament.ipl2020.first
