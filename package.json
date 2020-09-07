@@ -6,7 +6,7 @@
     "jquery": "^3.5.0",
     "jquery-countdown": "^2.2.0",
     "serialize-javascript": "^3.1.0",
-    "yargs-parser": "^13.1.2"
+    "yargs-parser": "^18.1.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.10.3"
