@@ -34,7 +34,7 @@ namespace :import_ipl do
               'Delhi Capitals' => [3, 'DC'],
               'Sunrisers Hyderabad' => [4, 'SRH'], 'Kolkata Knight Riders' => [5, 'KKR'],
               'Kings XI Punjab' => [6, 'KXIP'],
-              'Rajasthan Royals' => [7, 'RCB'], 'Royal Challengers Bangalore' => [8, 'RCB'] }
+              'Rajasthan Royals' => [7, 'RR'], 'Royal Challengers Bangalore' => [8, 'RCB'] }
     teams.each do |name, rank|
       team = Team.by_name(name).first_or_initialize
       team.rank = rank[0]
