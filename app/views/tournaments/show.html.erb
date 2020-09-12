@@ -22,6 +22,7 @@
             </div>
             <div class="tab-pane" id="tab_default_2">
               <%= paginate @previous_challenges %>
+              <div class="clearfix"></div>
               <%= render 'challenges', challenges: @previous_challenges, form_name: 'prev_challenge_form', name: 'previous' %>
             </div>
           </div>

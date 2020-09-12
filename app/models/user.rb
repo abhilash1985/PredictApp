@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # scope
   scope :order_by_name, -> { order(:first_name) }
   # Constants
-  POINT_BOOSTER = 3
+  POINT_BOOSTER = 5
 
   def show_name
     full_name.blank? ? show_email : full_name

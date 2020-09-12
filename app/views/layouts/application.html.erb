@@ -36,7 +36,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to t('menu.home'), dashboard_index_path, class:'navbar-brand' %>
+            <%= link_to image_tag('logo/logo.png'), dashboard_index_path, class:'navbar-brand predikt-logo' %>
             <% if @current_tournament %>
               <%= link_to @current_tournament.name, tournament_path(@current_tournament),
                                                     class:'navbar-brand', style: 'color:#fff',
