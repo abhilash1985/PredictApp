@@ -92,6 +92,10 @@ module Cricket
        %w(0-50 51-60 61-70 71-80 81-90 91-100 101-110 111-120 120+)
     end
 
+    def runs_by_first_out_options
+       %w(0-5 6-15 16-20 21-30 31-40 41-50 51-75 75+ 'NoWickets')
+    end
+
     # def no_of_runs_in_40_options
     #   %w(0-1 2-3 4-5 6-7 8 9 10 10+)
     # end

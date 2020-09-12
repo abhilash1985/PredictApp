@@ -33,7 +33,7 @@ module Cricket
 
     def import_match_questions
       selected_questions = sample_questions
-      questions = Question.by_question(selected_questions.keys)
+      questions = Question.by_question(selected_questions.keys).order(:id)
       questions.each do |question|
         match.create_match_question(question, selected_questions)
       end

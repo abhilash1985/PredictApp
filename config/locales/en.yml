@@ -78,7 +78,7 @@ en:
     overs_30_40_batting1: 'How many runs will be scored between 30-40 overs by the team batting 1st?'
     overs_30_40_batting2: 'How many runs will be scored between 30-40 overs by the team batting 2nd?'
     best_bowler: 'Who will be the best bowler of the match?'
-    top_scoorer: 'Who will be the top scorer of the match?'
+    top_scorer: 'Who will be the top scorer of the match?'
     top_six_hitter: 'Who will hit the most no. of sixes in the match?'
     top_four_hitter: 'Who will hit the most no. of boundaries in the match?'
     first_wicket_taker: 'Who will take the first wicket of the match?'
@@ -156,6 +156,8 @@ en:
     no_of_runs_in_40_over: 'No. of Runs scored in the 40th over by team batting first?'
     no_of_runs_in_25_over: 'No. of Runs scored in the 25th over by team batting second?'
     no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
+
+    runs_by_first_out_batsman: 'Runs scored by the batsman who gets out first in the match will be?'
 
   final:
     no_of_boundaries_scored_in_final: "Total No. of Boundaries(4's & 6's) scored in the final will be?"

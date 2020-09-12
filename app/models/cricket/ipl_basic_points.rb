@@ -22,6 +22,10 @@ module Cricket
       [2, partnership_options]
     end
 
+    def runs_by_first_out_points
+      [2, runs_by_first_out_options]
+    end
+
     def economy_bowler_points
       [2, default_options]
     end

@@ -18,7 +18,7 @@ module Cricket
 
     def powerplay_questions
       powerplay1_questions.merge(
-        overs_10_questions, overs_10_20_questions, overs_16_20_questions
+        overs_10_questions, overs_10_20_questions, overs_16_20_questions, partnership_other_questions
       )
     end
 
@@ -51,6 +51,13 @@ module Cricket
       {
         I18n.t('ipl.overs_16_20_batting1') => overs_16_20_points,
         I18n.t('ipl.overs_16_20_batting2') => overs_16_20_points
+      }
+    end
+
+    def partnership_other_questions
+      {
+        I18n.t('semi.best_partnership_in_the_match') => partnership_points,
+        I18n.t('ipl.runs_by_first_out_batsman') => runs_by_first_out_points
       }
     end
 
