@@ -61,6 +61,7 @@ en:
     no_of_stumped: 'Total No. of Stumped outs in the match?'
     no_of_lbw: 'Total No. of LBW outs in the match?'
     no_of_hit_wicket: 'Total No. of Hit wickets in the match?'
+    no_of_other_outs: 'Total No. of Run outs, Stumped and Hit wickets in the match?'
     no_of_extras: 'Total No. of Extras in the match?'
     no_of_wide: 'Total No. of Wides in the match?'
     no_of_no_ball: 'Total No. of No Balls in the match?'

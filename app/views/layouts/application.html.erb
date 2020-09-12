@@ -39,7 +39,7 @@
             <%= link_to image_tag('logo/logo.png'), dashboard_index_path, class:'navbar-brand predikt-logo' %>
             <% if @current_tournament %>
               <%= link_to @current_tournament.name, tournament_path(@current_tournament),
-                                                    class:'navbar-brand', style: 'color:#fff',
+                                                    class:'navbar-brand navbar-brand_tournament',
                                                     data: { no_turbolink: true }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
                                          class: 'navbar-brand', data: { no_turbolink: true }, target: '_self' %>

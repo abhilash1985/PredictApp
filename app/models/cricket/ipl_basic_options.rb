@@ -17,7 +17,7 @@ module Cricket
     end
 
     def default_winning_margin_options
-      ['No Results', '1-15Runs', '16-25Runs', '26-35Runs', '35+Runs', '1-3Wickets',
+      ['No Results', '1-15Runs', '16-30Runs', '31-50Runs', '50+Runs', '1-3Wickets',
         '4-5Wickets', '6-7Wickets', '8-10Wickets']
     end
 
@@ -70,7 +70,7 @@ module Cricket
     end
 
     def first_wicket_options
-      ['Caught Behind', 'LBW', 'Stumped', 'Hit Wicket', 'RunOut', 'Bowled', 'Caught & Bowled',
+      ['Caught Behind', 'LBW', 'Stumped', 'RunOut', 'Bowled', 'Caught & Bowled',
        'Others', 'No Wickets']
     end
 
@@ -131,6 +131,6 @@ module Cricket
 
     # Strike Rate of Top Scorer
     # Economy of Best Bowler
-    # Runs scored by the batsman who got out first
+    # Runs scored by the batsman who gets out first
   end
 end
