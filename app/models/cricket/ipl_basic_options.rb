@@ -22,31 +22,31 @@ module Cricket
     end
 
     def team_score_options
-      %w(0-100 101-120 121-140 141-150 151-160 161-175 176-200 201-220 220+)
+      %w(0-120 121-140 141-150 151-160 161-175 176-200 201-220 220+)
     end
 
     def no_of_out_options
-      %w(0 1-2 3-4 5 6 7 8 9-10 10+)
+      %w(0 1-2 3-4 5-6 7 8 9-10 10+)
     end
 
     def no_of_extras_options
-      %w(0 1-3 4-7 8-10 11-15 16-20 21-25 26-30 30+)
+      %w(0-3 4-7 8-10 11-15 16-20 21-25 26-30 30+)
     end
 
     def powerplay1_options
-      %w(0-30 31-40 41-45 46-50 51-56 56-60 61-65 66-70 70+)
+      %w(0-30 31-40 41-45 46-50 51-56 56-60 61-70 70+)
     end
 
     def overs_10_options
-      %w(0-40 41-50 51-60 61-70 71-75 76-80 81-86 86-90 90+)
+      %w(0-40 41-50 51-60 61-70 71-75 76-85 86-100 100+)
     end
 
     def overs_10_20_options
-      %w(0-50 51-60 61-70 71-80 81-90 91-100 101-110 111-120 120+)
+      %w(0-50 51-60 61-70 71-80 81-90 91-100 101-120 120+)
     end
 
     def overs_16_20_options
-      %w(0-30 31-40 41-45 46-50 51-56 56-60 61-65 66-70 70+)
+      %w(0-30 31-40 41-45 46-50 51-56 56-65 66-75 75+)
     end
 
     def bowler_batsman_options
@@ -54,19 +54,19 @@ module Cricket
     end
 
     def no_of_sixes_options
-      %w(0 1-2 3-5 6-8 9-10 11-12 13-15 16-20 20+)
+      %w(0-2 3-5 6-8 9-10 11-12 13-15 16-20 20+)
     end
 
     def no_of_boundaries_options
-      %w(0-5 6-10 11-15 16-20 21-25 26-30 31-35 36-40 40+)
+      %w(0-5 6-10 11-15 16-20 21-25 26-30 31-35 35+)
     end
 
     def wickets_options
-      %w(0-1 2 3 4 5 6 7 8 9-10)
+      %w(0-1 2 3 4-5 6 7 8 9-10)
     end
 
     def drs_options
-      %w(0 1 2 3 4 5 6 7 7+)
+      %w(0 1 2 3 4 5 6 6+)
     end
 
     def first_wicket_options
@@ -80,7 +80,7 @@ module Cricket
     end
 
     def individual_score_options
-      %w(0-40 41-50 51-60 61-70 71-80 81-90 91-100 101-110 110+)
+      %w(0-40 41-50 51-60 61-70 71-80 81-90 91-100 100+)
     end
 
     def first_boundary_options
@@ -89,11 +89,15 @@ module Cricket
     end
 
     def partnership_options
-       %w(0-50 51-60 61-70 71-80 81-90 91-100 101-110 111-120 120+)
+      %w[0-50 51-60 61-70 71-80 81-90 91-100 101-120 120+]
     end
 
     def runs_by_first_out_options
-       %w(0-5 6-15 16-20 21-30 31-40 41-50 51-75 75+ 'NoWickets')
+       ['0-10', '11-20', '21-30', '31-40', '41-50', '51-75', '75+' 'No Wickets Lost']
+    end
+
+    def strike_rate_by_topscorer_options
+      %w[0-100 101-120 121-130 131-140 141-150 151-160 161-175 175+]
     end
 
     # def no_of_runs_in_40_options
@@ -126,7 +130,7 @@ module Cricket
     end
 
     def longest_six_options
-      %w(0-70 71-75 76-80 81-85 86-90 91-95 96-100 100+ NoSixes)
+      %w(0-80 81-85 86-90 91-95 96-100 101-105 106-110 110+ NoSixes)
     end
 
     def best_sr_batsman_in_final_options

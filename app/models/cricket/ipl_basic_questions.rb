@@ -71,10 +71,17 @@ module Cricket
       }
     end
 
+    def strike_rate_by_topscorer_questions
+      {
+        I18n.t('semi.strike_rate_of_top_scorer') => strike_rate_by_topscorer_points
+      }
+    end
+
     def others_questions
       drs_questions.merge(
         first_wicket_questions, first_caught_out_questions,
-        individual_score_questions, first_boundary_questions
+        individual_score_questions, first_boundary_questions,
+        strike_rate_by_topscorer_questions
       )
     end
   end

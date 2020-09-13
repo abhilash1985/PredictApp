@@ -82,5 +82,9 @@ module Cricket
     def best_sr_batsman_in_final_points
       [2, best_sr_batsman_in_final_options]
     end
+
+    def strike_rate_by_topscorer_points
+      [2, strike_rate_by_topscorer_options]
+    end
   end
 end

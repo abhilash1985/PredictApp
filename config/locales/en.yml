@@ -158,6 +158,7 @@ en:
     no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
 
     runs_by_first_out_batsman: 'Runs scored by the batsman who gets out first in the match will be?'
+    strike_rate_of_top_scorer: 'Strike Rate by the Top run-scorer in the match will be?'
 
   final:
     no_of_boundaries_scored_in_final: "Total No. of Boundaries(4's & 6's) scored in the final will be?"
