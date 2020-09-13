@@ -6,7 +6,7 @@ class Livescore
   def perform(match)
     finished, home_goals, away_goals, home_penalties, away_penalties = fetch_livescore(match.team1_name, match.team2_name)
     return if home_goals.nil? || away_goals.nil?
-    match.update_attributes(home_goals: home_goals, away_goals: away_goals, home_penalties: home_penalties, away_penalties: away_penalties, finished: finished)
+    match.update(home_goals: home_goals, away_goals: away_goals, home_penalties: home_penalties, away_penalties: away_penalties, finished: finished)
   end
 
   private

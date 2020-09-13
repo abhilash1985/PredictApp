@@ -2,8 +2,8 @@
 class Tournament < ApplicationRecord
   include Leaderboard
   # Associations
-  has_many :challenges
-  has_many :matches
+  has_many :challenges, dependent: :destroy
+  has_many :matches, dependent: :destroy
   belongs_to :tournament_type
   # Scopes
   scope :world_cup, -> { where(name: 'ICC Cricket World Cup 2015') }
@@ -25,10 +25,6 @@ class Tournament < ApplicationRecord
     case name
     when I18n.t(:cricket_2019)
       'cricket_2019.jpg'
-    when I18n.t(:fifa_2018)
-      'russia.jpg'
-    when I18n.t(:eng_ind_tour)
-      'ipl.jpg'
     when I18n.t(:ipl_2020)
       'ipl.jpg'
     end

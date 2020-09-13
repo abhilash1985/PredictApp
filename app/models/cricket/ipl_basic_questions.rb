@@ -4,7 +4,6 @@ module Cricket
   module IplBasicQuestions
     def all_team_score_questions
       # Points 2
-      # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
       {
         I18n.t('ipl.runs_mi') => team_score_points,
         I18n.t('ipl.runs_csk') => team_score_points,
@@ -19,13 +18,12 @@ module Cricket
 
     def powerplay_questions
       powerplay1_questions.merge(
-        overs_10_questions, overs_10_20_questions, overs_16_20_questions
+        overs_10_questions, overs_10_20_questions, overs_16_20_questions, partnership_other_questions
       )
     end
 
     def powerplay1_questions
       # Points 2
-      # 0-30, 31-40, 41-50, 51-55, 56-65, 66-75, 76-85, 85+
       {
         I18n.t('ipl.pp1_batting1') => powerplay1_points,
         I18n.t('ipl.pp1_batting2') => powerplay1_points
@@ -34,7 +32,6 @@ module Cricket
 
     def overs_10_questions
       # Points 2
-      # 0-75, 76-100, 101-120, 121-130, 131-140, 141-150, 151-175, 175+
       {
         I18n.t('ipl.overs_10_batting1') => overs_10_points,
         I18n.t('ipl.overs_10_batting2') => overs_10_points
@@ -43,7 +40,6 @@ module Cricket
 
     def overs_10_20_questions
       # Points 2
-      # 0-75, 76-100, 101-120, 121-130, 131-140, 141-150, 151-175, 175+
       {
         I18n.t('ipl.overs_10_20_batting1') => overs_10_20_points,
         I18n.t('ipl.overs_10_20_batting2') => overs_10_20_points
@@ -52,16 +48,21 @@ module Cricket
 
     def overs_16_20_questions
       # Points 2
-      # 0-30, 31-40, 41-50, 51-55, 56-65, 66-75, 76-85, 85+
       {
         I18n.t('ipl.overs_16_20_batting1') => overs_16_20_points,
         I18n.t('ipl.overs_16_20_batting2') => overs_16_20_points
       }
     end
 
+    def partnership_other_questions
+      {
+        I18n.t('semi.best_partnership_in_the_match') => partnership_points,
+        I18n.t('ipl.runs_by_first_out_batsman') => runs_by_first_out_points
+      }
+    end
+
     def wickets_questions
       # Points 2
-      # 0-1, 2-3, 4, 5, 6, 7, 8, 9-10
       {
         I18n.t('cricket.wickets_in_1st_innings') => wickets_points,
         I18n.t('cricket.wickets_in_2nd_innings') => wickets_points,
@@ -70,10 +71,17 @@ module Cricket
       }
     end
 
+    def strike_rate_by_topscorer_questions
+      {
+        I18n.t('semi.strike_rate_of_top_scorer') => strike_rate_by_topscorer_points
+      }
+    end
+
     def others_questions
       drs_questions.merge(
         first_wicket_questions, first_caught_out_questions,
-        individual_score_questions, first_boundary_questions
+        individual_score_questions, first_boundary_questions,
+        strike_rate_by_topscorer_questions
       )
     end
   end

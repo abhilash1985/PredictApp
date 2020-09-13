@@ -22,6 +22,15 @@
   background-size: 50px;
 }
 
+.navbar-brand_tournament {
+  color: #5CB85C !important;
+  font-weight: bold;
+}
+
+.navbar-brand_tournament:hover {
+  color: #FFF !important;
+}
+
 .predikt-logo {
   margin-top: -5px;
   padding: 1px 2px !important;
@@ -127,6 +136,9 @@
 }
 
 .prediction-results {
-  color: #FFF;
   font-weight: bold;
+}
+
+.prediction-results, .white_text {
+  color: #FFF;
 }

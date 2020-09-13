@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # Associations
-  has_many :user_challenges
+  has_many :user_challenges, dependent: :destroy
   has_many :challenges, through: :user_challenges
   has_many :payments, dependent: :destroy
   has_many :challenge_payments, dependent: :destroy
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # scope
   scope :order_by_name, -> { order(:first_name) }
   # Constants
-  POINT_BOOSTER = 3
+  POINT_BOOSTER = 5
 
   def show_name
     full_name.blank? ? show_email : full_name

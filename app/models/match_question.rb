@@ -35,7 +35,7 @@ class MatchQuestion < ApplicationRecord
 
   def update_prediction_points
     predictions.each do |prediction|
-      prediction.update_attributes(points: points_for_prediction(prediction))
+      prediction.update(points: points_for_prediction(prediction))
     end
   end
 

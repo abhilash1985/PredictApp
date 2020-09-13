@@ -61,6 +61,7 @@ en:
     no_of_stumped: 'Total No. of Stumped outs in the match?'
     no_of_lbw: 'Total No. of LBW outs in the match?'
     no_of_hit_wicket: 'Total No. of Hit wickets in the match?'
+    no_of_other_outs: 'Total No. of Run outs, Stumped and Hit wickets in the match?'
     no_of_extras: 'Total No. of Extras in the match?'
     no_of_wide: 'Total No. of Wides in the match?'
     no_of_no_ball: 'Total No. of No Balls in the match?'
@@ -77,7 +78,7 @@ en:
     overs_30_40_batting1: 'How many runs will be scored between 30-40 overs by the team batting 1st?'
     overs_30_40_batting2: 'How many runs will be scored between 30-40 overs by the team batting 2nd?'
     best_bowler: 'Who will be the best bowler of the match?'
-    top_scoorer: 'Who will be the top scorer of the match?'
+    top_scorer: 'Who will be the top scorer of the match?'
     top_six_hitter: 'Who will hit the most no. of sixes in the match?'
     top_four_hitter: 'Who will hit the most no. of boundaries in the match?'
     first_wicket_taker: 'Who will take the first wicket of the match?'
@@ -156,6 +157,9 @@ en:
     no_of_runs_in_25_over: 'No. of Runs scored in the 25th over by team batting second?'
     no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
 
+    runs_by_first_out_batsman: 'Runs scored by the batsman who gets out first in the match will be?'
+    strike_rate_of_top_scorer: 'Strike Rate by the Top run-scorer in the match will be?'
+
   final:
     no_of_boundaries_scored_in_final: "Total No. of Boundaries(4's & 6's) scored in the final will be?"
     most_runs_scored_in_over: 'Most Runs scored in an over in the final will be?'
@@ -172,7 +176,7 @@ en:
   cricket_2019: 'ICC Cricket World Cup 2019'
   fifa_2018: '2018 FIFA World Cup Russia'
   eng_ind_tour: 'India Tour of England 2018'
-  ipl_2020: 'VIVO IPL 2020'
+  ipl_2020: 'DREAM11 IPL 2020'
   prediction: 'Prediction'
   submit: 'Submit'
   close: 'Close'

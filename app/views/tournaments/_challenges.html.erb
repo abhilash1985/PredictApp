@@ -1,0 +1,44 @@
+<% challenges.each_with_index do |challenge, chlng_index| %>
+  <div class='col-md-6'>
+    <div class = 'add_padding'>
+      <% challenge_title = name == 'current' ? t('predictions.all') : t('predictions.points') %>
+      <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success',
+                  title: t('predictions.click_here_to_see', challenge_title: challenge_title),
+                  data: { no_turbolink: true } %>
+      <%= render 'count_down', name: name, challenge: challenge %>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% challenge.matches.each_with_index do |match, match_index| %>
+          <a href=<%="#new_modal_#{challenge.id}_#{match.id}"%> id =<%="#{challenge.id}_#{match.id}"%>  class = "modal_link" data-toggle="modal">
+            <div class="col-md-3">
+              <center>
+                <p class="match-full-name"><%= match.full_name %></p>
+              </center>
+              <div class="thumbnail">
+                <div class="caption">
+                  <h5><%= match.match_date.to_s(:default_with_time) %></h5>
+                  <% team1 = match.team1 %>
+                  <% team2 = match.team2 %>
+                  <p class='btn-danger btn-sm team-font'><%= team1.name.upcase %></p>
+                  <p><%= image_tag('vs.png', size: '40x40') %></p>
+                  <p class = 'btn-success btn-sm team-font'><%= team2.name.upcase %></p>
+                  <p><%= match.stadium_name %></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>
+                <% team1_short = team1.short_name %>
+                <% team2_short = team2.short_name %>
+                <%= show_icon(team1_short, team2_short) %>
+              </div>
+            </div>
+          </a>
+          <div class="modal fade" id=<%= "modal_#{challenge.id}_#{match.id}" %> tabindex="-1" role="dialog">
+            <%= render form_name, match: match, challenge: challenge, match_index: match_index %>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+    <hr />
+  </div>
+<% end -%>
+

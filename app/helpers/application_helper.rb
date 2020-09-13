@@ -46,11 +46,15 @@ module ApplicationHelper
   end
 
   def load_sign_in_image
-    load_image('sign_in.png')
+    load_image('welcome3.jpg')
   end
 
   def load_welcome_image
-    load_image('welcome.jpg')
+    load_image(random_welcome_image)
+  end
+
+  def random_welcome_image
+    ['welcome.jpg', 'welcome2.jpg'].sample
   end
 
   def load_login_image
@@ -58,7 +62,7 @@ module ApplicationHelper
   end
 
   def load_challenge_image
-    load_image('login.jpg')
+    load_image('login2.jpg')
   end
 
   def load_bg_image

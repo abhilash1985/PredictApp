@@ -33,21 +33,21 @@ module Cricket
 
     def import_match_questions
       selected_questions = sample_questions
-      questions = Question.by_question(selected_questions.keys)
+      questions = Question.by_question(selected_questions.keys).order(:id)
       questions.each do |question|
         match.create_match_question(question, selected_questions)
       end
     end
 
     def import_challenges
-      challenge = tournament.challenges.by_name("#{@challenge} - Day#{index + 1}")
+      challenge = tournament.challenges.by_name("#{@challenge} - Match#{index + 1}")
                             .first_or_initialize
       dates = challenge_dates
       challenge.start_time = dates[0]
       challenge.end_time = dates[1]
       if challenge.save
         challenge.matches.update_all(challenge_id: nil)
-        matches.each { |m| m.update_attributes(challenge_id: challenge.id) }
+        matches.each { |m| m.update(challenge_id: challenge.id) }
         p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time},
            ET: #{challenge.end_time}, Matches: #{matches.map(&:id).join}"
       end

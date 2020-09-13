@@ -29,8 +29,8 @@
                   <ul class="nav-list list-inline">
                     <% @tournaments.each do |tournament| %>
                       <li class = 'padding_icons'><%= link_to tournament_path(tournament) do %>
-                        <%= image_tag(tournament.image_name, size: '120x90') %>
-                        <span><%= tournament.name.upcase %></span>
+                        <%= image_tag(tournament.image_name, size: '90x60') %>
+                        <span class="white_text"><%= tournament.name.upcase %></span>
                         <% end -%>
                       </li>
                     <% end %>

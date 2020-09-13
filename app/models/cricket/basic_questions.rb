@@ -61,7 +61,7 @@ module Cricket
         I18n.t('cricket.no_of_run_out') => no_of_out_points,
         I18n.t('cricket.no_of_stumped') => no_of_out_points,
         I18n.t('cricket.no_of_lbw') => no_of_out_points,
-        I18n.t('cricket.no_of_hit_wicket') => no_of_out_points
+        I18n.t('cricket.no_of_other_outs') => no_of_out_points
       }
     end
 
@@ -132,7 +132,7 @@ module Cricket
       # Points 3
       {
         I18n.t('cricket.best_bowler') => bowler_batsman_points,
-        I18n.t('cricket.top_scoorer') => bowler_batsman_points,
+        I18n.t('cricket.top_scorer') => bowler_batsman_points,
         I18n.t('cricket.top_six_hitter') => bowler_batsman_points,
         I18n.t('cricket.top_four_hitter') => bowler_batsman_points,
         I18n.t('cricket.first_wicket_taker') => bowler_batsman_points,
