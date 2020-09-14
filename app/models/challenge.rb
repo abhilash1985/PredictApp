@@ -6,7 +6,7 @@ class Challenge < ApplicationRecord
   has_many :matches, dependent: :destroy
   has_many :user_challenges, dependent: :destroy
   has_many :users, through: :user_challenges
-  has_many :challenge_payments, dependent: :destroy, dependent: :destroy
+  has_many :challenge_payments, dependent: :destroy
   # Validations
   validates :name, :start_time, :end_time, presence: true
   # Scopes
