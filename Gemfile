@@ -41,6 +41,8 @@ gem 'nprogress-rails'
 gem 'jquery-datatables-rails'
 gem 'jquery-datatables'
 
+gem 'awesome_print'
+
 # gem 'bower-rails'
 # gem 'angularjs-rails'
 
