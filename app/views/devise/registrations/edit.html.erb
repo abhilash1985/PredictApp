@@ -4,8 +4,8 @@
     <%=t '.title', default: "Edit #{resource_name.to_s.humanize}" %>
   </h4>
 </div>
-<div class="margin">
-  <div class="tab-pane col-md-offset-2 col-md-3">
+<div class="margin center-block">
+  <div class="tab-pane col-md-offset-2 col-md-4">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
       <%= f.hidden_field :reset_password_token %>
@@ -55,17 +55,12 @@
           <label class="control-label" for="confirmsignup"></label>
           <div class="controls">
             <%= f.submit "Update", class: 'btn btn-success' %>
-            <span>
-              <%= render "devise/shared/links" %>
-            </span>
           </div>
         </div>
       </fieldset>
     <% end %>
   </div>
 </div>
-
-
 
 <h4 class="prediction-results">
   <%=t '.title', default: "Cancel my account" %>
