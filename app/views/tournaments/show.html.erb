@@ -1,4 +1,4 @@
-<%= image_tag(load_challenge_image, { id:'full-screen-background-image', class:'blur-me' }) %>
+<%= image_tag(load_challenge_image, { id: 'full-screen-background-image', class:'blur-me' }) %>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -19,6 +19,8 @@
           <div class="tab-content">
             <div class="tab-pane active" id="tab_default_1">
               <%= render 'challenges', challenges: @current_challenges, form_name: 'modal_form', name: 'current' %>
+              <div class="clearfix"></div>
+              <%= paginate @current_challenges %>
             </div>
             <div class="tab-pane" id="tab_default_2">
               <%= paginate @previous_challenges %>
@@ -33,8 +35,7 @@
 </div>
 <br>
 <br>
-<br>
-<br>
+
 
 <script type="text/javascript">
 $('.modal_link').click(function (e) {

@@ -11,14 +11,7 @@
     <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
   </head>
   <body>
-    <div>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %> fade in">
-          <a href="#" data-dismiss="alert" class="close">×</a>
-          <%= value %>
-        </div>
-      <% end %>
-    </div>
+    <%= render '/layouts/flash' %>
     <% if user_signed_in? %>
       <nav class="navbar navbar-inverse" role="navigation" style = 'margin-bottom: 1px;'>
         <div class="container-fluid">
