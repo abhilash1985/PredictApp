@@ -23,13 +23,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to image_tag('logo/logo.png'), dashboard_index_path, class:'navbar-brand predikt-logo' %>
+            <%= link_to image_tag('logo/logo.png'), dashboard_index_path, class: 'navbar-brand predikt-logo',
+                        data: { turbolinks: false } %>
             <% if @current_tournament %>
               <%= link_to @current_tournament.name, tournament_path(@current_tournament),
                                                     class:'navbar-brand navbar-brand_tournament',
-                                                    data: { no_turbolink: true }, target: '_self' %>
+                                                    data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                         class: 'navbar-brand', data: { no_turbolink: true }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
             <% end %>
           </div>
 
@@ -47,21 +48,21 @@
                   <% if @current_tournament %>
                     <li>
                       <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                                 data: { no_turbolink: true }, target: '_self' %>
+                                                 data: { turbolinks: false }, target: '_self' %>
                     </li>
                   <% end %>
                   <li>
                     <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
-                                                   data: { no_turbolink: true }, target: '_self' %>
+                                                   data: { turbolinks: false }, target: '_self' %>
                   </li>
                   <li>
                     <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(current_user),
-                                                         data: { no_turbolink: true }, target: '_self' %>
+                                                         data: { turbolinks: false }, target: '_self' %>
                   </li>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to t('menu.prize_list'), prize_list_challenge_path(current_user),
-                                                data: { no_turbolink: true }, target: '_self' %>
+                                                data: { turbolinks: false }, target: '_self' %>
                     </li>
                   <% end %>
                   <% if current_user.admin %>
@@ -70,7 +71,7 @@
                     </li>
                     <li>
                       <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
-                                                        data: { no_turbolink: true },
+                                                        data: { turbolinks: false },
                                                         target: '_self' if @current_tournament %>
                     </li>
                   <% end %>
