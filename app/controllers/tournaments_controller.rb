@@ -5,7 +5,7 @@ class TournamentsController < ApplicationController
   before_action :current_tournament
 
   def show
-    @current_challenges = @current_tournament.challenges.current.order(:start_time).limit(4)
+    @current_challenges = @current_tournament.challenges.current.order(:start_time).page(params[:page]).per(4)
     @previous_challenges = @current_tournament.challenges.previous.order('start_time desc').page(params[:page]).per(2)
     @prediction = Prediction.new
   end
@@ -16,7 +16,7 @@ class TournamentsController < ApplicationController
     match = Match.find_by_id(@match_id)
     if match && !match.started?
       user_challenge = current_user.user_challenges.by_challenge(params[:challenge_id]).first_or_initialize
-      user_challenge.point_booster = 
+      user_challenge.point_booster =
         params[:point_booster] if current_user.point_booster_available? || params[:point_booster].blank?
       user_challenge.save
       params[:match_question].each do |key, value|
