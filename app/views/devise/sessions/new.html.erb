@@ -1,35 +1,48 @@
-<%= image_tag load_sign_in_image, { id: 'full-screen-background-image' } %>
+<%= image_tag load_bg_image, { id:'full-screen-background-image' } %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: 'Forgot Login Credential ??' %>
+  </h4>
+</div>
 
-<div class="container" style = "align:center;">
-  <h3> Forgot Login Credential ??</h3>
-  <div class="row">
-    <div class="col-md-offset-0 col-md-3">
-      <div class="form-login">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :email %><br />
+<div class="margin center-block">
+  <div class="tab-pane col-md-offset-2 col-md-4">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <fieldset>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="Email">Email:</label>
+          <div class="controls">
             <%= f.email_field :email, autofocus: true, class:'form-control input-sm chat-input', placeholder:'Email' %>
           </div>
+        </div>
 
-          <div class="field">
-            <%= f.label :password %><br />
+        <div class="control-group">
+          <label class="prediction-results control-label" for="Password">Password:</label>
+          <div class="controls">
             <%= f.password_field :password, autocomplete: "off", class:'form-control input-sm chat-input', placeholder:'password' %>
           </div>
+        </div>
 
-          <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end -%>
-
-          <div class="actions">
-            <%= f.submit "Sign in", class: 'btn btn-success' %>
+        <% if devise_mapping.rememberable? -%>
+          <div class="control-group">
+            <label class="prediction-results control-label" for="remember_me">
+              Remember Me: <%= f.check_box :remember_me %>
+            </label>
           </div>
         <% end %>
 
-        <%= render "devise/shared/links" %>
-      </div>
-    </div>
+        <div class="control-group">
+          <label class="control-label" for="confirmsignup"></label>
+          <div class="actions">
+            <%= f.submit "Sign in", class:'btn btn-success' %>
+            <span>
+              <%= render "devise/shared/links" %>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
 </div>
