@@ -79,8 +79,8 @@ namespace :import_ipl do
 
   desc 'Import Matches'
   task matches: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE matches'
-    # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
+    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
+    ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     begin
       file = 'db/data/ipl_matches.xls'
       tournament = Tournament.ipl2020.first
@@ -101,7 +101,7 @@ namespace :import_ipl do
           match.stadium_id = stadium.try(:id)
           round = Round.by_name('GROUP-STAGE').first
           match.round_id = round.try(:id)
-          match.match_date = row[4].to_time
+          match.match_date = row[4].to_time.in_time_zone('Chennai')
           match.save!
           p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
         end
@@ -114,7 +114,7 @@ namespace :import_ipl do
 
   desc 'Import questions'
   task questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE questions'
+    ActiveRecord::Base.connection.execute 'TRUNCATE questions'
     predict_app = generate_predict_class.klass_name.new
     questions = predict_app.all_questions
     questions.each do |quest, weightage|
@@ -128,7 +128,7 @@ namespace :import_ipl do
 
   desc 'Import match questions'
   task match_questions: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
     generate_predict_class
     @predict_class.import_match_questions
     p 'Imported Match Questions...'
@@ -136,7 +136,10 @@ namespace :import_ipl do
 
   desc 'Import challenges'
   task challenges: :environment do
-    # ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
+    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 0'
+    ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
+    ActiveRecord::Base.connection.execute 'TRUNCATE predictionss'
+    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 1'
     generate_predict_class
     @predict_class.import_challenges
     p 'Imported Challenges...'
