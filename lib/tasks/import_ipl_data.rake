@@ -136,10 +136,8 @@ namespace :import_ipl do
 
   desc 'Import challenges'
   task challenges: :environment do
-    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 0'
     ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
     ActiveRecord::Base.connection.execute 'TRUNCATE predictionss'
-    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 1'
     generate_predict_class
     @predict_class.import_challenges
     p 'Imported Challenges...'
