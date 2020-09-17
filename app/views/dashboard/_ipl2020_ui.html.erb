@@ -1,0 +1,30 @@
+<ul class="nav navbar-nav">
+  <li><a href="#"></a></li>
+  <li class="dropdown mega-dropdown padding_icons">
+    <a href="#" class="dropdown-toggle white_text navbar-brand navbar-brand_tournament" data-turbolinks="false" data-toggle="dropdown">
+      <%= @current_tournament&.name&.upcase %> <span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu mega-dropdown-menu top_men_bg_color">
+      <div class="container-fluid">
+        <div class="tab-content">
+          <div class="tab-pane active mega-dropdown-menu">
+            <ul class="nav-list list-inline">
+                <li class = 'padding_icons'>
+                  <%= link_to '#ipl2020_matches', data: { turbolinks: false }, class: 'white_text navbar-brand_tournament' do %>
+                    <%= t('login.matches') %>
+                  <% end -%>
+                </li>
+                <li class = 'padding_icons'>
+                  <%= link_to '#ipl2020_squads', data: { turbolinks: false }, class: 'white_text navbar-brand_tournament' do %>
+                    <%= t('login.squad') %>
+                  <% end -%>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </li>
+</ul>

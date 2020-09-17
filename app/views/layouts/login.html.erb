@@ -10,14 +10,33 @@
       <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
     </head>
     <body>
-      <div>
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %> fade in">
-            <a href="#" data-dismiss="alert" class="close">×</a>
-            <%= value %>
-          </div>
-        <% end %>
-      </div>
+      <%= render '/layouts/flash' %>
+
+      <% unless user_signed_in? %>
+        <nav class="navbar navbar-inverse" role="navigation" style = 'margin-bottom: 1px;'>
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link_to image_tag('logo/logo.png'), root_url, class: 'navbar-brand predikt-logo',
+                          data: { turbolinks: false } %>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+              <%= render 'ipl2020_ui' if @current_tournament %>
+              <%= render 'how_to_play_ui' %>
+              <%= render 'sign_in_ui' %>
+            </div>
+
+          </div><!-- /.container-fluid -->
+        </nav>
+      <% end %>
+
       <div id="content">
         <%= yield %>
       </div>

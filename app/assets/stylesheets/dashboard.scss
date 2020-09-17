@@ -23,12 +23,12 @@
 }
 
 .navbar-brand_tournament {
-  color: #5CB85C !important;
+  color: #FFF !important;
   font-weight: bold;
 }
 
 .navbar-brand_tournament:hover {
-  color: #FFF !important;
+  color: #3A68B2 !important;
 }
 
 .predikt-logo {
@@ -147,4 +147,9 @@
   margin-right: 15px;
   margin-left: 15px;
   margin: 0 0 3px !important;
+}
+
+.top_men_bg_color {
+  background-color: #090909 !important;
+  opacity:0.8 !important;
 }
