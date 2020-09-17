@@ -57,7 +57,7 @@ module Cricket
     def partnership_other_questions
       {
         I18n.t('semi.best_partnership_in_the_match') => partnership_points,
-        I18n.t('ipl.runs_by_first_out_batsman') => runs_by_first_out_points
+        I18n.t('semi.runs_by_first_out_batsman') => runs_by_first_out_points
       }
     end
 

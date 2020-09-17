@@ -5,10 +5,10 @@ module Cricket
     def sample_questions
       questions = {}
       questions.merge(
-        default_questions, select_random(select_team_score_questions), 
+        default_questions, select_random(select_team_score_questions),
         default_winning_margin_questions,
-        select_random(select_out_extras_questions),        
-        select_random(powerplay_questions), 
+        select_random(select_out_extras_questions),
+        select_random(powerplay_questions),
         select_random(select_bowler_batsman_sixes_fours_questions),
         select_random(select_others_questions)
       )
@@ -36,6 +36,8 @@ module Cricket
     end
 
     def select_random(questions)
+      [questions.to_a.shuffle[1]].to_h
+    rescue
       questions.to_a.shuffle.sample(1).to_h
     end
   end
