@@ -1,6 +1,6 @@
 # ChallengesController
 class ChallengesController < ApplicationController
-  skip_before_action :current_tournament, only: [:show, :points_table, 
+  skip_before_action :current_tournament, only: [:show, :points_table,
                                                  :predictions_table]
   before_action :authenticate_user!
   before_action :challenge_params, only: [:show, :points_table]
@@ -57,7 +57,7 @@ class ChallengesController < ApplicationController
   end
 
   def current_tournament_params
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.find_by_tournament_id(params[:id])
     @current_tournament = @challenge.tournament
     current_tournament_type
   end
