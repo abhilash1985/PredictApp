@@ -23,12 +23,12 @@
 }
 
 .navbar-brand_tournament {
-  color: #5CB85C !important;
+  color: #FFF !important;
   font-weight: bold;
 }
 
 .navbar-brand_tournament:hover {
-  color: #FFF !important;
+  color: #EE983A !important;
 }
 
 .predikt-logo {
@@ -147,4 +147,39 @@
   margin-right: 15px;
   margin-left: 15px;
   margin: 0 0 3px !important;
+}
+
+.top_men_bg_color {
+  background-color: #090909 !important;
+  opacity:0.8 !important;
+}
+
+#ipl2020_matches, #ipl2020_squads, #how_to_play {
+  background-color: #090909 !important;
+  opacity:0.8 !important;
+  width: 95%;
+  font-weight: bold;
+  color: #FFF;
+  margin-bottom: 20px;
+}
+
+.margin-top-10 {
+  margin-top: 10 px;
+}
+
+.team_name_h4 {
+  font-weight: bold;
+  color: #EE983A;
+  float: left;
+  margin-left: 15px;
+  margin-top: -10px;
+}
+
+.player_style {
+  color: #FFF;
+  font-weight: normal;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
 }

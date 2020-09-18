@@ -180,6 +180,8 @@ en:
   prediction: 'Prediction'
   submit: 'Submit'
   close: 'Close'
+  tournament_matches: "%{name} - MATCHES"
+  no_tournament_found: 'No Tournaments Found'
 
   menu:
     home: 'Home'
@@ -193,9 +195,12 @@ en:
     logout: 'Logout'
 
   login:
-    lets_play: 'Lets Predict'
+    lets_play: 'Lets PREDIKT'
     sign_in: 'Sign In'
     register: 'Register'
+    how_to_play: 'HOW TO PLAY'
+    matches: 'MATCHES'
+    squad: 'SQUAD'
     why: 'Why?'
     help: 'Help'
     instructions: 'We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.'

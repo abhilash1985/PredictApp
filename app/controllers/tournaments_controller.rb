@@ -5,9 +5,13 @@ class TournamentsController < ApplicationController
   before_action :current_tournament
 
   def show
-    @current_challenges = @current_tournament.challenges.current.order(:start_time).page(params[:page]).per(4)
-    @previous_challenges = @current_tournament.challenges.previous.order('start_time desc').page(params[:page]).per(2)
-    @prediction = Prediction.new
+    if @current_tournament.blank?
+      redirect_to root_url, notice: I18n.t('no_tournament_found')
+    else
+      @current_challenges = @current_tournament.challenges.current.order(:start_time).page(params[:page]).per(4)
+      @previous_challenges = @current_tournament.challenges.previous.order('start_time desc').page(params[:page]).per(2)
+      @prediction = Prediction.new
+    end
   end
 
   def predict_match

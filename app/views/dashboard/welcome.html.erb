@@ -1,5 +1,7 @@
 <!-- Button trigger modal -->
-<%= image_tag load_login_image, id:'bg_image', class:'ad_opacity' %>
+<%#= image_tag load_login_image, id:'bg_image', class:'ad_opacity' %>
+<%= image_tag load_login_image, { id: 'full-screen-background-image', class:'ad_opacity' } %>
+
 <div class="container fxd_position">
   <center>
     <br>
@@ -9,7 +11,6 @@
   </center>
   <br>
  </div>
-
 
 <!-- Modal -->
 <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -33,6 +34,7 @@
           </div>
           <div class="tab-pane fade active in" id="signin">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'form-horizontal') do |f| %>
+              <%= devise_error_messages! %>
               <fieldset>
                 <!-- Sign In Form -->
                 <!-- Text input-->
@@ -120,7 +122,7 @@
                     <% if @validatable %>
                       <em>(<%= @minimum_password_length %> characters minimum)</em>
                     <% end %>
-                    <%= f.password_field :password, autocomplete: "off", class:'form-control', 
+                    <%= f.password_field :password, autocomplete: "off", class:'form-control',
                                           placeholder: t('login.password') %>
                   </div>
                 </div>
@@ -129,7 +131,7 @@
                 <div class="control-group">
                   <label class="control-label" for="reenterpassword"><%= t('login.re_enter_password') %></label>
                   <div class="controls">
-                    <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control', 
+                    <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control',
                                           placeholder: t('login.re_enter_password') %>
                   </div>
                 </div>
@@ -154,3 +156,19 @@
     </div>
   </div>
 </div>
+
+<div style="height: 600px;"></div>
+
+<div style="clear: both;"></div>
+
+<%= render 'ipl2020_matches' %>
+
+<div style="clear: both;"></div>
+
+<%= render 'ipl2020_squads' %>
+
+<div style="clear: both;"></div>
+
+<%= render 'how_to_play' %>
+
+<div style="clear: both;"></div>

@@ -43,6 +43,9 @@ gem 'jquery-datatables'
 
 gem 'awesome_print'
 
+# Cache page
+# gem 'actionpack-page_caching'
+
 # gem 'bower-rails'
 # gem 'angularjs-rails'
 

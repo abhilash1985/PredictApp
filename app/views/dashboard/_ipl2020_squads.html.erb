@@ -1,0 +1,34 @@
+<div id="ipl2020_squads" class="center-block">
+  <div class="page-header ind-body match-result text-center">
+    <h4 class="prediction-results padding-top">
+      <%=t '.title', default: 'DREAM11 IPL 2020 - SQUADS' %>
+    </h4>
+  </div>
+
+  <div class="center-block">
+    <% Team.all.each do |team| %>
+      <% next if team.blank? %>
+
+      <% team_name = team.name %>
+      <% team_short_name = team.short_name %>
+      <div class="container-fluid text-center team-details">
+        <div class="row">
+          <p>
+            <h4 class="team_name_h4"><%= "#{team_name.upcase} (#{team_short_name})" %></h4>
+          </p>
+        </div>
+        <div class="row">
+          <% team.players.each_with_index do |player, index| %>
+          <div class="col-sm-2">
+            <% captain = '(C)' if index.zero? %>
+            <p class='team-font text-left'><%= player.first_name.upcase %><%= captain %></p>
+            <p class='player_style text-left'><%= player.player_style %></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <hr />
+      <div class="clear: both"></div>
+    <% end %>
+  </div>
+</div>

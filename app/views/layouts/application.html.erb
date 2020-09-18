@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <script data-ad-client="ca-pub-2549684217163666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
   <body>
     <%= render '/layouts/flash' %>
@@ -30,6 +30,10 @@
                                                     class:'navbar-brand navbar-brand_tournament',
                                                     data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
+                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+              <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(current_user),
+                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+              <%= link_to t('menu.user_payments'), payment_details_challenge_path(current_user),
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
             <% end %>
           </div>
