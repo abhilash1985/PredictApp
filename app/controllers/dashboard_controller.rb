@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
   def welcome
     @user = User.new
     @current_tournament = Tournament.first
+    current_tournament_type
   end
 
   def index

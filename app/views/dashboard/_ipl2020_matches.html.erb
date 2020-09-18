@@ -1,0 +1,44 @@
+<div id="ipl2020_matches" class="center-block">
+  <div class="page-header ind-body match-result text-center">
+    <h4 class="prediction-results padding-top-10">
+      <%=t '.title', default: 'DREAM11 IPL 2020 - MATCHES' %>
+    </h4>
+  </div>
+
+
+  <div class="margin center-block">
+    <% Match.current_matches.each do |match| %>
+      <% team1 = match.team1 %>
+      <% team2 = match.team2 %>
+      <% team1_short_name = team1.try(:short_name) %>
+      <% team2_short_name = team2.try(:short_name) %>
+      <div class="container-fluid text-center team-details">
+        <div class="row">
+          <h5><%= "Match #{match.match_no}: " %> - <%= match.match_date.to_s(:default_with_time) %> - <%= match.stadium_name %></h5>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class='team-font'><%= team1.name.upcase %></p>
+            <p class='team-font'><%= team1.rank_details %></p>
+          </div>
+          <div class="col-sm-4">
+            <%= show_team_logo(team1_short_name, '70x70') %>
+            <%= image_tag('vs2.png', size: '42x20') %>
+            <%= show_team_logo(team2_short_name, '70x70') %>
+          </div>
+          <div class="col-sm-4">
+            <p class='team-font'><%= team2.name.upcase %></p>
+            <p class='team-font'><%= team2.rank_details %></p>
+            <p>
+              <button class="btn btn-danger" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">
+                <%= t('login.lets_play') %> <span class="glyphicon glyphicon-forward"></span>
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="clear: both"></div>
+    <% end %>
+  </div>
+</div>

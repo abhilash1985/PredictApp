@@ -41,9 +41,9 @@ module TournamentsHelper
     image_tag(load_icon(team1, team2).to_s, size: '400x300')
   end
 
-  def show_team_logo(team_short_name)
-    image_tag("flags/#{@current_tournament_type}/#{team_short_name}.png", size: '70x70')
+  def show_team_logo(team_short_name, size = '50x50')
+    image_tag("flags/#{@current_tournament_type}/#{team_short_name}.png", size: size)
   rescue StandardError
-    image_tag("flags/#{@current_tournament_type}/icc.jpeg", size: '70x70')
+    image_tag("flags/#{@current_tournament_type}/icc.jpeg", size: size)
   end
 end

@@ -180,6 +180,8 @@ en:
   prediction: 'Prediction'
   submit: 'Submit'
   close: 'Close'
+  tournament_matches: "%{name} - MATCHES"
+  no_tournament_found: 'No Tournaments Found'
 
   menu:
     home: 'Home'

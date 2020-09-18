@@ -93,7 +93,7 @@ module Cricket
     end
 
     def runs_by_first_out_options
-       ['0-10', '11-20', '21-30', '31-40', '41-50', '51-75', '75+' 'No Wickets Lost']
+      ['0-10', '11-20', '21-30', '31-40', '41-50', '51-75', '75+', 'No Wickets Lost']
     end
 
     def strike_rate_by_topscorer_options
