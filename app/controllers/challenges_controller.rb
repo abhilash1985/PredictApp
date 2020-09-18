@@ -5,7 +5,7 @@ class ChallengesController < ApplicationController
   before_action :authenticate_user!
   before_action :challenge_params, only: [:show, :points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
-  before_action :current_tournament_params,  only: [:payment_details, :challenge_payments]
+  before_action :current_challenge_params,  only: [:payment_details, :challenge_payments]
 
   def payment_details
     # @payments = Payment.includes(:user)
@@ -57,6 +57,12 @@ class ChallengesController < ApplicationController
   end
 
   def current_tournament_params
+    @challenge = Challenge.find(params[:id])
+    @current_tournament = @challenge.tournament
+    current_tournament_type
+  end
+
+  def current_challenge_params
     @challenge = Challenge.find_by_tournament_id(params[:id])
     @current_tournament = @challenge.tournament
     current_tournament_type
