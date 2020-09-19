@@ -281,6 +281,7 @@ en:
     amount_won: 'Amount Won'
     account_balance: 'Account Balance'
     profit_loss: 'Profit/Loss'
+    bonuse: 'Bonus'
 
   points_table:
     results: "%{name} - %{end_time} - Results"
