@@ -1,0 +1,41 @@
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: t('leaderboard.fan_club', tournament: @current_tournament&.name) %>
+  </h4>
+</div>
+<div class = "ind-body data-table">
+<table class="table table-striped table-bordered text-center" id="leaderboard">
+  <thead>
+    <tr class="background-white">
+      <th class="text-center btn-success"><%= t('leaderboard.sl_no') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.team') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.total_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.paid_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.match_predicted') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.full_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.zero_points') %></th>
+      <th class="text-center btn-success"><%= t('leaderboard.prediction_perc') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @leaderboards.each_with_index do |value, index| %>
+  	 <% index += 1 %>
+      <tr class="background-white">
+      	<td class="text-center"><%= index %></td>
+      	<td class="text-left"><%= user = value['team_name'] %></td>
+        <td class="text-center"><%= tp = value['total_points'].to_i %></td>
+        <td class="text-center"><%= value['paid_points'].to_i %></td>
+        <td class="text-center"><%= value['no_of_matches'].to_i %></td>
+        <td class="text-center"><%= value['no_of_full_points'].to_i %></td>
+        <td class="text-center">
+          <%= value['no_of_zero_points'].to_i %>
+          <%= image_tag 'icons/duck.jpg', { size: '12x12', class: 'margin-left-5' } %>
+        </td>
+        <% tm = value['total_match_points'].to_i %>
+      	<td class="text-center"><%= tm.to_i == 0 ? 0 : (tp.to_f * 100/tm).round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

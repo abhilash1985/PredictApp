@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     member do
       get :leaderboard
       get :leader_board
+      get :select_favourite_team
+      patch :update_favourite_team
+      get :fan_club
+      get :fan_club_members
     end
     collection do
       post :predict_match

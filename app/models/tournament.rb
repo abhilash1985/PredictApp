@@ -1,6 +1,7 @@
 # Tournament
 class Tournament < ApplicationRecord
   include Leaderboard
+  include FanClubLeaderboard
   # Associations
   has_many :challenges, dependent: :destroy
   has_many :matches, dependent: :destroy

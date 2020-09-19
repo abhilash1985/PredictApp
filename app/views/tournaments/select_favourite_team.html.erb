@@ -1,0 +1,28 @@
+<%- model_class = Prediction -%>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
+<div class="page-header ind-body match-result text-center">
+  <h4 class="prediction-results">
+    <%=t '.title', default: t('menu.favourite_team') %>
+  </h4>
+</div>
+<div class="margin center-block">
+  <div class="tab-pane col-md-offset-2 col-md-4">
+    <%= form_tag(update_favourite_team_tournament_path(@current_tournament), method: :patch) do %>
+      <fieldset>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="Email"><%= t('menu.favourite_team') %></label>
+          <div class="controls">
+            <%= select_tag 'team_id', options_from_collection_for_select(@teams, 'id', 'name'),
+                                    id: 'challenge_select',
+                                    prompt: t('favourite_team.select_team'), class: 'form-control' %>
+            <%= submit_tag t('submit'), class:'btn btn-success' %>
+          </div>
+
+
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+

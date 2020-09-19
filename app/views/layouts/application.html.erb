@@ -34,6 +34,8 @@
                                                     data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+              <%= link_to t('menu.fan_club'), fan_club_tournament_path(@current_tournament),
+                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
@@ -53,6 +55,17 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                   <% if @current_tournament %>
+                    <li>
+                      <% if current_user&.team_id.blank? %>
+                        <%= link_to t('menu.favourite_team'),
+                                    select_favourite_team_tournament_path(@current_tournament),
+                                    data: { turbolinks: false }, target: '_self' %>
+                      <% else %>
+                         <%= link_to "#{current_user&.team&.short_name} Fan Club",
+                                     fan_club_members_tournament_path(@current_tournament),
+                                     data: { turbolinks: false }, target: '_self' %>
+                      <% end %>
+                    </li>
                     <li>
                       <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
                                                  data: { turbolinks: false }, target: '_self' %>

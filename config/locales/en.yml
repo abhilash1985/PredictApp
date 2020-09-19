@@ -193,6 +193,8 @@ en:
     update_paid_status: 'Update Paid Status'
     change_password: 'Change Password'
     logout: 'Logout'
+    favourite_team: 'Favourite Team'
+    fan_club: 'Fan Club'
 
   login:
     lets_play: 'Lets PREDIKT'
@@ -236,12 +238,14 @@ en:
     header: "%{name} - %{tournament}"
     sl_no: 'Sl No'
     user: 'User'
+    team: 'Team'
     total_points: 'Total Points'
     paid_points: 'Paid Points'
     match_predicted: 'No.of Matches Predicted'
     full_points: 'No.of Full Points'
     zero_points: 'No.of Zero Points'
     prediction_perc: 'Prediction %'
+    fan_club: "FAN CLUB POINTS - %{tournament}"
 
   challenge_payments:
     sl_no: 'Sl No'
@@ -260,6 +264,10 @@ en:
     user: 'User'
     action: 'Action'
     select_challenge: 'Select Challenge'
+
+  favourite_team:
+    select_team: 'Select Team'
+    no_teams_selected: 'Please Select Your Favourite Team!'
 
   user_payments:
     details: 'User Payment Details'

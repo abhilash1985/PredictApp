@@ -4,6 +4,7 @@ class Team < ApplicationRecord
   # has_many :team1_matches, class_name: 'Match', foreign_key: 'team1_id'
   # has_many :team2_matches, class_name: 'Match', foreign_key: 'team2_id'
   has_many :players, dependent: :destroy
+  has_many :users
   # Scopes
   scope :by_name, ->(name) { where(name: name) }
   scope :by_short_name, ->(short_name) { where(short_name: short_name) }
