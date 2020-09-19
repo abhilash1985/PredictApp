@@ -52,6 +52,28 @@ class TournamentsController < ApplicationController
     @leaderboards = tournament.leader_board
   end
 
+  def select_favourite_team
+    @teams = Team.order(:name)
+  end
+
+  def update_favourite_team
+    if params[:team_id].blank?
+      redirect_to select_favourite_team_tournament_path(@current_tournament),
+                  notice: I18n.t('favourite_team.no_teams_selected')
+    else
+      current_user.update(team_id: params[:team_id]) if current_user.team_id.blank?
+      redirect_to fan_club_tournament_url(@current_tournament)
+    end
+  end
+
+  def fan_club
+    @leaderboards = @current_tournament.fan_club_leader_board
+  end
+
+  def fan_club_members
+    @team = current_user.team
+  end
+
   # Old leader_board data
   def leader_board
     tournament = Tournament.find(params[:id])

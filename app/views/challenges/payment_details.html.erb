@@ -15,6 +15,7 @@
       <th class="text-center btn-success"><%= t('user_payments.total_paid_predictions') %></th>
       <th class="text-center btn-success"><%= t('user_payments.challenge_fee') %></th>
       <th class="text-center btn-success"><%= t('user_payments.amount_paid') %></th>
+      <th class="text-center btn-success"><%= t('user_payments.bonus') %></th>
       <th class="text-center btn-success"><%= t('user_payments.matches_won') %></th>
       <th class="text-center btn-success"><%= t('user_payments.amount_won') %></th>
       <th class="text-center btn-success" title="Amount Paid + Amount Won - Total Challenge Fee">
@@ -35,6 +36,7 @@
           <%= challenge_fees = user.user_challenges.paid.map(&:challenge).map(&:fee).sum(&:to_i) rescue 0 %>
         </td>
         <td class="text-center"><%= amount_paid = user.payments.sum(:amount_paid) rescue 0 %></td>
+        <td class="text-center"><%= bonus = user.payments.sum(:balance) rescue 0 %></td>
         <td class="text-center"><%= user.challenge_payments.size %></td>
         <td class="text-center">
           <%= prize_won =
@@ -42,7 +44,7 @@
             user.prizes.sum(:amount).to_i rescue 0 %>
         </td>
         <td class="text-center">
-          <%= balance = (amount_paid.to_i + prize_won.to_i) - challenge_fees.to_i %>
+          <%= balance = (amount_paid.to_i + prize_won.to_i + bonus.to_i) - challenge_fees.to_i %>
         </td>
         <% profit = balance.to_i - amount_paid.to_i rescue 0 %>
         <% profit_klass = profit >= 0 ? 'alert-success' : 'alert-danger' %>

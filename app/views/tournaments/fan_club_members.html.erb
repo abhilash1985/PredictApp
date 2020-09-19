@@ -1,0 +1,24 @@
+<%- model_class = Prediction -%>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
+<div id="ipl2020_squads" class="center-block">
+  <div class="page-header ind-body match-result text-center padding-top-10">
+    <h4 class="prediction-results">
+      <%=t '.title', default: "#{@team.name} (#{@team.short_name}) Fan Club Members" %>
+    </h4>
+  </div>
+
+
+  <div class="margin center-block">
+    <% @team.users.each_with_index do |user, index| %>
+      <div class="container-fluid text-center team-details">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class='prediction-results team-font'>
+              <%= index + 1 %>. <%= user.full_name.upcase %>
+            </p>
+          </div>
+      </div>
+      <div class="clear: both"></div>
+    <% end %>
+  </div>
+</div>

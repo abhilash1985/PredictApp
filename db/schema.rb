@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_175546) do
+ActiveRecord::Schema.define(version: 2020_09_19_065343) do
 
   create_table "challenge_payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -217,9 +217,11 @@ ActiveRecord::Schema.define(version: 2020_09_14_175546) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.bigint "team_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   add_foreign_key "challenge_payments", "challenges"
@@ -228,4 +230,5 @@ ActiveRecord::Schema.define(version: 2020_09_14_175546) do
   add_foreign_key "payments", "users"
   add_foreign_key "prizes", "users"
   add_foreign_key "tournaments", "tournament_types"
+  add_foreign_key "users", "teams"
 end

@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :payments, dependent: :destroy
   has_many :challenge_payments, dependent: :destroy
   has_many :prizes, dependent: :destroy
+
+  belongs_to :team, optional: true
   # scope
   scope :order_by_name, -> { order(:first_name) }
   # Constants
