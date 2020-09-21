@@ -46,4 +46,9 @@ module TournamentsHelper
   rescue StandardError
     image_tag("flags/#{@current_tournament_type}/icc.jpeg", size: size)
   end
+
+  def show_users_name_in_club(team_id)
+    User.by_team_id(team_id).order_by_name.select(:id, :first_name, :last_name)
+        .map(&:full_name).join(', ')
+  end
 end

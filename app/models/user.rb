@@ -14,6 +14,7 @@ class User < ApplicationRecord
   belongs_to :team, optional: true
   # scope
   scope :order_by_name, -> { order(:first_name) }
+  scope :by_team_id, ->(team_id) { where(team_id: team_id) }
   # Constants
   POINT_BOOSTER = 5
 

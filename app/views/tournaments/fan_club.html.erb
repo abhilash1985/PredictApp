@@ -16,6 +16,9 @@
       <th class="text-center btn-success"><%= t('leaderboard.full_points') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.zero_points') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.prediction_perc') %></th>
+      <% if current_user.admin %>
+        <th class="text-center btn-success"><%= t('leaderboard.user') %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +37,11 @@
         </td>
         <% tm = value['total_match_points'].to_i %>
       	<td class="text-center"><%= tm.to_i == 0 ? 0 : (tp.to_f * 100/tm).round(2) %></td>
+        <% if current_user.admin %>
+          <td class="text-left">
+            <%= show_users_name_in_club(value['id']) %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
