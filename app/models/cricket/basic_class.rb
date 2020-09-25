@@ -57,7 +57,7 @@ module Cricket
 
     def challenge_dates
       start_time = date.to_time
-      end_time = matches.first.match_date - 10.minutes
+      end_time = matches.first.match_date - 5.minutes
       [start_time, end_time]
     end
   end
