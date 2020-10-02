@@ -137,8 +137,16 @@ class User < ApplicationRecord
     predictions_for_tournament(tournament).pluck('predictions.match_question_id')
   end
 
+  def point_booster_availed
+    user_challenges.point_booster_enabled.size
+  end
+
+  def point_booster_left
+    ::User::POINT_BOOSTER - point_booster_availed
+  end
+
   def point_booster_available?
-    user_challenges.point_booster_enabled.size < ::User::POINT_BOOSTER
+    point_booster_availed < ::User::POINT_BOOSTER
   end
 
   def user_challenges_for_match(match)

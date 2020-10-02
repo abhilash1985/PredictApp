@@ -34,7 +34,7 @@ module Cricket
     end
 
     def powerplay1_options
-      %w(0-30 31-40 41-45 46-50 51-56 56-60 61-70 70+)
+      %w(0-30 31-40 41-45 46-50 51-55 56-60 61-70 70+)
     end
 
     def overs_10_options
@@ -46,7 +46,7 @@ module Cricket
     end
 
     def overs_16_20_options
-      %w(0-30 31-40 41-45 46-50 51-56 56-65 66-75 75+)
+      %w(0-30 31-40 41-45 46-50 51-55 56-65 66-75 75+)
     end
 
     def bowler_batsman_options

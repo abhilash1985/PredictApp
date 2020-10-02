@@ -233,6 +233,7 @@ en:
     questions: 'Questions'
     close: 'Close'
     click_here_to_see: "Click Here to see %{challenge_title}"
+    point_booster_left: "Points Booster Left - %{count}"
 
   leaderboard:
     header: "%{name} - %{tournament}"

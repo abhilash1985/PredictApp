@@ -4,7 +4,12 @@
       <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <!-- Need to work on page design  -->
       <%= render 'show_teams', match: match %>
-      <h4 class="modal-title"><%= t('predictions.questions') %></h4>
+      <div class="modal-title team-font pull-left">
+        <%= t('predictions.questions') %>
+      </div>
+      <div class="modal-title team-font pull-right">
+        <%= t('predictions.point_booster_left', count: current_user.point_booster_left) %>
+      </div>
     </div>
     <div class="modal-body">
     <%= form_for :match_question, url: predict_match_tournaments_path, remote: true do |f| %>
