@@ -43,7 +43,7 @@
             user.challenge_payments.sum(:winner_prize_amount).to_i +
             user.prizes.sum(:amount).to_i rescue 0 %>
         </td>
-        <td class="text-center">
+        <td class="text-center btn-primary">
           <%= balance = (amount_paid.to_i + prize_won.to_i + bonus.to_i) - challenge_fees.to_i %>
         </td>
         <% profit = balance.to_i - amount_paid.to_i rescue 0 %>
