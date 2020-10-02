@@ -16,6 +16,7 @@ module Leaderboard
         us.id AS user_id,
         b.total_points,
         b.paid_points,
+        b.point_booster,
         b.no_of_matches,
         b.total_match_points,
         b.prediction_percentage,
@@ -29,6 +30,7 @@ module Leaderboard
                 a.id AS user_id,
                 SUM(a.total_points) total_points,
                 SUM(a.paid_points) AS paid_points,
+                SUM(a.point_booster) AS point_booster,
                 COUNT(a.match_id) AS no_of_matches,
                 SUM(a.match_points) AS total_match_points,
                 ROUND((SUM(a.total_points) * 100 / SUM(a.match_points)), 2) AS prediction_percentage,
@@ -46,6 +48,10 @@ module Leaderboard
                     WHEN uc.paid = TRUE THEN p.points
                     ELSE 0
                 END) AS paid_points,
+                (CASE
+                 WHEN uc.point_booster = TRUE THEN 1
+                 ELSE 0
+                END) AS point_booster,
                 m.id AS match_id,
                 SUM(mq.points) AS match_points,
                 (CASE
@@ -62,7 +68,7 @@ module Leaderboard
             AND p.match_question_id = mq.id
         WHERE
             p.points IS NOT NULL and c.tournament_id = #{id}
-        GROUP BY u.id , user , m.id) a
+        GROUP BY u.id , user , m.id, point_booster) a
         GROUP BY a.id , a.user
         ORDER BY a.user) b ON b.user_id = us.id
     ORDER BY us.first_name , us.last_name"
