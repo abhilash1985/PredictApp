@@ -2,7 +2,7 @@
 <%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
 <div class="page-header ind-body match-result text-center">
   <h4 class="prediction-results">
-    <%=t '.title', default: t('points_table.results', name: @challenge.try(:name), 
+    <%=t '.title', default: t('points_table.results', name: @challenge.try(:name),
                                                       end_time: @challenge.end_time.to_s(:default)) %>
   </h4>
 </div>
@@ -26,7 +26,10 @@
   	 <% index += 1 %>
       <tr class="background-white">
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
-      	<td class="text-left"><%= user.show_name %><%= amount_paid_tag(user, @challenge) %></td>
+      	<td class="text-left">
+          <%= user.show_name %><%= amount_paid_tag(user, @challenge) %>
+          <%= point_booster_tag(user, match) %>
+        </td>
       	<td class="text-center"><%= user.total_points_for_challenge(@challenge) %></td>
       	<td class="text-center"><%= user.total_percentage_for_challenge(@challenge) %></td>
         <% @matches.each do |match| %>

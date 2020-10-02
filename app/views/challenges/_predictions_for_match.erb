@@ -25,7 +25,11 @@
 	  <% users.each_with_index do |user, index| %>
         <tr>
           <td class="text-center"><%= index + 1 %></td>
-      	  <td class="text-left"><%= user.show_name %><%= amount_paid_tag(user, match.try(:challenge)) %></td>
+      	  <td class="text-left">
+            <%= user.show_name %>
+            <%= amount_paid_tag(user, match.try(:challenge)) %>
+            <%= point_booster_tag(user, match) %>
+          </td>
           <td class="text-center"><%= user.total_points_for_match(match) %></td>
           <td class="text-center"><%= user.total_percentage_for_match(match) %></td>
           <% match.match_questions.order(:id).each_with_index do |match_question, index| %>
