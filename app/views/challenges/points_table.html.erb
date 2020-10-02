@@ -28,7 +28,7 @@
       	<td class="text-center no-sort" data-orderable="false"><%= index %></td>
       	<td class="text-left">
           <%= user.show_name %><%= amount_paid_tag(user, @challenge) %>
-          <%= point_booster_tag(user, match) %>
+          <%= point_booster_tag(user, @matches.first) %>
         </td>
       	<td class="text-center"><%= user.total_points_for_challenge(@challenge) %></td>
       	<td class="text-center"><%= user.total_percentage_for_challenge(@challenge) %></td>
