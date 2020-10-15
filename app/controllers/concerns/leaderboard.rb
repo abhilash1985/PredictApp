@@ -13,6 +13,7 @@ module Leaderboard
     "SELECT
         us.id,
         CONCAT(us.first_name, ' ', us.last_name) AS user,
+        teams.short_name as team_name,
         us.id AS user_id,
         b.total_points,
         b.paid_points,
@@ -24,6 +25,7 @@ module Leaderboard
         b.no_of_full_points
     FROM
         users us
+            LEFT JOIN teams on teams.id = us.team_id
             LEFT JOIN
         (SELECT
             a.user,

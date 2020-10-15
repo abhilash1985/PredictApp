@@ -247,6 +247,8 @@ en:
     zero_points: 'No.of Zero Points'
     prediction_perc: 'Prediction %'
     fan_club: "FAN CLUB POINTS - %{tournament}"
+    point_booster_used: 'No. of Points Boosters Used'
+    point_booster_left: 'No. of Points Boosters Left'
 
   challenge_payments:
     sl_no: 'Sl No'

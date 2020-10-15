@@ -10,15 +10,15 @@
 
   <div class="margin center-block">
     <% @team.users.each_with_index do |user, index| %>
-      <div class="container-fluid text-center team-details">
+      <div class="container-fluid team-details">
         <div class="row">
           <div class="col-sm-3">
-            <p class='prediction-results team-font'>
+            <p class='prediction-results team-font margin-left-20'>
               <%= index + 1 %>. <%= user.full_name.upcase %>
             </p>
           </div>
+        </div>
       </div>
-      <div class="clear: both"></div>
-    <% end %>
-  </div>
+    <div class="clear: both"></div>
+  <% end %>
 </div>
