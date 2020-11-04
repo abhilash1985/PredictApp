@@ -27,8 +27,8 @@
       	<td class="text-left">
           <%= user = value['user'] %>
           <%= "(#{value['team_name']})" unless value['team_name'].nil? %>
-          <span title="<%= t('leaderboard.point_booster_left') %>">
-            <%= "(#{User::POINT_BOOSTER - value['point_booster'].to_i})" %>
+          <span title="<%#= t('leaderboard.point_booster_left') %>">
+            <%#= "(#{User::POINT_BOOSTER - value['point_booster'].to_i})" %>
           </span>
         </td>
         <td class="text-center"><%= tp = value['total_points'].to_i %></td>

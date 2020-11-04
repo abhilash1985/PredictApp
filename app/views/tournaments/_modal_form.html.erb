@@ -8,7 +8,7 @@
         <%= t('predictions.questions') %>
       </div>
       <div class="modal-title team-font pull-right">
-        <%= t('predictions.point_booster_left', count: current_user.point_booster_left) %>
+        <%= t('predictions.point_booster_left', count: current_user.point_booster_left) if false %>
       </div>
     </div>
     <div class="modal-body">
@@ -16,7 +16,7 @@
       <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'prediction' %>
       <div class="modal-footer actions">
         <% pb_value = current_user.point_booster_selected_for(match) %>
-        <% if (current_user.point_booster_available? || pb_value) %>
+        <% if false && (current_user.point_booster_available? || pb_value) %>
           <span class="point_booster_div">
             <%= check_box_tag :point_booster, true, pb_value, class: 'form-check-input', id: 'pointboosterCheck' %>
             <%= label_tag :point_booster, 'Point Booster', class: 'form-check-label', for: 'pointboosterCheck' %>

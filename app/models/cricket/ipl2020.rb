@@ -6,5 +6,6 @@ module Cricket
     prepend ::Cricket::IplBasicQuestions
     prepend ::Cricket::IplBasicOptions
     prepend ::Cricket::IplBasicPoints
+    prepend ::Cricket::IplBonusQuestions
   end
 end
