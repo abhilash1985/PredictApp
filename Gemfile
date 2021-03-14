@@ -10,13 +10,13 @@ gem 'mysql2'
 # Use Postgres in production
 gem 'pg', '~> 0.15'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 5.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -68,7 +68,7 @@ gem 'bootstrap-multiselect-rails'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -80,13 +80,15 @@ group :development do
   # gem 'rack-mini-profiler'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'pry'
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 4.1.0'
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'listen', '~> 3.3'
   # gem 'binding_of_caller'
   # gem 'better_errors'
   # # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   # gem 'rails_best_practices', require: false
   # gem 'rubocop', require: false
   # gem 'rubocop-rspec', require: false
@@ -98,7 +100,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
