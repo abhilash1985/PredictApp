@@ -7,14 +7,17 @@
 <div class="margin">
   <div class="tab-pane col-md-offset-2 col-md-3">
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+      <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>
       <fieldset>
 
         <div class="control-group">
-          <label class="prediction-results control-label" for="password">Password:</label>
+          <label class="prediction-results control-label" for="password">New Password:</label>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
           <div class="controls">
-            <%= f.password_field :password, autofocus: true, autocomplete: "off", required: true,
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true,
                                  placeholder: 'New password', class:'form-control' %>
           </div>
         </div>
@@ -22,7 +25,7 @@
         <div class="control-group">
           <label class="prediction-results control-label" for="password_confirmation">Confirm New Password:</label>
           <div class="controls">
-            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "off", required: true,
+            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", required: true,
                                  placeholder: 'Confirm New password', class:'form-control' %>
           </div>
         </div>
