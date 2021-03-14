@@ -136,6 +136,20 @@ en:
     prediction_game_winner: 'Who will be the winner of prediction game(excluding this Qn)?'
     total_tournament_sixes: 'Total number of sixes at ICC Cricket World Cup 2019 will be?'
 
+  ipl_bonus:
+    win_ipl: 'Who will win the DREAM11 IPL2020?'
+    most_valuable_player: 'Who will be the Most Valuable Player of Dream11 IPL2020?'
+    orange_cap: 'Who will win the Orange Cap of DREAM11 IPL2020?'
+    purple_cap: 'Who will win the Purple Cap of DREAM11 IPL2020?'
+    player_with_most_catches: 'Who will take most no. of catches in Dream11 IPL2020?'
+    player_with_most_sixes: 'Who will hit most no. of sixes in Dream11 IPL2020?'
+    strike_rate_in_innings: 'The highest strike rate in an Innings of Dream11 IPL2020 will be?'
+
+    total_tournament_sixes: 'Total number of sixes at DREAM11 IPL2020 will be?'
+    team_with_most_sixes: 'Which team will hit the most sixes at DREAM11 IPL2020?'
+    leading_wickets: 'How many wickets will the leading wicket-taker of the DREAM11 IPL2020 finish with?'
+    leading_runs: 'How many runs will the leading run-scorer of the DREAM11 IPL2020 finish with?'
+
   semi:
     semi_win: 'Who will reach the finals of ICC Cricket World Cup 2019?'
     team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
