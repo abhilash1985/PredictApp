@@ -58,7 +58,7 @@ gem 'awesome_print'
 gem 'sprockets', '~> 3.0'
 
 # for the bootstrap
-gem 'bootstrap-sass', '>= 3.4.1'
+gem 'bootstrap-sass'#, '>= 3.4.1'
 gem 'autoprefixer-rails'
 gem 'bootstrap-multiselect-rails'
 # gem 'nokogiri'

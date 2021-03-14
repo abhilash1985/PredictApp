@@ -317,7 +317,7 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.4)
   bootstrap-multiselect-rails
-  bootstrap-sass (>= 3.4.1)
+  bootstrap-sass
   byebug
   cancancan
   capybara (>= 3.26)

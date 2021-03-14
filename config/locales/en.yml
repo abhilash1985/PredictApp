@@ -225,7 +225,7 @@ en:
     other_enquiry: 'for any other inquiries.'
     email: 'Email:'
     password: 'Password:'
-    forgot_password: 'Forgot password'
+    forgot_password: 'Forgot password?'
     first_name: 'First Name:'
     middle_name: 'Middle Name:'
     last_name: 'Last Name:'
