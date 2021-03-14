@@ -33,7 +33,7 @@ namespace :import_ipl_2021 do
     teams = { 'Mumbai Indians' => [1, 'MI'],
               'Delhi Capitals' => [2, 'DC'],
               'Sunrisers Hyderabad' => [3, 'SRH'],
-              'Royal Challengers Bangalore' => [4, 'RCB']
+              'Royal Challengers Bangalore' => [4, 'RCB'],
               'Kolkata Knight Riders' => [5, 'KKR'],
               'Punjab Kings' => [6, 'PBKS'],
               'Chennai Super Kings' => [7, 'CSK'],
