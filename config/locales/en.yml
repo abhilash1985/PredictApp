@@ -45,6 +45,8 @@ en:
     runs_with_team_name: "Runs will be scored by %{team_name}?"
     runs_1st_innings: 'Runs will be scored by the team batting 1st?'
     runs_2nd_innings: 'Runs will be scored by the team batting 2nd?'
+
+    # Specific to CWC
     runs_afg: 'Runs will be scored by Afghanistan?'
     runs_ban: 'Runs will be scored by Bangladesh?'
     runs_eng: 'Runs will be scored by England?'
@@ -55,6 +57,8 @@ en:
     runs_aus: 'Runs will be scored by Australia?'
     runs_sl: 'Runs will be scored by Sri Lanka?'
     runs_wi: 'Runs will be scored by West Indies?'
+
+    # Common Questions
     no_of_bowled: 'Total No. of Bowled outs in the match?'
     no_of_caught: 'Total No. of Caught outs in the match?'
     no_of_run_out: 'Total No. of Run outs in the match?'
@@ -64,43 +68,63 @@ en:
     no_of_other_outs: 'Total No. of Run outs, Stumped and Hit wickets in the match?'
     no_of_extras: 'Total No. of Extras in the match?'
     no_of_wide: 'Total No. of Wides in the match?'
-    no_of_no_ball: 'Total No. of No Balls in the match?'
+    no_of_no_ball: 'Total No. of No-Balls in the match?'
     no_of_bye: 'Total No. of Byes in the match?'
     no_of_leg_bye: 'Total No. of Leg Byes in the match?'
+
+    # Specific to CWC
     pp1_batting1: 'How many runs will be scored in the Power Play1 by the team batting 1st?'
     pp1_batting2: 'How many runs will be scored in the Power Play1 by the team batting 2nd?'
     pp2_batting1: 'How many runs will be scored in the Power Play2 by the team batting 1st?'
     pp2_batting2: 'How many runs will be scored in the Power Play2 by the team batting 2nd?'
     pp3_batting1: 'How many runs will be scored in the Power Play3 by the team batting 1st?'
     pp3_batting2: 'How many runs will be scored in the Power Play3 by the team batting 2nd?'
+
+    # Specific to CWC
     overs_25_batting1: 'How many runs will be scored in the first 25 overs by the team batting 1st?'
     overs_25_batting2: 'How many runs will be scored in the first 25 overs by the team batting 2nd?'
     overs_30_40_batting1: 'How many runs will be scored between 30-40 overs by the team batting 1st?'
     overs_30_40_batting2: 'How many runs will be scored between 30-40 overs by the team batting 2nd?'
-    best_bowler: 'Who will be the best bowler of the match?'
+    wickets_in_25_1st_innings: 'How many wickets will fell in the first 25 overs of the match in the 1st innings?'
+    wickets_in_25_2nd_innings: 'How many wickets will fell in the first 25 overs of the match in the 2nd innings?'
+
+    # Common Question
+    best_bowler: 'Who will be the best bowler(most wickets) of the match?'
     top_scorer: 'Who will be the top scorer of the match?'
+    top_scorer_2: 'Who will score More Runs in this match?'
+    top_scorer_first: 'Who will score More Runs in the first innings?'
+    top_scorer_second: 'Who will score More Runs in the second innings?'
     top_six_hitter: 'Who will hit the most no. of sixes in the match?'
     top_four_hitter: 'Who will hit the most no. of boundaries in the match?'
     first_wicket_taker: 'Who will take the first wicket of the match?'
-    first_six_hitter: 'Who will hit the first boundary of the match?'
-    first_four_hitter: 'Who will hit the first six of the match?'
+    first_wicket_taker_second: 'Who will take the first wicket in the second innings?'
+    first_four_hitter: 'Who will hit the first four of the match?'
+    first_four_hitter_second: 'Who will hit the first four in the second innings?'
+    first_six_hitter: 'Who will hit the first six of the match?'
+    first_six_hitter_second: 'Who will hit the first six in the second innings?'
     total_sixes: 'Total no. of sixes in the match?'
     total_sixes_1st_innings: 'Total no. of sixes in the 1st innings?'
     total_sixes_2nd_innings: 'Total no. of sixes in the 2nd innings?'
-    total_boundaries: 'Total no. of boundaries in the match?'
-    total_boundaries_1st_innings: 'Total no. of boundaries in the 1st innings?'
-    total_boundaries_2nd_innings: 'Total no. of boundaries in the 2nd innings?'
+    total_boundaries: "Total no. of boundaries(4's) in the match?"
+    total_boundaries_1st_innings: "Total no. of boundaries(4's) in the 1st innings?"
+    total_boundaries_2nd_innings: "Total no. of boundaries(4's) in the 2nd innings?"
+    total_fours_sixes: "Total no. of 4's and 6's in the match?"
+    total_fours_sixes_1st_innings: "Total no. of 4's and 6's in the 1st innings?"
+    total_fours_sixes_2nd_innings: "Total no. of 4's and 6's in the 2nd innings?"
     wickets_in_1st_innings: 'How many wickets will fell in the 1st innings of the match?'
     wickets_in_2nd_innings: 'How many wickets will fell in the 2nd innings of the match?'
-    wickets_in_25_1st_innings: 'How many wickets will fell in the first 25 overs of the match in the 1st innings?'
-    wickets_in_25_2nd_innings: 'How many wickets will fell in the first 25 overs of the match in the 2nd innings?'
+
     total_drs: 'Total No. of DRS usage in the match?'
     first_wicket_in_match: 'First wicket in the match will be?'
     first_caught_out_in_match: 'First Caught out in the match will be?'
+    first_caught_out_in_first_innings: 'First Caught out in the 1st innings will be?'
+    first_caught_out_in_second_innings: 'First Caught out in the 2nd innings will be?'
     individual_score: 'Highest individual score in the match will be?'
     individual_score_in_1st_innings: 'Highest individual score in the 1st innings will be?'
     individual_score_in_2nd_innings: 'Highest individual score in the 2nd innings will be?'
     first_boundary_in_match: 'First boundary in the match will be through?'
+    first_boundary_in_first_innings: 'First boundary in the 1st innings will be through?'
+    first_boundary_in_second_innings: 'First boundary in the 2nd innings will be through?'
 
   ipl:
     runs_mi: 'Runs will be scored by Mumbai Indians?'
@@ -109,7 +133,7 @@ en:
     runs_srh: 'Runs will be scored by Sunrisers Hyderabad?'
     runs_kkr: 'Runs will be scored by Kolkata Knight Riders?'
     runs_rcb: 'Runs will be scored by Royal Challengers Bangalore?'
-    runs_kxip: 'Runs will be scored by Kings XI Punjab?'
+    runs_kxip: 'Runs will be scored by Punjab Kings?'
     runs_rr: 'Runs will be scored by Rajasthan Royals?'
     wickets_in_10_1st_innings: 'How many wickets will fell in the first 10 overs of the match in the 1st innings?'
     wickets_in_10_2nd_innings: 'How many wickets will fell in the first 10 overs of the match in the 2nd innings?'
@@ -117,10 +141,34 @@ en:
     pp1_batting2: 'How many runs will be scored in the Power Play(0-6 overs) by the team batting 2nd?'
     overs_10_batting1: 'How many runs will be scored in the first 10 overs by the team batting 1st?'
     overs_10_batting2: 'How many runs will be scored in the first 10 overs by the team batting 2nd?'
-    overs_10_20_batting1: 'How many runs will be scored between 10-20 overs by the team batting 1st?'
-    overs_10_20_batting2: 'How many runs will be scored between 10-20 overs by the team batting 2nd?'
+    overs_11_20_batting1: 'How many runs will be scored between 11-20 overs by the team batting 1st?'
+    overs_11_20_batting2: 'How many runs will be scored between 11-20 overs by the team batting 2nd?'
     overs_16_20_batting1: 'How many runs will be scored between 16-20 overs by the team batting 1st?'
     overs_16_20_batting2: 'How many runs will be scored between 16-20 overs by the team batting 2nd?'
+
+
+    # IPL Specific Over Questions
+    overs_20_1st_innings: 'Runs scored in the 20th over of the 1st innings will be?'
+    overs_1_1st_innings: 'Runs scored in the 1st over of the match will be?'
+    overs_1_2nd_innings: 'Runs scored in the 1st over of the 2nd innings will be?'
+
+    # Strike Rate
+    strike_rate_of_top_scorer: 'Strike Rate of the Top run-scorer in the match will be?'
+    strike_rate_of_first_out: 'Strike Rate of the batsman who gets out first in the match will be?'
+    highest_sr_match: 'Highest Batting Strike Rate in the match will be?'
+    highest_sr_match_first: 'Highest Batting Strike Rate in the 1st innings will be?'
+    highest_sr_match_second: 'Highest Batting Strike Rate in the 2nd innings will be?'
+
+
+    # Prizes
+    power_player: 'Who will be the CRED Power Player of the match?'
+    super_striker: 'Who will be the Altroz Super Striker of the match?'
+    game_changer: 'Who will be the Dream11 Game Changer of the match?'
+    crack_it_sixes: 'Who will win Unacademy Lets Crack It Sixes of the Match?'
+
+    # Runs Scored
+    runs_scored_in_first: 'Runs scored for the 1st wicket in the 1st innings will be?'
+    runs_scored_in_second: 'Runs scored for the 1st wicket in the 2nd innings will be?'
 
   bonus:
     win_world_cup: 'Who will win the ICC Cricket World Cup 2019?'
@@ -150,6 +198,7 @@ en:
     leading_wickets: 'How many wickets will the leading wicket-taker of the DREAM11 IPL2020 finish with?'
     leading_runs: 'How many runs will the leading run-scorer of the DREAM11 IPL2020 finish with?'
 
+  # Specific to CWC
   semi:
     semi_win: 'Who will reach the finals of ICC Cricket World Cup 2019?'
     team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
@@ -165,14 +214,19 @@ en:
     total_tournament_sixes: 'Total number of sixes at ICC Cricket World Cup 2019 will be?'
 
     best_partnership_in_the_match: 'Best Partnership in the match will be?'
+    best_partnership_in_first: 'Best Partnership in the first innings will be?'
+    best_partnership_in_second: 'Best Partnership in the secong innings will be?'
     best_economy_bowler: 'Most economical bowler in the match will be?'
     best_sr_batsman: 'Which batsman will have the best strike rate in the match?'
+
+    # Specific to CWC
     no_of_runs_in_40_over: 'No. of Runs scored in the 40th over by team batting first?'
     no_of_runs_in_25_over: 'No. of Runs scored in the 25th over by team batting second?'
     no_of_wickets_by_starc_and_behren: 'No. of wickets taken by Starc & Behrendorff will be?'
 
     runs_by_first_out_batsman: 'Runs scored by the batsman who gets out first in the match will be?'
-    strike_rate_of_top_scorer: 'Strike Rate by the Top run-scorer in the match will be?'
+    strike_rate_of_top_scorer: 'Strike Rate of the Top run-scorer in the match will be?'
+    strike_rate_of_first_out: 'Strike Rate of the batsman who gets out first in the match will be?'
 
   final:
     no_of_boundaries_scored_in_final: "Total No. of Boundaries(4's & 6's) scored in the final will be?"
@@ -180,6 +234,7 @@ en:
     bowler_with_most_extras: 'Which bowler will concede most extras in the final?'
     longest_six: 'Longest Six in the final (in meters) will be?'
     best_sr_batsman_in_final: 'Best strike rate by a batsman in the final will be?'
+    # Specific to CWC
     overs_46_50_batting1: 'How many runs will be scored between 46-50 overs by the team batting 1st?'
     best_bowler_with_avg: 'Which bowler will have the best average in the match?'
     best_sr_bowler: 'Which bowler will have the best strike rate in the match?'

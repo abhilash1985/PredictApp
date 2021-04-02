@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# bundle exec rails import_ipl_2021:master_data
 namespace :import_ipl_2021 do
   desc 'Import master data'
   task master_data: [:tournaments, :stadiums, :teams, :rounds, :players,

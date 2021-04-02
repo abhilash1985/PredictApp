@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Match
 class Match < ApplicationRecord
   # Associations

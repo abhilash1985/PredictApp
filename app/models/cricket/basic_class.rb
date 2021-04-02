@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # module Cricket for cricket related questions and answers
 module Cricket
   # BasicClass

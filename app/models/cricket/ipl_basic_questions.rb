@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # module Cricket
 module Cricket
   # module IplBasicQuestions
@@ -18,7 +20,9 @@ module Cricket
 
     def powerplay_questions
       powerplay1_questions.merge(
-        overs_10_questions, overs_10_20_questions, overs_16_20_questions, partnership_other_questions
+        overs_10_questions, overs_11_20_questions, overs_16_20_questions,
+        partnership_other_questions,
+        specific_over_questions
       )
     end
 
@@ -38,11 +42,11 @@ module Cricket
       }
     end
 
-    def overs_10_20_questions
+    def overs_11_20_questions
       # Points 2
       {
-        I18n.t('ipl.overs_10_20_batting1') => overs_10_20_points,
-        I18n.t('ipl.overs_10_20_batting2') => overs_10_20_points
+        I18n.t('ipl.overs_11_20_batting1') => overs_11_20_points,
+        I18n.t('ipl.overs_11_20_batting2') => overs_11_20_points
       }
     end
 
@@ -57,6 +61,8 @@ module Cricket
     def partnership_other_questions
       {
         I18n.t('semi.best_partnership_in_the_match') => partnership_points,
+        I18n.t('semi.best_partnership_in_first') => partnership_points,
+        I18n.t('semi.best_partnership_in_second') => partnership_points,
         I18n.t('semi.runs_by_first_out_batsman') => runs_by_first_out_points
       }
     end
@@ -73,7 +79,19 @@ module Cricket
 
     def strike_rate_by_topscorer_questions
       {
-        I18n.t('semi.strike_rate_of_top_scorer') => strike_rate_by_topscorer_points
+        I18n.t('ipl.strike_rate_of_top_scorer') => strike_rate_by_topscorer_points,
+        I18n.t('ipl.strike_rate_of_first_out') => strike_rate_by_topscorer_points,
+        I18n.t('ipl.highest_sr_match') => strike_rate_by_topscorer_points,
+        I18n.t('ipl.highest_sr_match_first') => strike_rate_by_topscorer_points,
+        I18n.t('ipl.highest_sr_match_second') => strike_rate_by_topscorer_points
+      }
+    end
+
+    def specific_over_questions
+      {
+        I18n.t('ipl.overs_20_1st_innings') => specific_over_points,
+        I18n.t('ipl.overs_1_1st_innings') => specific_over_points,
+        I18n.t('ipl.overs_1_2nd_innings') => specific_over_points
       }
     end
 
