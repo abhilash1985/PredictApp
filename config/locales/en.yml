@@ -239,9 +239,8 @@ en:
     best_bowler_with_avg: 'Which bowler will have the best average in the match?'
     best_sr_bowler: 'Which bowler will have the best strike rate in the match?'
 
-
-
   tournaments: 'Tournaments'
+  coming_soon: 'COMING SOON'
   cricket_2019: 'ICC Cricket World Cup 2019'
   fifa_2018: '2018 FIFA World Cup Russia'
   eng_ind_tour: 'India Tour of England 2018'

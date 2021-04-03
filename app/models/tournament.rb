@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Tournament
 class Tournament < ApplicationRecord
   include Leaderboard
@@ -76,12 +78,14 @@ class Tournament < ApplicationRecord
   def total_points_for_user(user, from)
     predictions = user.predictions_for_tournament(self, from)
     return 0 if predictions.blank?
+
     predictions.sum(:points)
   end
 
   def total_paid_points_for_user(user, from)
     paid_predictions = user.paid_predictions_for_tournament(self, from).uniq
     return 0 if paid_predictions.blank?
+
     paid_predictions.sum(:points)
   end
 
