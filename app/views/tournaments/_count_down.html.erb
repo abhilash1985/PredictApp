@@ -1,5 +1,5 @@
 <% if name == 'current' %>
-  <span class = 'btn btn-danger countdown' id='<%="count_down_#{challenge.id}"%>'></span>
+  <span class = 'btn btn-primary btn-sm countdown' id='<%="count_down_#{challenge.id}"%>'></span>
   <script type="text/javascript">
     var challenge_date = '<%= challenge.end_time.to_s(:count_down)%>'
     $('#<%="count_down_#{challenge.id}"%>').countdown(challenge_date, function(event) {
