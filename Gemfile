@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
 # Use Postgres in production
-gem 'pg', '~> 0.15'
+gem 'pg', '~> 1.2', '>= 1.2.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use CoffeeScript for .coffee assets and views
