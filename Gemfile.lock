@@ -163,7 +163,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
     method_source (1.0.0)
-    mimemagic (0.4.3)
+    mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
     mini_magick (4.11.0)
@@ -331,6 +331,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (~> 3.3)
+  mimemagic (= 0.3.10)
   mysql2
   nprogress-rails
   pg (~> 0.15)

@@ -64,6 +64,8 @@ gem 'bootstrap-multiselect-rails'
 # gem 'nokogiri'
 # gem 'site_prism'
 
+gem 'mimemagic', '0.3.10'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
