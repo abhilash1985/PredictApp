@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # PredictClass
 class PredictClass
   attr_accessor :tournament, :tournament_name, :tournament_type
@@ -15,7 +17,7 @@ class PredictClass
     else
       new_klass_name.constantize
     end
-  rescue
+  rescue StandardError
     raise "Class #{new_klass_name} not defined"
   end
 

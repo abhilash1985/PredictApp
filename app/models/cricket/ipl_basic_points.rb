@@ -10,8 +10,8 @@ module Cricket
       [2, overs_10_options]
     end
 
-    def overs_10_20_points
-      [2, overs_10_20_options]
+    def overs_11_20_points
+      [2, overs_11_20_options]
     end
 
     def overs_16_20_points
@@ -85,6 +85,10 @@ module Cricket
 
     def strike_rate_by_topscorer_points
       [2, strike_rate_by_topscorer_options]
+    end
+
+    def specific_over_points
+      [2, specific_over_options]
     end
   end
 end

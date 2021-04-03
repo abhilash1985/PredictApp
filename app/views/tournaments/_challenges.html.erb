@@ -2,7 +2,7 @@
   <div class='col-md-6'>
     <div class = 'add_padding'>
       <% challenge_title = name == 'current' ? t('predictions.all') : t('predictions.points') %>
-      <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-success',
+      <%= link_to challenge.name, challenge_path(challenge, name), class:'btn btn-default btn-sm',
                   title: t('predictions.click_here_to_see', challenge_title: challenge_title),
                   data: { turbolinks: false } %>
       <%= render 'count_down', name: name, challenge: challenge %>

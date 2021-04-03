@@ -30,11 +30,24 @@
                     <% @tournaments.each do |tournament| %>
                       <li class = 'padding_icons'>
                         <%= link_to tournament_path(tournament), data: { turbolinks: false } do %>
-                          <%= image_tag(tournament.image_name, size: '90x60') %>
+                          <%= image_tag("tournaments/#{tournament.image_name}", size: '90x60') %>
                           <span class="white_text"><%= tournament.name.upcase %></span>
                         <% end -%>
                       </li>
                     <% end %>
+                    <li class = 'padding_icons'>
+                      <%= link_to '#', data: { turbolinks: false } do %>
+                        <%= image_tag('tournaments/euro2021.jpg', size: '90x60') %>
+                        <span class="white_text"><%= I18n.t(:coming_soon) %></span>
+                      <% end -%>
+                    </li>
+
+                    <li class = 'padding_icons'>
+                        <%= link_to '#', data: { turbolinks: false } do %>
+                          <%= image_tag('tournaments/t20wc2021.jpg', size: '90x60') %>
+                          <span class="white_text"><%= I18n.t(:coming_soon) %></span>
+                        <% end -%>
+                      </li>
 
                   </ul>
                 </div>

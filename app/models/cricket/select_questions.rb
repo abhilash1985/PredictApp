@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # module Cricket
 module Cricket
   # module SelectQuestions
@@ -24,7 +26,7 @@ module Cricket
     end
 
     def select_out_extras_questions
-      no_of_out_questions.merge(no_of_extras_questions)
+      no_of_out_questions.merge(wickets_questions, no_of_extras_questions)
     end
 
     def select_bowler_batsman_sixes_fours_questions
@@ -32,12 +34,12 @@ module Cricket
     end
 
     def select_others_questions
-      wickets_questions.merge(others_questions)
+      others_questions
     end
 
     def select_random(questions)
       [questions.to_a.shuffle[1]].to_h
-    rescue
+    rescue StandardError
       questions.to_a.shuffle.sample(1).to_h
     end
   end

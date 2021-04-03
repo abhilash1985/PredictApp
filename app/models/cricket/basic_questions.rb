@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # module Cricket
 module Cricket
   # module BasicQuestions
@@ -28,22 +30,22 @@ module Cricket
       }
     end
 
-    def all_team_score_questions
-      # Points 2
-      # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
-      {
-        I18n.t('cricket.runs_afg') => team_score_points,
-        I18n.t('cricket.runs_ban') => team_score_points,
-        I18n.t('cricket.runs_eng') => team_score_points,
-        I18n.t('cricket.runs_nzl') => team_score_points,
-        I18n.t('cricket.runs_ind') => team_score_points,
-        I18n.t('cricket.runs_pak') => team_score_points,
-        I18n.t('cricket.runs_sa') => team_score_points,
-        I18n.t('cricket.runs_aus') => team_score_points,
-        I18n.t('cricket.runs_sl') => team_score_points,
-        I18n.t('cricket.runs_wi') => team_score_points
-      }
-    end
+    # def all_team_score_questions
+    #   # Points 2
+    #   # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
+    #   {
+    #     I18n.t('cricket.runs_afg') => team_score_points,
+    #     I18n.t('cricket.runs_ban') => team_score_points,
+    #     I18n.t('cricket.runs_eng') => team_score_points,
+    #     I18n.t('cricket.runs_nzl') => team_score_points,
+    #     I18n.t('cricket.runs_ind') => team_score_points,
+    #     I18n.t('cricket.runs_pak') => team_score_points,
+    #     I18n.t('cricket.runs_sa') => team_score_points,
+    #     I18n.t('cricket.runs_aus') => team_score_points,
+    #     I18n.t('cricket.runs_sl') => team_score_points,
+    #     I18n.t('cricket.runs_wi') => team_score_points
+    #   }
+    # end
 
     def team_score_questions_for(team_name)
       # Points 2
@@ -133,11 +135,17 @@ module Cricket
       {
         I18n.t('cricket.best_bowler') => bowler_batsman_points,
         I18n.t('cricket.top_scorer') => bowler_batsman_points,
+        I18n.t('cricket.top_scorer_2') => bowler_batsman_points,
+        I18n.t('cricket.top_scorer_first') => bowler_batsman_points,
+        I18n.t('cricket.top_scorer_second') => bowler_batsman_points,
         I18n.t('cricket.top_six_hitter') => bowler_batsman_points,
         I18n.t('cricket.top_four_hitter') => bowler_batsman_points,
         I18n.t('cricket.first_wicket_taker') => bowler_batsman_points,
+        I18n.t('cricket.first_wicket_taker_second') => bowler_batsman_points,
         I18n.t('cricket.first_six_hitter') => bowler_batsman_points,
-        I18n.t('cricket.first_four_hitter') => bowler_batsman_points
+        I18n.t('cricket.first_four_hitter_second') => bowler_batsman_points,
+        I18n.t('cricket.first_four_hitter') => bowler_batsman_points,
+        I18n.t('cricket.first_six_hitter_second') => bowler_batsman_points
       }
     end
 
@@ -161,7 +169,11 @@ module Cricket
       {
         I18n.t('cricket.total_boundaries') => no_of_boundaries_points,
         I18n.t('cricket.total_boundaries_1st_innings') => no_of_boundaries_points,
-        I18n.t('cricket.total_boundaries_2nd_innings') => no_of_boundaries_points
+        I18n.t('cricket.total_boundaries_2nd_innings') => no_of_boundaries_points,
+
+        I18n.t('cricket.total_fours_sixes') => no_of_boundaries_points,
+        I18n.t('cricket.total_fours_sixes_1st_innings') => no_of_boundaries_points,
+        I18n.t('cricket.total_fours_sixes_2nd_innings') => no_of_boundaries_points
       }
     end
 
@@ -199,7 +211,9 @@ module Cricket
       # Points 2
       # CaughtBehind LBW Stumped HitWicket RunOut Bowled Caught&Bowled Others NoWickets
       {
-        I18n.t('cricket.first_wicket_in_match') => first_wicket_points
+        I18n.t('cricket.first_wicket_in_match') => first_wicket_points,
+        I18n.t('ipl.runs_scored_in_first') => runs_scored_first_wicket_points,
+        I18n.t('ipl.runs_scored_in_second') => runs_scored_first_wicket_points
       }
     end
 
@@ -207,7 +221,9 @@ module Cricket
       # Points 2
       # CaughtBehind Slip Caught&Bowled LongOff Thirdman LongOn Others NoCaughtOut
       {
-        I18n.t('cricket.first_caught_out_in_match') => first_caught_out_points
+        I18n.t('cricket.first_caught_out_in_match') => first_caught_out_points,
+        I18n.t('cricket.first_caught_out_in_first_innings') => first_caught_out_points,
+        I18n.t('cricket.first_caught_out_in_second_innings') => first_caught_out_points
       }
     end
 
@@ -225,7 +241,9 @@ module Cricket
       # Points 2
       # CoverDrive SquareCut StrightDrive Edge PullShot Hook Others NoBoundary
       {
-        I18n.t('cricket.first_boundary_in_match') => first_boundary_points
+        I18n.t('cricket.first_boundary_in_match') => first_boundary_points,
+        I18n.t('cricket.first_boundary_in_first_innings') => first_boundary_points,
+        I18n.t('cricket.first_boundary_in_second_innings') => first_boundary_points
       }
     end
   end

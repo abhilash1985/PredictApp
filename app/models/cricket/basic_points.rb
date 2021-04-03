@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # module Cricket
 module Cricket
   # module BasicPoints
@@ -137,6 +139,10 @@ module Cricket
 
     def best_sr_batsman_in_final_points
       [2, best_sr_batsman_in_final_options]
+    end
+
+    def runs_scored_first_wicket_points
+      [2, runs_scored_first_wicket_options]
     end
   end
 end
