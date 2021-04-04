@@ -17,6 +17,10 @@ class UserChallenge < ApplicationRecord
     player.try(:first_name)
   end
 
+  def full_name
+    "#{user&.full_name} - #{challenge&.name}"
+  end
+
   def style_class
     if points.nil?
       'btn-primary'

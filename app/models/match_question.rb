@@ -29,8 +29,16 @@ class MatchQuestion < ApplicationRecord
     "Q#{index + 1}: #{question_name} (#{points}pts)"
   end
 
+  def full_name
+    "#{match_name} - #{question_name}"
+  end
+
+  def match_name
+    match&.full_name
+  end
+
   def question_name
-    question.try(:question)
+    question&.question
   end
 
   def update_prediction_points
@@ -48,5 +56,49 @@ class MatchQuestion < ApplicationRecord
     return user_answer unless options[:v].blank?
     player = Player.find_by_id(user_answer)
     player.try(:first_name)
+  end
+
+  rails_admin do
+    list do
+      field :id
+      field :match_name
+      field :question_name
+      field :options
+      field :answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+      field :match_id, :enum do
+        enum do
+          Match.includes(:team1, :team2).all.collect { |p| [p.full_name, p.id] }
+        end
+      end
+
+      field :question_id, :enum do
+        enum do
+          Question.all.collect { |p| [p.question, p.id] }
+        end
+      end
+
+      field :options
+      field :answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :id
+      field :match_name
+      field :question_name
+      field :options
+      field :answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
   end
 end

@@ -46,7 +46,13 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     object_label_method do
-     :full_name
+      :full_name
+    end
+  end
+
+  config.model 'Match' do
+    object_label_method do
+      :full_name
     end
   end
 end
