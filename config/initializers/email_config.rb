@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActionMailer::Base.delivery_method = :smtp # :letter_opener # :smtp
+ActionMailer::Base.raise_delivery_errors = false
 
 ActionMailer::Base.smtp_settings = {
   authentication: :plain,
