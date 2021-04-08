@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-# ActionMailer::Base.delivery_method = :letter_opener # :smtp
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = { address: '127.0.0.1', port: 1025 }
-ActionMailer::Base.raise_delivery_errors = false
+ActionMailer::Base.delivery_method = :letter_opener # :smtp
 
 # ActionMailer::Base.smtp_settings = {
 #   authentication: :plain,
@@ -14,5 +11,15 @@ ActionMailer::Base.raise_delivery_errors = false
 #   domain: Rails.application.credentials.mail_config[:domain],
 #   enable_starttls_auto: true
 # }
+
+LetterOpener.configure do |config|
+  # To overrider the location for message storage.
+  # Default value is `tmp/letter_opener`
+  # config.location = Rails.root.join('tmp', 'my_mails')
+
+  # To render only the message body, without any metadata or extra containers or styling.
+  # Default value is `:default` that renders styled message with showing useful metadata.
+  config.message_template = :light
+end
 
 ActionMailer::Base.default_url_options = { host: Rails.application.credentials.mail[:host] }
