@@ -45,7 +45,7 @@ gem 'awesome_print'
 
 # Mail
 gem 'letter_opener'
-gem 'letter_opener_web'
+gem 'mailcatcher'
 
 # gem 'sendgrid-ruby'
 
