@@ -38,7 +38,7 @@
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
               <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
-              <%= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
+              <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
                                          class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
             <% end %>
           </div>
@@ -72,7 +72,7 @@
                     </li>
                   <% end %>
                   <li>
-                    <%= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
+                    <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
                                                    data: { turbolinks: false }, target: '_self' %>
                   </li>
                   <li>

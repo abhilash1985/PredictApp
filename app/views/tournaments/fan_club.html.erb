@@ -11,7 +11,7 @@
       <th class="text-center btn-success"><%= t('leaderboard.sl_no') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.team') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.total_points') %></th>
-      <th class="text-center btn-success"><%= t('leaderboard.paid_points') %></th>
+      <!-- <th class="text-center btn-success"><%#= t('leaderboard.paid_points') %></th> -->
       <th class="text-center btn-success"><%= t('leaderboard.match_predicted') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.full_points') %></th>
       <th class="text-center btn-success"><%= t('leaderboard.zero_points') %></th>
@@ -28,7 +28,7 @@
       	<td class="text-center"><%= index %></td>
       	<td class="text-left"><%= user = value['team_name'] %></td>
         <td class="text-center"><%= tp = value['total_points'].to_i %></td>
-        <td class="text-center"><%= value['paid_points'].to_i %></td>
+        <!-- <td class="text-center"><%#= value['paid_points'].to_i %></td> -->
         <td class="text-center"><%= value['no_of_matches'].to_i %></td>
         <td class="text-center"><%= value['no_of_full_points'].to_i %></td>
         <td class="text-center">
