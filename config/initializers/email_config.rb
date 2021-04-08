@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActionMailer::Base.delivery_method = :letter_opener # :smtp
+ActionMailer::Base.delivery_method = :letter_opener_web # :smtp
 # ActionMailer::Base.smtp_settings = {
 #   authentication: :plain,
 #   user_name: Rails.application.credentials.mail_config[:user_name],
