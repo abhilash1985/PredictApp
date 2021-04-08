@@ -16,7 +16,7 @@
       <%= render 'prediction_entry', f: f, match: match, challenge: challenge, page_from: 'prediction' %>
       <div class="modal-footer actions">
         <% pb_value = current_user.point_booster_selected_for(match) %>
-        <% if false && (current_user.point_booster_available? || pb_value) %>
+        <% if (current_user.point_booster_available? || pb_value) %>
           <span class="point_booster_div">
             <%= check_box_tag :point_booster, true, pb_value, class: 'form-check-input', id: 'pointboosterCheck' %>
             <%= label_tag :point_booster, 'Point Booster', class: 'form-check-label', for: 'pointboosterCheck' %>
