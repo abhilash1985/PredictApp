@@ -43,6 +43,9 @@ gem 'jquery-datatables'
 
 gem 'awesome_print'
 
+# Mail
+gem 'letter_opener'
+
 # gem 'sendgrid-ruby'
 
 # Cache page
