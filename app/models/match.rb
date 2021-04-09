@@ -66,7 +66,7 @@ class Match < ApplicationRecord
   end
 
   def started?
-    (match_date - 2.minutes) <= Time.zone.now
+    match_date <= Time.zone.now
   end
 
   # Creating match questions based on question
