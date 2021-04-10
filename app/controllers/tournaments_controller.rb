@@ -69,7 +69,7 @@ class TournamentsController < ApplicationController
   def show_prediction_graph
     @current_match ||= Match.find_by_id(params[:match_id])
     @prediction_graph =
-      @current_match.nil? ? [] : @current_match.match_questions.includes(:predictions, :question)
+      @current_match.nil? ? [] : @current_match.match_questions.order(:id).includes(:predictions, :question)
   end
 
   def update_favourite_team
