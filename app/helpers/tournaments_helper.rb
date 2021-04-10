@@ -56,7 +56,9 @@ module TournamentsHelper
     return {} if data.blank?
 
     data.each_with_object({}) do |(key, value), hash|
-      new_key = Player.find_by_id(key).first_name
+      next if key.blank?
+
+      new_key = Player.find_by_id(key)&.first_name
       hash[new_key] = value
     end
   end
