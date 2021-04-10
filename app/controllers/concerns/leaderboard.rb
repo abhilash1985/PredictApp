@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Leaderboard
 module Leaderboard
   extend ActiveSupport::Concern

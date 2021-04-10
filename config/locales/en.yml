@@ -265,6 +265,8 @@ en:
     logout: 'Logout'
     favourite_team: 'Favourite Team'
     fan_club: 'Fan Club'
+    prediction_graph: 'Prediction Graph'
+    select_match: 'Match'
 
   login:
     lets_play: 'Lets PREDIKT'

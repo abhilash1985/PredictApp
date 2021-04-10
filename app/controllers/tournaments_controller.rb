@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TournamentsController
 class TournamentsController < ApplicationController
   # include ActionController::Live
@@ -54,6 +56,20 @@ class TournamentsController < ApplicationController
 
   def select_favourite_team
     @teams = Team.order(:name)
+  end
+
+  def prediction_graph
+    return root_url if @current_tournament.blank?
+
+    @matches = @current_tournament.matches
+    @current_match = @matches.next_matches.first
+    show_prediction_graph
+  end
+
+  def show_prediction_graph
+    @current_match ||= Match.find_by_id(params[:match_id])
+    @prediction_graph =
+      @current_match.nil? ? [] : @current_match.match_questions.includes(:predictions, :question)
   end
 
   def update_favourite_team

@@ -19,6 +19,7 @@ class Match < ApplicationRecord
   scope :no_in, ->(match_no) { where(match_no: match_no) }
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
   scope :current_matches, -> { where('match_date >= ?', Date.today.to_time) }
+  scope :next_matches, -> { where('match_date >= ?', Time.now) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)

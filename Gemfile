@@ -70,6 +70,8 @@ gem 'bootstrap-multiselect-rails'
 
 gem 'mimemagic', '0.3.10'
 
+gem 'chartkick'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
