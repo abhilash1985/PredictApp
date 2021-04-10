@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require rails-ujs 
+// require rails-ujs
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
@@ -23,6 +23,8 @@
 //= require dataTables/jquery.dataTables
 //= require nprogress
 //= require nprogress-turbolinks
+//= require chartkick
+//= require highcharts
 //= require_tree .
 
 $(document).ready(function () {
@@ -86,5 +88,16 @@ $(document).ready(function () {
     numberDisplayed: 2,
     buttonWidth: '300px',
     maxHeight: 400
+  });
+
+  $('#select_prediction_match').change(function() {
+    var match_id = $('#select_prediction_match').val();
+    var tournament_id = $('#current_tournament_id').val();
+    $.ajax({
+      type: 'GET',
+      dataType: 'script',
+      url: '/tournaments/' + tournament_id + '/show_prediction_graph',
+      data: { match_id: match_id }
+    });
   });
 });

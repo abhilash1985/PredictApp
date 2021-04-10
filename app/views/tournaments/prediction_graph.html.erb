@@ -1,0 +1,36 @@
+<%- model_class = Prediction -%>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
+
+<div id="ipl2020_squads" class="center-block">
+  <div class="page-header ind-body match-result text-center padding-top-10">
+    <h4 class="prediction-results">
+      <%=t '.title', default: I18n.t('menu.prediction_graph') %>
+    </h4>
+  </div>
+
+  <div class="center-block">
+    <div class="container-fluid text-center team-details">
+      <div class="row">
+        <div class="col-sm-1">
+          <label class="prediction-results control-label"></label>
+        </div>
+        <div class="col-sm-4">
+          <div class="controls">
+            <%= select_tag 'match_id',
+                           options_from_collection_for_select(@matches, 'id', 'full_name', @current_match&.id),
+                           id: 'select_prediction_match', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <%= hidden_field_tag :current_tournament_id, @current_tournament&.id %>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="clear: both"></div>
+
+    <div id="prediction-graph">
+      <%= render '/tournaments/prediction_graph/data.html.erb' %>
+    </div>
+  </div>
+</div>

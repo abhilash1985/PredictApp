@@ -29,6 +29,10 @@ class MatchQuestion < ApplicationRecord
     "Q#{index + 1}: #{question_name} (#{points}pts)"
   end
 
+  def question_name_without_points(index)
+    "Q#{index + 1}: #{question_name}"
+  end
+
   def full_name
     "#{match_name} - #{question_name}"
   end

@@ -1,0 +1,33 @@
+<div class="container-fluid text-center team-details">
+  <% @prediction_graph.each_with_index do |match_question, index| %>
+    <% next if match_question.blank? %>
+
+    <% title = match_question.question_name_without_points(index) %>
+    <% data = match_question.predictions.group(:user_answer).count %>
+    <% data = show_player_name_in_prediction_graph(data) if match_question.options[:v].blank? %>
+
+    <% if index.zero? %>
+      <%= pie_chart data, title: title %>
+    <% elsif index == 1 %>
+      <%= column_chart data, colors: ['#2f7ed8'], title: title %>
+    <% elsif index == 2 %>
+      <%= pie_chart data, donut: true, title: title %>
+    <% elsif index == 3 %>
+      <%= bar_chart data, colors: ['#0d233a', '#8bbc21', '#910000', '#1aadce',
+        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'], title: title %>
+    <% elsif index == 4 %>
+      <%= column_chart data, colors: ['#8bbc21', '#0d233a', '#8bbc21', '#910000', '#1aadce',
+        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'], title: title %>
+    <% elsif index == 5 %>
+      <%= bar_chart data, colors: ['#910000', '#0d233a', '#8bbc21', '#910000', '#1aadce',
+        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'], title: title %>
+    <% elsif index == 6 %>
+      <%= column_chart data, colors: ['#1aadce', '#a6c96a'], title: title %>
+    <% elsif index == 7 %>
+      <%= bar_chart data, colors: ['#3c763d', '#337ab7'], title: title %>
+    <% else %>
+      <%= column_chart data, colors: ['#337ab7', '#c42525'], title: title %>
+    <% end %>
+    <br />
+  <% end %>
+</div>

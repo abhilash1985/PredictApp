@@ -4,6 +4,9 @@
   "dependencies": {
     "@rails/webpacker": "^5.2.1",
     "actioncable": "^5.2.4-4",
+    "block-ui": "^2.70.1",
+    "chartkick": "^4.0.2",
+    "highcharts": "^9.0.1",
     "jquery": "^3.5.0",
     "jquery-countdown": "^2.2.0",
     "node-forge": "^0.10.0",

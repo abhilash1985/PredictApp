@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails routes
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -16,7 +18,10 @@ Rails.application.routes.draw do
       patch :update_favourite_team
       get :fan_club
       get :fan_club_members
+      get :prediction_graph
+      get :show_prediction_graph
     end
+
     collection do
       post :predict_match
       post :update_match

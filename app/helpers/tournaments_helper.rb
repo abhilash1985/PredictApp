@@ -51,4 +51,13 @@ module TournamentsHelper
     User.by_team_id(team_id).order_by_name.select(:id, :first_name, :last_name)
         .map(&:full_name).join(', ')
   end
+
+  def show_player_name_in_prediction_graph(data)
+    return {} if data.blank?
+
+    data.each_with_object({}) do |(key, value), hash|
+      new_key = Player.find_by_id(key).first_name
+      hash[new_key] = value
+    end
+  end
 end
