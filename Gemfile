@@ -98,9 +98,9 @@ group :development do
   # # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # gem 'rails_best_practices', require: false
-  # gem 'rubocop', require: false
+  gem 'rubocop', require: false
   # gem 'rubocop-rspec', require: false
-  # #gem 'brakeman', '2.6.3', require: false
+  gem 'brakeman', require: false
   # gem 'flog', require: false
   # gem 'flay', require: false
   # gem 'derailed'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_065343) do
+ActiveRecord::Schema.define(version: 2021_08_22_083311) do
 
   create_table "challenge_payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -125,6 +125,23 @@ ActiveRecord::Schema.define(version: 2020_09_19_065343) do
     t.index ["user_id"], name: "index_prizes_on_user_id"
   end
 
+  create_table "question_options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.string "option1"
+    t.string "option2"
+    t.string "option3"
+    t.string "option4"
+    t.string "option5"
+    t.string "option6"
+    t.string "option7"
+    t.string "option8"
+    t.string "option9"
+    t.string "option10"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_question_options_on_question_id"
+  end
+
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "question"
     t.datetime "created_at", null: false
@@ -229,6 +246,7 @@ ActiveRecord::Schema.define(version: 2020_09_19_065343) do
   add_foreign_key "matches", "tournaments"
   add_foreign_key "payments", "users"
   add_foreign_key "prizes", "users"
+  add_foreign_key "question_options", "questions"
   add_foreign_key "tournaments", "tournament_types"
   add_foreign_key "users", "teams"
 end
