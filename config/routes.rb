@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       get :fan_club_members
       get :prediction_graph
       get :show_prediction_graph
+      get :show_matches
+      get :show_match_questions
+      post :update_match_question
     end
 
     collection do

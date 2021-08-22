@@ -12,4 +12,5 @@ class Question < ApplicationRecord
   has_many :question_options
   # Scopes
   scope :by_question, ->(question) { where(question: question) }
+  scope :order_by_question, -> { order(:question) }
 end

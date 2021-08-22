@@ -1,0 +1,13 @@
+<div class="container-fluid text-center team-details">
+  <% if @match_questions.blank? %>
+    <%= render '/tournaments/match_questions/new_match_question' %>
+  <% else %>
+    <%= render '/tournaments/match_questions/edit_match_question' %>
+  <% end %>
+
+  <div class="row">
+    <div class="actions">
+      <%= submit_tag 'Submit', id: 'submit_match_question', class: 'btn btn-default btn-primary' %>
+    </div>
+  </div>
+</div>
