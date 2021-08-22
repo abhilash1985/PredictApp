@@ -100,4 +100,15 @@ $(document).ready(function () {
       data: { match_id: match_id }
     });
   });
+
+  $('#select_prediction_match_question').change(function() {
+    var match_id = $('#select_prediction_match_question').val();
+    var tournament_id = $('#current_tournament_id').val();
+    $.ajax({
+      type: 'GET',
+      dataType: 'script',
+      url: '/tournaments/' + tournament_id + '/show_match_questions',
+      data: { match_id: match_id }
+    });
+  });
 });

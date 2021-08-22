@@ -20,6 +20,7 @@ class Match < ApplicationRecord
   scope :by_challenge, ->(challenge) { where(challenge_id: challenge.id) }
   scope :current_matches, -> { where('match_date >= ?', Date.today.to_time) }
   scope :next_matches, -> { where('match_date >= ?', Time.now) }
+  scope :oldest, -> { order(:match_no) }
 
   def self.by_team(team_id)
     where('team1_id = :team OR team2_id = :team_id', team: team_id)
@@ -75,17 +76,53 @@ class Match < ApplicationRecord
     match_question = match_questions.by_question(question).first_or_initialize
     options = selected_questions.fetch(question.question, [])[1]
     raise 'Invalid options' if options.nil?
+
     match_question.options = { v: options }
     match_question.points = question.weightage
     match_question.save
     p "#{match_question.id} - Match: #{match_no}, Q: #{question.question}, Options: #{options}"
   end
 
+  def update_or_create_match_questions(params)
+    if match_questions.blank?
+      new_match_questions(params)
+    else
+      update_match_questions(params)
+    end
+  end
+
+  def update_match_questions(params)
+    match_questions.each do |match_question|
+      match_question_params = params[match_question.id.to_s]
+      options = convert_options_array(match_question_params)
+      match_question.update(question_id: match_question_params[:question_id], options: options)
+    end
+  end
+
+  def new_match_questions(params)
+    params.keys.sort.each do |key|
+      match_question_params = params[key]
+      options = convert_options_array(match_question_params)
+      match_question = match_questions.new
+      match_question.question_id = match_question_params[:question_id]
+      match_question.options = options
+      match_question.save
+    end
+  end
+
   rails_admin do
     # list do
-      # field :team1_short_name
-      # field :team2_short_name
-      # field :created_at
+    # field :team1_short_name
+    # field :team2_short_name
+    # field :created_at
     # end
+  end
+
+  private
+
+  def convert_options_array(params)
+    { v: [params[:option1], params[:option2], params[:option3], params[:option4], params[:option5],
+          params[:option6], params[:option7], params[:option8], params[:option9], params[:option10]]
+      .reject(&:blank?) }
   end
 end

@@ -22,28 +22,32 @@ class TournamentsController < ApplicationController
     match = Match.find_by_id(@match_id)
     if match && !match.started?
       user_challenge = current_user.user_challenges.by_challenge(params[:challenge_id]).first_or_initialize
-      user_challenge.point_booster =
-        params[:point_booster] if current_user.point_booster_available? || params[:point_booster].blank?
+      if current_user.point_booster_available? || params[:point_booster].blank?
+        user_challenge.point_booster =
+          params[:point_booster]
+      end
       user_challenge.save
       params[:match_question].each do |key, value|
         prediction = user_challenge.predictions.by_match_question(key).first_or_initialize
         prediction.user_answer = value
         prediction.save
       end
-     end
+    end
     respond_to do |format|
       format.js
       format.html
     end
-   end
+  end
 
   def update_match
     return unless current_user.admin
+
     @challenge_id = params[:challenge_id]
     @match_id = params[:match_id]
     params[:match_question].each do |key, value|
       match_question = MatchQuestion.find_by_id(key)
       next if match_question.nil?
+
       match_question.answer = value
       match_question.save
     end
@@ -61,8 +65,7 @@ class TournamentsController < ApplicationController
   def prediction_graph
     return root_url if @current_tournament.blank?
 
-    @matches = @current_tournament.matches
-    @current_match = @matches.next_matches.first
+    find_current_match
     show_prediction_graph
   end
 
@@ -90,9 +93,44 @@ class TournamentsController < ApplicationController
     @team = current_user.team
   end
 
+  def show_matches
+    return root_url if @current_tournament.blank?
+
+    find_current_match
+    show_match_questions
+  end
+
+  def show_match_questions
+    @current_match ||= Match.find_by_id(params[:match_id])
+    @questions = Question.order_by_question.includes(:question_options)
+    @match_questions =
+      @current_match.nil? ? [] : @current_match.match_questions.order(:id).includes(:question)
+  end
+
+  def update_match_question
+    permit_params
+    match = Match.find_by_id(@params[:match_id])
+    return if match.blank?
+
+    match.update_or_create_match_questions(@params[:match_question])
+    redirect_to show_matches_tournament_path(@current_tournament),
+                notice: I18n.t(:update_match_questions, match: match.full_name)
+  end
+
   # Old leader_board data
   def leader_board
     tournament = Tournament.find(params[:id])
     @leaderboards = tournament.leaderboard(params[:from])
+  end
+
+  private
+
+  def find_current_match
+    @matches = @current_tournament.matches.oldest
+    @current_match = @matches.next_matches.first
+  end
+
+  def permit_params
+    @params = params.permit(:match_id, match_question: {}).to_h
   end
 end

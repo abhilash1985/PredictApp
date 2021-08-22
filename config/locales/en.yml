@@ -266,6 +266,7 @@ en:
     favourite_team: 'Favourite Team'
     fan_club: 'Fan Club'
     prediction_graph: 'Prediction Graph'
+    new_edit_match_questions: 'New/Edit Match Questions'
     select_match: 'Match'
 
   login:
@@ -297,6 +298,7 @@ en:
     current_challenges: 'Current Challenges'
     prev_challenges: 'Previous Challenges'
     choose_challenges: 'Choose your Challenge'
+    update_match_questions: "Updated Match Questions For %{match}"
 
   predictions:
     all: 'All Predictions'

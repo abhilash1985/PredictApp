@@ -1,0 +1,65 @@
+<% (1..8).to_a.each do |index| %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="controls">
+        <%= select_tag "match_question[#{index}][question_id]",
+                    options_from_collection_for_select(@questions, 'id', 'question', nil),
+                    class: 'form-control' %>
+
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= text_field_tag "match_question[#{index}][option1]", nil,
+                          class: 'form-control text-danger' %>
+    </div>
+    <div class="col-sm-2">
+      <%= text_field_tag "match_question[#{index}][option2]", nil,
+                          class: 'form-control text-danger' %>
+    </div>
+    <div class="col-sm-2">
+      <%= text_field_tag "match_question[#{index}][option3]", nil,
+                          class: 'form-control text-danger' %>
+    </div>
+
+    <% if index > 2 %>
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option4]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option5]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option6]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option7]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option8]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option9]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= text_field_tag "match_question[#{index}][option10]", nil,
+                          class: 'form-control text-danger' %>
+      </div>
+    <% end %>
+  </div>
+  <br/>
+<% end %>
