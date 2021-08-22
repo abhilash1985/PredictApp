@@ -114,7 +114,7 @@ class TournamentsController < ApplicationController
 
     match.update_or_create_match_questions(@params[:match_question])
     redirect_to show_matches_tournament_path(@current_tournament),
-                notice: I18n.t(:update_match_questions, match: match.full_name)
+                notice: I18n.t('tournament.update_match_questions', match: match.full_name)
   end
 
   # Old leader_board data
