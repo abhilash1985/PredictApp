@@ -16,6 +16,7 @@
   </div>
   <br/>
   <% options = match_question.options[:v] %>
+  <% options = options.nil? ? [] : options %>
 
   <div class="row">
     <div class="col-sm-2">

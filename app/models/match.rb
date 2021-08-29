@@ -23,7 +23,7 @@ class Match < ApplicationRecord
   scope :oldest, -> { order(:match_no) }
 
   def self.by_team(team_id)
-    where('team1_id = :team OR team2_id = :team_id', team: team_id)
+    where('team1_id = :team OR team2_id = :team', team: team_id)
   end
 
   def team1_name
