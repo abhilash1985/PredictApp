@@ -5,6 +5,7 @@ class Player < ApplicationRecord
   # Scopes
   scope :by_first_name, ->(first_name) { where(first_name: first_name) }
   scope :by_last_name, ->(last_name) { where(last_name: last_name) }
+  scope :order_by_id, -> { order(:id) }
 
   def full_name
     "#{first_name} (#{player_style.upcase})".strip
