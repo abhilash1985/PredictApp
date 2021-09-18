@@ -111,4 +111,16 @@ $(document).ready(function () {
       data: { match_id: match_id }
     });
   });
+
+  $('#edit_prediction_match_user, #edit_prediction_match').change(function() {
+    var match_id = $('#edit_prediction_match').val();
+    var user_id = $('#edit_prediction_match_user').val();
+    var tournament_id = $('#current_tournament_id').val();
+    $.ajax({
+      type: 'GET',
+      dataType: 'script',
+      url: '/tournaments/' + tournament_id + '/select_predictions_for_user',
+      data: { match_id: match_id, selected_user_id: user_id }
+    });
+  });
 });

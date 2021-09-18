@@ -267,6 +267,7 @@ en:
     fan_club: 'Fan Club'
     prediction_graph: 'Prediction Graph'
     new_edit_match_questions: 'New/Edit Match Questions'
+    edit_predictions: 'Edit Predictions'
     select_match: 'Match'
 
   login:

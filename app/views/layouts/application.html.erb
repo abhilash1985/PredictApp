@@ -107,6 +107,12 @@
                                                         data: { turbolinks: false },
                                                         target: '_self' if @current_tournament %>
                     </li>
+                    <li>
+                      <%= link_to t('menu.edit_predictions'),
+                                      predict_match_for_user_tournament_path(@current_tournament),
+                                                        data: { turbolinks: false },
+                                                        target: '_self' if @current_tournament %>
+                    </li>
                   <% end %>
                   <%# if @current_tournament.fifa2019? %>
                     <!-- <li> -->

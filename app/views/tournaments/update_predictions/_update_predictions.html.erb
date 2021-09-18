@@ -1,0 +1,50 @@
+<%- model_class = Prediction -%>
+<%= image_tag(load_bg_image, { id: 'full-screen-background-image', size: '1366x768' }) %>
+
+<%= form_for(:prediction, url: update_predictions_for_user_tournament_path(@current_tournament),
+                          html: { method: 'post', role: :form, 'data-model' => 'person' }) do |f| %>
+  <div id="ipl2020_squads" class="center-block">
+    <div class="page-header ind-body match-result text-center padding-top-10">
+      <h4 class="prediction-results">
+        <%=t '.title', default: I18n.t('menu.edit_predictions') %>
+      </h4>
+    </div>
+
+    <div class="center-block">
+      <div class="container-fluid text-center team-details">
+        <div class="row">
+          <div class="col-sm-1">
+            <label class="prediction-results control-label"></label>
+          </div>
+          <div class="col-sm-4">
+            <div class="controls">
+              <%= select_tag 'user_id',
+                             options_from_collection_for_select(@users, 'id', 'full_name', current_user.id),
+                             id: 'edit_prediction_match_user', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="controls">
+              <%= select_tag 'match_id',
+                             options_from_collection_for_select(@matches, 'id', 'full_name', @current_match&.id),
+                             id: 'edit_prediction_match', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <%= hidden_field_tag :current_tournament_id, @current_tournament&.id %>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="clear: both"></div>
+
+      <div id="select-match-questions">
+        <%= render '/tournaments/prediction_entry', match: @current_match, challenge: @current_match.challenge,
+                                                    page_from: 'edit_prediction_for_user', current_user: current_user %>
+      </div>
+      <div class="actions margin-left-20">
+        <%= f.submit 'Submit', class: 'btn btn-default btn-success' %>
+      </div>
+    </div>
+  </div>
+<% end -%>

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # User
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable #, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable # , :confirmable
   # Associations
   has_many :user_challenges, dependent: :destroy
   has_many :challenges, through: :user_challenges
@@ -16,7 +18,7 @@ class User < ApplicationRecord
   scope :order_by_name, -> { order(:first_name) }
   scope :by_team_id, ->(team_id) { where(team_id: team_id) }
   # Constants
-  POINT_BOOSTER = 5
+  POINT_BOOSTER = 7
 
   def show_name
     full_name.blank? ? show_email : full_name
@@ -37,22 +39,26 @@ class User < ApplicationRecord
   def prediction_for_match_question(challenge, match_question)
     user_challenge = user_challenges.by_challenge(challenge.id).first
     return if user_challenge.blank?
+
     user_challenge.predictions.by_match_question(match_question.id).first
   end
 
   def object_from_hash(options = {})
-    options[:page_from] == 'prediction' ? options[:prediction] : options[:match_question]
+    pages_from_array = %w[prediction edit_prediction_for_user]
+    pages_from_array.include?(options[:page_from]) ? options[:prediction] : options[:match_question]
   end
 
   def checked_value(option, options = {})
     object = object_from_hash(options)
     return if object.blank?
+
     option == object.user_answer
   end
 
   def selected_value(options = {})
     object = object_from_hash(options)
     return if object.blank?
+
     object.user_answer
   end
 
@@ -92,33 +98,36 @@ class User < ApplicationRecord
 
   def amount_paid_for(challenge)
     return false if challenge.blank?
+
     user_challenge = user_challenges.by_challenge(challenge.id).first
     return false if user_challenge.nil?
+
     user_challenge.try(:paid)
   end
 
   def total_points_for_challenge(challenge)
     user_challenge = user_challenges.by_challenge(challenge.id).first
     return 0 if user_challenge.nil?
+
     user_challenge.predictions.sum(:points)
   end
 
   def total_percentage_for_challenge(challenge)
     points = BigDecimal(total_points_for_challenge(challenge))
     total_points = BigDecimal(challenge.total_points)
-    total_points == 0 ? 0 : (points/total_points * 100).round(2)
+    total_points == 0 ? 0 : (points / total_points * 100).round(2)
   end
 
   def predictions_for_match(match)
     predictions.where('predictions.match_question_id in (?)',
-                       match.match_question_ids)
+                      match.match_question_ids)
                .select('predictions.*')
                .order('predictions.match_question_id')
   end
 
   def predictions_for_match_question(match_question)
     predictions.where('predictions.match_question_id in (?)',
-                       match_question)
+                      match_question)
                .select('predictions.*')
                .order('predictions.match_question_id').first
   end
@@ -130,7 +139,7 @@ class User < ApplicationRecord
   def total_percentage_for_match(match)
     points = BigDecimal(total_points_for_match(match))
     total_points = BigDecimal(match.total_points)
-    total_points == 0 ? 0 : (points/total_points * 100).round(2)
+    total_points == 0 ? 0 : (points / total_points * 100).round(2)
   end
 
   def match_question_ids(tournament)

@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # ChallengesController
 class ChallengesController < ApplicationController
-  skip_before_action :current_tournament, only: [:show, :points_table,
-                                                 :predictions_table]
+  skip_before_action :current_tournament, only: %i[show points_table
+                                                   predictions_table]
   before_action :authenticate_user!
-  before_action :challenge_params, only: [:show, :points_table]
+  before_action :challenge_params, only: %i[show points_table]
   before_action :prediction_challenge_params, only: [:predictions_table]
-  before_action :current_challenge_params,  only: [:payment_details, :challenge_payments]
+  before_action :current_challenge_params, only: %i[payment_details challenge_payments]
 
   def payment_details
     # @payments = Payment.includes(:user)
@@ -37,7 +39,7 @@ class ChallengesController < ApplicationController
       flash[:notice] = "Updated paid status for #{params[:users]}"
     end
     redirect_to show_user_challenges_challenge_path(@current_tournament)
-  rescue
+  rescue StandardError
     flash[:notice] = 'Something Went Wrong'
     redirect_to show_user_challenges_challenge_path(@current_tournament)
   end

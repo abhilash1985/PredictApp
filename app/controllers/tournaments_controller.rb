@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
   # include ActionController::Live
   before_action :authenticate_user!
   before_action :current_tournament
+  before_action :user_permit_params, only: :update_predictions_for_user
 
   def show
     if @current_tournament.blank?
@@ -23,8 +24,7 @@ class TournamentsController < ApplicationController
     if match && !match.started?
       user_challenge = current_user.user_challenges.by_challenge(params[:challenge_id]).first_or_initialize
       if current_user.point_booster_available? || params[:point_booster].blank?
-        user_challenge.point_booster =
-          params[:point_booster]
+        user_challenge.point_booster = params[:point_booster]
       end
       user_challenge.save
       params[:match_question].each do |key, value|
@@ -123,6 +123,27 @@ class TournamentsController < ApplicationController
     @leaderboards = tournament.leaderboard(params[:from])
   end
 
+  def predict_match_for_user
+    return root_url if @current_tournament.blank?
+
+    find_current_match
+    @users = User.order_by_name
+  end
+
+  def select_predictions_for_user
+    @user = User.find_by_id(params[:selected_user_id])
+    @current_match = Match.find_by_id(params[:match_id])
+  end
+
+  def update_predictions_for_user
+    if current_user.admin
+      user = User.find(@params[:user_id])
+      match = Match.find_by_id(@params[:match_id])
+      match.predict_match_for_user(user, @params) if match.present?
+    end
+    redirect_to predict_match_for_user_tournament_url(@current_tournament)
+  end
+
   private
 
   def find_current_match
@@ -132,5 +153,10 @@ class TournamentsController < ApplicationController
 
   def permit_params
     @params = params.permit(:match_id, match_question: {}).to_h
+  end
+
+  def user_permit_params
+    @params = params.permit(:user_id, :match_id, :challenge_id, :current_tournament_id,
+                            match_question: {}, prediction: {})
   end
 end

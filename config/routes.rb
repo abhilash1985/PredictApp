@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'dashboard/welcome'
   root 'dashboard#index'
   resources :dashboard, only: :index
-  resources :tournaments, only: [:index, :show] do
+  resources :tournaments, only: %i[index show] do
     member do
       get :leaderboard
       get :leader_board
@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       get :show_matches
       get :show_match_questions
       post :update_match_question
+      get :predict_match_for_user
+      get :select_predictions_for_user
+      post :update_predictions_for_user
     end
 
     collection do
