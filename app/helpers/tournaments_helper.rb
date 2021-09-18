@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TournamentsHelper
 module TournamentsHelper
   def load_icon(team1, team2)

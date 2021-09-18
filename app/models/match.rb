@@ -35,7 +35,7 @@ class Match < ApplicationRecord
   end
 
   def team_players(team)
-    send(team).players.pluck(:id, :first_name, :player_style)
+    send(team).players.not_withdrawn.order_by_captain.pluck(:id, :first_name, :player_style)
               .collect { |u| ["#{u[1]} (#{u[2].upcase})", u[0]] }
   end
 
@@ -110,6 +110,16 @@ class Match < ApplicationRecord
     end
   end
 
+  # Predicting match for user - After Challenge ends, only for Admin
+  def predict_match_for_user(user, params)
+    user_challenge = user.user_challenges.by_challenge(params[:challenge_id]).first_or_initialize
+    if user.point_booster_available? || params[:point_booster].blank?
+      user_challenge.point_booster = params[:point_booster]
+    end
+    user_challenge.save
+    create_match_questions_for_user(params[:match_question], user_challenge)
+  end
+
   rails_admin do
     # list do
     # field :team1_short_name
@@ -124,5 +134,13 @@ class Match < ApplicationRecord
     { v: [params[:option1], params[:option2], params[:option3], params[:option4], params[:option5],
           params[:option6], params[:option7], params[:option8], params[:option9], params[:option10]]
       .reject(&:blank?) }
+  end
+
+  def create_match_questions_for_user(match_questions, user_challenge)
+    match_questions.each do |key, value|
+      prediction = user_challenge.predictions.by_match_question(key).first_or_initialize
+      prediction.user_answer = value
+      prediction.save
+    end
   end
 end

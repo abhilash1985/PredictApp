@@ -18,7 +18,7 @@
           </p>
         </div>
         <div class="row">
-          <% team.players.order_by_id.each_with_index do |player, index| %>
+          <% team.players.order_by_captain.each_with_index do |player, index| %>
           <div class="col-sm-2">
             <% captain = '(C)' if player.last_name == 'C' %>
             <p class='team-font text-left'><%= player.first_name.upcase %><%= captain %></p>
