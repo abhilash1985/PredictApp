@@ -23,15 +23,19 @@ module ApplicationHelper
 
   def amount_paid_tag(user, challenge)
     return if challenge.blank?
+
     paid = user.amount_paid_for(challenge)
     return unless paid
+
     image_tag 'paid.png', size: '12x12', class: 'margin-left-5', title: 'Paid'
   end
 
   def point_booster_tag(user, match)
     return if match.blank?
+
     booster = user.point_booster_selected_for(match)
     return unless booster
+
     image_tag 'booster.png', size: '12x12', title: 'Points Booster'
   end
 
