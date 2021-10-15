@@ -149,7 +149,7 @@ class TournamentsController < ApplicationController
   def find_current_match
     @matches = @current_tournament.matches.oldest
     @current_match = @matches.next_matches.first
-    @current_match.blank? ? @matches.first : @current_match
+    @current_match = @current_match.blank? ? @matches.first : @current_match
   end
 
   def permit_params
