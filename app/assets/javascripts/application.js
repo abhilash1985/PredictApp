@@ -14,7 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require activestorage
-//= require turbolinks
+//= require turbo
 //= require bootstrap-sprockets
 //= require bootstrap-multiselect
 //= require jquery.plugin
@@ -24,6 +24,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require chartkick
+// require Chart.bundle
 //= require highcharts
 //= require_tree .
 

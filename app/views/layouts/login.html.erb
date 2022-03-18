@@ -4,8 +4,8 @@
       <title><%= t(:app_name) %></title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+      <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
       <link rel="shortcut icon" href="/assets/logo/favicon.ico"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script data-ad-client="ca-pub-2549684217163666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span>
               </button>
               <%= link_to image_tag('logo/logo.png'), root_url, class: 'navbar-brand predikt-logo',
-                          data: { turbolinks: false } %>
+                          data: { turbo: false } %>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
