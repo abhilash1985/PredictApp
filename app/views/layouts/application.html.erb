@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 
     <link rel="shortcut icon" href="/assets/logo/favicon.ico"/>
 
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
     <script data-ad-client="ca-pub-2549684217163666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <%#= javascript_importmap_tags %>
   </head>
   <body>
     <%= render '/layouts/flash' %>
@@ -27,21 +28,21 @@
               <span class="icon-bar"></span>
             </button>
             <%= link_to image_tag('logo/logo.png'), dashboard_index_path, class: 'navbar-brand predikt-logo',
-                        data: { turbolinks: false } %>
+                        data: { turbo: false } %>
             <% if @current_tournament %>
               <%= link_to @current_tournament.name, tournament_path(@current_tournament),
                                                     class:'navbar-brand navbar-brand_tournament',
-                                                    data: { turbolinks: false }, target: '_self' %>
+                                                    data: { turbo: false }, target: '_self' %>
               <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbo: false }, target: '_self' %>
               <%= link_to t('menu.fan_club'), fan_club_tournament_path(@current_tournament),
-                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbo: false }, target: '_self' %>
               <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
-                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbo: false }, target: '_self' %>
               <%= link_to t('menu.prediction_graph'), prediction_graph_tournament_path(@current_tournament),
-                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbo: false }, target: '_self' %>
               <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
-                                         class: 'navbar-brand', data: { turbolinks: false }, target: '_self' %>
+                                         class: 'navbar-brand', data: { turbo: false }, target: '_self' %>
             <% end %>
           </div>
 
@@ -61,35 +62,35 @@
                       <% if current_user&.team_id.blank? %>
                         <%= link_to t('menu.favourite_team'),
                                     select_favourite_team_tournament_path(@current_tournament),
-                                    data: { turbolinks: false }, target: '_self' %>
+                                    data: { turbo: false }, target: '_self' %>
                       <% else %>
                          <%= link_to "#{current_user&.team&.short_name} Fan Club",
                                      fan_club_members_tournament_path(@current_tournament),
-                                     data: { turbolinks: false }, target: '_self' %>
+                                     data: { turbo: false }, target: '_self' %>
                       <% end %>
                     </li>
                     <li>
                       <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
-                                                 data: { turbolinks: false }, target: '_self' %>
+                                                 data: { turbo: false }, target: '_self' %>
                     </li>
                   <% end %>
                   <li>
                     <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
-                                                   data: { turbolinks: false }, target: '_self' %>
+                                                   data: { turbo: false }, target: '_self' %>
                   </li>
                   <li>
                     <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
-                                                         data: { turbolinks: false }, target: '_self' %>
+                                                         data: { turbo: false }, target: '_self' %>
                   </li>
                   <li>
                     <%= link_to t('menu.prediction_graph'),
                                     prediction_graph_tournament_path(@current_tournament),
-                                    data: { turbolinks: false }, target: '_self' %>
+                                    data: { turbo: false }, target: '_self' %>
                   </li>
                   <% if current_user.admin %>
                     <li>
                       <%= link_to t('menu.prize_list'), prize_list_challenge_path(@current_tournament),
-                                                data: { turbolinks: false }, target: '_self' %>
+                                                data: { turbo: false }, target: '_self' %>
                     </li>
                   <% end %>
                   <% if current_user.admin %>
@@ -98,19 +99,19 @@
                     </li>
                     <li>
                       <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
-                                                        data: { turbolinks: false },
+                                                        data: { turbo: false },
                                                         target: '_self' if @current_tournament %>
                     </li>
                     <li>
                       <%= link_to t('menu.new_edit_match_questions'),
                                       show_matches_tournament_path(@current_tournament),
-                                                        data: { turbolinks: false },
+                                                        data: { turbo: false },
                                                         target: '_self' if @current_tournament %>
                     </li>
                     <li>
                       <%= link_to t('menu.edit_predictions'),
                                       predict_match_for_user_tournament_path(@current_tournament),
-                                                        data: { turbolinks: false },
+                                                        data: { turbo: false },
                                                         target: '_self' if @current_tournament %>
                     </li>
                   <% end %>
