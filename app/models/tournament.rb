@@ -18,6 +18,7 @@ class Tournament < ApplicationRecord
   scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
   scope :ipl2020, -> { where(name: I18n.t(:ipl_2020)) }
   scope :ipl2021, -> { where(name: I18n.t(:ipl_2021)) }
+  scope :ipl2022, -> { where(name: I18n.t(:ipl_2022)) }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
@@ -28,7 +29,7 @@ class Tournament < ApplicationRecord
     case name
     when I18n.t(:cricket_2019)
       'cricket_2019.jpg'
-    when I18n.t(:ipl_2020), I18n.t(:ipl_2021)
+    when I18n.t(:ipl_2020), I18n.t(:ipl_2021), I18n.t(:ipl_2022)
       'ipl.jpg'
     end
   end

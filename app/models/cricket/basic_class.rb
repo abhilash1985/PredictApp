@@ -47,12 +47,9 @@ module Cricket
       dates = challenge_dates
       challenge.start_time = dates[0]
       challenge.end_time = dates[1]
-      if challenge.save
-        challenge.matches.update_all(challenge_id: nil)
-        matches.each { |m| m.update(challenge_id: challenge.id) }
-        p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time},
-           ET: #{challenge.end_time}, Matches: #{matches.map(&:id).join}"
-      end
+      return unless challenge.save
+
+      update_matches(challenge, matches)
     end
 
     private
@@ -61,6 +58,13 @@ module Cricket
       start_time = date.to_time
       end_time = matches.first.match_date - 5.minutes
       [start_time, end_time]
+    end
+
+    def update_matches(challenge, matches)
+      challenge.matches.update_all(challenge_id: nil)
+      matches.each { |m| m.update(challenge_id: challenge.id) }
+      p "#{challenge.id}: #{challenge.name}, ST: #{challenge.start_time},
+         ET: #{challenge.end_time}, Matches: #{matches.map(&:id).join}"
     end
   end
 end
