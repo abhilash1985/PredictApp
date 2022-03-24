@@ -18,7 +18,7 @@ module TournamentsHelper
   end
 
   def deafult_icon
-    ['icon.jpg', 'icon1.jpg', 'icon2.jpg', 'icon3.jpg', 'icon4.jpg', 'icon5.jpg', 'icon6.jpg'].sample
+    ['icon.jpg', 'icon1.jpg', 'icon2.jpg', 'icon3.jpg', 'icon4.jpg', 'icon5.jpg'].sample
   end
 
   def option_collection(match)

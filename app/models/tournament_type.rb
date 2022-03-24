@@ -3,7 +3,7 @@
 # TournamentType
 class TournamentType < ApplicationRecord
   # Associations
-  has_many :tournaments
+  has_many :tournaments, dependent: :destroy
   # Validations
   validates :name, :game, presence: true
   # Scopes

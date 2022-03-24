@@ -16,9 +16,9 @@
             </div>
           </th>
         <% end %>
-        <!-- <th class="text-center btn-success"> -->
-          <%#= t('predictions_table.point_booster') %>
-        <!-- </th> -->
+        <th class="text-center btn-success">
+          <%= t('predictions_table.point_booster') %>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +38,9 @@
               <%= prediction.try(:exact_answer) %>
             </td>
           <% end %>
-          <!-- <td class="text-center btn-primary"> -->
-            <%#= user.point_booster_enabled_for(match) %>
-          <!-- </td> -->
+          <td class="text-center btn-primary">
+            <%= user.point_booster_enabled_for(match) %>
+          </td>
         </tr>
       <% end %>
     </tbody>
