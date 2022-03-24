@@ -243,10 +243,11 @@ en:
   coming_soon: 'COMING SOON'
   cricket_2019: 'ICC Cricket World Cup 2019'
   fifa_2018: '2018 FIFA World Cup Russia'
-  eng_ind_tour: 'India Tour of England 2018'
   ipl_2020: 'DREAM11 IPL 2020'
   ipl_2021: 'VIVO IPL 2021'
   ipl2021: 'IPL2021'
+  ipl_2022: 'TATA IPL 2022'
+  ipl2022: 'IPL2022'
   prediction: 'Prediction'
   submit: 'Submit'
   close: 'Close'
@@ -293,7 +294,7 @@ en:
     sign_up: 'Sign Up'
 
   footer:
-    all_rights_reserved: '2021 All rights reserved.'
+    all_rights_reserved: '2022 All rights reserved.'
 
   tournament:
     current_challenges: 'Current Challenges'
