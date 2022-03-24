@@ -3,9 +3,29 @@
 # bundle exec rails import_ipl_2022:master_data
 namespace :import_ipl_2022 do
   desc 'Import master data'
-  task master_data: %i[tournaments stadiums teams rounds players
+  task master_data: %i[truncate_data tournaments stadiums teams rounds players
                        matches questions match_questions challenges] do
     # for initial run include :questions, :match_questions, :challenges
+  end
+
+  desc 'Truncate Old Data'
+  task truncate_data: :environment do
+    ActiveRecord::Base.connection.execute 'TRUNCATE payments'
+    ActiveRecord::Base.connection.execute 'TRUNCATE prizes'
+
+    ActiveRecord::Base.connection.execute 'TRUNCATE predictions'
+    ActiveRecord::Base.connection.execute 'TRUNCATE user_challenges'
+    ActiveRecord::Base.connection.execute 'TRUNCATE challenge_payments'
+
+    ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
+    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
+    ActiveRecord::Base.connection.execute 'UPDATE challenge_payments set challenge_id = null where id > 0'
+    ActiveRecord::Base.connection.execute 'DELETE FROM challenges where id > 0'
+    ActiveRecord::Base.connection.execute 'TRUNCATE players'
+    ActiveRecord::Base.connection.execute 'UPDATE users set team_id = null where id > 0'
+    ActiveRecord::Base.connection.execute 'DELETE FROM teams'
+    ActiveRecord::Base.connection.execute 'TRUNCATE rounds'
+    ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
   end
 
   desc 'Import tournaments'
@@ -13,7 +33,7 @@ namespace :import_ipl_2022 do
     tournament_type = TournamentType.where(name: 'ipl2022', game: 'cricket')
                                     .first_or_initialize
     tournament_type.save
-    tournament = tournament_type.tournaments.ipl2021.first_or_initialize
+    tournament = tournament_type.tournaments.ipl2022.first_or_initialize
     tournament.start_date = '26-03-2022'
     tournament.end_date = '29-05-2022'
     tournament.location = 'India'
@@ -23,7 +43,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import stadiums'
   task stadiums: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     stadiums = %w[Mumbai Navi\ Mumbai Pune]
     stadiums.each do |stadium|
       stadium = Stadium.by_name(stadium).first_or_initialize
@@ -34,7 +53,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import teams'
   task teams: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE teams'
     teams = {
       'Chennai Super Kings' => [1, 'CSK'],
       'Kolkata Knight Riders' => [2, 'KKR'],
@@ -59,7 +77,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import rounds'
   task rounds: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE rounds'
     %w[GROUP-STAGE QUALIFIER1 ELIMINATOR QUALIFIER2 FINAL].each do |name|
       round = Round.by_name(name).first_or_initialize
       round.save
@@ -70,7 +87,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import players'
   task players: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE players'
     begin
       file = 'db/data/ipl_2022_players.xls'
       Spreadsheet.open(file) do |sheet|
@@ -82,6 +98,7 @@ namespace :import_ipl_2022 do
           next if team.blank?
 
           player = team.players.by_first_name(row[1].strip).first_or_initialize
+          player.last_name = row[3]&.strip
           player.player_style = row[2].strip
           p "Team: #{row[0]}, Player: #{row[1]}, Style: #{row[2]}"
           player.save
@@ -95,7 +112,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import Matches'
   task matches: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     begin
       file = 'db/data/ipl_2022_matches.xls'
@@ -148,7 +164,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import match questions'
   task match_questions: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
     generate_predict_class
     @predict_class.import_match_questions
     p 'Imported Match Questions...'
@@ -156,8 +171,6 @@ namespace :import_ipl_2022 do
 
   desc 'Import challenges'
   task challenges: :environment do
-    ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
-    ActiveRecord::Base.connection.execute 'TRUNCATE predictionss'
     generate_predict_class
     @predict_class.import_challenges
     p 'Imported Challenges...'
