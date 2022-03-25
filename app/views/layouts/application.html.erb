@@ -122,7 +122,7 @@
                     <%# end %>
                   <li><%= link_to t('menu.change_password'), edit_user_registration_path %></li>
                   <li class="divider"></li>
-                  <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete %></li>
+                  <li><%= link_to t('menu.logout'), destroy_user_session_path, method: :delete, data: { turbo: 'false' } %></li>
                 </ul>
               </li>
             </ul>

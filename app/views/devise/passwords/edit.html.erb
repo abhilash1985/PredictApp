@@ -6,7 +6,7 @@
 </div>
 <div class="margin">
   <div class="tab-pane col-md-offset-2 col-md-3">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { data: { turbo: false }, method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>
       <fieldset>

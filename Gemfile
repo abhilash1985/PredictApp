@@ -54,13 +54,13 @@ gem 'jquery-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 1.0', group: :doc
 
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
 gem 'cancancan'
 gem 'kaminari'
 
 gem 'carrierwave'
 gem 'spreadsheet'
-gem 'rails_admin'
+gem 'rails_admin', '3.0.0'
 # gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
 gem 'jquery-datatables-rails'
