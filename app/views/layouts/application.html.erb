@@ -73,47 +73,49 @@
                       <%= link_to t('menu.leaderboard'), leaderboard_tournament_path(@current_tournament),
                                                  data: { turbo: false }, target: '_self' %>
                     </li>
-                  <% end %>
-                  <li>
-                    <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
-                                                   data: { turbo: false }, target: '_self' %>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
-                                                         data: { turbo: false }, target: '_self' %>
-                  </li>
-                  <li>
-                    <%= link_to t('menu.prediction_graph'),
-                                    prediction_graph_tournament_path(@current_tournament),
-                                    data: { turbo: false }, target: '_self' %>
-                  </li>
-                  <% if current_user.admin %>
                     <li>
-                      <%= link_to t('menu.prize_list'), prize_list_challenge_path(@current_tournament),
-                                                data: { turbo: false }, target: '_self' %>
-                    </li>
-                  <% end %>
-                  <% if current_user.admin %>
-                    <li>
-                      <%= link_to t('menu.admin'), rails_admin_path, target: '_self' %>
+                      <%#= link_to t('menu.user_payments'), payment_details_challenge_path(@current_tournament),
+                                                     data: { turbo: false }, target: '_self' %>
                     </li>
                     <li>
-                      <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
-                                                        data: { turbo: false },
-                                                        target: '_self' if @current_tournament %>
+                      <%= link_to t('menu.winners_list'), challenge_payments_challenge_path(@current_tournament),
+                                                           data: { turbo: false }, target: '_self' %>
                     </li>
                     <li>
-                      <%= link_to t('menu.new_edit_match_questions'),
-                                      show_matches_tournament_path(@current_tournament),
-                                                        data: { turbo: false },
-                                                        target: '_self' if @current_tournament %>
+                      <%= link_to t('menu.prediction_graph'),
+                                      prediction_graph_tournament_path(@current_tournament),
+                                      data: { turbo: false }, target: '_self' %>
                     </li>
-                    <li>
-                      <%= link_to t('menu.edit_predictions'),
-                                      predict_match_for_user_tournament_path(@current_tournament),
-                                                        data: { turbo: false },
-                                                        target: '_self' if @current_tournament %>
-                    </li>
+
+                    <% if current_user.admin %>
+                      <li>
+                        <%= link_to t('menu.prize_list'), prize_list_challenge_path(@current_tournament),
+                                                  data: { turbo: false }, target: '_self' %>
+                      </li>
+                    <% end %>
+
+                    <% if current_user.admin %>
+                      <li>
+                        <%= link_to t('menu.admin'), rails_admin_path, target: '_self' %>
+                      </li>
+                      <li>
+                        <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
+                                                          data: { turbo: false },
+                                                          target: '_self' if @current_tournament %>
+                      </li>
+                      <li>
+                        <%= link_to t('menu.new_edit_match_questions'),
+                                        show_matches_tournament_path(@current_tournament),
+                                                          data: { turbo: false },
+                                                          target: '_self' if @current_tournament %>
+                      </li>
+                      <li>
+                        <%= link_to t('menu.edit_predictions'),
+                                        predict_match_for_user_tournament_path(@current_tournament),
+                                                          data: { turbo: false },
+                                                          target: '_self' if @current_tournament %>
+                      </li>
+                    <% end %>
                   <% end %>
                   <%# if @current_tournament.fifa2019? %>
                     <!-- <li> -->
