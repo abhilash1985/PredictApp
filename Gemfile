@@ -15,7 +15,7 @@ gem 'mysql2'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 
 # Use Puma as the app server
-gem 'puma', '~> 5.3'
+gem 'puma', '~> 5.6'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
