@@ -232,7 +232,7 @@ GEM
     psych (4.0.3)
       stringio
     public_suffix (4.0.6)
-    puma (5.6.2)
+    puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3.1)
@@ -400,7 +400,7 @@ DEPENDENCIES
   nprogress-rails
   pg (~> 1.2, >= 1.2.3)
   pry
-  puma (~> 5.3)
+  puma (~> 5.6)
   rack-mini-profiler
   rails (~> 7.0.2, >= 7.0.2.3)
   rails_admin (= 3.0.0)
