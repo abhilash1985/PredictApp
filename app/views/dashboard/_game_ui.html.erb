@@ -2,7 +2,7 @@
   <li><a href="#"></a></li>
   <li class="dropdown mega-dropdown padding_icons">
     <a href="#" class="dropdown-toggle white_text navbar-brand navbar-brand_tournament" data-turbo="false" data-toggle="dropdown">
-      <%= @current_tournament&.name&.upcase %> <span class="caret"></span>
+      <%= I18n.t(:fifa_2022) %> <span class="caret"></span>
     </a>
 
     <div class="dropdown-menu mega-dropdown-menu top_men_bg_color">
@@ -11,12 +11,12 @@
           <div class="tab-pane active mega-dropdown-menu">
             <ul class="nav-list list-inline">
                 <li class = 'padding_icons'>
-                  <%= link_to '#ipl2020_matches', data: { turbo: false }, class: 'white_text navbar-brand_tournament' do %>
+                  <%= link_to '#all_matches', data: { turbo: false }, class: 'white_text navbar-brand_tournament' do %>
                     <%= t('login.matches') %>
                   <% end -%>
                 </li>
                 <li class = 'padding_icons'>
-                  <%= link_to '#ipl2020_squads', data: { turbo: false }, class: 'white_text navbar-brand_tournament' do %>
+                  <%= link_to '#all_squads', data: { turbo: false }, class: 'white_text navbar-brand_tournament' do %>
                     <%= t('login.squad') %>
                   <% end -%>
                 </li>

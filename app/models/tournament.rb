@@ -9,16 +9,8 @@ class Tournament < ApplicationRecord
   has_many :matches, dependent: :destroy
   belongs_to :tournament_type
   # Scopes
-  scope :world_cup, -> { where(name: 'ICC Cricket World Cup 2015') }
-  scope :fifa_world_cup, -> { where(name: I18n.t(:fifa_2018)) }
-  scope :cricket_2019, -> { where(name: I18n.t(:cricket_2019)) }
-  scope :russia, -> { where(location: 'Russia') }
-  # scope :ipl2015, -> { where(name: 'IPL 2015') }
-  scope :aus_nzl, -> { where(location: 'Australia & New Zealand') }
-  scope :ipl2019, -> { where(name: 'VIVO IPL 2019') }
-  scope :ipl2020, -> { where(name: I18n.t(:ipl_2020)) }
-  scope :ipl2021, -> { where(name: I18n.t(:ipl_2021)) }
   scope :ipl2022, -> { where(name: I18n.t(:ipl_2022)) }
+  scope :fifa2022, -> { where(name: I18n.t(:fifa_2022)) }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
   def to_params
@@ -31,6 +23,8 @@ class Tournament < ApplicationRecord
       'cricket_2019.jpg'
     when I18n.t(:ipl_2020), I18n.t(:ipl_2021), I18n.t(:ipl_2022)
       'ipl.jpg'
+    when I18n.t(:fifa_2022)
+      'fifa2022.png'
     end
   end
 

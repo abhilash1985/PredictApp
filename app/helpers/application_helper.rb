@@ -65,7 +65,8 @@ module ApplicationHelper
   end
 
   def random_welcome_image
-    ['welcome.jpg', 'welcome2.jpg'].sample
+    # ['welcome.jpg', 'welcome2.jpg'].sample
+    'welcome.jpg'
   end
 
   def load_login_image

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   end
   get 'dashboard/welcome'
   root 'dashboard#index'
-  resources :dashboard, only: :index
+  resources :dashboard, only: :index do
+    collection do
+      post :change_my_password
+    end
+  end
   resources :tournaments, only: %i[index show] do
     member do
       get :leaderboard

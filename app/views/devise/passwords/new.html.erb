@@ -6,7 +6,7 @@
 </div>
 <div class="margin center-block">
   <div class="tab-pane col-md-offset-2 col-md-4">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { data: { turbo: false }, method: :post }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: change_my_password_dashboard_index_path, html: { data: { turbo: false }, method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <fieldset>
 
@@ -17,11 +17,30 @@
           </div>
         </div>
 
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password">New Password:</label>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+          <div class="controls">
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true,
+                                 placeholder: 'New password', class:'form-control' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="prediction-results control-label" for="password_confirmation">Confirm New Password:</label>
+          <div class="controls">
+            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", required: true,
+                                 placeholder: 'Confirm New password', class:'form-control' %>
+          </div>
+        </div>
+
         <!-- Button -->
         <div class="control-group">
           <label class="control-label" for="confirmsignup"></label>
           <div class="controls">
-            <%= f.submit "Send me reset password instructions", class:'btn btn-success' %>
+            <%= f.submit "Change My Password", class:'btn btn-success' %>
             <span>
               <%= render "devise/shared/links" %>
             </span>

@@ -170,6 +170,40 @@ en:
     runs_scored_in_first: 'Runs scored for the 1st wicket in the 1st innings will be?'
     runs_scored_in_second: 'Runs scored for the 1st wicket in the 2nd innings will be?'
 
+  football:
+    win_the_match: 'Who will win the match?'
+    goals_with_team_name: "Goals scored by %{team_name} in the match will be?"
+    first_goal: 'Who will score first goal of the match?'
+    first_goal_in_second_half: 'Who will score first goal in the 2nd half of the match?'
+    most_goals_by_player: 'Who will score most goals in the match?'
+    most_goals_by_player_in_1st_half: 'Who will score most goals in 1st half of the match?'
+    most_goals_by_player_in_2nd_half: 'Who will score most goals in 2nd half of the match?'
+    total_goals_in_the_first_half: 'Total no. of goals scored in the 1st half of the match will be?'
+    total_goals_in_the_1st_half_by_team: "Goals scored by %{team_name} in the 1st half of the match will be?"
+    total_goals_in_the_second_half: 'Total no. of goals scored in the 2nd half of the match will be?'
+    total_goals_in_the_2nd_half_by_team: "Goals scored by %{team_name} in the 2nd half of the match will be?"
+    total_shots: 'Total no. of shots in the match will be?'
+    total_shots_by_team: "Total no. of shots by %{team_name} in the match will be?"
+    total_shots_on_target: 'Total no. of shots on target in the match will be?'
+    total_shots_on_target_by_team: "Total no. of shots on target by %{team_name} in the match will be?"
+    total_no_of_fouls: 'Total no. of fouls in the match will be?'
+    total_no_of_fouls_by_team: "Total no. of fouls by %{team_name}? in the match will be?"
+    total_no_of_cards: 'Total no. of cards(Yellow+Red) in the match will be?'
+    total_no_of_cards_by_team: "Total no. of cards(Yellow+Red) received by %{team_name} in the match will be?"
+    total_no_of_yellow_cards: 'Total no. of yellow cards in the match will be?'
+    total_no_of_yellow_cards_by_team: "Total no. of yellow cards received by %{team_name} in the match will be?"
+    total_no_of_red_cards: 'Total no. of red cards in the match will be?'
+    total_no_of_red_cards_by_team: "Total no. of red cards received by %{team_name} in the match will be?"
+    total_no_of_possession_by_team: "Total ball possession by %{team_name} in the match will be?"
+    total_no_of_passes: 'Total no. of passes in the match will be?'
+    total_no_of_passess_by_team: "Total no. of passes by %{team_name} in the match will be?"
+    pass_accuracy_by_team: "The Pass Accuracy by %{team_name} in the match will be?"
+    total_no_of_offsides: 'Total no. of offsides in the match will be?'
+    total_no_of_offsides_by_team: "Total no. of offsides by %{team_name}? in the match will be?"
+    total_no_of_corners: 'Total no. of corners in the match will be?'
+    total_no_of_corners_by_team: "Total no. of corners received by %{team_name}? in the match will be?"
+    first_goal_in_the_match_will_be: 'The first goal in the match will be through?'
+
   bonus:
     win_world_cup: 'Who will win the ICC Cricket World Cup 2019?'
     team_with_most_sixes: 'Which team will hit the most sixes at ICC Cricket World Cup 2019?'
@@ -253,6 +287,9 @@ en:
   close: 'Close'
   tournament_matches: "%{name} - MATCHES"
   no_tournament_found: 'No Tournaments Found'
+
+  fifa_2022: 'FIFA WORLD CUP QATAR 2022'
+  fifa2022: 'FIFA2022'
 
   menu:
     home: 'Home'

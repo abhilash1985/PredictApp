@@ -44,6 +44,7 @@ module TournamentsHelper
   end
 
   def show_team_logo(team_short_name, size = '50x50')
+    @current_tournament_type = 'football'
     image_tag("flags/#{@current_tournament_type}/#{team_short_name}.png", size: size)
   rescue StandardError
     image_tag("flags/#{@current_tournament_type}/icc.jpeg", size: size)
