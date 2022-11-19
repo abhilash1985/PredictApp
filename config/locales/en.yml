@@ -254,6 +254,9 @@ en:
   tournament_matches: "%{name} - MATCHES"
   no_tournament_found: 'No Tournaments Found'
 
+  fifa_2022: 'FIFA WORLD CUP QATAR 2022'
+  fifa2022: 'FIFA2022'
+
   menu:
     home: 'Home'
     leaderboard: 'Leaderboard'

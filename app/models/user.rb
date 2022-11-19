@@ -18,7 +18,7 @@ class User < ApplicationRecord
   scope :order_by_name, -> { order(:first_name) }
   scope :by_team_id, ->(team_id) { where(team_id: team_id) }
   # Constants
-  POINT_BOOSTER = 7
+  POINT_BOOSTER = 5
 
   def show_name
     full_name.blank? ? show_email : full_name

@@ -3,7 +3,7 @@
 
 <%= form_for(:prediction, url: update_predictions_for_user_tournament_path(@current_tournament),
                           html: { method: 'post', role: :form, 'data-model' => 'person' }) do |f| %>
-  <div id="ipl2020_squads" class="center-block">
+  <div id="all_squads" class="center-block">
     <div class="page-header ind-body match-result text-center padding-top-10">
       <h4 class="prediction-results">
         <%=t '.title', default: I18n.t('menu.edit_predictions') %>
