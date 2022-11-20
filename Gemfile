@@ -60,7 +60,7 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'spreadsheet'
-gem 'rails_admin', '3.0.0'
+gem 'rails_admin', '3.1.0'
 # gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
 gem 'jquery-datatables-rails'

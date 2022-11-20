@@ -252,7 +252,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
-    rails_admin (3.0.0)
+    rails_admin (3.1.0)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
       nested_form (~> 0.3)
@@ -331,8 +331,9 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
-    turbo-rails (1.0.1)
+    turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
@@ -393,7 +394,7 @@ DEPENDENCIES
   puma (~> 5.6)
   rack-mini-profiler
   rails (~> 7.0, >= 7.0.4)
-  rails_admin (= 3.0.0)
+  rails_admin (= 3.1.0)
   rubocop
   sass-rails (>= 6)
   sdoc (~> 1.0)
