@@ -26,45 +26,45 @@ class Prediction < ApplicationRecord
     match_question&.full_name
   end
 
-  # rails_admin do
-  #   list do
-  #     field :id
-  #     field :user_challenge_name
-  #     field :match_question_name
-  #     field :user_answer
-  #     field :points
-  #     field :created_at
-  #     field :updated_at
-  #   end
+  rails_admin do
+    list do
+      field :id
+      field :user_challenge_name
+      field :match_question_name
+      field :user_answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
 
-  #   edit do
-  #     field :user_challenge_id, :enum do
-  #       enum do
-  #         UserChallenge.includes(:user, :challenge).all.collect { |p| [p.full_name, p.id] }
-  #       end
-  #     end
+    edit do
+      field :user_challenge_id, :enum do
+        enum do
+          UserChallenge.includes(:user, :challenge).all.collect { |p| [p.full_name, p.id] }
+        end
+      end
 
-  #     field :match_question_id, :enum do
-  #       enum do
-  #         MatchQuestion.includes(:question, match: %i[team1 team2]).all
-  #                      .collect { |p| [p.full_name, p.id] }
-  #       end
-  #     end
+      field :match_question_id, :enum do
+        enum do
+          MatchQuestion.includes(:question, match: %i[team1 team2]).all
+                       .collect { |p| [p.full_name, p.id] }
+        end
+      end
 
-  #     field :user_answer
-  #     field :points
-  #     field :created_at
-  #     field :updated_at
-  #   end
+      field :user_answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
 
-  #   show do
-  #     field :id
-  #     field :user_challenge_name
-  #     field :match_question_name
-  #     field :user_answer
-  #     field :points
-  #     field :created_at
-  #     field :updated_at
-  #   end
-  # end
+    show do
+      field :id
+      field :user_challenge_name
+      field :match_question_name
+      field :user_answer
+      field :points
+      field :created_at
+      field :updated_at
+    end
+  end
 end

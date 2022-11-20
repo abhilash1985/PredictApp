@@ -120,13 +120,13 @@ class Match < ApplicationRecord
     create_match_questions_for_user(params[:match_question], user_challenge)
   end
 
-  # rails_admin do
-  #   # list do
-  #   # field :team1_short_name
-  #   # field :team2_short_name
-  #   # field :created_at
-  #   # end
-  # end
+  rails_admin do
+    # list do
+    # field :team1_short_name
+    # field :team2_short_name
+    # field :created_at
+    # end
+  end
 
   private
 
