@@ -1,6 +1,7 @@
 {
   "name": "PredictApp",
   "private": true,
+  "type":"module",
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
