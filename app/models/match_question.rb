@@ -62,47 +62,47 @@ class MatchQuestion < ApplicationRecord
     player.try(:first_name)
   end
 
-  rails_admin do
-    list do
-      field :id
-      field :match_name
-      field :question_name
-      field :options
-      field :answer
-      field :points
-      field :created_at
-      field :updated_at
-    end
+  # rails_admin do
+  #   list do
+  #     field :id
+  #     field :match_name
+  #     field :question_name
+  #     field :options
+  #     field :answer
+  #     field :points
+  #     field :created_at
+  #     field :updated_at
+  #   end
 
-    edit do
-      field :match_id, :enum do
-        enum do
-          Match.includes(:team1, :team2).all.collect { |p| [p.full_name, p.id] }
-        end
-      end
+  #   edit do
+  #     field :match_id, :enum do
+  #       enum do
+  #         Match.includes(:team1, :team2).all.collect { |p| [p.full_name, p.id] }
+  #       end
+  #     end
 
-      field :question_id, :enum do
-        enum do
-          Question.all.collect { |p| [p.question, p.id] }
-        end
-      end
+  #     field :question_id, :enum do
+  #       enum do
+  #         Question.all.collect { |p| [p.question, p.id] }
+  #       end
+  #     end
 
-      field :options
-      field :answer
-      field :points
-      field :created_at
-      field :updated_at
-    end
+  #     field :options
+  #     field :answer
+  #     field :points
+  #     field :created_at
+  #     field :updated_at
+  #   end
 
-    show do
-      field :id
-      field :match_name
-      field :question_name
-      field :options
-      field :answer
-      field :points
-      field :created_at
-      field :updated_at
-    end
-  end
+  #   show do
+  #     field :id
+  #     field :match_name
+  #     field :question_name
+  #     field :options
+  #     field :answer
+  #     field :points
+  #     field :created_at
+  #     field :updated_at
+  #   end
+  # end
 end
