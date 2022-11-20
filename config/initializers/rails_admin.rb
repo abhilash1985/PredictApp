@@ -4,7 +4,7 @@ require "nested_form/engine"
 require "nested_form/builder_mixin"
 
 RailsAdmin.config do |config|
-  config.asset_source = :sprockets # :webpacker
+  # config.asset_source = :sprockets # :webpacker
 
   ### Popular gems integration
 
