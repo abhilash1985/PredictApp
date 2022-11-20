@@ -106,6 +106,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem 'net-smtp', '~> 0.3.3'
+gem 'net-pop', '~> 0.1.0'
+gem 'net-imap', '~> 0.3.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
