@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get 'users/sign_in', to: 'dashboard#welcome'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users do
   end
   get 'dashboard/welcome'
