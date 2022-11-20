@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0', '>= 7.0.2'
+gem 'rails', '6.1.7'
 
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
@@ -18,13 +18,14 @@ gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'puma', '~> 5.6'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", '1.0.1'
+# gem "turbo-rails", '1.0.1'
+gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+# gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -60,7 +61,7 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'spreadsheet'
-# gem 'rails_admin', '3.1.0'
+gem 'rails_admin', '2.2.1'
 # gem 'jquery-final_countdown-rails'
 gem 'nprogress-rails'
 gem 'jquery-datatables-rails'
@@ -104,6 +105,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+gem 'net-smtp', '~> 0.3.3'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

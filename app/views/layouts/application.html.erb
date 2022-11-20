@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag 'application', type: 'module', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 
     <link rel="shortcut icon" href="/assets/logo/favicon.ico"/>
 
@@ -96,7 +96,7 @@
 
                     <% if current_user.admin %>
                       <li>
-                        <%#= link_to t('menu.admin'), rails_admin_path, target: '_self' %>
+                        <%= link_to t('menu.admin'), rails_admin_path, target: '_self' %>
                       </li>
                       <li>
                         <%= link_to t('menu.update_paid_status'), show_user_challenges_challenge_path(@current_tournament),
