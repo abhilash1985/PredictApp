@@ -21,8 +21,8 @@
 //= require jquery.countdown.min
 //= require tooltipster
 //= require dataTables/jquery.dataTables
-//= require nprogress
-//= require nprogress-turbolinks
+// require nprogress
+// require nprogress-turbolinks
 //= require chartkick
 // require Chart.bundle
 //= require highcharts

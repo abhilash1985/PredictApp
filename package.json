@@ -8,7 +8,9 @@
     "@rails/webpacker": "^5.4.3",
     "actioncable": "^5.2.6",
     "block-ui": "^2.70.1",
+    "bootstrap": "^5.2.2",
     "chartkick": "^4.1.1",
+    "datatables.net-dt": "^1.13.1",
     "highcharts": "^10.0.0",
     "jquery": "^3.6.0",
     "jquery-countdown": "^2.2.0",
@@ -19,9 +21,6 @@
     "webpack-cli": "^3.3.12",
     "yargs-parser": "^20.2.9",
     "yarn": "^1.22.19"
-  },
-  "engines": {
-    "node": "16.18.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^4.11.1",
