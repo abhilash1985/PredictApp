@@ -381,7 +381,7 @@ DEPENDENCIES
   pry
   puma (~> 5.6)
   rack-mini-profiler
-  rails (~> 7.0, >= 7.0.4)
+  rails (~> 7.0, >= 7.0.2)
   rubocop
   sass-rails (>= 6)
   sdoc (~> 1.0)
