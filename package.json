@@ -18,6 +18,9 @@
     "yargs-parser": "^20.2.9",
     "yarn": "^1.22.19"
   },
+  "engines": {
+    "node": "16.18.1"
+  },
   "devDependencies": {
     "webpack-dev-server": "^3",
     "yarn-audit-fix": "^9.3.7"
