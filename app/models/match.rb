@@ -71,6 +71,14 @@ class Match < ApplicationRecord
     match_date <= Time.zone.now
   end
 
+  def group_stage?
+    round_name == 'GROUP-STAGE'
+  end
+
+  def round_name
+    round&.name
+  end
+
   # Creating match questions based on question
   def create_match_question(question, selected_questions = {})
     match_question = match_questions.by_question(question).first_or_initialize
