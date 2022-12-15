@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def prediction_for_match_question(challenge, match_question)
-    user_challenge = user_challenges.by_challenge(challenge.id).first
+    user_challenge = user_challenges.by_challenge(challenge&.id).first
     return if user_challenge.blank?
 
     user_challenge.predictions.by_match_question(match_question.id).first
