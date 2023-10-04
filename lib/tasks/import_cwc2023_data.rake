@@ -3,7 +3,7 @@
 # bundle exec rails import_cwc2023:master_data
 namespace :import_cwc2023 do
   desc 'Import master data'
-  task master_data: %i[truncate_data tournaments cwc_stadiums cwc_teams rounds players
+  task master_data: %i[tournaments cwc_stadiums cwc_teams rounds players
                        matches questions match_questions challenges] do
     # for initial run include :questions, :match_questions, :challenges
   end
