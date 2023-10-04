@@ -12,4 +12,5 @@ class TournamentType < ApplicationRecord
   scope :ipl2021, -> { where(name: 'ipl2021') }
   scope :ipl2022, -> { where(name: 'ipl2022') }
   scope :fifa2022, -> { where(name: 'fifa2022') }
+  scope :cwc2023, -> { where(name: 'cwc2023') }
 end

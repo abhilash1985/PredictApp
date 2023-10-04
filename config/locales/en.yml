@@ -35,6 +35,7 @@ en:
   app_name: 'PREDIKTNWIN'
 
   cwc2019: 'cwc2019'
+  cwc2023: 'cwc2023'
   cricket_name: 'cricket'
 
   cricket:
@@ -276,6 +277,7 @@ en:
   tournaments: 'Tournaments'
   coming_soon: 'COMING SOON'
   cricket_2019: 'ICC Cricket World Cup 2019'
+  cricket_2023: "ICC Men's Cricket World Cup INDIA 2023"
   fifa_2018: '2018 FIFA World Cup Russia'
   ipl_2020: 'DREAM11 IPL 2020'
   ipl_2021: 'VIVO IPL 2021'
