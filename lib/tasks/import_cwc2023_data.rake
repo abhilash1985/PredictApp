@@ -27,8 +27,8 @@ namespace :import_cwc2023 do
     ActiveRecord::Base.connection.execute 'DELETE FROM teams'
     ActiveRecord::Base.connection.execute 'TRUNCATE rounds'
     ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
-    # ActiveRecord::Base.connection.execute 'TRUNCATE tournaments'
-    # ActiveRecord::Base.connection.execute 'TRUNCATE tournament_types'
+    ActiveRecord::Base.connection.execute 'TRUNCATE tournaments'
+    ActiveRecord::Base.connection.execute 'TRUNCATE tournament_types'
   end
 
   desc 'Import tournaments'
@@ -83,7 +83,7 @@ namespace :import_cwc2023 do
   desc 'Import players'
   task players: :environment do
     begin
-      file = 'db/data/cwc2023_players.xls'
+      file = 'db/data/cricket_2023_players.xls'
       Spreadsheet.open(file) do |sheet|
         sheet1 = sheet.worksheet 0
         sheet1.each 1 do |row|
@@ -109,8 +109,8 @@ namespace :import_cwc2023 do
   task matches: :environment do
     # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     begin
-      file = 'db/data/cwc2023_matches.xls'
-      tournament = Tournament.fifa2022.first
+      file = 'db/data/cricket_2023_matches.xls'
+      tournament = Tournament.cwc2023.first
       return if tournament.blank?
 
       Spreadsheet.open(file) do |sheet|
