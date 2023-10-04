@@ -30,22 +30,22 @@ module Cricket
       }
     end
 
-    # def all_team_score_questions
-    #   # Points 2
-    #   # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
-    #   {
-    #     I18n.t('cricket.runs_afg') => team_score_points,
-    #     I18n.t('cricket.runs_ban') => team_score_points,
-    #     I18n.t('cricket.runs_eng') => team_score_points,
-    #     I18n.t('cricket.runs_nzl') => team_score_points,
-    #     I18n.t('cricket.runs_ind') => team_score_points,
-    #     I18n.t('cricket.runs_pak') => team_score_points,
-    #     I18n.t('cricket.runs_sa') => team_score_points,
-    #     I18n.t('cricket.runs_aus') => team_score_points,
-    #     I18n.t('cricket.runs_sl') => team_score_points,
-    #     I18n.t('cricket.runs_wi') => team_score_points
-    #   }
-    # end
+    def all_team_score_questions
+      # Points 2
+      # # 0-175, 176-225, 226-260, 261-285, 286-320, 321-350, 351-375, 375+
+      {
+        I18n.t('cricket.runs_afg') => team_score_points,
+        I18n.t('cricket.runs_ban') => team_score_points,
+        I18n.t('cricket.runs_eng') => team_score_points,
+        I18n.t('cricket.runs_nzl') => team_score_points,
+        I18n.t('cricket.runs_ind') => team_score_points,
+        I18n.t('cricket.runs_pak') => team_score_points,
+        I18n.t('cricket.runs_sa') => team_score_points,
+        I18n.t('cricket.runs_aus') => team_score_points,
+        I18n.t('cricket.runs_sl') => team_score_points,
+        I18n.t('cricket.runs_ned') => team_score_points
+      }
+    end
 
     def team_score_questions_for(team_name)
       # Points 2

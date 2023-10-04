@@ -2,8 +2,8 @@
 
 # module Cricket for cricket related questions and answers
 module Cricket
-  # Cwc2019
-  class Cwc2019 < BasicClass
+  # Cwc2023
+  class Cwc2023 < BasicClass
     def all_bonus_questions
       questions = {}
       questions.merge(

@@ -58,6 +58,7 @@ en:
     runs_aus: 'Runs will be scored by Australia?'
     runs_sl: 'Runs will be scored by Sri Lanka?'
     runs_wi: 'Runs will be scored by West Indies?'
+    runs_ned: 'Runs will be scored by Netherlands?'
 
     # Common Questions
     no_of_bowled: 'Total No. of Bowled outs in the match?'

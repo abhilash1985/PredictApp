@@ -20,11 +20,11 @@ module Cricket
     end
 
     def win_wc_options
-      %w(AUS IND ENG PAK WI NZL SA BAN Others)
+      %w(AUS IND ENG PAK NZL SA SL Others)
     end
 
     def team_with_most_six_options
-      %w(ENG AUS WI IND NZL PAK SA SL Others)
+      %w(ENG AUS IND NZL PAK SA SL Others)
     end
 
     def leading_wickets_options

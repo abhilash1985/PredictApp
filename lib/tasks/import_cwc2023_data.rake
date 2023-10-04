@@ -3,9 +3,8 @@
 # bundle exec rails import_cwc2023:master_data
 namespace :import_cwc2023 do
   desc 'Import master data'
-  # task master_data: %i[truncate_data tournaments fifa_stadiums fifa_teams rounds players
-  #                      matches questions match_questions challenges] do
-  task master_data: %i[truncate_data tournaments cwc_stadiums cwc_teams rounds] do
+  task master_data: %i[truncate_data tournaments cwc_stadiums cwc_teams rounds players
+                       matches questions match_questions challenges] do
     # for initial run include :questions, :match_questions, :challenges
   end
 
@@ -33,7 +32,7 @@ namespace :import_cwc2023 do
 
   desc 'Import tournaments'
   task tournaments: :environment do
-    tournament_type = TournamentType.where(name: 'cwc2023', game: 'football')
+    tournament_type = TournamentType.where(name: 'cwc2023', game: 'cricket')
                                     .first_or_initialize
     tournament_type.save
     tournament = tournament_type.tournaments.cwc2023.first_or_initialize
@@ -46,12 +45,12 @@ namespace :import_cwc2023 do
 
   desc 'Import Groups'
   task cwc_stadiums: :environment do
-    stadiums = %W(Group\ A Group\ B Group\ C Group\ D Group\ E Group\ F Group\ G Group\ H)
+    stadiums = %w[Ahmedabad Lucknow Hyderabad Pune Mumbai Delhi Chennai Kolkata Bengaluru Dharmasala]
     stadiums.each do |stadium|
       stadium = Stadium.by_name(stadium).first_or_initialize
       stadium.save
     end
-    p "Imported Groups..."
+    p 'Imported Groups...'
   end
 
   desc 'Import teams'
@@ -67,7 +66,7 @@ namespace :import_cwc2023 do
       p "Team: #{name}(#{rank[1]}) - Rank: #{rank[0]}"
       team.save
     end
-    p "Imported Teams..."
+    p 'Imported Teams...'
   end
 
   desc 'Import rounds'
@@ -82,65 +81,62 @@ namespace :import_cwc2023 do
 
   desc 'Import players'
   task players: :environment do
-    begin
-      file = 'db/data/cricket_2023_players.xls'
-      Spreadsheet.open(file) do |sheet|
-        sheet1 = sheet.worksheet 0
-        sheet1.each 1 do |row|
-          next if row[0].blank?
+    file = 'db/data/cricket_2023_players.xls'
+    Spreadsheet.open(file) do |sheet|
+      sheet1 = sheet.worksheet 0
+      sheet1.each 1 do |row|
+        next if row[0].blank?
 
-          team = Team.by_name(row[0]).first
-          next if team.blank?
+        team = Team.by_name(row[0]).first
+        next if team.blank?
 
-          player = team.players.by_first_name(row[1].strip.titleize).first_or_initialize
-          player.last_name = row[3]&.strip
-          player.player_style = row[2]&.strip
-          p "Team: #{row[0]}, Player: #{row[1]}, Style: #{row[2]}"
-          player.save
-        end
+        player = team.players.by_first_name(row[1].strip.titleize).first_or_initialize
+        player.last_name = row[3]&.strip
+        player.player_style = row[2]&.strip
+        p "Team: #{row[0]}, Player: #{row[1]}, Style: #{row[2]}"
+        player.save
       end
-      p 'Imported players'
-    rescue StandardError => e
-      puts "Error while importing #{e} #{e.backtrace}"
     end
+    p 'Imported players'
+  rescue StandardError => e
+    puts "Error while importing #{e} #{e.backtrace}"
   end
 
   desc 'Import Matches'
   task matches: :environment do
     # ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
-    begin
-      file = 'db/data/cricket_2023_matches.xls'
-      tournament = Tournament.cwc2023.first
-      return if tournament.blank?
 
-      Spreadsheet.open(file) do |sheet|
-        sheet1 = sheet.worksheet 0
-        sheet1.each 1 do |row|
-          next if row[0].blank?
+    file = 'db/data/cricket_2023_matches.xls'
+    tournament = Tournament.cwc2023.first
+    return if tournament.blank?
 
-          team1 = Team.by_name(row[1].strip).first
-          next if team1.blank?
+    Spreadsheet.open(file) do |sheet|
+      sheet1 = sheet.worksheet 0
+      sheet1.each 1 do |row|
+        next if row[0].blank?
 
-          team2 = Team.by_name(row[2].strip).first
-          next if team2.blank?
+        team1 = Team.by_name(row[1].strip).first
+        next if team1.blank?
 
-          match = tournament.matches.by_match_no(row[0])
-                            .where(team1_id: team1.id, team2_id: team2.id)
-                            .first_or_initialize
-          stadium = Stadium.by_name(row[3].strip).first_or_initialize
-          stadium.save
-          match.stadium_id = stadium.try(:id)
-          round = Round.by_name('GROUP-STAGE').first
-          match.round_id = round.try(:id)
-          match.match_date = row[4].to_time.in_time_zone('Chennai')
-          match.save!
-          p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
-        end
+        team2 = Team.by_name(row[2].strip).first
+        next if team2.blank?
+
+        match = tournament.matches.by_match_no(row[0])
+                          .where(team1_id: team1.id, team2_id: team2.id)
+                          .first_or_initialize
+        stadium = Stadium.by_name(row[3].strip).first_or_initialize
+        stadium.save
+        match.stadium_id = stadium.try(:id)
+        round = Round.by_name('GROUP-STAGE').first
+        match.round_id = round.try(:id)
+        match.match_date = row[4].to_time.in_time_zone('Chennai')
+        match.save!
+        p "#{match.id}: #{row[0]}: #{row[1]} V #{row[2]} at #{row[3]} on #{row[4]}"
       end
-      p 'Imported Matches...'
-    rescue StandardError => e
-      puts "Error while importing #{e} #{e.backtrace}"
     end
+    p 'Imported Matches...'
+  rescue StandardError => e
+    puts "Error while importing #{e} #{e.backtrace}"
   end
 
   desc 'Import questions'
