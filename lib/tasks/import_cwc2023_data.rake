@@ -10,24 +10,24 @@ namespace :import_cwc2023 do
 
   desc 'Truncate Old Data'
   task truncate_data: :environment do
+    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 0'
     ActiveRecord::Base.connection.execute 'TRUNCATE payments'
     ActiveRecord::Base.connection.execute 'TRUNCATE prizes'
-
     ActiveRecord::Base.connection.execute 'TRUNCATE predictions'
     ActiveRecord::Base.connection.execute 'TRUNCATE user_challenges'
     ActiveRecord::Base.connection.execute 'TRUNCATE challenge_payments'
-
     ActiveRecord::Base.connection.execute 'TRUNCATE match_questions'
     ActiveRecord::Base.connection.execute 'TRUNCATE matches'
     ActiveRecord::Base.connection.execute 'UPDATE challenge_payments set challenge_id = null where id > 0'
-    ActiveRecord::Base.connection.execute 'DELETE FROM challenges where id > 0'
+    ActiveRecord::Base.connection.execute 'TRUNCATE challenges'
     ActiveRecord::Base.connection.execute 'TRUNCATE players'
     ActiveRecord::Base.connection.execute 'UPDATE users set team_id = null where id > 0'
-    ActiveRecord::Base.connection.execute 'DELETE FROM teams'
+    ActiveRecord::Base.connection.execute 'TRUNCATE teams'
     ActiveRecord::Base.connection.execute 'TRUNCATE rounds'
     ActiveRecord::Base.connection.execute 'TRUNCATE stadia'
     ActiveRecord::Base.connection.execute 'TRUNCATE tournaments'
     ActiveRecord::Base.connection.execute 'TRUNCATE tournament_types'
+    ActiveRecord::Base.connection.execute 'SET FOREIGN_KEY_CHECKS = 1'
   end
 
   desc 'Import tournaments'
@@ -37,7 +37,7 @@ namespace :import_cwc2023 do
     tournament_type.save
     tournament = tournament_type.tournaments.cwc2023.first_or_initialize
     tournament.start_date = '05-10-2023'
-    tournament.end_date = '18-12-2022'
+    tournament.end_date = '19-11-2023'
     tournament.location = 'India'
     tournament.save
     p 'Imported Tournaments...'
