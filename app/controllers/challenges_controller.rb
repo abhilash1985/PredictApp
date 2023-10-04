@@ -66,7 +66,7 @@ class ChallengesController < ApplicationController
 
   def current_challenge_params
     @challenge = Challenge.find_by_tournament_id(params[:id])
-    @current_tournament = @challenge.tournament
+    @current_tournament = @challenge&.tournament
     current_tournament_type
   end
 end
