@@ -31,5 +31,4 @@ test:
   database: predict_app_test
 
 production:
-  <<: *default
-  database: predict_app_2023
+  url: <%= ENV['DATABASE_URL'] %>
