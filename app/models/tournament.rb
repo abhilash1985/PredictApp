@@ -10,6 +10,7 @@ class Tournament < ApplicationRecord
   belongs_to :tournament_type
   # Scopes
   scope :ipl2022, -> { where(name: I18n.t(:ipl_2022)) }
+  scope :cwc2023, -> { where(name: I18n.t(:cricket_2023)) }
   scope :fifa2022, -> { where(name: I18n.t(:fifa_2022)) }
   scope :active, -> { where('end_date >= ?', Date.today) }
 
@@ -25,6 +26,8 @@ class Tournament < ApplicationRecord
       'ipl.jpg'
     when I18n.t(:fifa_2022)
       'fifa2022.png'
+    when I18n.t(:cricket_2023)
+      'cricket_2023.png'
     end
   end
 

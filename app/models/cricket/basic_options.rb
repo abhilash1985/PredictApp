@@ -132,5 +132,13 @@ module Cricket
     def best_sr_batsman_in_final_options
       %w(0-80 81-90 91-100 101-110 111-120 121-130 131-140 141-150 150+)
     end
+
+    def runs_scored_first_wicket_options
+      ['0-10', '11-20', '21-30', '31-40', '41-50', '51-75', '75+', 'No Wickets Lost']
+    end
+
+    # Strike Rate of Top Scorer
+    # Economy of Best Bowler
+    # Runs scored by the batsman who gets out first
   end
 end
